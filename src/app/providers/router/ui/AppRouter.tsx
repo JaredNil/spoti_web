@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import { Children, Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
@@ -14,7 +15,7 @@ const AppRouter: React.FC = () => {
 	const renderWithWrapper = useCallback((route: AppRoutesProps) => {
 		const element = (
 			<Suspense fallback={<PageLoader />}>
-				<div className="page-wrapper">{route.element}</div>
+				<>{route.element}</>
 			</Suspense>
 		);
 		return (

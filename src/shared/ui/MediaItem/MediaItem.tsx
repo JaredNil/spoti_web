@@ -1,6 +1,6 @@
 'use client';
 
-import { Song } from 'index';
+import { Song } from 'app/App';
 
 // import useLoadImage from '@/hooks/useLoadImage';
 // import { Song } from '@/types';

@@ -1,3 +1,4 @@
+/* stylelint-disable declaration-block-no-redundant-longhand-properties */
 /* stylelint-disable at-rule-no-unknown */
 @import url("./reset.scss");
 @import url("./themes/dark.scss");
@@ -9,13 +10,24 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.text-3xl {
-    background-color: red;
+html,
+body,
+:root {
+    height: 100%;
+    background-color: black;
+    color-scheme: dark;
 }
 
+.app {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 
-
+/*
 body {
     font: var(--font-m);
     color: var(--primary-color);
@@ -53,4 +65,4 @@ main.content {
     height: calc(100vh - var(--navber-height));
     overflow-y: auto;
     flex-shrink: 100;
-}
+} */

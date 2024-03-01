@@ -1,45 +1,87 @@
-import { memo, type ButtonHTMLAttributes, ReactNode } from 'react';
+/* eslint-disable react/prop-types */
+// import { memo, type ButtonHTMLAttributes, ReactNode } from 'react';
 
-import { Mods, classNames } from 'shared/lib/classNames/classNames';
+// import { Mods, classNames } from 'shared/lib/classNames/classNames';
 
-import cls from './Button.module.scss';
+// import cls from './Button.module.scss';
 
-export enum ButtonTheme {
-	CLEAR = 'clear',
-	OUTLINE = 'outline',
-	OUTLINE_RED = 'outline_red',
-	BACKGROUND = 'background',
-	BACKGROUND_INVERTED = 'backgroundInverted',
-}
+// export enum ButtonTheme {
+// 	CLEAR = 'clear',
+// 	OUTLINE = 'outline',
+// 	OUTLINE_RED = 'outline_red',
+// 	BACKGROUND = 'background',
+// 	BACKGROUND_INVERTED = 'backgroundInverted',
+// }
 
-export enum ButtonSize {
-	M = 'size_m',
-	L = 'size_l',
-	XL = 'size_xl',
-}
+// export enum ButtonSize {
+// 	M = 'size_m',
+// 	L = 'size_l',
+// 	XL = 'size_xl',
+// }
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-	className?: string;
-	theme?: ButtonTheme;
-	square?: boolean;
-	size?: ButtonSize;
-	disabled?: boolean;
-	children: ReactNode;
-}
+// interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+// 	className?: string;
+// 	theme?: ButtonTheme;
+// 	square?: boolean;
+// 	size?: ButtonSize;
+// 	disabled?: boolean;
+// 	children: ReactNode;
+// }
 
-export const Button = memo<ButtonProps>((props: ButtonProps) => {
-	const { children, className, theme = ButtonTheme.OUTLINE, square, size = ButtonSize.M, disabled = false, ...otherProps } = props;
+// export const Button = memo<ButtonProps>((props: ButtonProps) => {
+// 	const { children, className, theme = ButtonTheme.OUTLINE, square, size = ButtonSize.M, disabled = false, ...otherProps } = props;
 
-	const mods: Mods = {
-		[cls[theme]]: true,
-		[cls.square]: square,
-		[cls[size]]: true,
-		[cls.disabled]: disabled,
-	};
+// 	const mods: Mods = {
+// 		[cls[theme]]: true,
+// 		[cls.square]: square,
+// 		[cls[size]]: true,
+// 		[cls.disabled]: disabled,
+// 	};
 
+// 	return (
+// 		<button type="button" className={classNames(cls.Button, mods, [className, theme])} disabled={disabled} {...otherProps}>
+// 			{children}
+// 		</button>
+// 	);
+// });
+
+import { forwardRef } from 'react';
+import { twMerge } from 'tailwind-merge';
+
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className, children, disabled, type = 'button', ...props }, ref) => {
 	return (
-		<button type="button" className={classNames(cls.Button, mods, [className, theme])} disabled={disabled} {...otherProps}>
+		<button
+			type="button"
+			className={twMerge(
+				`
+        w-full 
+        rounded-full 
+        bg-green-500
+        border
+        border-transparent
+        px-3 
+        py-3 
+        disabled:cursor-not-allowed 
+        disabled:opacity-50
+        text-black
+        font-bold
+        hover:opacity-75
+        transition
+      `,
+				disabled && 'opacity-75 cursor-not-allowed',
+				className
+			)}
+			disabled={disabled}
+			ref={ref}
+			{...props}
+		>
 			{children}
 		</button>
 	);
 });
+
+Button.displayName = 'Button';
+
+export default Button;

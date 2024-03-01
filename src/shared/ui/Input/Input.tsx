@@ -1,78 +1,42 @@
-import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import React, { InputHTMLAttributes, memo, useEffect, useRef, useState } from 'react';
-import cls from './Input.module.scss';
+import { forwardRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>;
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-interface InputProps extends HTMLInputProps {
-	className?: string;
-	value?: string | number;
-	onChange?: (value: string) => void;
-	autofocus?: boolean;
-	readonly?: boolean;
-}
-
-export const Input = memo((props: InputProps) => {
-	const { className, value, onChange, type = 'text', placeholder, autofocus, readonly, ...otherProps } = props;
-	const ref = useRef<HTMLInputElement>(null);
-	const [isFocused, setIsFocused] = useState(false);
-	const [caretPosition, setCaretPosition] = useState(0);
-
-	const isCaretVisible = isFocused && !readonly;
-
-	useEffect(() => {
-		if (autofocus) {
-			setIsFocused(true);
-			ref.current?.focus();
-		}
-	}, [autofocus]);
-
-	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		onChange?.(e.target.value);
-		setCaretPosition(e.target.value.length);
-	};
-
-	const onBlur = () => {
-		setIsFocused(false);
-	};
-
-	const onFocus = () => {
-		setIsFocused(true);
-	};
-
-	const onSelect = (e: any) => {
-		setCaretPosition(e?.target?.selectionStart || 0);
-	};
-
-	const mods: Mods = {
-		[cls.readonly]: readonly,
-	};
-
+const Input = forwardRef<HTMLInputElement, InputProps>(({ className, type, disabled, ...props }, ref) => {
 	return (
-		<div className={classNames(cls.InputWrapper, {}, [className])}>
-			{placeholder && <div className={cls.placeholder}>{`${placeholder}>`}</div>}
-			<div className={cls.caterWrapper}>
-				<input
-					className={cls.input}
-					type={type}
-					ref={ref}
-					value={value}
-					onChange={onChangeHandler}
-					onFocus={onFocus}
-					onBlur={onBlur}
-					onSelect={onSelect}
-					readOnly={readonly}
-					{...otherProps}
-				/>
-				{isCaretVisible && (
-					<span
-						className={cls.caret}
-						style={{
-							left: `${caretPosition * 7.6}px`,
-						}}
-					/>
-				)}
-			</div>
-		</div>
+		<input
+			type={type}
+			className={twMerge(
+				`
+        flex 
+        w-full 
+        rounded-md 
+        bg-neutral-700
+        border
+        border-transparent
+        px-3 
+        py-3 
+        text-sm 
+        file:border-0 
+        file:bg-transparent 
+        file:text-sm 
+        file:font-medium 
+        placeholder:text-neutral-400 
+        disabled:cursor-not-allowed 
+        disabled:opacity-50
+        focus:outline-none
+      `,
+				disabled && 'opacity-75',
+				className
+			)}
+			disabled={disabled}
+			ref={ref}
+			{...props}
+		/>
 	);
 });
+
+Input.displayName = 'Input';
+
+export default Input;

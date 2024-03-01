@@ -1,8 +1,8 @@
 import { TbPlaylist } from 'react-icons/tb';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-import { Song } from 'index';
 import MediaItem from 'shared/ui/MediaItem/MediaItem';
+import { Song } from 'app/App';
 // import useUploadModal from '@/hooks/useUploadModal';
 // import { useUser } from '@/hooks/useUser';
 // import useAuthModal from '@/hooks/useAuthModal';
