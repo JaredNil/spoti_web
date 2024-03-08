@@ -93,7 +93,7 @@ const PlayerContent: React.FC<PlayerContentProps> = () => {
 	// };
 
 	return (
-		<div className="grid grid-cols-2 md:grid-cols-3 h-full">
+		<div className="grid h-full grid-cols-2 md:grid-cols-3">
 			<div className="flex w-full justify-start">
 				<div className="flex items-center gap-x-4">
 					<MediaItem data={userSongs[0]} />
@@ -103,26 +103,26 @@ const PlayerContent: React.FC<PlayerContentProps> = () => {
 
 			<div
 				className="
-            flex 
-            md:hidden 
             col-auto 
+            flex 
             w-full 
+            items-center 
             justify-end 
-            items-center
+            md:hidden
           "
 			>
 				<div
 					// onClick={handlePlay}
 					className="
+              flex
               h-10
-              w-10
-              flex 
+              w-10 
+              cursor-pointer 
               items-center 
               justify-center 
               rounded-full 
               bg-white 
-              p-1 
-              cursor-pointer
+              p-1
             "
 				>
 					<Icon size={30} className="text-black" />
@@ -133,36 +133,36 @@ const PlayerContent: React.FC<PlayerContentProps> = () => {
 				className="
             hidden
             h-full
-            md:flex 
-            justify-center 
-            items-center 
             w-full 
             max-w-[722px] 
-            gap-x-6
+            items-center 
+            justify-center 
+            gap-x-6 
+            md:flex
           "
 			>
 				<AiFillStepBackward
 					// onClick={onPlayPrevious}
 					size={30}
 					className="
-              text-neutral-400 
               cursor-pointer 
-              hover:text-white 
-              transition
+              text-neutral-400 
+              transition 
+              hover:text-white
             "
 				/>
 				<div
 					// onClick={handlePlay}
 					className="
               flex 
+              h-10 
+              w-10
+              cursor-pointer
               items-center 
-              justify-center
-              h-10
-              w-10 
+              justify-center 
               rounded-full 
               bg-white 
-              p-1 
-              cursor-pointer
+              p-1
             "
 				>
 					<Icon size={30} className="text-black" />
@@ -171,16 +171,16 @@ const PlayerContent: React.FC<PlayerContentProps> = () => {
 					// onClick={onPlayNext}
 					size={30}
 					className="
-              text-neutral-400 
               cursor-pointer 
-              hover:text-white 
-              transition
+              text-neutral-400 
+              transition 
+              hover:text-white
             "
 				/>
 			</div>
 
-			<div className="hidden md:flex w-full justify-end pr-2">
-				<div className="flex items-center gap-x-2 w-[120px]">
+			<div className="hidden w-full justify-end pr-2 md:flex">
+				<div className="flex w-[120px] items-center gap-x-2">
 					<VolumeIcon
 						// onClick={toggleMute}
 						className="cursor-pointer"

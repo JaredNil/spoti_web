@@ -23,11 +23,11 @@ const Player = () => {
 			className="
         fixed 
         bottom-0 
-        bg-black 
+        h-[80px]
         w-full 
-        py-2 
-        h-[80px] 
-        px-4
+        bg-black 
+        px-4 
+        py-2
       "
 		>
 			<PlayerContent

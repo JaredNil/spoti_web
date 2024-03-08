@@ -31,39 +31,39 @@ const ListItem: React.FC<ListItemProps> = ({ image, name, href }: ListItemProps)
 			// onClick={onClick}
 			type="button"
 			className="
-        relative 
         group 
+        relative 
         flex 
-        items-center 
-        rounded-md 
-        overflow-hidden 
-        gap-x-4 
-        bg-neutral-100/10 
         cursor-pointer 
-        hover:bg-neutral-100/20 
+        items-center 
+        gap-x-4 
+        overflow-hidden 
+        rounded-md 
+        bg-neutral-100/10 
+        pr-4 
         transition 
-        pr-4
+        hover:bg-neutral-100/20
       "
 		>
 			<div className="relative min-h-[64px] min-w-[64px]">
 				<img className="object-cover" src={image} alt="/" />
 			</div>
-			<p className="font-medium truncate py-5">{name}</p>
+			<p className="truncate py-5 font-medium">{name}</p>
 			<div
 				className="
           absolute 
-          transition 
-          opacity-0 
-          rounded-full 
+          right-5 
           flex 
           items-center 
           justify-center 
+          rounded-full 
           bg-green-500 
           p-4 
+          opacity-0 
           drop-shadow-md 
-          right-5
-          group-hover:opacity-100 
-          hover:scale-110
+          transition
+          hover:scale-110 
+          group-hover:opacity-100
         "
 			>
 				<FaPlay className="text-black" />

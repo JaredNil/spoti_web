@@ -17,11 +17,11 @@ const Slider: React.FC<SlideProps> = ({ value = 1 }: SlideProps) => {
 			className="
         relative 
         flex 
-        items-center 
-        select-none 
-        touch-none 
+        h-10 
         w-full 
-        h-10
+        touch-none 
+        select-none 
+        items-center
       "
 			defaultValue={[1]}
 			value={[value]}
@@ -32,19 +32,19 @@ const Slider: React.FC<SlideProps> = ({ value = 1 }: SlideProps) => {
 		>
 			<RadixSlider.Track
 				className="
-          bg-neutral-600 
           relative 
+          h-[3px] 
           grow 
           rounded-full 
-          h-[3px]
+          bg-neutral-600
         "
 			>
 				<RadixSlider.Range
 					className="
             absolute 
-            bg-white 
+            h-full 
             rounded-full 
-            h-full
+            bg-white
           "
 				/>
 			</RadixSlider.Track>

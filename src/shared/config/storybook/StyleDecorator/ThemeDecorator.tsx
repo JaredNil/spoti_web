@@ -2,10 +2,6 @@ import { Theme } from './../../../../app/providers/ThemeProvider/lib/ThemeContex
 
 export const themeDecorator = (theme: Theme) => {
 	return (Story: any) => {
-		return (
-			<div className={`app ${theme}`}>
-				{<Story />}
-			</div>
-		);
+		return <div className={`app ${theme}`}>{<Story />}</div>;
 	};
 };

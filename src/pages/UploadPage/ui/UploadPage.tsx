@@ -7,7 +7,7 @@ import PageContent from 'widgets/PageContent/PageContent';
 import { twMerge } from 'tailwind-merge';
 import { userSongs } from 'app/App';
 
-const MainPage: React.FC = () => {
+const UploadPage: React.FC = () => {
 	const { t } = useTranslation();
 	const [value, setValue] = useState('');
 
@@ -19,13 +19,7 @@ const MainPage: React.FC = () => {
 		<div
 			className={twMerge(
 				'FLEX',
-				`
-        h-full 
-        w-full 
-        overflow-hidden 
-        overflow-y-auto 
-        rounded-lg 
-        bg-neutral-900
+				`     h-full        w-full         overflow-hidden         																	overflow-y-auto         rounded-lg         bg-neutral-900
       `
 			)}
 		>
@@ -65,4 +59,4 @@ const MainPage: React.FC = () => {
 	);
 };
 
-export default MainPage;
+export default UploadPage;

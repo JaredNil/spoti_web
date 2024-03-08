@@ -50,7 +50,7 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
 
 	return (
 		<div
-			className="hidden md:flex flex-col gap-y-2 bg-black h-full w-[300px] p-2
+			className=" hidden md:flex h-full w-[300px] flex-col gap-y-2 bg-black p-2  
         "
 		>
 			<Box>
@@ -60,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
 					))}
 				</div>
 			</Box>
-			<Box className="overflow-y-auto h-full">liba{/* <Library songs={songs} /> */}</Box>
+			<Box className="h-full overflow-y-auto">liba{/* <Library songs={songs} /> */}</Box>
 		</div>
 	);
 };

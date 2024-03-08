@@ -29,7 +29,15 @@ module.exports = {
 		project: './tsconfig.json',
 	},
 	plugins: ['react', '@typescript-eslint', 'prettier', 'react-hooks'],
-	ignorePatterns: ['build/', 'config/', 'webpack.config.ts', 'json-server/', 'tailwind.config.ts', 'postcss.config.js'],
+	ignorePatterns: [
+		'build/',
+		'config/',
+		'prettier.config.js',
+		'webpack.config.ts',
+		'json-server/',
+		'tailwind.config.ts',
+		'postcss.config.js',
+	],
 	rules: {
 		'react-hooks/rules-of-hooks': 'error',
 		'react-hooks/exhaustive-deps': 'error',

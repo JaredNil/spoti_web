@@ -58,19 +58,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className, children
 				`
         w-full 
         rounded-full 
-        bg-green-500
         border
         border-transparent
+        bg-green-500
         px-3 
         py-3 
-        disabled:cursor-not-allowed 
-        disabled:opacity-50
+        font-bold 
         text-black
-        font-bold
-        hover:opacity-75
         transition
+        hover:opacity-75
+        disabled:cursor-not-allowed
+        disabled:opacity-50
       `,
-				disabled && 'opacity-75 cursor-not-allowed',
+				disabled && 'cursor-not-allowed opacity-75',
 				className
 			)}
 			disabled={disabled}
