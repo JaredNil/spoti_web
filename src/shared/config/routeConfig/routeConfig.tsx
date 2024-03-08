@@ -1,6 +1,7 @@
 import { type RouteProps } from 'react-router-dom';
 import { MainPage } from 'pages/MainPage';
 import SearchPage from 'pages/SearchPage/ui/SearchPage';
+import { UploadPage } from 'pages/UploadPage';
 // import { AboutPage } from 'pages/AboutPage';
 // import { NotFoundPage } from 'pages/NotFoundPage';
 // import { ProfilePage } from 'pages/ProfilePage';
@@ -14,6 +15,7 @@ export type AppRoutesProps = RouteProps & {
 export enum AppRoutes {
 	MAIN = 'main',
 	SEARCH = 'search',
+	UPLOAD = 'upload',
 
 	NOT_FOUND = 'not_found',
 }
@@ -21,6 +23,7 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.MAIN]: '/',
 	[AppRoutes.SEARCH]: '/search',
+	[AppRoutes.UPLOAD]: '/upload',
 
 	[AppRoutes.NOT_FOUND]: '*',
 };
@@ -33,6 +36,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	[AppRoutes.SEARCH]: {
 		path: RoutePath.search,
 		element: <SearchPage />,
+	},
+	[AppRoutes.UPLOAD]: {
+		path: RoutePath.upload,
+		element: <UploadPage />,
 	},
 
 	[AppRoutes.NOT_FOUND]: {

@@ -53,7 +53,7 @@ const App: React.FC = () => {
 			<Suspense fallback="">
 				{/* <Navbar /> */}
 				<div className="flex h-full">
-					<Sidebar songs={userSongs} />
+					<Sidebar />
 					<main className="h-full flex-1 overflow-y-auto py-2">
 						<AppRouter />
 					</main>

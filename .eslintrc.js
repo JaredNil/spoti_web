@@ -32,7 +32,7 @@ module.exports = {
 	ignorePatterns: [
 		'build/',
 		'config/',
-		'prettier.config.js',
+		'prettier.config.mjs',
 		'webpack.config.ts',
 		'json-server/',
 		'tailwind.config.ts',

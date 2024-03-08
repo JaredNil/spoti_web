@@ -39,17 +39,7 @@ export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderPro
 	// };
 
 	return (
-		<div
-			className={twMerge(
-				`
-        h-fit 
-        bg-gradient-to-b 
-        from-emerald-800 
-        p-6
-        `,
-				className
-			)}
-		>
+		<div className={twMerge('h-fit bg-gradient-to-b from-emerald-800 p-6', className)}>
 			<div className="mb-4 flex w-full items-center justify-between">
 				<div className="hidden items-center gap-x-2 md:flex">
 					<button

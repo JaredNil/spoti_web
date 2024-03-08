@@ -1,62 +1,54 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { ReactNode, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
+
+import { Box } from 'shared/ui/Box/Box';
 
 import { HiHome } from 'react-icons/hi';
 import { BiSearch } from 'react-icons/bi';
-import { twMerge } from 'tailwind-merge';
-import { Box } from 'shared/ui/Box/Box';
-import { Song } from 'app/App';
-import SidebarItem from './SidebarItem';
-import { Library } from './Library';
+import { TbFileUpload } from 'react-icons/tb';
 
-interface SidebarProps {
-	className?: string;
-	songs: Song[];
-	// children: ReactNode;
-}
+import { SidebarItem } from './SidebarItem';
 
-const usePlayer = () => ({
-	// ids: [],
-	activeId: 1,
-	// setId: (id: string) => set({ activeId: id }),
-	// setIds: (ids: string[]) => set({ ids }),
-	// reset: () => set({ ids: [], activeId: undefined }),
-});
+const routes = [
+	{
+		icon: HiHome,
+		label: 'Home',
+		href: '/',
+		isActive: (pathname: string) => pathname === '/',
+	},
+	{
+		icon: BiSearch,
+		label: 'Search',
+		href: '/search',
+		isActive: (pathname: string) => pathname === '/search',
+	},
+	{
+		icon: TbFileUpload,
+		label: 'Upload',
+		href: '/upload',
+		isActive: (pathname: string) => pathname === '/upload',
+	},
+];
 
-const Sidebar: React.FC<SidebarProps> = (props: SidebarProps) => {
-	const { className, songs } = props;
-
-	let pathname = '/';
-
-	const player = usePlayer();
-
-	const routes = useMemo(
-		() => [
-			{
-				icon: HiHome,
-				label: 'Home',
-				active: pathname !== '/search',
-				href: '/',
-			},
-			{
-				icon: BiSearch,
-				label: 'Search',
-				href: '/search',
-				active: pathname === '/search',
-			},
-		],
-		[pathname]
-	);
+const Sidebar: React.FC = () => {
+	const { pathname } = useLocation();
+	console.log(pathname);
 
 	return (
 		<div
-			className=" hidden md:flex h-full w-[300px] flex-col gap-y-2 bg-black p-2  
-        "
+			className=" hidden h-full w-[300px]
+			flex-col gap-y-2 bg-black p-2
+			md:flex"
 		>
 			<Box>
 				<div className="flex flex-col gap-y-4 px-5 py-4">
 					{routes.map((item) => (
-						<SidebarItem key={item.label} {...item} />
+						<SidebarItem
+							key={item.label}
+							icon={item.icon}
+							label={item.label}
+							isActive={item.isActive(pathname)}
+							href={item.href}
+						/>
 					))}
 				</div>
 			</Box>
