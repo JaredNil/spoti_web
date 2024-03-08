@@ -1,3 +1,6 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-plusplus */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,35 +11,45 @@ import { Header } from 'widgets/Header';
 import Button from 'shared/ui/Button/Button';
 
 import { FaAnglesDown } from 'react-icons/fa6';
+import { useDispatch, useSelector } from 'react-redux';
+import { uploadingAction } from '../model/slices/uploadingSlice';
+import { getUploadingList } from '../model/selectors/uploadingSelectors/uploadingSelectors';
+import { uploadingFile } from '../model/services/fetchUploading/fetchUploading';
 
 const UploadPage: React.FC = () => {
 	const { t } = useTranslation();
 	const [dragEnter, setDragEnter] = useState(false);
-	const [files, setFiles] = useState([]);
+	// const [files, setFiles] = useState<File[]>([]);
+	const files = useSelector(getUploadingList);
 
-	// const fileUploadHandler = (event) => {
-	// 	// const files = [...event.target.files];
-	// 	// files.forEach((file) => dispatch(uploadFile(file, currentDir)));
-	// };
+	const dispatch = useDispatch();
 
 	const dragEnterHandler = (event: React.DragEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		event.stopPropagation();
-		console.log('dragEnterHandler');
 		setDragEnter(true);
 	};
 
 	const dragDragLeaveHandler = (event: React.MouseEvent<HTMLDivElement>) => {
 		event.preventDefault();
 		event.stopPropagation();
-		console.log('dragDragLeaveHandler');
 		setDragEnter(false);
 	};
 
-	const dropHandler = (event: React.DragEvent<HTMLFormElement>) => {
-		console.log('dropHandler');
-		// let files = [...event.dataTransfer.files];
-		// files.forEach((file) => dispatch(uploadFile(file, currentDir)));
+	const dropHandler = (event: React.DragEvent) => {
+		event.preventDefault();
+		event.stopPropagation();
+
+		const droppedFiles = event.dataTransfer.files;
+		const newFiles: File[] = [];
+		for (let i = 0; i < droppedFiles.length; i++) {
+			newFiles.push(droppedFiles[i]);
+		}
+
+		newFiles.forEach((file) => {
+			dispatch(uploadingAction.addNewUploading(file.name));
+			dispatch(uploadingFile(file));
+		});
 		setDragEnter(false);
 	};
 
@@ -121,7 +134,7 @@ const UploadPage: React.FC = () => {
 					</form>
 				</div>
 				<div className="relative mt-2 ">
-					<h3 className="mb-4 text-2xl font-semibold text-white">Added files</h3>
+					<h3 className="mb-1 text-2xl font-semibold text-white">Added files</h3>
 					<div className="relative flex max-h-[53vh] w-full flex-col ">
 						{files.length === 0 ? (
 							<div
@@ -137,7 +150,29 @@ const UploadPage: React.FC = () => {
 								</div>
 							</div>
 						) : (
-							'dsa'
+							<div
+								className="mt-1 flex flex-col
+								items-start justify-center 
+								overflow-y-auto text-center "
+							>
+								{files.map((file, index: number) => (
+									<div
+										key={file.name + index}
+										className="my-1 flex h-12 w-[60%] min-w-[240px] 
+										select-none items-center rounded-2xl bg-neutral-400/5 px-3
+										transition hover:bg-neutral-400/10"
+									>
+										<div className="select-none">
+											{index + 1}
+										</div>
+										<div className="mx-3 h-[32px] w-[32px] bg-white" />
+										<div className="grow select-none text-left">
+											{file.name}
+										</div>
+										{file.progress}
+									</div>
+								))}
+							</div>
 						)}
 					</div>
 				</div>

@@ -1,6 +1,8 @@
 import { EnhancedStore, Reducer, ReducersMapObject, UnknownAction } from '@reduxjs/toolkit';
 import { NavigateOptions, To } from 'react-router-dom';
 import { AxiosInstance } from 'axios';
+import { UploadPageSchema } from 'pages/UploadPage/model/types/uploadingSchema';
+import { UserSchema } from 'entities/User';
 
 // import { ArticleDetailsSchema } from 'entities/Article';
 // import { ProfileSchema } from 'entities/Profile';
@@ -13,7 +15,9 @@ import { AxiosInstance } from 'axios';
 // import { AddCommentFormSchema } from 'features/addCommentForm';
 
 export interface StateSchema {
-	// user: UserSchema;
+	user: UserSchema;
+	uploading: UploadPageSchema;
+
 	// async reducer
 }
 
