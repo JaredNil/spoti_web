@@ -1,12 +1,7 @@
 import { type RouteProps } from 'react-router-dom';
 import { MainPage } from 'pages/MainPage';
-import SearchPage from 'pages/SearchPage/ui/SearchPage';
 import { UploadPage } from 'pages/UploadPage';
-// import { AboutPage } from 'pages/AboutPage';
-// import { NotFoundPage } from 'pages/NotFoundPage';
-// import { ProfilePage } from 'pages/ProfilePage';
-// import { ArticlesPage } from 'pages/ArticlesPage';
-// import { ArticleDetailsPage } from 'pages/ArticleDetailsPage';
+import { SearchPage } from 'pages/SearchPage';
 
 export type AppRoutesProps = RouteProps & {
 	authOnly?: boolean;
