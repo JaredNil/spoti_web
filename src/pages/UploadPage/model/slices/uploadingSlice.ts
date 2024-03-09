@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { TrackBlob, UploadPageSchema } from '../types/uploadingSchema';
+import { uploadingFile } from '../services/fetchUploading/fetchUploading';
 
 const initialState: UploadPageSchema = { isLoading: false, uploading: [], error: undefined };
 
@@ -27,19 +28,19 @@ export const uploadingSlice = createSlice({
 		// },
 	},
 	extraReducers: (builder) => {
-		// builder.addCase(fetchProfileData.pending, (state) => {
-		// 	state.error = '';
-		// 	state.isLoading = true;
-		// });
-		// builder.addCase(fetchProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
-		// 	state.isLoading = false;
-		// 	state.data = action.payload;
-		// 	state.form = action.payload;
-		// });
-		// builder.addCase(fetchProfileData.rejected, (state, action) => {
-		// 	state.isLoading = false;
-		// 	state.error = action.error;
-		// });
+		builder.addCase(uploadingFile.pending, (state) => {
+			state.error = '';
+			state.isLoading = true;
+		});
+		builder.addCase(uploadingFile.fulfilled, (state) => {
+			state.isLoading = false;
+			// state.data = action.payload;
+			// state.form = action.payload;
+		});
+		builder.addCase(uploadingFile.rejected, (state) => {
+			state.isLoading = false;
+			// state.error = action.error;
+		});
 		// builder.addCase(updateProfileData.pending, (state) => {
 		// 	state.validateError = undefined;
 		// 	state.isLoading = true;

@@ -2,7 +2,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 
@@ -11,8 +11,9 @@ import { Header } from 'widgets/Header';
 import Button from 'shared/ui/Button/Button';
 
 import { FaAnglesDown } from 'react-icons/fa6';
-import { useDispatch, useSelector } from 'react-redux';
-import { uploadingAction } from '../model/slices/uploadingSlice';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Upload } from 'features/Upload/Upload';
 import { getUploadingList } from '../model/selectors/uploadingSelectors/uploadingSelectors';
 import { uploadingFile } from '../model/services/fetchUploading/fetchUploading';
 
@@ -22,7 +23,7 @@ const UploadPage: React.FC = () => {
 	// const [files, setFiles] = useState<File[]>([]);
 	const files = useSelector(getUploadingList);
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const dragEnterHandler = (event: React.DragEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -40,17 +41,30 @@ const UploadPage: React.FC = () => {
 		event.preventDefault();
 		event.stopPropagation();
 
-		const droppedFiles = event.dataTransfer.files;
-		const newFiles: File[] = [];
-		for (let i = 0; i < droppedFiles.length; i++) {
-			newFiles.push(droppedFiles[i]);
-		}
-
-		newFiles.forEach((file) => {
-			dispatch(uploadingAction.addNewUploading(file.name));
-			dispatch(uploadingFile(file));
-		});
 		setDragEnter(false);
+
+		const droppedFiles = event.dataTransfer.files;
+
+		// const newFiles: File[] = [];
+		// for (let i = 0; i < droppedFiles.length; i++) {
+		// 	newFiles.push(droppedFiles[i]);
+		// }
+
+		// dispatch(uploadingFile(droppedFiles));
+
+		// newFiles.forEach((file) => {
+		// 	dispatch(uploadingAction.addNewUploading(file.name));
+		// });
+	};
+
+	const fileUploadHandler = (event: ChangeEvent<HTMLInputElement>) => {
+		const addedFiles = event.target.files;
+		if (!addedFiles) throw new Error('no file in fileUploadHandler');
+
+		// newFiles.forEach((file) => {
+		// 	dispatch(uploadingAction.addNewUploading(file.name));
+		// });
+		dispatch(uploadingFile(addedFiles));
 	};
 
 	const inputRef = useRef<null | HTMLInputElement>(null);
@@ -89,16 +103,16 @@ const UploadPage: React.FC = () => {
 							py-8 transition`,
 							dragEnter && 'border-dashed border-green-500'
 						)}
-						onSubmit={(e) => e.preventDefault()}
-						onDragEnterCapture={dragEnterHandler}
-						onDragOver={dragEnterHandler}
-						onDrop={dropHandler}
+						// onSubmit={(e) => e.preventDefault()}
+						// onDragEnterCapture={dragEnterHandler}
+						// onDragOver={dragEnterHandler}
+						// onDrop={dropHandler}
 					>
 						<input
 							className="disk__upload-input hidden"
 							multiple
 							ref={inputRef}
-							// onChange={(event) => fileUploadHandler(event)}
+							onChange={fileUploadHandler}
 							id="upload-btn"
 							type="file"
 						/>
@@ -176,6 +190,8 @@ const UploadPage: React.FC = () => {
 						)}
 					</div>
 				</div>
+
+				<Upload />
 			</div>
 		</div>
 	);
