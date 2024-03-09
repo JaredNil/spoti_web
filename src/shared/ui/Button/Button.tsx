@@ -50,7 +50,7 @@ import { twMerge } from 'tailwind-merge';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className, children, disabled, type = 'button', ...props }, ref) => {
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className, children, disabled, type = 'button', ...props }, ref) => {
 	return (
 		<button
 			type="button"
@@ -70,5 +70,3 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className, children
 });
 
 Button.displayName = 'Button';
-
-export default Button;

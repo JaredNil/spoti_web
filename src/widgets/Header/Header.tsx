@@ -1,12 +1,13 @@
 import { twMerge } from 'tailwind-merge';
-import { RxCaretLeft, RxCaretRight } from 'react-icons/rx';
-// import { useRouter } from 'next/navigation';
+import { RxCaretRight } from 'react-icons/rx';
+import { useNavigate } from 'react-router-dom';
+
 import { FaUserAlt } from 'react-icons/fa';
-// import { useSupabaseClient } from '@supabase/auth-helpers-react';
-// import { toast } from 'react-hot-toast';
 import { HiHome } from 'react-icons/hi';
 import { BiSearch } from 'react-icons/bi';
-import Button from 'shared/ui/Button/Button';
+import { Button } from 'shared/ui/Button/Button';
+import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2';
+import { TbFileUpload } from 'react-icons/tb';
 
 // import useAuthModal from '@/hooks/useAuthModal';
 // import { useUser } from '@/hooks/useUser';
@@ -21,11 +22,12 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderProps) => {
 	// const player = usePlayer();
-	// const router = useRouter();
+	const navigate = useNavigate();
+
 	// const authModal = useAuthModal();
 
-	// const supabaseClient = useSupabaseClient();
 	// const { user } = useUser();
+
 	let { user } = { user: true };
 
 	// const handleLogout = async () => {
@@ -43,71 +45,55 @@ export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderPro
 			<div className="mb-4 flex w-full items-center justify-between">
 				<div className="hidden items-center gap-x-2 md:flex">
 					<button
-						// onClick={() => router.back()}
+						onClick={() => navigate(-1)}
 						type="button"
-						className="
-                        flex cursor-pointer 
-                            items-center 
-                            justify-center 
-                            rounded-full 
-                            bg-black 
-                            transition 
-                            hover:opacity-75
+						className=" flex h-[35px] w-[35px] 
+                        cursor-pointer items-center justify-center 
+						rounded-full  bg-black 
+						transition hover:opacity-75
                         "
 					>
-						<RxCaretLeft className="text-white" size={35} />
+						<HiOutlineChevronLeft className="mr-[3px] text-white" size={23} />
 					</button>
 					<button
-						// onClick={() => router.forward()}
+						onClick={() => navigate(1)}
 						type="button"
-						className="
-                            flex 
-                            cursor-pointer 
-                            items-center 
-                            justify-center 
-                            rounded-full 
-                            bg-black 
-                            transition 
-                            hover:opacity-75
+						className=" flex h-[35px] w-[35px] 
+                        cursor-pointer items-center justify-center 
+						rounded-full  bg-black 
+						transition hover:opacity-75
                         "
 					>
-						<RxCaretRight className="text-white" size={35} />
+						<HiOutlineChevronRight className="ml-[2px] text-white" size={23} />
 					</button>
 				</div>
 				<div className="flex items-center gap-x-2 md:hidden">
 					<button
-						// onClick={() => router.push('/')}
+						onClick={() => navigate('/')}
 						type="button"
-						className="
-              flex 
-              cursor-pointer 
-              items-center 
-              justify-center 
-              rounded-full 
-              bg-white 
-              p-2 
-              transition 
-              hover:opacity-75
-            "
+						className="flex cursor-pointer items-center justify-center 
+						rounded-full bg-white p-2 transition 
+						hover:opacity-75"
 					>
 						<HiHome className="text-black" size={20} />
 					</button>
 					<button
 						type="button"
-						// onClick={() => router.push('/search')}
-						className="
-              flex 
-              cursor-pointer 
-              items-center 
-              justify-center 
-              rounded-full 
-              bg-white 
-              p-2 
-              transition 
-              hover:opacity-75
-            "
+						onClick={() => navigate('/search')}
+						className="flex cursor-pointer items-center justify-center 
+						rounded-full  bg-white p-2 transition 
+						hover:opacity-75"
 					>
 						<BiSearch className="text-black" size={20} />
+					</button>
+					<button
+						type="button"
+						onClick={() => navigate('/upload')}
+						className="flex cursor-pointer items-center justify-center 
+						rounded-full  bg-white p-2 transition 
+						hover:opacity-75"
+					>
+						<TbFileUpload className="text-black" size={20} />
 					</button>
 				</div>
 				<div className="flex items-center justify-between gap-x-4">
@@ -131,11 +117,7 @@ export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderPro
 							<div>
 								<Button
 									// onClick={authModal.onOpen}
-									className="
-                    bg-transparent 
-                    font-medium 
-                    text-neutral-300
-                  "
+									className="bg-transparent font-medium text-neutral-300"
 								>
 									Sign up
 								</Button>

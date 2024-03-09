@@ -25,7 +25,7 @@ export const uploadingSlice = createSlice({
 			if (action.payload.progress === 100) {
 				toastr.success(
 					'Успешно загружен',
-					`Трек ${state.uploading[state.uploading.length - 1]}`,
+					`Трек ${state.uploading[state.uploading.length - 1]?.name}`,
 					successUploadToastr
 				);
 			}

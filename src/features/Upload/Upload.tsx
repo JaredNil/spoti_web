@@ -1,9 +1,8 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChangeEvent, SetStateAction, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useRef } from 'react';
 import axios from 'axios';
-import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
-import Button from 'shared/ui/Button/Button';
+import { Button } from 'shared/ui/Button/Button';
 import { twMerge } from 'tailwind-merge';
 import { FaAnglesDown } from 'react-icons/fa6';
 import { uploadingAction } from 'pages/UploadPage/model/slices/uploadingSlice';
@@ -12,10 +11,11 @@ import { useSelector } from 'react-redux';
 import { getIsDragEvent, getUploadingList } from 'pages/UploadPage/model/selectors/uploadingSelectors/uploadingSelectors';
 
 export const Upload: React.FC = () => {
-	// const [audio, setAudio] = useState(null);
 	const isDragEvent = useSelector(getIsDragEvent);
 	const dispatch = useAppDispatch();
 	const files = useSelector(getUploadingList);
+
+	function nextMv(audioList: File[]) {}
 
 	const next = (audioB: File) => {
 		const newItemId = files.length;
@@ -30,11 +30,9 @@ export const Upload: React.FC = () => {
 		if (audioB) {
 			const formData = new FormData();
 			formData.append('audio', audioB);
-			axios.post('http://localhost:5000/tracks', formData, {
+			const res = axios.post('http://localhost:5000/tracks', formData, {
 				onUploadProgress: (progressEvent) => {
 					const percent = Number(((progressEvent.loaded / progressEvent.total) * 100).toFixed(2));
-					console.log(percent);
-
 					dispatch(
 						uploadingAction.updateProgressUploading({
 							id: newItemId,
@@ -43,7 +41,11 @@ export const Upload: React.FC = () => {
 					);
 				},
 			});
+			console.log(res);
+			return res;
 		}
+		console.log('next execute, but no responce');
+		return 'next execute, but no responce';
 	};
 
 	const dragEnterHandler = (event: React.DragEvent<HTMLDivElement>) => {
@@ -64,13 +66,8 @@ export const Upload: React.FC = () => {
 		for (let i = 0; i < droppedFiles.length; i++) {
 			newFiles.push(droppedFiles[i]);
 		}
+		// nextMv(newFiles);
 		next(newFiles[0]);
-
-		// dispatch(uploadingFile(droppedFiles));
-
-		// newFiles.forEach((file) => {
-		// 	dispatch(uploadingAction.addNewUploading(file.name));
-		// });
 	};
 
 	const ref = useRef<HTMLInputElement | null>(null);
@@ -103,6 +100,7 @@ export const Upload: React.FC = () => {
 						accept="audio/*"
 						ref={ref}
 						onChange={onChangeInputFile}
+						multiple
 					/>
 					<div>
 						<div
