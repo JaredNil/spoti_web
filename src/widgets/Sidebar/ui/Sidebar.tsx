@@ -31,7 +31,6 @@ const routes = [
 
 const Sidebar: React.FC = () => {
 	const { pathname } = useLocation();
-	console.log(pathname);
 
 	return (
 		<div

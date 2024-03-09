@@ -1,19 +1,27 @@
-import { useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Header } from 'widgets/Header';
 import { twMerge } from 'tailwind-merge';
-import { userSongs } from 'app/App';
 import { AlbumList } from 'entities/Album';
+import { useSelector } from 'react-redux';
+import { getAlbumCommonData, getAlbumUserData } from 'entities/Album/model/selectors/getAlbumData';
+import { albumAction, albumReducer } from 'entities/Album/model/slice/albumSlice';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { FavoriteBlock } from './FavoriteBlock/FavoriteBlock';
 
-const MainPage: React.FC = () => {
+const MainPage: React.FC = memo(() => {
 	const { t } = useTranslation();
-	const [value, setValue] = useState('');
+	const dispatch = useAppDispatch();
 
-	const onChange = (val: string) => {
-		setValue(val);
-	};
+	const commonAlbums = useSelector(getAlbumCommonData);
+	const userAlbums = useSelector(getAlbumUserData);
+	const stateC = useSelector((state) => state);
+
+	useEffect(() => {
+		dispatch(albumAction.update());
+		console.log(commonAlbums);
+	}, [dispatch, commonAlbums]);
 
 	return (
 		<div className={twMerge(`h-full w-full overflow-hidden overflow-y-auto rounded-lg  bg-neutral-900 `)}>
@@ -26,14 +34,11 @@ const MainPage: React.FC = () => {
 			<div className="mt-2 px-6">
 				<FavoriteBlock />
 
-				<div className=" my-2 flex items-center justify-between">
-					<h1 className="text-2xl font-semibold text-white">Newest songs</h1>
-				</div>
-
-				<AlbumList />
+				<AlbumList albums={userAlbums} title="Пользовательские плейлисты" />
+				<AlbumList albums={commonAlbums} title="Общие плейлисты" />
 			</div>
 		</div>
 	);
-};
+});
 
 export default MainPage;

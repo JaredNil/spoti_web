@@ -8,6 +8,7 @@ import { BiSearch } from 'react-icons/bi';
 import { Button } from 'shared/ui/Button/Button';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2';
 import { TbFileUpload } from 'react-icons/tb';
+import { useSelector } from 'react-redux';
 
 // import useAuthModal from '@/hooks/useAuthModal';
 // import { useUser } from '@/hooks/useUser';
@@ -16,7 +17,7 @@ import { TbFileUpload } from 'react-icons/tb';
 // import Button from './Button';
 
 interface HeaderProps {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	className?: string;
 }
 
@@ -100,7 +101,7 @@ export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderPro
 					{user ? (
 						<div className="flex items-center gap-x-4">
 							<Button
-								// onClick={handleLogout}
+								// onClick={getState}
 								className="bg-white px-6 py-2"
 							>
 								Logout

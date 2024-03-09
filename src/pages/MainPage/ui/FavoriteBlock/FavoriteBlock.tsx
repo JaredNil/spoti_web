@@ -7,7 +7,6 @@ export const FavoriteBlock: React.FC = () => {
 						sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
 		>
 			<AlbumFlat name="Liked Songs" image="https://misc.scdn.co/liked-songs/liked-songs-640.png" href="liked" />
-			<AlbumFlat name="Liked Songs" image="https://misc.scdn.co/liked-songs/liked-songs-640.png" href="liked" />
 		</div>
 	);
 };

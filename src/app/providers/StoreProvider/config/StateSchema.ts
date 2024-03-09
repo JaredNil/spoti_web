@@ -3,19 +3,11 @@ import { NavigateOptions, To } from 'react-router-dom';
 import { AxiosInstance } from 'axios';
 import { UploadPageSchema } from 'pages/UploadPage/model/types/uploadingSchema';
 import { UserSchema } from 'entities/User';
-
-// import { ArticleDetailsSchema } from 'entities/Article';
-// import { ProfileSchema } from 'entities/Profile';
-// import { UserSchema } from 'entities/User';
-
-// import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
-// import { ArticlePageSchema } from 'pages/ArticlesPage';
-
-// import { LoginSchema } from 'features/AuthByUserName';
-// import { AddCommentFormSchema } from 'features/addCommentForm';
+import { AlbumSchema } from 'entities/Album/model/types/albumSchema';
 
 export interface StateSchema {
 	user: UserSchema;
+	albums: AlbumSchema;
 	uploading: UploadPageSchema;
 
 	// async reducer

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Header } from 'widgets/Header';
-import PageContent from 'widgets/PageContent/PageContent';
 import { twMerge } from 'tailwind-merge';
 import { userSongs } from 'app/App';
 import SearchInput from 'features/Search/SearchInput';

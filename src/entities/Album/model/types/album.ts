@@ -3,6 +3,6 @@ export interface AlbumInterface {
 	user_id: string;
 	author: string;
 	title: string;
-	image_path: string;
+	imagePath: string;
 	href: string;
 }

@@ -1,8 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from 'react-redux';
-import { Suspense, useEffect } from 'react';
+import { Suspense, useCallback, useEffect } from 'react';
 import Sidebar from 'widgets/Sidebar/ui/Sidebar';
 import { classNames } from 'shared/lib/classNames/classNames';
 import Player from 'widgets/Player/ui/Player';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { albumAction } from 'entities/Album/model/slice/albumSlice';
+import { AlbumInterface } from 'entities/Album';
+import { AlbumSchema } from 'entities/Album/model/types/albumSchema';
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
 
@@ -47,6 +52,8 @@ export const userSongs: Song[] = [
 
 const App: React.FC = () => {
 	const { theme } = useTheme();
+
+	const dispatch = useAppDispatch();
 
 	return (
 		<div className={classNames('app', {}, [theme])}>
