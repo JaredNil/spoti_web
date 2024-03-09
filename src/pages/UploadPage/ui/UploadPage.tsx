@@ -1,86 +1,28 @@
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable no-plusplus */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { twMerge } from 'tailwind-merge';
 
 import { Header } from 'widgets/Header';
 
-import Button from 'shared/ui/Button/Button';
-
-import { FaAnglesDown } from 'react-icons/fa6';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Upload } from 'features/Upload/Upload';
-import axios from 'axios';
-// import FileUpload from 'features/Upload/FileUpload';
-import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
+import { MdDone } from 'react-icons/md';
 import { getUploadingList } from '../model/selectors/uploadingSelectors/uploadingSelectors';
 import { uploadingFile } from '../model/services/fetchUploading/fetchUploading';
+import { uploadingAction } from '../model/slices/uploadingSlice';
 
 const UploadPage: React.FC = () => {
 	const { t } = useTranslation();
-	const files = useSelector(getUploadingList);
-
-	const [audio, setAudio] = useState(null);
-	const [isDragEvent, setIsDragEvent] = useState(false);
 
 	const dispatch = useAppDispatch();
-
-	const dragEnterHandler = (event: React.DragEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		event.stopPropagation();
-		setIsDragEvent(true);
-	};
-
-	const dragDragLeaveHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-		event.preventDefault();
-		event.stopPropagation();
-		setIsDragEvent(false);
-	};
-
-	const dropHandler = (event: React.DragEvent) => {
-		event.preventDefault();
-		event.stopPropagation();
-
-		setIsDragEvent(false);
-
-		const droppedFiles = event.dataTransfer.files;
-
-		// const newFiles: File[] = [];
-		// for (let i = 0; i < droppedFiles.length; i++) {
-		// 	newFiles.push(droppedFiles[i]);
-		// }
-
-		// dispatch(uploadingFile(droppedFiles));
-
-		// newFiles.forEach((file) => {
-		// 	dispatch(uploadingAction.addNewUploading(file.name));
-		// });
-	};
-
-	const fileUploadHandler = (event: ChangeEvent<HTMLInputElement>) => {
-		const addedFiles = event.target.files;
-		if (!addedFiles) throw new Error('no file in fileUploadHandler');
-
-		// newFiles.forEach((file) => {
-		// 	dispatch(uploadingAction.addNewUploading(file.name));
-		// });
-		dispatch(uploadingFile(addedFiles));
-	};
-
-	const inputRef = useRef<null | HTMLInputElement>(null);
-	const onButtonClick = () => {
-		inputRef.current?.click();
-	};
+	const files = useSelector(getUploadingList);
 
 	return (
 		<div
 			className="h-full w-full overflow-y-auto  rounded-lg bg-neutral-900"
-			onMouseUp={() => setIsDragEvent(false)}
-			onMouseLeave={dragDragLeaveHandler}
+			onMouseUp={() => dispatch(uploadingAction.disableDragEvent())}
+			onMouseLeave={() => dispatch(uploadingAction.disableDragEvent())}
 		>
 			<Header>
 				<div className="mb-2">
@@ -136,9 +78,35 @@ const UploadPage: React.FC = () => {
 										<div className="grow select-none text-left">
 											{file.name}
 										</div>
-										{file.progress}
+										{file.progress === 100 ? (
+											<MdDone
+												size={
+													40
+												}
+												fill="rgba(34, 197, 94, 1)"
+											/>
+										) : (
+											<div className="select-none text-left">
+												{
+													file.progress
+												}
+												%
+											</div>
+										)}
 									</div>
 								))}
+								<div
+									className=" mt-4 w-full select-none text-center font-light
+									tracking-wide text-neutral-400"
+								>
+									Треки добавлены в избранное.
+								</div>
+								<div
+									className="w-full select-none text-center text-xs	 font-light
+									tracking-wide text-neutral-400"
+								>
+									Если есть галочка успешно.
+								</div>
 							</div>
 						)}
 					</div>

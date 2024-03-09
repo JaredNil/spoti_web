@@ -1,16 +1,42 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { TrackBlob, UploadPageSchema } from '../types/uploadingSchema';
+import toastr from 'toastr';
+import { successUploadToastr } from 'shared/config/toastr/toastr.config';
+import { TrackBlob, TrackBlobUpdate, UploadPageSchema } from '../types/uploadingSchema';
 import { uploadingFile } from '../services/fetchUploading/fetchUploading';
 
-const initialState: UploadPageSchema = { isLoading: false, uploading: [], error: undefined };
+const initialState: UploadPageSchema = { isLoading: false, uploading: [], error: undefined, isDragEvent: false };
 
 export const uploadingSlice = createSlice({
 	name: 'uploading',
 	initialState,
 	reducers: {
-		addNewUploading: (state, action: PayloadAction<string>) => {
-			state.uploading = [...state.uploading, { name: action.payload, progress: 0 }];
+		addNewUploading: (state, action: PayloadAction<TrackBlob>) => {
+			state.uploading = [...state.uploading, action.payload];
 		},
+		activeDragEvent: (state) => {
+			state.isDragEvent = true;
+		},
+		disableDragEvent: (state) => {
+			state.isDragEvent = false;
+		},
+		updateProgressUploading: (state, action: PayloadAction<TrackBlobUpdate>) => {
+			console.log(action.payload.progress);
+			if (action.payload.progress === 100) {
+				toastr.success(
+					'Успешно загружен',
+					`Трек ${state.uploading[state.uploading.length - 1]}`,
+					successUploadToastr
+				);
+			}
+			state.uploading = state.uploading.map((item, index) => {
+				if (index === action.payload.id) {
+					item.progress = action.payload.progress;
+				}
+				return item;
+			});
+		},
+
 		// cancelEdit: (state) => {
 		// 	state.readonly = true;
 		// 	state.form = state.data;

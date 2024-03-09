@@ -6,32 +6,41 @@ import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 import Button from 'shared/ui/Button/Button';
 import { twMerge } from 'tailwind-merge';
 import { FaAnglesDown } from 'react-icons/fa6';
-// import FileUpload from './FileUpload';
+import { uploadingAction } from 'pages/UploadPage/model/slices/uploadingSlice';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useSelector } from 'react-redux';
+import { getIsDragEvent, getUploadingList } from 'pages/UploadPage/model/selectors/uploadingSelectors/uploadingSelectors';
 
 export const Upload: React.FC = () => {
-	const [audio, setAudio] = useState(null);
-	const [isDragEvent, setIsDragEvent] = useState(false);
+	// const [audio, setAudio] = useState(null);
+	const isDragEvent = useSelector(getIsDragEvent);
+	const dispatch = useAppDispatch();
+	const files = useSelector(getUploadingList);
 
-	const next = (audioB: any) => {
-		setAudio(audioB);
-		console.log('next', audioB);
+	const next = (audioB: File) => {
+		const newItemId = files.length;
+		dispatch(
+			uploadingAction.addNewUploading({
+				id: newItemId,
+				name: audioB?.name,
+				progress: 0,
+			})
+		);
+
 		if (audioB) {
 			const formData = new FormData();
 			formData.append('audio', audioB);
 			axios.post('http://localhost:5000/tracks', formData, {
 				onUploadProgress: (progressEvent) => {
-					const totalLength = progressEvent.progress
-						? progressEvent.total
-						: progressEvent.event.getResponseHeader('content-length') ||
-							progressEvent.event.getResponseHeader(
-								'x-decompressed-content-length'
-							);
-					console.log('total', totalLength);
-					if (totalLength) {
-						let progress = Math.round((progressEvent.loaded * 100) / totalLength);
-						console.log(progress);
-						// dispatch(changeUploadFile(progress));
-					}
+					const percent = Number(((progressEvent.loaded / progressEvent.total) * 100).toFixed(2));
+					console.log(percent);
+
+					dispatch(
+						uploadingAction.updateProgressUploading({
+							id: newItemId,
+							progress: percent,
+						})
+					);
 				},
 			});
 		}
@@ -40,16 +49,14 @@ export const Upload: React.FC = () => {
 	const dragEnterHandler = (event: React.DragEvent<HTMLDivElement>) => {
 		event.preventDefault();
 		event.stopPropagation();
-		setIsDragEvent(true);
+		dispatch(uploadingAction.activeDragEvent());
 	};
 
 	const dropHandler = (event: React.DragEvent) => {
 		event.preventDefault();
 		event.stopPropagation();
 
-		console.log('dsad');
-
-		setIsDragEvent(false);
+		dispatch(uploadingAction.disableDragEvent());
 
 		const droppedFiles = event.dataTransfer.files;
 
