@@ -8,21 +8,29 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Upload } from 'features/Upload/Upload';
 import { MdDone } from 'react-icons/md';
-import { getUploadingList } from '../model/selectors/uploadingSelectors/uploadingSelectors';
+import { getIsDragEvent, getUploadingList } from '../model/selectors/uploadingSelectors/uploadingSelectors';
 import { uploadingFile } from '../model/services/fetchUploading/fetchUploading';
 import { uploadingAction } from '../model/slices/uploadingSlice';
 
 const UploadPage: React.FC = () => {
 	const { t } = useTranslation();
-
 	const dispatch = useAppDispatch();
+
+	const isDragEvent = useSelector(getIsDragEvent);
+
 	const files = useSelector(getUploadingList);
+
+	const mouseHandler = () => {
+		if (isDragEvent) {
+			dispatch(uploadingAction.disableDragEvent());
+		}
+	};
 
 	return (
 		<div
 			className="h-full w-full overflow-y-auto  rounded-lg bg-neutral-900"
-			onMouseUp={() => dispatch(uploadingAction.disableDragEvent())}
-			onMouseLeave={() => dispatch(uploadingAction.disableDragEvent())}
+			onMouseUp={mouseHandler}
+			onMouseLeave={mouseHandler}
 		>
 			<Header>
 				<div className="mb-2">

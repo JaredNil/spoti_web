@@ -4,13 +4,15 @@ import { AxiosInstance } from 'axios';
 import { UploadPageSchema } from 'pages/UploadPage/model/types/uploadingSchema';
 import { UserSchema } from 'entities/User';
 import { AlbumSchema } from 'entities/Album/model/types/albumSchema';
+import { AuthSchema } from 'features/Auth/model/types/AuthSchema';
 
 export interface StateSchema {
 	user: UserSchema;
 	albums: AlbumSchema;
-	uploading: UploadPageSchema;
 
 	// async reducer
+	auth?: AuthSchema;
+	uploading?: UploadPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

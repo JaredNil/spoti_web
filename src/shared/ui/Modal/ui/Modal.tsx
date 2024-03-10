@@ -1,9 +1,9 @@
-import { ReactNode, useCallback, useEffect } from 'react';
+import { ReactNode, memo, useCallback, useEffect, useState } from 'react';
 import { Mods, classNames } from 'shared/lib/classNames/classNames';
 
 import Portal from 'shared/ui/old/Portal/Portal';
 import { useTheme } from 'app/providers/ThemeProvider';
-import cls from './Modal.module.scss';
+import { twMerge } from 'tailwind-merge';
 
 interface ModalProps {
 	isOpen?: boolean;
@@ -12,12 +12,8 @@ interface ModalProps {
 	children?: ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = (props: ModalProps) => {
+const Modal: React.FC<ModalProps> = memo((props: ModalProps) => {
 	const { isOpen, onClose, className, children } = props;
-
-	const mods: Mods = {
-		[cls.opened]: isOpen,
-	};
 
 	const { theme } = useTheme();
 
@@ -45,17 +41,47 @@ const Modal: React.FC<ModalProps> = (props: ModalProps) => {
 		};
 	}, [isOpen, onClose, onKeyDown]);
 
+	const [animate, setAnimate] = useState(false);
+	useEffect(() => {
+		setTimeout(() => {
+			setAnimate(true);
+		}, 20);
+	}, []);
+
 	return (
 		<Portal>
-			<div className={classNames(cls.Modal, mods, [className, theme, 'app_modal'])}>
-				<div className={cls.overlay} onClick={closeHandler}>
-					<div className={cls.content} onClick={onContentClick}>
+			<div
+				className={twMerge(
+					`pointer-events-none fixed inset-0 z-50 
+					w-full opacity-30 transition duration-150`,
+					isOpen && ' pointer-events-auto z-50',
+					animate && 'opacity-100',
+					[className, theme]
+				)}
+			>
+				<div
+					className={twMerge(
+						`flex h-full w-full items-center justify-center
+						bg-neutral-900/0 transition duration-100`,
+						animate && 'bg-neutral-900/70'
+					)}
+					onClick={closeHandler}
+				>
+					<div
+						className={twMerge(
+							`bg-modalBg 
+							scale-50 rounded-xl px-5 pb-5 pt-2 transition duration-300`,
+							'w-[90%] max-w-[540px] sm:w-[60%]',
+							animate && 'scale-100'
+						)}
+						onClick={onContentClick}
+					>
 						{children}
 					</div>
 				</div>
 			</div>
 		</Portal>
 	);
-};
+});
 
 export default Modal;

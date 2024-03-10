@@ -8,13 +8,10 @@ import { BiSearch } from 'react-icons/bi';
 import { Button } from 'shared/ui/Button/Button';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2';
 import { TbFileUpload } from 'react-icons/tb';
-import { useSelector } from 'react-redux';
+import { useCallback, useState } from 'react';
+import { AuthModal } from 'features/Auth';
 
-// import useAuthModal from '@/hooks/useAuthModal';
 // import { useUser } from '@/hooks/useUser';
-// import usePlayer from '@/hooks/usePlayer';
-
-// import Button from './Button';
 
 interface HeaderProps {
 	children?: React.ReactNode;
@@ -23,23 +20,21 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderProps) => {
 	// const player = usePlayer();
+	const [isAuthModal, setIsAuthModal] = useState(false);
+
 	const navigate = useNavigate();
 
-	// const authModal = useAuthModal();
+	const onCloseModal = useCallback(() => {
+		setIsAuthModal(false);
+	}, []);
+
+	const onShowModal = useCallback(() => {
+		setIsAuthModal(true);
+	}, []);
 
 	// const { user } = useUser();
 
-	let { user } = { user: true };
-
-	// const handleLogout = async () => {
-	// 	// const { error } = await supabaseClient.auth.signOut();
-	// 	// player.reset();
-	// 	// router.refresh();
-
-	// 	if (error) {
-	// 		// toast.error(error.message);
-	// 	}
-	// };
+	let { user } = { user: false };
 
 	return (
 		<div className={twMerge('h-fit bg-gradient-to-b from-emerald-800 p-6', className)}>
@@ -97,6 +92,7 @@ export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderPro
 						<TbFileUpload className="text-black" size={20} />
 					</button>
 				</div>
+
 				<div className="flex items-center justify-between gap-x-4">
 					{user ? (
 						<div className="flex items-center gap-x-4">
@@ -114,24 +110,20 @@ export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderPro
 							</Button>
 						</div>
 					) : (
-						<>
-							<div>
-								<Button
-									// onClick={authModal.onOpen}
-									className="bg-transparent font-medium text-neutral-300"
-								>
-									Sign up
-								</Button>
-							</div>
-							<div>
-								<Button
-									// onClick={authModal.onOpen}
-									className="bg-white px-6 py-2"
-								>
-									Log in
-								</Button>
-							</div>
-						</>
+						<div>
+							<Button
+								onClick={() => onShowModal()}
+								className="bg-white px-6 py-2"
+							>
+								Войти
+							</Button>
+							{isAuthModal && (
+								<AuthModal
+									isOpen={isAuthModal}
+									onClose={() => onCloseModal()}
+								/>
+							)}
+						</div>
 					)}
 				</div>
 			</div>

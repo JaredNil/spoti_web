@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Header } from 'widgets/Header';
 import { twMerge } from 'tailwind-merge';
 import { userSongs } from 'app/App';
-import SearchInput from 'features/Search/SearchInput';
 import SearchContent from 'features/Search/SearchContent';
 
 const SearchPage: React.FC = () => {

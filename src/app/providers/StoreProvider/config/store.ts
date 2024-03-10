@@ -5,7 +5,6 @@ import { $api } from 'shared/api/api';
 import { To } from 'history';
 import { NavigateOptions } from 'react-router';
 import { userReducer } from 'entities/User';
-import { uploadingReducer } from 'pages/UploadPage/model/slices/uploadingSlice';
 import { albumReducer } from 'entities/Album/model/slice/albumSlice';
 
 export function createReduxStore(
@@ -14,10 +13,9 @@ export function createReduxStore(
 	navigate?: (to: To, options?: NavigateOptions) => void
 ) {
 	const rootReducers: ReducersMapObject<StateSchema> = {
-		user: userReducer,
-		uploading: uploadingReducer,
-		albums: albumReducer,
 		...asyncReducers,
+		user: userReducer,
+		albums: albumReducer,
 	};
 
 	const reducerManager = createReducerManager(rootReducers);
