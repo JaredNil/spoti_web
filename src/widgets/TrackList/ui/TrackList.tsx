@@ -59,43 +59,45 @@ export const TrackList: React.FC<TrackListProps> = (props: TrackListProps) => {
 					)}
 				</div>
 			</div>
-			<div className="grid w-full flex-col" style={{ gridTemplateColumns: gridTableSetting }}>
-				<div className="text-center">#</div>
-				<div>Название</div>
-				<div />
-				<div>Data</div>
-				<div> </div>
-				<div className="flex justify-center ">
-					<IoIosTimer />
+			<div className="pb-[100px]">
+				<div className="mt-3 grid w-full flex-col" style={{ gridTemplateColumns: gridTableSetting }}>
+					<div className="text-center">#</div>
+					<div>Название</div>
+					<div />
+					<div>Data</div>
+					<div> </div>
+					<div className="flex justify-center ">
+						<IoIosTimer />
+					</div>
 				</div>
-			</div>
-			{arr.map((track, i) => {
-				return (
-					<div
-						className="grid h-[54px] w-full flex-col items-center overflow-hidden
+				{arr.map((track, i) => {
+					return (
+						<div
+							className="grid h-[54px] w-full flex-col items-center overflow-hidden
                         rounded-xl transition hover:bg-neutral-400/5
                         "
-						style={{ gridTemplateColumns: gridTableSetting }}
-					>
-						<div className="text-center">{i + 1}</div>
-						<div className="flex items-center justify-start">
-							<img
-								className="h-[40px]"
-								src="https://i.scdn.co/image/ab67616d00001e021efe1deb32b22eed92470019"
-								alt="/"
-							/>
+							style={{ gridTemplateColumns: gridTableSetting }}
+						>
+							<div className="text-center">{i + 1}</div>
+							<div className="flex items-center justify-start">
+								<img
+									className="h-[40px]"
+									src="https://i.scdn.co/image/ab67616d00001e021efe1deb32b22eed92470019"
+									alt="/"
+								/>
+							</div>
+							<div>Name</div>
+							<div>01.01.2000</div>
+							<div className="flex justify-start ">
+								<FaHeart fill="rgba(255, 0, 0, 1)" />
+							</div>
+							<div className="flex justify-center ">
+								<IoIosTimer />
+							</div>
 						</div>
-						<div>Name</div>
-						<div>01.01.2000</div>
-						<div className="flex justify-start ">
-							<FaHeart fill="rgba(255, 0, 0, 1)" />
-						</div>
-						<div className="flex justify-center ">
-							<IoIosTimer />
-						</div>
-					</div>
-				);
-			})}
+					);
+				})}
+			</div>
 		</div>
 	);
 };
