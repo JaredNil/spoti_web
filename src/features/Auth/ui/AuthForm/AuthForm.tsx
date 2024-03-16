@@ -1,20 +1,28 @@
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import toastr from 'toastr';
-
-import { authReducer, getAuthUsername, getAuthError, getAuthIsLoading, getAuthPassword, getAuthIsValid, authAction } from 'features/Auth';
-
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Button } from 'shared/ui/Button/Button';
-import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-
-import { Input } from 'shared/ui/Input/Input';
 import { twMerge } from 'tailwind-merge';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
+
+import {
+	authReducer,
+	getAuthUsername,
+	getAuthError,
+	getAuthIsLoading,
+	getAuthPassword,
+	getAuthIsValid,
+	authAction,
+	authByUsername,
+} from 'features/Auth';
+
+import { Button } from 'shared/ui/Button/Button';
+import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Input } from 'shared/ui/Input/Input';
 import { successUploadToastr } from 'shared/config/toastr/toastr.config';
+
 import { ValidateBlock } from '../ValidateBlock/ValidateBlock';
 
 export interface AuthFormProps {
@@ -69,6 +77,12 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 	const onInfoAuth = () => {
 		toastr.info('Заходи под общим аккаунтом', `Не парься`, successUploadToastr);
 	};
+
+	const onAuthClick = useCallback(async () => {
+		console.log(username, password);
+		const result = await dispatch(authByUsername({ username, password }));
+		if (result.meta.requestStatus === 'fulfilled') onSuccess();
+	}, [dispatch, username, password, onSuccess]);
 
 	return (
 		<DynamicModuleLoader reducers={initialReducers} removeAfterUnmount={false}>
@@ -129,7 +143,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 						`ml-auto mt-[15px] text-xl
 						text-neutral-900/80`
 					)}
-					// onClick={onLoginClick}
+					onClick={onAuthClick}
 					disabled={isLoading || isValid}
 				>
 					{t('Войти')}
@@ -140,7 +154,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 						`ml-auto mt-[15px] text-xl
 						text-neutral-900/80`
 					)}
-					// onClick={onLoginClick}
+					onClick={onAuthClick}
 				>
 					{t('Войти в общий аккаунт [ADMIN]')}
 				</Button>

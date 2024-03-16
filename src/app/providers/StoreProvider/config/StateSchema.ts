@@ -1,10 +1,13 @@
 import { EnhancedStore, Reducer, ReducersMapObject, UnknownAction } from '@reduxjs/toolkit';
 import { NavigateOptions, To } from 'react-router-dom';
 import { AxiosInstance } from 'axios';
-import { UploadPageSchema } from 'pages/UploadPage/model/types/uploadingSchema';
+
 import { UserSchema } from 'entities/User';
-import { AlbumSchema } from 'entities/Album/model/types/albumSchema';
-import { AuthSchema } from 'features/Auth/model/types/AuthSchema';
+import { AlbumSchema } from 'entities/Album';
+
+import { UploadPageSchema } from 'pages/UploadPage';
+
+import { AuthSchema } from 'features/Auth';
 
 export interface StateSchema {
 	user: UserSchema;

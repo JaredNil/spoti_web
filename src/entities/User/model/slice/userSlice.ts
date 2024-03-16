@@ -1,36 +1,39 @@
 /* eslint-disable no-underscore-dangle */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { USER_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
-import { User, UserSchema } from '../types/user';
+import { authByUsername } from 'features/Auth';
+import { UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
-	authData: {
-		id: '0',
-		username: 'global',
-	},
-	_inited: false,
+	username: undefined,
 };
 
 export const userSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		setAuthData: (state, action: PayloadAction<User>) => {
-			state.authData = action.payload;
+		setAuthData: (state, action: PayloadAction<UserSchema>) => {
+			state.username = action.payload.username;
 		},
-		initAuthData: (state) => {
-			state.authData = {
-				id: '0',
-				username: 'global',
-			};
-			state._inited = true;
-		},
-		logout: (state) => {
-			state.authData = {
-				id: '0',
-				username: 'global',
-			};
-		},
+		// logout: (state) => {
+		// 	state.username = 'global';
+		// },
+	},
+	extraReducers: (builder) => {
+		builder.addCase(authByUsername.pending, (state) => {
+			console.log('authByUsername pending');
+			// state.error = undefined;
+			// state.isLoading = true;
+		});
+		builder.addCase(authByUsername.fulfilled, (state) => {
+			console.log('authByUsername fulfilled');
+
+			// state.isLoading = false;
+		});
+		builder.addCase(authByUsername.rejected, (state, action) => {
+			console.log('authByUsername rejected');
+			// state.isLoading = false;
+			// state.error = action.error;
+		});
 	},
 });
 

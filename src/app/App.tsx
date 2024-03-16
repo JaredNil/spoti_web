@@ -1,13 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from 'react-redux';
 import { Suspense, useCallback, useEffect } from 'react';
-import Sidebar from 'widgets/Sidebar/ui/Sidebar';
+
 import { classNames } from 'shared/lib/classNames/classNames';
+import Sidebar from 'widgets/Sidebar/ui/Sidebar';
+
 import Player from 'widgets/Player/ui/Player';
+
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { albumAction } from 'entities/Album/model/slice/albumSlice';
-import { AlbumInterface } from 'entities/Album';
-import { AlbumSchema } from 'entities/Album/model/types/albumSchema';
+
+import { authByCookie } from 'features/Auth/model/service/AuthByCookie';
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
 
@@ -55,10 +57,13 @@ const App: React.FC = () => {
 
 	const dispatch = useAppDispatch();
 
+	useEffect(() => {
+		dispatch(authByCookie());
+	}, [dispatch]);
+
 	return (
 		<div className={classNames('app', {}, [theme])}>
 			<Suspense fallback="">
-				{/* <Navbar /> */}
 				<div className="flex h-full">
 					<Sidebar />
 					<main className="h-full flex-1 overflow-y-auto py-2">

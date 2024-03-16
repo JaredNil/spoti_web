@@ -74,7 +74,7 @@ export const albumSlice = createSlice(
 				return newAlbum;
 			},
 			update: (state) => {
-				console.log('update');
+				// console.log('update');
 			},
 		},
 
