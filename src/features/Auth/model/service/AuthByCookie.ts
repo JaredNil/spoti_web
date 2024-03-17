@@ -1,8 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-
 import { UserSchema } from 'entities/User';
-import { STORAGE_TOKEN_SPOTIFY } from 'shared/config/localstorage';
 
 export const authByCookie = createAsyncThunk<UserSchema, void, ThunkConfig<string>>('user/authByCookie', async (_, thunkAPI) => {
 	const { rejectWithValue, extra } = thunkAPI;
@@ -16,10 +14,8 @@ export const authByCookie = createAsyncThunk<UserSchema, void, ThunkConfig<strin
 				'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
 			},
 		});
-
-		if (!res.data) {
-			throw new Error();
-		}
+		console.log('authByCookie');
+		console.log(res.data);
 
 		return res.data;
 	} catch (error) {

@@ -1,23 +1,20 @@
 import { useContext } from 'react';
 import { UserContext } from './UserContext';
 
-interface UseThemeResult {
-	toggleData: () => void;
+interface UseInitResult {
+	toggleInit: () => void;
 	isInit: boolean;
 }
 
-export function useUser(): UseThemeResult {
+export function useUser(): UseInitResult {
 	const { isInit, setIsInit } = useContext(UserContext);
 
-	const toggleData = (): void => {
+	const toggleInit = (): void => {
 		setIsInit(true);
-		console.log('HERE');
 	};
-	console.log(isInit);
+
 	return {
 		isInit: isInit || false,
-		toggleData,
+		toggleInit,
 	};
 }
-
-export default useUser;

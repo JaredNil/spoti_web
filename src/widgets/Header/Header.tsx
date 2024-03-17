@@ -14,6 +14,7 @@ import { getUserAuthData, getUserInited } from 'entities/User';
 import { AuthModal } from 'features/Auth';
 
 import { Button } from 'shared/ui/Button/Button';
+import { useUser } from 'app/providers/UserProvider/lib/useUser';
 
 interface HeaderProps {
 	children?: React.ReactNode;
@@ -25,6 +26,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 	const [isAuthModal, setIsAuthModal] = useState(false);
 
 	const navigate = useNavigate();
+	const { toggleInit } = useUser();
 
 	const user = useSelector(getUserAuthData);
 	const isinit = useSelector(getUserInited);
@@ -53,7 +55,9 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 						<HiOutlineChevronLeft className="mr-[3px] text-white" size={23} />
 					</button>
 					<button
-						onClick={() => navigate(1)}
+						onClick={() => {
+							navigate(1);
+						}}
 						type="button"
 						className=" flex h-[35px] w-[35px] 
                         cursor-pointer items-center justify-center 

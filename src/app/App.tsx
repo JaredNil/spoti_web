@@ -13,6 +13,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
+import { useUser } from './providers/UserProvider/lib/useUser';
 
 // import { Navbar } from 'widgets/Navbar';
 // import { Sidebar } from 'widgets/Sidebar';
@@ -55,16 +56,17 @@ export const userSongs: Song[] = [
 
 const App: React.FC = memo(() => {
 	const { theme } = useTheme();
+
 	const dispatch = useAppDispatch();
 
+	const { toggleInit, isInit } = useUser();
+	
 	useEffect(() => {
-		// dispatch(userAction.initAuthData());
-	});
-
-	// useEffect(() => {
-	// if (!isInit) {
-	// }
-	// }, [dispatch]);
+		if (!isInit) {
+			toggleInit();
+			dispatch(authByCookie());
+		}
+	}, [isInit, toggleInit, dispatch]);
 
 	return (
 		<div className={classNames('app', {}, [theme])}>

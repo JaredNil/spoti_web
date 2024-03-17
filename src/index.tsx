@@ -17,13 +17,13 @@ const root = createRoot(document.getElementById('root')!);
 root.render(
 	<BrowserRouter>
 		<StoreProvider>
-			<UserProvider>
-				<ErrorBoundary>
-					<ThemeProvider>
+			<ErrorBoundary>
+				<ThemeProvider>
+					<UserProvider>
 						<App />
-					</ThemeProvider>
-				</ErrorBoundary>
-			</UserProvider>
+					</UserProvider>
+				</ThemeProvider>
+			</ErrorBoundary>
 		</StoreProvider>
 	</BrowserRouter>
 );

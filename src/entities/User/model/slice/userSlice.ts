@@ -22,16 +22,18 @@ export const userSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder.addCase(authByCookie.pending, (state) => {
+			console.log('authByCookie.pending');
 			state.isLoading = true;
 		});
 		builder.addCase(authByCookie.fulfilled, (state, action) => {
+			console.log('authByCookie.fulfilled');
 			state.username = action.payload.username;
 			state.isLoading = false;
-			state.isInit = true;
 		});
-		builder.addCase(authByCookie.rejected, (state) => {
-			// state.isLoading = false;
-			// state.username = '';
+		builder.addCase(authByCookie.rejected, (state, action) => {
+			console.log('authByCookie.rejected');
+
+			state.isLoading = false;
 		});
 	},
 });

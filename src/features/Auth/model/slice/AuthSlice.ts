@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AuthSchema } from '../types/AuthSchema';
+import { authByCookie } from '../service/AuthByCookie';
 
 const initialState: AuthSchema = {
 	isLoading: false,
@@ -23,19 +24,7 @@ export const authSlice = createSlice({
 			state.isValid = action.payload;
 		},
 	},
-	// extraReducers: (builder) => {
-	// 	builder.addCase(loginByUsername.pending, (state) => {
-	// 		state.error = undefined;
-	// 		state.isLoading = true;
-	// 	});
-	// 	builder.addCase(loginByUsername.fulfilled, (state) => {
-	// 		state.isLoading = false;
-	// 	});
-	// 	builder.addCase(loginByUsername.rejected, (state, action) => {
-	// 		state.isLoading = false;
-	// 		state.error = action.error;
-	// 	});
-	// },
+	extraReducers: (builder) => {},
 });
 
 export const { actions: authAction } = authSlice;
