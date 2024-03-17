@@ -1,15 +1,16 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useDispatch, useSelector } from 'react-redux';
-import { Suspense, useCallback, useEffect } from 'react';
+import { memo, Suspense, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-import { classNames } from 'shared/lib/classNames/classNames';
-import Sidebar from 'widgets/Sidebar/ui/Sidebar';
+import { getUserInited, userAction } from 'entities/User';
 
+import { Sidebar } from 'widgets/Sidebar';
 import Player from 'widgets/Player/ui/Player';
 
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { authByCookie } from 'features/Auth';
 
-import { authByCookie } from 'features/Auth/model/service/AuthByCookie';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { classNames } from 'shared/lib/classNames/classNames';
+
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
 
@@ -52,14 +53,18 @@ export const userSongs: Song[] = [
 	},
 ];
 
-const App: React.FC = () => {
+const App: React.FC = memo(() => {
 	const { theme } = useTheme();
-
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(authByCookie());
-	}, [dispatch]);
+		// dispatch(userAction.initAuthData());
+	});
+
+	// useEffect(() => {
+	// if (!isInit) {
+	// }
+	// }, [dispatch]);
 
 	return (
 		<div className={classNames('app', {}, [theme])}>
@@ -69,11 +74,11 @@ const App: React.FC = () => {
 					<main className="h-full flex-1 overflow-y-auto py-2">
 						<AppRouter />
 					</main>
-					<Player />
+					{/* <Player /> */}
 				</div>
 			</Suspense>
 		</div>
 	);
-};
+});
 
 export default App;

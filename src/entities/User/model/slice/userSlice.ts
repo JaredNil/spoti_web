@@ -1,10 +1,12 @@
 /* eslint-disable no-underscore-dangle */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { authByUsername } from 'features/Auth';
+import { authByCookie } from 'features/Auth';
 import { UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
-	username: undefined,
+	username: '',
+	isLoading: false,
+	isInit: false,
 };
 
 export const userSlice = createSlice({
@@ -14,25 +16,22 @@ export const userSlice = createSlice({
 		setAuthData: (state, action: PayloadAction<UserSchema>) => {
 			state.username = action.payload.username;
 		},
-		// logout: (state) => {
-		// 	state.username = 'global';
-		// },
+		initAuthData: (state) => {
+			state.isInit = true;
+		},
 	},
 	extraReducers: (builder) => {
-		builder.addCase(authByUsername.pending, (state) => {
-			console.log('authByUsername pending');
-			// state.error = undefined;
-			// state.isLoading = true;
+		builder.addCase(authByCookie.pending, (state) => {
+			state.isLoading = true;
 		});
-		builder.addCase(authByUsername.fulfilled, (state) => {
-			console.log('authByUsername fulfilled');
-
-			// state.isLoading = false;
+		builder.addCase(authByCookie.fulfilled, (state, action) => {
+			state.username = action.payload.username;
+			state.isLoading = false;
+			state.isInit = true;
 		});
-		builder.addCase(authByUsername.rejected, (state, action) => {
-			console.log('authByUsername rejected');
+		builder.addCase(authByCookie.rejected, (state) => {
 			// state.isLoading = false;
-			// state.error = action.error;
+			// state.username = '';
 		});
 	},
 });

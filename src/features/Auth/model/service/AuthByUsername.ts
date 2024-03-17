@@ -10,7 +10,7 @@ interface AuthByUsernameProps {
 }
 
 export const authByUsername = createAsyncThunk<UserSchema, AuthByUsernameProps, ThunkConfig<string>>(
-	'auth/authByUsername',
+	'user/authByUsername',
 	async ({ username, password }, thunkAPI) => {
 		const { rejectWithValue, extra, dispatch } = thunkAPI;
 		try {
@@ -38,9 +38,6 @@ export const authByUsername = createAsyncThunk<UserSchema, AuthByUsernameProps, 
 			if (!res.data) {
 				throw new Error();
 			}
-
-			localStorage.setItem(STORAGE_TOKEN_SPOTIFY, res.data.token);
-			dispatch(userAction.setAuthData(res.data));
 
 			return res.data;
 		} catch (error) {

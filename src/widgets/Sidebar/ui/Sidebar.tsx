@@ -29,7 +29,7 @@ const routes = [
 	},
 ];
 
-const Sidebar: React.FC = () => {
+export const Sidebar: React.FC = () => {
 	const { pathname } = useLocation();
 
 	return (
@@ -55,5 +55,3 @@ const Sidebar: React.FC = () => {
 		</div>
 	);
 };
-
-export default Sidebar;
