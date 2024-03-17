@@ -9,12 +9,13 @@ import { BiSearch } from 'react-icons/bi';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2';
 import { TbFileUpload } from 'react-icons/tb';
 
-import { getUserAuthData, getUserInited } from 'entities/User';
+import { getUserAuthData, getUserInited, userAction } from 'entities/User';
 
 import { AuthModal } from 'features/Auth';
 
 import { Button } from 'shared/ui/Button/Button';
 import { useUser } from 'app/providers/UserProvider/lib/useUser';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 interface HeaderProps {
 	children?: React.ReactNode;
@@ -25,10 +26,12 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 	// const player = usePlayer();
 	const [isAuthModal, setIsAuthModal] = useState(false);
 
+	const dispatch = useAppDispatch();
+
 	const navigate = useNavigate();
 	const { toggleInit } = useUser();
 
-	const user = useSelector(getUserAuthData);
+	const username = useSelector(getUserAuthData);
 	const isinit = useSelector(getUserInited);
 
 	const onCloseModal = useCallback(() => {
@@ -37,6 +40,10 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 
 	const onShowModal = useCallback(() => {
 		setIsAuthModal(true);
+	}, []);
+
+	const onLogout = useCallback(() => {
+		dispatch(userAction.logout());
 	}, []);
 
 	return (
@@ -103,7 +110,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 				</div>
 
 				<div className="flex items-center justify-between gap-x-4">
-					{user ? (
+					{username ? (
 						<div className="flex items-center gap-x-4">
 							<Button
 								// onClick={getState}
@@ -126,14 +133,51 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 							>
 								Войти
 							</Button>
+							{/* {isAuthModal && (
+								<AuthModal
+									isOpen={isAuthModal}
+									onClose={() => onCloseModal()}
+								/>
+							)} */}
+						</div>
+					)}
+				</div>
+
+				<div className="flex items-center justify-between gap-x-4">
+					<div className="flex items-center gap-x-4">
+						<Button
+							// onClick={getState}
+							onClick={() => (username ? onLogout() : onShowModal())}
+							className="bg-white px-6 py-2"
+						>
+							{username ? 'Выйти' : 'Войти'}
+						</Button>
+						{isAuthModal && (
+							<AuthModal isOpen={isAuthModal} onClose={() => onCloseModal()} />
+						)}
+						<Button
+							// onClick={() => router.push('/account')}
+							className="bg-white"
+						>
+							<FaUserAlt />
+						</Button>
+					</div>
+
+					{/* <div>
+							<Button
+								onClick={() => onShowModal()}
+								className="bg-white px-6 py-2"
+							>
+								Войти
+							</Button>
 							{isAuthModal && (
 								<AuthModal
 									isOpen={isAuthModal}
 									onClose={() => onCloseModal()}
 								/>
 							)}
-						</div>
-					)}
+						</div> */}
+					{/* )} */}
 				</div>
 			</div>
 			{children}

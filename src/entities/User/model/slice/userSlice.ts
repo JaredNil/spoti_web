@@ -19,6 +19,11 @@ export const userSlice = createSlice({
 		initAuthData: (state) => {
 			state.isInit = true;
 		},
+
+		logout: (state) => {
+			state.isLoading = true;
+			// state.username = '';
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(authByCookie.pending, (state) => {
