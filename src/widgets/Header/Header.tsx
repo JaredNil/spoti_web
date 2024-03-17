@@ -44,7 +44,10 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 			<div className="mb-4 flex w-full items-center justify-between">
 				<div className="hidden items-center gap-x-2 md:flex">
 					<button
-						onClick={() => navigate(-1)}
+						onClick={() => {
+							toggleInit(false);
+							navigate(-1);
+						}}
 						type="button"
 						className=" flex h-[35px] w-[35px] 
                         cursor-pointer items-center justify-center 
@@ -56,6 +59,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 					</button>
 					<button
 						onClick={() => {
+							toggleInit(false);
 							navigate(1);
 						}}
 						type="button"

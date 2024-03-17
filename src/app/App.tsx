@@ -60,10 +60,10 @@ const App: React.FC = memo(() => {
 	const dispatch = useAppDispatch();
 
 	const { toggleInit, isInit } = useUser();
-	
+
 	useEffect(() => {
 		if (!isInit) {
-			toggleInit();
+			toggleInit(true);
 			dispatch(authByCookie());
 		}
 	}, [isInit, toggleInit, dispatch]);
