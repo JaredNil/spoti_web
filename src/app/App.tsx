@@ -1,15 +1,11 @@
 import { memo, Suspense, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-
-import { getUserInited, userAction } from 'entities/User';
 
 import { Sidebar } from 'widgets/Sidebar';
-import Player from 'widgets/Player/ui/Player';
 
 import { authByCookie } from 'features/Auth';
 
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';

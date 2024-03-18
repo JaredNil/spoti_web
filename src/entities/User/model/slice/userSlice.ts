@@ -21,23 +21,27 @@ export const userSlice = createSlice({
 		},
 
 		logout: (state) => {
-			state.isLoading = true;
-			// state.username = '';
+			state.username = '';
+		},
+		loading: (state) => {
+			state.isLoading = !state.isLoading;
+		},
+		login: (state) => {
+			state.username = 'TEST';
 		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(authByCookie.pending, (state) => {
-			console.log('authByCookie.pending');
 			state.isLoading = true;
 		});
 		builder.addCase(authByCookie.fulfilled, (state, action) => {
 			console.log('authByCookie.fulfilled');
+
 			state.username = action.payload.username;
 			state.isLoading = false;
 		});
 		builder.addCase(authByCookie.rejected, (state, action) => {
 			console.log('authByCookie.rejected');
-
 			state.isLoading = false;
 		});
 	},

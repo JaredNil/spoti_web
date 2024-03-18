@@ -17,8 +17,9 @@ const UploadPage: React.FC = () => {
 	const dispatch = useAppDispatch();
 
 	const isDragEvent = useSelector(getIsDragEvent);
+	console.log(isDragEvent);
 
-	const files = useSelector(getUploadingList);
+	const files = useSelector(getUploadingList) || [];
 
 	const mouseHandler = () => {
 		if (isDragEvent) {

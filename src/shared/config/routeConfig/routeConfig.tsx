@@ -4,6 +4,7 @@ import { UploadPage } from 'pages/UploadPage';
 import { SearchPage } from 'pages/SearchPage';
 import { PlaylistPage } from 'pages/PlaylistPage';
 import { IntroPage } from 'pages/IntroPage';
+import { AccountPage } from 'pages/AccountPage';
 
 export type AppRoutesProps = RouteProps & {
 	authOnly?: boolean;
@@ -12,6 +13,7 @@ export type AppRoutesProps = RouteProps & {
 export enum AppRoutes {
 	MAIN = 'main',
 	SEARCH = 'search',
+	ACCOUNT = 'account',
 	UPLOAD = 'upload',
 	PLAYLIST = 'playlist',
 	INTRO = 'intro',
@@ -23,6 +25,7 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.MAIN]: '/',
 	[AppRoutes.SEARCH]: '/search',
+	[AppRoutes.ACCOUNT]: '/account',
 	[AppRoutes.UPLOAD]: '/upload',
 	[AppRoutes.INTRO]: '/intro',
 	[AppRoutes.PLAYLIST]: '/playlist',
@@ -42,6 +45,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 		element: <SearchPage />,
 		authOnly: true,
 	},
+	[AppRoutes.ACCOUNT]: {
+		path: RoutePath.account,
+		element: <AccountPage />,
+		authOnly: true,
+	},
+
 	[AppRoutes.UPLOAD]: {
 		path: RoutePath.upload,
 		element: <UploadPage />,

@@ -1,4 +1,4 @@
-export { getUserInited } from './model/selectors/getUserInited/getUserInited';
+export { getIsLoadingUser } from './model/selectors/getIsLoadingUser/getIsLoadingUser';
 
 export { userReducer, userAction } from './model/slice/userSlice';
 

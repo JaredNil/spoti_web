@@ -55,8 +55,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className, c
 		<button
 			type="button"
 			className={twMerge(
-				`	w-full 	rounded-full 	border	border-transparent	bg-green-500	px-3 	py-3 	font-bold 	text-black	transition	hover:opacity-75	disabled:cursor-not-allowed	disabled:opacity-50
-      		`,
+				`w-full rounded-full border	border-transparent	bg-green-500
+				px-3 	py-3 	font-bold 	text-black	transition	hover:opacity-75
+				disabled:cursor-not-allowed	disabled:opacity-50
+				`,
 				disabled && 'cursor-not-allowed opacity-75',
 				className
 			)}

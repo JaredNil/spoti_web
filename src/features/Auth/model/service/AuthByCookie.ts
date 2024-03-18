@@ -14,9 +14,6 @@ export const authByCookie = createAsyncThunk<UserSchema, void, ThunkConfig<strin
 				'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
 			},
 		});
-		console.log('authByCookie');
-		console.log(res.data);
-
 		return res.data;
 	} catch (error) {
 		return rejectWithValue('error');

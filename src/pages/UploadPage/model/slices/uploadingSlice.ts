@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import toastr from 'toastr';
+
 import { successUploadToastr } from 'shared/config/toastr/toastr.config';
+
 import { TrackBlob, TrackBlobUpdate, UploadPageSchema } from '../types/uploadingSchema';
 import { uploadingFile } from '../services/fetchUploading/fetchUploading';
 
