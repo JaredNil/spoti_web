@@ -22,6 +22,11 @@ body,
     color-scheme: dark;
 }
 
+#root {
+    height: 100vh;
+    width: 100vw;
+}
+
 .app {
     position: fixed;
     z-index: 10;

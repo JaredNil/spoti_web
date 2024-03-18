@@ -33,8 +33,8 @@ export const Sidebar: React.FC = () => {
 	const { pathname } = useLocation();
 
 	return (
-		<div
-			className=" hidden h-full w-[300px]
+		<aside
+			className=" hidden h-full min-w-[300px]
 			flex-col gap-y-2 bg-black p-2
 			md:flex"
 		>
@@ -52,6 +52,6 @@ export const Sidebar: React.FC = () => {
 				</div>
 			</Box>
 			<Box className="h-full overflow-y-auto">liba{/* <Library songs={songs} /> */}</Box>
-		</div>
+		</aside>
 	);
 };

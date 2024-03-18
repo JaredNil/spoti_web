@@ -50,7 +50,13 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 	}, [dispatch]);
 
 	return (
-		<header className={twMerge('h-fit bg-gradient-to-b from-emerald-800 p-6', className)}>
+		<header
+			className={twMerge(
+				`absolute left-0 top-2 flex h-fit w-full
+				rounded-lg bg-gradient-to-b from-emerald-800 p-6 `,
+				className
+			)}
+		>
 			<div className="mb-4 flex w-full items-center justify-between">
 				<div className="hidden items-center gap-x-2 md:flex">
 					<button
@@ -121,7 +127,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 					</button>
 				</div>
 
-				<div className="relative flex  items-center justify-between transition-all duration-300">
+				<div className="relative flex items-center justify-between transition-all duration-300">
 					<Button
 						onClick={() => {
 							toggleInit(false);
@@ -153,7 +159,6 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 					</Button>
 				</div>
 			</div>
-			{children}
 		</header>
 	);
 });

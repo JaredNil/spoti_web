@@ -7,6 +7,7 @@ import { authByCookie } from 'features/Auth';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
+import { Header } from 'widgets/Header';
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
 import { useUser } from './providers/UserProvider/lib/useUser';
@@ -67,9 +68,12 @@ const App: React.FC = memo(() => {
 	return (
 		<div className={classNames('app', {}, [theme])}>
 			<Suspense fallback="">
-				<div className="flex h-full">
+				<div className="flex h-full overflow-x-auto">
 					<Sidebar />
-					<main className="h-full flex-1 overflow-y-auto py-2">
+
+					<main className="relative flex h-full w-full overflow-y-auto py-2">
+						<Header />
+
 						<AppRouter />
 					</main>
 					{/* <Player /> */}

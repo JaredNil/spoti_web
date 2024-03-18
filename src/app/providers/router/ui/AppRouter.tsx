@@ -6,10 +6,9 @@ import { useSelector } from 'react-redux';
 
 import { getUserAuthData } from 'entities/User';
 
-import { PageLoader } from 'widgets/PageLoader/PageLoader';
-
 import { AppRoutesProps, routeConfig } from 'shared/config/routeConfig/routeConfig';
 
+import { HeaderLoader } from 'shared/ui/HeaderLoader/HeaderLoader';
 import { RequireAuth } from './RequireAuth';
 
 const AppRouter: React.FC = () => {
@@ -18,7 +17,7 @@ const AppRouter: React.FC = () => {
 	const renderWithWrapper = useCallback(
 		(route: AppRoutesProps) => {
 			const element = (
-				<Suspense fallback={<PageLoader />}>
+				<Suspense fallback={<HeaderLoader className="bg-neutral-900" />}>
 					<>{route.element}</>
 				</Suspense>
 			);

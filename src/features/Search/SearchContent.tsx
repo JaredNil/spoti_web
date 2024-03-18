@@ -12,7 +12,7 @@ interface SearchContentProps {
 	songs: Song[];
 }
 
-const SearchContent: React.FC<SearchContentProps> = ({ songs }: SearchContentProps) => {
+export const SearchContent: React.FC<SearchContentProps> = ({ songs }: SearchContentProps) => {
 	// const onPlay = useOnPlay(songs);
 
 	if (songs.length === 0) {
@@ -23,7 +23,6 @@ const SearchContent: React.FC<SearchContentProps> = ({ songs }: SearchContentPro
           w-full 
           flex-col 
           gap-y-2 
-          px-6 
           text-neutral-400
         "
 			>
@@ -33,7 +32,7 @@ const SearchContent: React.FC<SearchContentProps> = ({ songs }: SearchContentPro
 	}
 
 	return (
-		<div className="flex w-full flex-col gap-y-2 px-6">
+		<div className="flex w-full flex-col gap-y-2">
 			{songs.map((song: Song) => (
 				<div key={song.id} className="flex w-full items-center gap-x-4">
 					<div className="flex-1">
@@ -49,5 +48,3 @@ const SearchContent: React.FC<SearchContentProps> = ({ songs }: SearchContentPro
 		</div>
 	);
 };
-
-export default SearchContent;

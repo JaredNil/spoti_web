@@ -8,7 +8,7 @@ interface PlaylistTitleProps {
 
 export const PlaylistTitle: React.FC<PlaylistTitleProps> = memo(({ imagePath, title, author }: PlaylistTitleProps) => {
 	return (
-		<div className="flex h-40 px-6">
+		<div className="flex h-40">
 			<div className="h-full">
 				<img src={imagePath} alt="/" className="pointer-events-none h-full select-none" />
 			</div>

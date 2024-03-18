@@ -5,7 +5,7 @@ import { UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
 	username: '',
-	isLoading: false,
+	isLoading: true,
 	isInit: false,
 };
 
