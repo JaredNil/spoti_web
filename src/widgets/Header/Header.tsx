@@ -19,6 +19,7 @@ import { AuthModal } from 'features/Auth';
 import { Button } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { HeaderLoader } from 'shared/ui/HeaderLoader/HeaderLoader';
+import { useTransit } from 'shared/lib/hooks/useTransit/useTransit';
 
 interface HeaderProps {
 	children?: React.ReactNode;
@@ -33,6 +34,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 
 	const navigate = useNavigate();
 	const { toggleInit } = useUser();
+	const transit = useTransit();
 
 	const username = useSelector(getUserAuthData);
 	const isLoading = useSelector(getIsLoadingUser);
@@ -90,10 +92,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 				</div>
 				<div className="flex items-center gap-x-2 md:hidden">
 					<button
-						onClick={() => {
-							toggleInit(false);
-							navigate('/');
-						}}
+						onClick={() => transit('/')}
 						type="button"
 						className="flex cursor-pointer items-center justify-center 
 						rounded-full bg-white p-2 transition 
@@ -103,10 +102,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 					</button>
 					<button
 						type="button"
-						onClick={() => {
-							toggleInit(false);
-							navigate('/search');
-						}}
+						onClick={() => transit('/search')}
 						className="flex cursor-pointer items-center justify-center 
 						rounded-full  bg-white p-2 transition 
 						hover:opacity-75"
@@ -115,10 +111,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 					</button>
 					<button
 						type="button"
-						onClick={() => {
-							toggleInit(false);
-							navigate('/upload');
-						}}
+						onClick={() => transit('/upload')}
 						className="flex cursor-pointer items-center justify-center 
 						rounded-full  bg-white p-2 transition 
 						hover:opacity-75"
@@ -130,9 +123,8 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 				<div className="relative flex items-center justify-between transition-all duration-300">
 					<Button
 						onClick={() => {
-							toggleInit(false);
-							if (!username) navigate('/intro');
-							else navigate('/account');
+							if (!username) transit('/intro');
+							else transit('/account');
 						}}
 						className={twMerge('bg-white transition-all duration-150')}
 					>
