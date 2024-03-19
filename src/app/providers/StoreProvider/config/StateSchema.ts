@@ -15,7 +15,7 @@ export interface StateSchema {
 	albums: AlbumSchema;
 
 	// async reducer
-	// auth?: AuthSchema;
+	auth?: AuthSchema;
 
 	// async pages
 	mainpage?: MainpageSchema;
