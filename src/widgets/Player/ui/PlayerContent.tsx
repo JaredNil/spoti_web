@@ -1,18 +1,12 @@
 'use client';
 
-import useSound from 'use-sound';
-import { useEffect, useState } from 'react';
+import { userSongs } from 'app/App';
+import { useState } from 'react';
+import { AiFillStepBackward, AiFillStepForward } from 'react-icons/ai';
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs';
 import { HiSpeakerWave, HiSpeakerXMark } from 'react-icons/hi2';
-import { AiFillStepBackward, AiFillStepForward } from 'react-icons/ai';
-import Slider from 'shared/ui/Slider/Slider';
 import MediaItem from 'shared/ui/MediaItem/MediaItem';
-import { userSongs } from 'app/App';
-
-// import usePlayer from '@/hooks/usePlayer';
-
-// import LikeButton from './LikeButton';
-// import MediaItem from './MediaItem';
+import Slider from 'shared/ui/Slider/Slider';
 
 interface PlayerContentProps {
 	// song: Song;
@@ -20,7 +14,6 @@ interface PlayerContentProps {
 }
 
 const PlayerContent: React.FC<PlayerContentProps> = () => {
-	// const player = usePlayer();
 	const [volume, setVolume] = useState(1);
 	const [isPlaying, setIsPlaying] = useState(false);
 

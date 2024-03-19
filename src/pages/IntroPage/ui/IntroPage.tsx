@@ -11,7 +11,6 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 const IntroPage: React.FC = memo(() => {
 	const { t } = useTranslation();
-	const dispatch = useAppDispatch();
 
 	const username = useSelector(getUserAuthData);
 

@@ -1,13 +1,12 @@
-import { HTMLProps, ReactNode, Suspense, memo } from 'react';
+import { HTMLProps, ReactNode, memo } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { HeaderLoader } from '../HeaderLoader/HeaderLoader';
 
 interface PageProps extends HTMLProps<HTMLDivElement> {
 	className?: string;
 	children: ReactNode;
 }
 
-const Page: React.FC<PageProps> = memo(({ children, className, ...otherProps }: PageProps) => {
+const Page: React.FC<PageProps> = ({ children, className, ...otherProps }: PageProps) => {
 	return (
 		<div
 			className={twMerge(
@@ -21,6 +20,6 @@ const Page: React.FC<PageProps> = memo(({ children, className, ...otherProps }: 
 			{children}
 		</div>
 	);
-});
+};
 
 export default Page;

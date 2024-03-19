@@ -1,6 +1,5 @@
 import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import { memo } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import cls from './Text.module.scss';
 

@@ -43,7 +43,6 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 	const password = useSelector(getAuthPassword);
 	const isLoading = useSelector(getAuthIsLoading);
 	const isValid = useSelector(getAuthIsValid);
-	const error = useSelector(getAuthError);
 
 	const onChangeUsername = useCallback(
 		(value: string) => {
@@ -58,13 +57,6 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 		},
 		[dispatch]
 	);
-
-	// const onLoginClick = useCallback(async () => {
-	// const result = await dispatch(loginByUsername({ username, password }));
-	//  if (result.meta.requestStatus === 'fulfilled') onSuccess();
-	// }, [dispatch, username, password, onSuccess]);
-
-	const [errorState, setErrorState] = useState<string[]>([]);
 
 	const onOuterAuth = () => {
 		toastr.error(

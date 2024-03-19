@@ -69,8 +69,8 @@ const Modal: React.FC<ModalProps> = memo((props: ModalProps) => {
 				>
 					<div
 						className={twMerge(
-							`bg-modalBg 
-							scale-50 rounded-xl px-5 pb-5 pt-2 transition duration-300`,
+							`scale-50 
+							rounded-xl bg-modalBg px-5 pb-5 pt-2 transition duration-300`,
 							'w-[90%] max-w-[540px] sm:w-[60%]',
 							animate && 'scale-100'
 						)}

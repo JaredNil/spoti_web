@@ -1,10 +1,9 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { FaHeart, FaPlay } from 'react-icons/fa';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
-import { PiListBulletsThin, PiListLight } from 'react-icons/pi';
 import { IoIosTimer } from 'react-icons/io';
+import { PiListBulletsThin, PiListLight } from 'react-icons/pi';
 
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 interface TrackListProps {
 	className?: string;

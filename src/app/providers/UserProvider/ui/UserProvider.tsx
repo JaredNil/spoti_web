@@ -1,6 +1,5 @@
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { UserContext } from '../lib/UserContext';
-import { useUser } from '../lib/useUser';
 
 interface UserProviderProps {
 	children: React.ReactNode;

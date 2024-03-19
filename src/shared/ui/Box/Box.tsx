@@ -5,7 +5,7 @@ interface BoxProps {
 	className?: string;
 }
 
-export const Box: React.FC<BoxProps> = ({ children, className }) => {
+export const Box: React.FC<BoxProps> = ({ children, className }: BoxProps) => {
 	return (
 		<div
 			className={twMerge(
