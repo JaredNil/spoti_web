@@ -11,8 +11,8 @@ import Page from 'shared/ui/Page/Page';
 
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { FavoriteBlock } from './FavoriteBlock/FavoriteBlock';
-import { getIsLoadingPage } from '../selector/MainpageSelector';
-import { mainpageReducer } from '../slice/mainpageSlice';
+import { getIsLoadingPage } from '../model/selector/MainpageSelector';
+import { mainpageReducer } from '../model/slice/mainpageSlice';
 
 const MainPage: React.FC = memo(() => {
 	const { t } = useTranslation();

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Button } from 'shared/ui/Button/Button';
 import { twMerge } from 'tailwind-merge';
 import { FaAnglesDown } from 'react-icons/fa6';
-import { uploadingAction } from 'pages/UploadPage/model/slices/uploadingSlice';
+import { uploadAction } from 'pages/UploadPage/model/slices/uploadingSlice';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getIsDragEvent, getUploadingList } from 'pages/UploadPage/model/selectors/uploadingSelectors/uploadingSelectors';
@@ -20,7 +20,7 @@ export const Upload: React.FC = () => {
 	const next = (audioB: File) => {
 		const newItemId = files.length;
 		dispatch(
-			uploadingAction.addNewUploading({
+			uploadAction.addNewUploading({
 				id: newItemId,
 				name: audioB?.name,
 				progress: 0,
@@ -34,7 +34,7 @@ export const Upload: React.FC = () => {
 				onUploadProgress: (progressEvent) => {
 					const percent = Number(((progressEvent.loaded / progressEvent.total) * 100).toFixed(2));
 					dispatch(
-						uploadingAction.updateProgressUploading({
+						uploadAction.updateProgressUploading({
 							id: newItemId,
 							progress: percent,
 						})
@@ -51,14 +51,14 @@ export const Upload: React.FC = () => {
 	const dragEnterHandler = (event: React.DragEvent<HTMLDivElement>) => {
 		event.preventDefault();
 		event.stopPropagation();
-		dispatch(uploadingAction.activeDragEvent());
+		dispatch(uploadAction.activeDragEvent());
 	};
 
 	const dropHandler = (event: React.DragEvent) => {
 		event.preventDefault();
 		event.stopPropagation();
 
-		dispatch(uploadingAction.disableDragEvent());
+		dispatch(uploadAction.disableDragEvent());
 
 		const droppedFiles = event.dataTransfer.files;
 

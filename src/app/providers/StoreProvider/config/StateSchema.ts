@@ -5,10 +5,10 @@ import { AxiosInstance } from 'axios';
 import { UserSchema } from 'entities/User';
 import { AlbumSchema } from 'entities/Album';
 
-import { UploadPageSchema } from 'pages/UploadPage';
-
 import { AuthSchema } from 'features/Auth';
-import { MainpageSchema } from 'pages/MainPage/types/MainpageSchema';
+import { MainpageSchema } from 'pages/MainPage/model/types/MainpageSchema';
+import { SearchpageSchema } from 'pages/SearchPage/model/types/SearchpageSchema';
+import { UploadpageSchema } from 'pages/UploadPage';
 
 export interface StateSchema {
 	user: UserSchema;
@@ -16,10 +16,11 @@ export interface StateSchema {
 
 	// async reducer
 	auth?: AuthSchema;
-	uploading?: UploadPageSchema;
 
 	// async pages
 	mainpage?: MainpageSchema;
+	searchpage?: SearchpageSchema;
+	uploadpage?: UploadpageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

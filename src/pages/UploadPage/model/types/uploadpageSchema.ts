@@ -22,7 +22,7 @@ export interface Track {
 	progress: number;
 }
 
-export interface UploadPageSchema {
+export interface UploadpageSchema {
 	isLoading: boolean;
 	error?: string;
 	isDragEvent: boolean;

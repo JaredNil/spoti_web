@@ -4,12 +4,12 @@ import toastr from 'toastr';
 
 import { successUploadToastr } from 'shared/config/toastr/toastr.config';
 
-import { TrackBlob, TrackBlobUpdate, UploadPageSchema } from '../types/uploadingSchema';
+import { TrackBlob, TrackBlobUpdate, UploadpageSchema } from '../types/uploadpageSchema';
 import { uploadingFile } from '../services/fetchUploading/fetchUploading';
 
-const initialState: UploadPageSchema = { isLoading: false, uploading: [], error: undefined, isDragEvent: false };
+const initialState: UploadpageSchema = { isLoading: false, uploading: [], error: undefined, isDragEvent: false };
 
-export const uploadingSlice = createSlice({
+export const uploadSlice = createSlice({
 	name: 'uploading',
 	initialState,
 	reducers: {
@@ -87,5 +87,5 @@ export const uploadingSlice = createSlice({
 	},
 });
 
-export const { actions: uploadingAction } = uploadingSlice;
-export const { reducer: uploadingReducer } = uploadingSlice;
+export const { actions: uploadAction } = uploadSlice;
+export const { reducer: uploadReducer } = uploadSlice;
