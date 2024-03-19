@@ -23,7 +23,7 @@ export const authSlice = createSlice({
 			state.isValid = action.payload;
 		},
 	},
-	extraReducers: (builder) => {},
+	// extraReducers: (builder) => {},
 });
 
 export const { actions: authAction } = authSlice;
