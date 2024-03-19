@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 	}, []);
 
 	const onLogout = useCallback(() => {
-		dispatch(userAction.logout());
+		dispatch(userAction.logoutUserData());
 	}, [dispatch]);
 
 	return (

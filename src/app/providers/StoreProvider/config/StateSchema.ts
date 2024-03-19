@@ -8,6 +8,7 @@ import { AlbumSchema } from 'entities/Album';
 import { UploadPageSchema } from 'pages/UploadPage';
 
 import { AuthSchema } from 'features/Auth';
+import { MainpageSchema } from 'pages/MainPage/types/MainpageSchema';
 
 export interface StateSchema {
 	user: UserSchema;
@@ -16,6 +17,9 @@ export interface StateSchema {
 	// async reducer
 	auth?: AuthSchema;
 	uploading?: UploadPageSchema;
+
+	// async pages
+	mainpage?: MainpageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

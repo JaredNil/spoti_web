@@ -1,33 +1,30 @@
 /* eslint-disable no-underscore-dangle */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { authByCookie } from 'features/Auth';
+
 import { UserSchema } from '../types/user';
+
+import { authByCookie } from '../service/AuthByCookie';
 
 const initialState: UserSchema = {
 	username: '',
 	isLoading: true,
-	isInit: false,
 };
 
 export const userSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		setAuthData: (state, action: PayloadAction<UserSchema>) => {
+		setUserData: (state, action: PayloadAction<UserSchema>) => {
 			state.username = action.payload.username;
 		},
-		initAuthData: (state) => {
-			state.isInit = true;
-		},
-
-		logout: (state) => {
+		logoutUserData: (state) => {
 			state.username = '';
 		},
-		loading: (state) => {
-			state.isLoading = !state.isLoading;
+		onLoadingUser: (state) => {
+			state.isLoading = true;
 		},
-		login: (state) => {
-			state.username = 'TEST';
+		offLoadingUser: (state) => {
+			state.isLoading = false;
 		},
 	},
 	extraReducers: (builder) => {

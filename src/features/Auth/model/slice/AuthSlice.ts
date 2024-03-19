@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AuthSchema } from '../types/AuthSchema';
-import { authByCookie } from '../service/AuthByCookie';
 
 const initialState: AuthSchema = {
 	isLoading: false,

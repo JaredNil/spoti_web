@@ -2,12 +2,11 @@ import { memo, Suspense, useEffect } from 'react';
 
 import { Sidebar } from 'widgets/Sidebar';
 
-import { authByCookie } from 'features/Auth';
-
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { Header } from 'widgets/Header';
+import { authByCookie } from 'entities/User';
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
 import { useUser } from './providers/UserProvider/lib/useUser';

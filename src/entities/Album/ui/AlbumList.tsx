@@ -1,14 +1,39 @@
 import { memo } from 'react';
 import { AlbumInterface } from '../model/types/album';
 import { Album } from './Album';
+import { AlbumSceleton } from './AlbumSkeleton';
 
 interface AlbumListProps {
 	albums: AlbumInterface[];
 	title?: string;
+	isLoadingPage?: boolean;
 }
 
-export const AlbumList: React.FC<AlbumListProps> = memo(({ albums, title }: AlbumListProps) => {
-	// const onPlay = useOnPlay(songs);
+export const AlbumList: React.FC<AlbumListProps> = memo(({ albums, title, isLoadingPage }: AlbumListProps) => {
+	if (isLoadingPage) {
+		const sceletonAlbum: string[] = new Array(6).fill('').map((_, i) => String(i));
+
+		return (
+			<>
+				<span
+					className="sceletonHeader mb-3 mt-5 
+					inline-block h-full w-80 max-w-[50%] select-none 
+					rounded-lg text-2xl text-transparent"
+				>
+					_
+				</span>
+				<div
+					className="
+				grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 
+				lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8"
+				>
+					{sceletonAlbum.map((album) => (
+						<AlbumSceleton key={album} />
+					))}
+				</div>
+			</>
+		);
+	}
 
 	if (!albums) {
 		return (
