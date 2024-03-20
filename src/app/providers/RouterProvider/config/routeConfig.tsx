@@ -1,5 +1,7 @@
 import { type RouteProps } from 'react-router-dom';
 import { MainPage } from 'pages/MainPage';
+import { SearchPage } from 'pages/SearchPage';
+
 export type AppRoutesProps = RouteProps & {
 	authOnly?: boolean;
 };
@@ -7,13 +9,11 @@ export type AppRoutesProps = RouteProps & {
 export enum AppRoutes {
 	MAIN = 'main',
 	SEARCH = 'search',
-
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.MAIN]: '/',
 	[AppRoutes.SEARCH]: '/search',
-
 };
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
@@ -25,5 +25,4 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 		path: RoutePath.search,
 		element: <SearchPage />,
 	},
-
 };

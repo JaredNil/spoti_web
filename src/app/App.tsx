@@ -6,11 +6,11 @@ const App: React.FC = () => {
 	return (
 		<div className={classNames('app', {}, [])}>
 			<div className="flex h-full overflow-x-auto">
-				<Suspense fallback="">
-					<main className="relative flex h-full w-full overflow-y-auto py-2">
+				<main className="relative flex h-full w-full overflow-y-auto py-2">
+					<Suspense fallback="">
 						<AppRouter />
-					</main>
-				</Suspense>
+					</Suspense>
+				</main>
 			</div>
 		</div>
 	);

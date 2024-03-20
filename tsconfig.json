@@ -3,7 +3,7 @@
       "strict": false,
       "types": ["node", "jest"],
       "outDir": "./dist/",
-      "forceConsistentCasingInFileNames": true,
+      "forceConsistentCasingInFileNames": false,
 
       "noImplicitAny": true,
       // "module": "ES2022",
