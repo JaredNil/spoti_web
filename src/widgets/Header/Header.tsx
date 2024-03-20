@@ -115,8 +115,10 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 				<div className="relative flex items-center justify-between transition-all duration-300">
 					<Button
 						onClick={() => {
-							if (!username) transit('/intro');
-							else transit('/account');
+							transit(!username ? '/intro' : '/account');
+
+							// if (!username) transit('/intro');
+							// else transit('/account');
 						}}
 						className={twMerge('bg-white transition-all duration-150')}
 					>

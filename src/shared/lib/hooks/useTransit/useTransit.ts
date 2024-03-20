@@ -1,5 +1,5 @@
 import { useUser } from 'app/providers/UserProvider';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { userAction } from 'entities/User';
 import { useAppDispatch } from '../useAppDispatch/useAppDispatch';
 
@@ -11,20 +11,24 @@ export enum TransitEffect {
 export function useTransit() {
 	const { toggleInit } = useUser();
 	const navigate = useNavigate();
-	const dippacth = useAppDispatch();
+	const dispatch = useAppDispatch();
+	const { pathname } = useLocation();
 
 	function transit(path: string | TransitEffect) {
-		dippacth(userAction.onLoadingUser());
+		dispatch(userAction.onLoadingUser());
 		toggleInit(false);
 
-		if (typeof path === 'string') {
-			navigate(path);
-		} else if (path === TransitEffect.BACK) {
+		if (path === pathname) {
+			return;
+		}
+
+		if (path === TransitEffect.BACK) {
 			navigate(-1);
 		} else if (path === TransitEffect.FORWARD) {
 			navigate(1);
 		}
-		throw new Error('Transit of useNavigate path not found');
+		navigate(path as string);
+		// throw new Error('Transit of useNavigate path not found');
 	}
 
 	return transit;
