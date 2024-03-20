@@ -1,18 +1,18 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { AlbumList, getAlbumCommonData, getAlbumUserData, albumAction } from 'entities/Album';
-import { getUsername } from 'entities/User';
+import { AlbumList, albumAction, getAlbumCommonData, getAlbumUserData } from 'entities/Album';
 
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-
-import Page from 'shared/ui/Page/Page';
+import { getUsername } from 'entities/User/model/selectors/getUsername/getUsername';
 
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { FavoriteBlock } from './FavoriteBlock/FavoriteBlock';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import Page from 'shared/ui/Page/Page';
+
 import { getIsLoadingPage } from '../model/selector/MainpageSelector';
 import { mainpageReducer } from '../model/slice/mainpageSlice';
+import { FavoriteBlock } from './FavoriteBlock/FavoriteBlock';
 
 const MainPage: React.FC = memo(() => {
 	const { t } = useTranslation();

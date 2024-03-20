@@ -1,6 +1,6 @@
 import { useUser } from 'app/providers/UserProvider';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { userAction } from 'entities/User';
+import { userAction } from 'entities/User/model/slice/userSlice';
 import { useAppDispatch } from '../useAppDispatch/useAppDispatch';
 
 export enum TransitEffect {

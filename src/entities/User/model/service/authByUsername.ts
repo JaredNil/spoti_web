@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 
-import { UserSchema } from 'entities/User';
+import { UserSchema } from '../types/user';
 
 interface AuthByUsernameProps {
 	authUsername: string;

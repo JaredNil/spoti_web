@@ -4,7 +4,7 @@ import { createReducerManager } from './reducerManager';
 import { $api } from 'shared/api/api';
 import { To } from 'history';
 import { NavigateOptions } from 'react-router';
-import { userReducer } from 'entities/User';
+import { userReducer } from 'entities/User/model/slice/userSlice';
 import { albumReducer } from 'entities/Album/model/slice/albumSlice';
 
 export function createReduxStore(

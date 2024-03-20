@@ -3,15 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { twMerge } from 'tailwind-merge';
 
-import { getUsername } from 'entities/User';
-
 import { Header } from 'widgets/Header';
 
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { getUsername } from '../../../entities/User/model/selectors/getUsername/getUsername';
 
 const IntroPage: React.FC = memo(() => {
-	const { t } = useTranslation();
-
 	const username = useSelector(getUsername);
 
 	return (

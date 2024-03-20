@@ -6,13 +6,13 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { Header } from 'widgets/Header';
-import { authByCookie } from 'entities/User';
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
 import { useUser } from './providers/UserProvider/lib/useUser';
 
 // import { Navbar } from 'widgets/Navbar';
 // import { Sidebar } from 'widgets/Sidebar';
+import { authByCookie } from '../entities/User/model/service/authByCookie';
 
 export interface Song {
 	id: string;

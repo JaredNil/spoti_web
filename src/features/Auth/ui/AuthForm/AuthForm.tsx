@@ -6,16 +6,17 @@ import { useSelector } from 'react-redux';
 import { twMerge } from 'tailwind-merge';
 import toastr from 'toastr';
 
-import { authAction, authReducer, getAuthIsLoading, getAuthIsValid, getAuthPassword, getAuthUsername } from 'features/Auth';
-
 import { successUploadToastr } from 'shared/config/toastr/toastr.config';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 
-import { authByUsername, getUsername } from 'entities/User';
+import { authByUsername } from 'entities/User/model/service/authByUsername';
+import { getAuthIsLoading, getAuthIsValid, getAuthPassword, getAuthUsername } from '../../model/selector/AuthSelectors';
 import { ValidateBlock } from '../ValidateBlock/ValidateBlock';
+
+import { authAction, authReducer } from '../../model/slice/authSlice';
 
 export interface AuthFormProps {
 	className?: string;

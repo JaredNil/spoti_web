@@ -4,11 +4,10 @@ import { Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { getUsername } from 'entities/User';
-
 import { AppRoutesProps, routeConfig } from 'shared/config/routeConfig/routeConfig';
 
 import { HeaderLoader } from 'shared/ui/HeaderLoader/HeaderLoader';
+import { getUsername } from 'entities/User/model/selectors/getUsername/getUsername';
 import { RequireAuth } from './RequireAuth';
 
 const AppRouter: React.FC = () => {

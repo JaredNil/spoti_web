@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { twMerge } from 'tailwind-merge';
 
-import { getUsername } from 'entities/User';
+import { getUsername } from 'entities/User/model/selectors/getUsername/getUsername';
 
 import { Header } from 'widgets/Header';
 

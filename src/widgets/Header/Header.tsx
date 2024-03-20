@@ -1,25 +1,22 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import { memo, useCallback, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { twMerge } from 'tailwind-merge';
-import { useNavigate } from 'react-router-dom';
+import { BiSearch } from 'react-icons/bi';
 import { FaUserAlt } from 'react-icons/fa';
 import { HiHome } from 'react-icons/hi';
-import { TiInfoLarge } from 'react-icons/ti';
-import { BiSearch } from 'react-icons/bi';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2';
 import { TbFileUpload } from 'react-icons/tb';
+import { TiInfoLarge } from 'react-icons/ti';
+import { useSelector } from 'react-redux';
+import { twMerge } from 'tailwind-merge';
 
-import { useUser } from 'app/providers/UserProvider';
-
-import { getUsername, userAction, getIsLoadingUser, logoutByServer } from 'entities/User';
-
-import { AuthModal } from 'features/Auth';
-
-import { Button } from 'shared/ui/Button/Button';
+import { AuthModal } from 'features/Auth/ui/AuthModal/AuthModal';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { HeaderLoader } from 'shared/ui/HeaderLoader/HeaderLoader';
 import { TransitEffect, useTransit } from 'shared/lib/hooks/useTransit/useTransit';
+import { Button } from 'shared/ui/Button/Button';
+import { HeaderLoader } from 'shared/ui/HeaderLoader/HeaderLoader';
+import { logoutByServer } from 'entities/User/model/service/logoutByServer';
+import { getUsername } from '../../entities/User/model/selectors/getUsername/getUsername';
+import { getIsLoadingUser } from '../../entities/User/model/selectors/getIsLoadingUser/getIsLoadingUser';
 
 interface HeaderProps {
 	children?: React.ReactNode;

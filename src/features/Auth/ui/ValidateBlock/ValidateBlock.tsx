@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
 
-import { authAction, getAuthIsValid, getAuthPassword, getAuthUsername } from 'features/Auth';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { authAction } from 'features/Auth/model/slice/authSlice';
+import { getAuthUsername, getAuthIsValid, getAuthPassword } from '../../model/selector/AuthSelectors';
 
 interface ValidateBlockProps {}
 
