@@ -4,7 +4,7 @@ import { AlbumInterface } from '../types/album';
 
 const initialState: AlbumSchema = {
 	isLoading: true,
-	error: undefined,
+	error: '',
 	commonAlbums: [
 		{
 			id: '1',
@@ -64,7 +64,7 @@ export const albumSlice = createSlice(
 		name: 'album',
 		initialState,
 		reducers: {
-			initAlbumsData: (state, action: PayloadAction<Partial<AlbumSchema>>) => {
+			initAlbumsData: (state, action: PayloadAction<AlbumSchema>) => {
 				const newAlbum = {
 					isLoading: false,
 					commonAlbums: [...action.payload.commonAlbums],

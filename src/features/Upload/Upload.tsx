@@ -13,9 +13,7 @@ import { getIsDragEvent, getUploadingList } from 'pages/UploadPage/model/selecto
 export const Upload: React.FC = () => {
 	const isDragEvent = useSelector(getIsDragEvent);
 	const dispatch = useAppDispatch();
-	const files = useSelector(getUploadingList);
-
-	function nextMv(audioList: File[]) {}
+	const files = useSelector(getUploadingList) || [];
 
 	const next = (audioB: File) => {
 		const newItemId = files.length;
@@ -32,13 +30,18 @@ export const Upload: React.FC = () => {
 			formData.append('audio', audioB);
 			const res = axios.post('http://localhost:5000/tracks', formData, {
 				onUploadProgress: (progressEvent) => {
-					const percent = Number(((progressEvent.loaded / progressEvent.total) * 100).toFixed(2));
-					dispatch(
-						uploadAction.updateProgressUploading({
-							id: newItemId,
-							progress: percent,
-						})
-					);
+					if (progressEvent.total) {
+						const percent = Number(
+							((progressEvent.loaded / progressEvent.total) * 100).toFixed(2)
+						);
+
+						dispatch(
+							uploadAction.updateProgressUploading({
+								id: newItemId,
+								progress: percent,
+							})
+						);
+					}
 				},
 			});
 			console.log(res);
@@ -72,8 +75,10 @@ export const Upload: React.FC = () => {
 
 	const ref = useRef<HTMLInputElement | null>(null);
 	const onChangeInputFile = (event: ChangeEvent<HTMLInputElement>) => {
-		let ob = event.target.files[0];
-		next(ob);
+		if (event.target.files) {
+			let ob = event?.target?.files[0];
+			next(ob);
+		}
 	};
 
 	return (
@@ -85,8 +90,8 @@ export const Upload: React.FC = () => {
 			<div
 				className={twMerge(
 					`relative flex w-full flex-col items-center rounded-3xl 
-							border-2 border-transparent 
-							py-8 transition`,
+					border-2 border-transparent 
+					py-8 transition`,
 					isDragEvent && 'border-dashed border-green-500'
 				)}
 				onDragEnterCapture={dragEnterHandler}

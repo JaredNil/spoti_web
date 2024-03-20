@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { useNavigate } from 'react-router-dom';
+import { useTransit } from 'shared/lib/hooks/useTransit/useTransit';
 import { AlbumInterface } from '../model/types/album';
 
 interface AlbumProps {
-	data?: AlbumInterface;
+	data: AlbumInterface;
 }
 
 export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
@@ -15,21 +16,10 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 		title = 'NO_DATA',
 		user_id = 'global',
 	} = data;
-	const navigate = useNavigate();
+	const transit = useTransit();
 
-	// console.log(imagePath);
-	// const router = useRouter();
-	// const authModal = useAuthModal();
-	// const { user } = useUser();
-
-	// const onClick = () => {
-	// 	if (!user) {
-	// 		return authModal.onOpen();
-	// 	}
-	// 	router.push(href);
-	// };
 	const clickAlbumHandler = () => {
-		navigate('/playlist');
+		transit('/playlist');
 	};
 
 	return (

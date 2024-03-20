@@ -10,7 +10,9 @@ export function useUser(): UseInitResult {
 	const { isInit, setIsInit } = useContext(UserContext);
 
 	const toggleInit = (value: boolean): void => {
-		setIsInit(value);
+		if (setIsInit) {
+			setIsInit(value);
+		}
 	};
 
 	return {

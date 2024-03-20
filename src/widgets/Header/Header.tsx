@@ -19,7 +19,7 @@ import { AuthModal } from 'features/Auth';
 import { Button } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { HeaderLoader } from 'shared/ui/HeaderLoader/HeaderLoader';
-import { useTransit } from 'shared/lib/hooks/useTransit/useTransit';
+import { TransitEffect, useTransit } from 'shared/lib/hooks/useTransit/useTransit';
 
 interface HeaderProps {
 	children?: React.ReactNode;
@@ -62,10 +62,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 			<div className="mb-4 flex w-full items-center justify-between">
 				<div className="hidden items-center gap-x-2 md:flex">
 					<button
-						onClick={() => {
-							toggleInit(false);
-							navigate(-1);
-						}}
+						onClick={() => transit(TransitEffect.BACK)}
 						type="button"
 						className=" flex h-[35px] w-[35px] 
                         cursor-pointer items-center justify-center 
@@ -76,10 +73,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 						<HiOutlineChevronLeft className="mr-[3px] text-white" size={23} />
 					</button>
 					<button
-						onClick={() => {
-							toggleInit(false);
-							navigate(1);
-						}}
+						onClick={() => transit(TransitEffect.FORWARD)}
 						type="button"
 						className=" flex h-[35px] w-[35px] 
                         cursor-pointer items-center justify-center 

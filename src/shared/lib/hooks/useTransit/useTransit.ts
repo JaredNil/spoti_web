@@ -1,35 +1,31 @@
 import { useUser } from 'app/providers/UserProvider';
-import { To, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { userAction } from 'entities/User';
 import { useAppDispatch } from '../useAppDispatch/useAppDispatch';
+
+export enum TransitEffect {
+	BACK = -1,
+	FORWARD = 1,
+}
 
 export function useTransit() {
 	const { toggleInit } = useUser();
 	const navigate = useNavigate();
 	const dippacth = useAppDispatch();
 
-	console.log('useTransit');
-	console.log('РАЗОБРАТЬСЯ С ТИПАМИ ДЛЯ ТРАНЗИТА');
-
-	function transit(path: string) {
+	function transit(path: string | TransitEffect) {
 		dippacth(userAction.onLoadingUser());
 		toggleInit(false);
-		navigate(path);
-		console.log('transit work');
+
+		if (typeof path === 'string') {
+			navigate(path);
+		} else if (path === TransitEffect.BACK) {
+			navigate(-1);
+		} else if (path === TransitEffect.FORWARD) {
+			navigate(1);
+		}
+		throw new Error('Transit of useNavigate path not found');
 	}
 
 	return transit;
 }
-
-// export const useHover = (): UseHoverResult => {
-// 	const [isHover, setIsHover] = useState(false);
-
-// 	const onMouseEnter = useCallback(() => {
-// 		setIsHover(true);
-// 	}, []);
-// 	const onMouseLeave = useCallback(() => {
-// 		setIsHover(false);
-// 	}, []);
-
-// 	return useMemo(() => [isHover, { onMouseEnter, onMouseLeave }], [isHover, onMouseEnter, onMouseLeave]);
-// };

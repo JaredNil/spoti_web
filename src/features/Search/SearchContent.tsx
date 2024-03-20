@@ -27,9 +27,10 @@ export const SearchContent: React.FC<SearchContentProps> = ({ songs, isLoadingPa
 					placeholder="Scarlxrd...  architect...   genre..."
 				/>
 				<div className="my-3 flex flex-col ">
-					{sceletonSearchList.map((_, i) => {
+					{sceletonSearchList.map((key, i) => {
 						return (
 							<div
+								key={key}
 								className="group relative my-2 flex cursor-pointer 
 								items-center gap-x-4 
 								overflow-hidden rounded-md bg-neutral-100/10 
