@@ -4,20 +4,20 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { UserSchema } from 'entities/User';
 
 interface AuthByUsernameProps {
-	username: string;
-	password: string;
+	authUsername: string;
+	authPassword: string;
 }
 
 export const authByUsername = createAsyncThunk<UserSchema, AuthByUsernameProps, ThunkConfig<string>>(
 	'user/authByUsername',
-	async ({ username, password }, thunkAPI) => {
+	async ({ authUsername, authPassword }, thunkAPI) => {
 		const { rejectWithValue, extra, dispatch } = thunkAPI;
 		try {
 			const res = await extra.api.post(
 				'/auth/signup',
 				{
-					username,
-					password,
+					username: authUsername,
+					password: authPassword,
 				},
 				{
 					headers: {

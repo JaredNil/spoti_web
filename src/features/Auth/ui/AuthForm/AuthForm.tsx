@@ -1,28 +1,20 @@
-import { memo, useCallback, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import toastr from 'toastr';
-import { twMerge } from 'tailwind-merge';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
+import { useSelector } from 'react-redux';
+import { twMerge } from 'tailwind-merge';
+import toastr from 'toastr';
 
-import {
-	authReducer,
-	getAuthUsername,
-	getAuthError,
-	getAuthIsLoading,
-	getAuthPassword,
-	getAuthIsValid,
-	authAction,
-	authByUsername,
-} from 'features/Auth';
+import { authAction, authReducer, getAuthIsLoading, getAuthIsValid, getAuthPassword, getAuthUsername } from 'features/Auth';
 
-import { Button } from 'shared/ui/Button/Button';
+import { successUploadToastr } from 'shared/config/toastr/toastr.config';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
-import { successUploadToastr } from 'shared/config/toastr/toastr.config';
 
+import { authByUsername, getUsername } from 'entities/User';
 import { ValidateBlock } from '../ValidateBlock/ValidateBlock';
 
 export interface AuthFormProps {
@@ -39,8 +31,8 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 
-	const username = useSelector(getAuthUsername);
-	const password = useSelector(getAuthPassword);
+	const authUsername = useSelector(getAuthUsername);
+	const authPassword = useSelector(getAuthPassword);
 	const isLoading = useSelector(getAuthIsLoading);
 	const isValid = useSelector(getAuthIsValid);
 
@@ -58,7 +50,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 		[dispatch]
 	);
 
-	const onOuterAuth = () => {
+	const onDevAuth = () => {
 		toastr.error(
 			'Фича находится на стадии разработки. Но спасибо за бетатест. :3 :3 :3',
 			`1d6. Критический провал`,
@@ -70,11 +62,11 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 		toastr.info('Заходи под общим аккаунтом', `Не парься`, successUploadToastr);
 	};
 
-	const onAuthClick = useCallback(async () => {
-		console.log(username, password);
-		const result = await dispatch(authByUsername({ username, password }));
+	const onAuthFromServer = useCallback(async () => {
+		console.log(authUsername, authPassword);
+		const result = await dispatch(authByUsername({ authUsername, authPassword }));
 		if (result.meta.requestStatus === 'fulfilled') onSuccess();
-	}, [dispatch, username, password, onSuccess]);
+	}, [dispatch, authUsername, authPassword, onSuccess]);
 
 	return (
 		<DynamicModuleLoader reducers={initialReducers} removeAfterUnmount={false}>
@@ -91,9 +83,9 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 							`mx-2 ml-auto flex
 							h-10 items-center justify-center bg-zinc-300
 							text-base font-normal text-black
-						`
+							`
 						)}
-						onClick={onOuterAuth}
+						onClick={onDevAuth}
 					>
 						<FaGithub size={20} />
 
@@ -105,7 +97,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 							h-10 items-center justify-center bg-zinc-300
 							text-base font-normal text-black`
 						)}
-						onClick={onOuterAuth}
+						onClick={onDevAuth}
 					>
 						<FcGoogle size={20} />
 
@@ -119,7 +111,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 					className="mb-2"
 					placeholder={t('Sth nickname')}
 					onChange={onChangeUsername}
-					value={username}
+					value={authUsername}
 				/>
 				<div className="select-none font-extralight">Введите имя пользователя</div>
 				<Input
@@ -127,7 +119,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 					className="mb-2"
 					placeholder={t('Sth password')}
 					onChange={onChangePassword}
-					value={password}
+					value={authPassword}
 				/>
 				<ValidateBlock />
 				<Button
@@ -135,7 +127,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 						`ml-auto mt-[15px] text-xl
 						text-neutral-900/80`
 					)}
-					onClick={onAuthClick}
+					onClick={onAuthFromServer}
 					disabled={isLoading || isValid}
 				>
 					{t('Войти')}
@@ -146,7 +138,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 						`ml-auto mt-[15px] text-xl
 						text-neutral-900/80`
 					)}
-					onClick={onAuthClick}
+					onClick={onAuthFromServer}
 				>
 					{t('Войти в общий аккаунт [ADMIN]')}
 				</Button>

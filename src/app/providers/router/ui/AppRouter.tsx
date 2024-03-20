@@ -4,7 +4,7 @@ import { Suspense, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { getUserAuthData } from 'entities/User';
+import { getUsername } from 'entities/User';
 
 import { AppRoutesProps, routeConfig } from 'shared/config/routeConfig/routeConfig';
 
@@ -12,7 +12,7 @@ import { HeaderLoader } from 'shared/ui/HeaderLoader/HeaderLoader';
 import { RequireAuth } from './RequireAuth';
 
 const AppRouter: React.FC = () => {
-	let username = useSelector(getUserAuthData);
+	let username = useSelector(getUsername);
 
 	const renderWithWrapper = useCallback(
 		(route: AppRoutesProps) => {

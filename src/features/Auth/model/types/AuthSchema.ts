@@ -1,6 +1,7 @@
 export interface AuthSchema {
-	username: string;
-	password: string;
+	authUser: string;
+	authPass: string;
+
 	isValid: boolean;
 	isLoading: boolean;
 	error?: string;

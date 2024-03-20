@@ -12,7 +12,7 @@ import { TbFileUpload } from 'react-icons/tb';
 
 import { useUser } from 'app/providers/UserProvider';
 
-import { getUserAuthData, userAction, getIsLoadingUser } from 'entities/User';
+import { getUsername, userAction, getIsLoadingUser, logoutByServer } from 'entities/User';
 
 import { AuthModal } from 'features/Auth';
 
@@ -32,11 +32,9 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 
 	const dispatch = useAppDispatch();
 
-	const navigate = useNavigate();
-	const { toggleInit } = useUser();
 	const transit = useTransit();
 
-	const username = useSelector(getUserAuthData);
+	const username = useSelector(getUsername);
 	const isLoading = useSelector(getIsLoadingUser);
 
 	const onCloseModal = useCallback(() => {
@@ -48,7 +46,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 	}, []);
 
 	const onLogout = useCallback(() => {
-		dispatch(userAction.logoutUserData());
+		dispatch(logoutByServer());
 	}, [dispatch]);
 
 	return (

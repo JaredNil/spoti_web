@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { AlbumList, getAlbumCommonData, getAlbumUserData, albumAction } from 'entities/Album';
-import { getUserAuthData } from 'entities/User';
+import { getUsername } from 'entities/User';
 
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
@@ -18,7 +18,7 @@ const MainPage: React.FC = memo(() => {
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 
-	const username = useSelector(getUserAuthData);
+	const username = useSelector(getUsername);
 
 	const isLoadingPage = useSelector(getIsLoadingPage);
 

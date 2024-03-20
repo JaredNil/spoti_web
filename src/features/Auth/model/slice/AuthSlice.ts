@@ -2,10 +2,11 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AuthSchema } from '../types/AuthSchema';
 
 const initialState: AuthSchema = {
+	authUser: '',
+	authPass: '',
+
 	isLoading: false,
-	password: '',
 	isValid: false,
-	username: '',
 	error: undefined,
 };
 
@@ -14,16 +15,15 @@ export const authSlice = createSlice({
 	initialState,
 	reducers: {
 		setUserName: (state, action: PayloadAction<string>) => {
-			state.username = action.payload;
+			state.authUser = action.payload;
 		},
 		setPassword: (state, action: PayloadAction<string>) => {
-			state.password = action.payload;
+			state.authPass = action.payload;
 		},
 		setVaild: (state, action: PayloadAction<boolean>) => {
 			state.isValid = action.payload;
 		},
 	},
-	// extraReducers: (builder) => {},
 });
 
 export const { actions: authAction } = authSlice;

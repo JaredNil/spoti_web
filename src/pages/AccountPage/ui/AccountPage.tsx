@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { twMerge } from 'tailwind-merge';
 
-import { getUserAuthData } from 'entities/User';
+import { getUsername } from 'entities/User';
 
 import { Header } from 'widgets/Header';
 
@@ -13,7 +13,7 @@ const AccountPage: React.FC = memo(() => {
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 
-	const username = useSelector(getUserAuthData);
+	const username = useSelector(getUsername);
 
 	return (
 		<div className={twMerge(`h-full w-full overflow-hidden overflow-y-auto rounded-lg  bg-neutral-900 `)}>
