@@ -3,8 +3,10 @@
       "strict": false,
       "types": ["node", "jest"],
       "outDir": "./dist/",
-      "forceConsistentCasingInFileNames": false,
-
+      "forceConsistentCasingInFileNames": true,
+      // Подсвечивает все места где не указан тип
+      // Однако это не означает, что теперь вовсе нельзя использовать any.
+      // Это означает лишь, что в подобных ситуация разработчик должен явно писать any,
       "noImplicitAny": true,
       // "module": "ES2022",
       "module": "commonjs",
