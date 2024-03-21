@@ -24,7 +24,6 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = memo(({ children, className }: HeaderProps) => {
-	// const player = usePlayer();
 	const [isAuthModal, setIsAuthModal] = useState(false);
 
 	const dispatch = useAppDispatch();
@@ -114,8 +113,8 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 						onClick={() => {
 							transit(!username ? '/intro' : '/account');
 
-							// if (!username) transit('/intro');
-							// else transit('/account');
+							if (!username) transit('/intro');
+							else transit('/account');
 						}}
 						className={twMerge('bg-white transition-all duration-150')}
 					>

@@ -69,6 +69,12 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 		if (result.meta.requestStatus === 'fulfilled') onSuccess();
 	}, [dispatch, authUsername, authPassword, onSuccess]);
 
+	const onAuthCommonFromServer = useCallback(async () => {
+		console.log(authUsername, authPassword);
+		const result = await dispatch(authByUsername({ authUsername: 'common', authPassword: 'common' }));
+		if (result.meta.requestStatus === 'fulfilled') onSuccess();
+	}, [dispatch, authUsername, authPassword, onSuccess]);
+
 	return (
 		<DynamicModuleLoader reducers={initialReducers} removeAfterUnmount={false}>
 			<div className="flex flex-col">
@@ -139,7 +145,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 						`ml-auto mt-[15px] text-xl
 						text-neutral-900/80`
 					)}
-					onClick={onAuthFromServer}
+					onClick={onAuthCommonFromServer}
 				>
 					{t('Войти в общий аккаунт [ADMIN]')}
 				</Button>

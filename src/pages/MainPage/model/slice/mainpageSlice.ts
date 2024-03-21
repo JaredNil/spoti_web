@@ -2,19 +2,19 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { MainpageSchema } from '../types/MainpageSchema';
 
 const initialState: MainpageSchema = {
-	isLoading: true,
-	error: undefined,
+	isLoadingData: true,
+	error: '',
 };
 
 export const mainpageSlice = createSlice({
 	name: 'mainpage',
 	initialState,
 	reducers: {
-		onLoadingPage: (state) => {
-			state.isLoading = true;
+		onLoadingData: (state) => {
+			state.isLoadingData = true;
 		},
-		offLoadingPage: (state) => {
-			state.isLoading = false;
+		offLoadingData: (state) => {
+			state.isLoadingData = false;
 		},
 	},
 	extraReducers: (builder) => {

@@ -1,4 +1,4 @@
 export interface MainpageSchema {
-	isLoading?: boolean;
-	error?: string;
+	isLoadingData?: boolean;
+	error: string;
 }

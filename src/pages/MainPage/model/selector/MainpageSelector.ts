@@ -1,3 +1,3 @@
-import { MainpageSchema } from '../types/MainpageSchema';
+import { StateSchema } from 'app/providers/StoreProvider';
 
-export const getIsLoadingPage = (state: MainpageSchema) => state.isLoading || true;
+export const getIsLoadingData = (state: StateSchema) => state.mainpage?.isLoadingData || false;

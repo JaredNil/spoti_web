@@ -1,17 +1,17 @@
 import { AlbumFlat } from 'entities/Album';
 import { AlbumSceletonFlat } from 'entities/Album/ui/AlbumSceletonFlat';
 
-interface FavoriteBlockProps {
-	isLoadingPage: boolean;
+interface QuickBarProps {
+	isLoadingData: boolean;
 }
 
-export const FavoriteBlock: React.FC<FavoriteBlockProps> = ({ isLoadingPage }: FavoriteBlockProps) => {
+export const QuickBar: React.FC<QuickBarProps> = ({ isLoadingData }: QuickBarProps) => {
 	return (
 		<div
 			className="mt-4 grid grid-cols-1 gap-3  
-						sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+					sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
 		>
-			{isLoadingPage ? (
+			{isLoadingData ? (
 				<AlbumSceletonFlat />
 			) : (
 				<AlbumFlat
