@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { userSongs } from 'app/App';
@@ -20,6 +20,10 @@ const SearchPage: React.FC = () => {
 	const onChange = (val: string) => {
 		setValue(val);
 	};
+
+	useEffect(() => {
+		console.log('SEARCHPAGE RENDER');
+	}, []);
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>

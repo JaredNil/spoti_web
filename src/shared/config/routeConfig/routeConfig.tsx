@@ -1,5 +1,5 @@
 import { type RouteProps } from 'react-router-dom';
-import { MainPage } from 'pages/MainPage';
+import { MainPageAsync } from 'pages/MainPage';
 import { UploadPage } from 'pages/UploadPage';
 import { SearchPage } from 'pages/SearchPage';
 import { PlaylistPage } from 'pages/PlaylistPage';
@@ -37,7 +37,7 @@ export const RoutePath: Record<AppRoutes, string> = {
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	[AppRoutes.MAIN]: {
 		path: RoutePath.main,
-		element: <MainPage />,
+		element: <MainPageAsync />,
 		authOnly: true,
 	},
 	[AppRoutes.SEARCH]: {

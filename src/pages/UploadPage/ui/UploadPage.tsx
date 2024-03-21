@@ -7,6 +7,7 @@ import { Upload } from 'features/Upload/Upload';
 import { MdDone } from 'react-icons/md';
 import Page from 'shared/ui/Page/Page';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useEffect } from 'react';
 import { getIsDragEvent, getUploadingList } from '../model/selectors/uploadingSelectors/uploadingSelectors';
 import { uploadAction, uploadReducer } from '../model/slices/uploadingSlice';
 
@@ -28,6 +29,7 @@ const UploadPage: React.FC = () => {
 			dispatch(uploadAction.disableDragEvent());
 		}
 	};
+	console.log('UPLOADPAGE RENDER');
 
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>

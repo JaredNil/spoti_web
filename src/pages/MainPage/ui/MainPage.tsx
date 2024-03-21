@@ -14,7 +14,7 @@ import { getIsLoadingPage } from '../model/selector/MainpageSelector';
 import { mainpageReducer } from '../model/slice/mainpageSlice';
 import { FavoriteBlock } from './FavoriteBlock/FavoriteBlock';
 
-const MainPage: React.FC = memo(() => {
+const MainPage: React.FC = () => {
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 
@@ -46,6 +46,10 @@ const MainPage: React.FC = memo(() => {
 		);
 	};
 
+	useEffect(() => {
+		console.log('MAINPAGE RENDER');
+	}, []);
+
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
 			<Page>
@@ -68,6 +72,6 @@ const MainPage: React.FC = memo(() => {
 			</Page>
 		</DynamicModuleLoader>
 	);
-});
+};
 
 export default MainPage;

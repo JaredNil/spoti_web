@@ -1,13 +1,11 @@
 {
     "compilerOptions": {
-      "strict": false,
+      "strict": true,
       "types": ["node", "jest"],
       "outDir": "./dist/",
-      "forceConsistentCasingInFileNames": true,
 
       "noImplicitAny": true,
-      // "module": "ES2022",
-      "module": "commonjs",
+      "module": "ES2022",
 
       "target": "es5",
       "jsx": "react-jsx",
