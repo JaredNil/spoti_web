@@ -1,40 +1,40 @@
-'use client';
-
-import PlayerContent from './PlayerContent';
-
-// import usePlayer from '@/hooks/usePlayer';
-// import useLoadSongUrl from '@/hooks/useLoadSongUrl';
-// import useGetSongById from '@/hooks/useGetSongById';
+// 'use client';
 
 // import PlayerContent from './PlayerContent';
 
-const Player = () => {
-	// const player = usePlayer();
-	// const { song } = useGetSongById(player.activeId);
+// // import usePlayer from '@/hooks/usePlayer';
+// // import useLoadSongUrl from '@/hooks/useLoadSongUrl';
+// // import useGetSongById from '@/hooks/useGetSongById';
 
-	// const songUrl = useLoadSongUrl(song!);
+// // import PlayerContent from './PlayerContent';
 
-	// if (!song || !songUrl || !player.activeId) {
-	// 	return null;
-	// }
+// const Player = () => {
+// 	// const player = usePlayer();
+// 	// const { song } = useGetSongById(player.activeId);
 
-	return (
-		<div
-			className="
-        fixed 
-        bottom-0 
-        h-[80px]
-        w-full 
-        bg-black 
-        px-4 
-        py-2
-      "
-		>
-			<PlayerContent
-			// key={songUrl} song={song} songUrl={songUrl}
-			/>
-		</div>
-	);
-};
+// 	// const songUrl = useLoadSongUrl(song!);
 
-export default Player;
+// 	// if (!song || !songUrl || !player.activeId) {
+// 	// 	return null;
+// 	// }
+
+// 	return (
+// 		<div
+// 			className="
+//         fixed
+//         bottom-0
+//         h-[80px]
+//         w-full
+//         bg-black
+//         px-4
+//         py-2
+//       "
+// 		>
+// 			<PlayerContent
+// 			// key={songUrl} song={song} songUrl={songUrl}
+// 			/>
+// 		</div>
+// 	);
+// };
+
+// export default Player;
