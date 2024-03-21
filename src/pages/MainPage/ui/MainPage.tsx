@@ -29,9 +29,9 @@ const MainPage: React.FC = memo(() => {
 		dispatch(albumAction.update());
 	}, [dispatch, commonAlbums]);
 
-	const reducers: ReducerList = {
-		mainpage: mainpageReducer,
-	};
+	// const reducers: ReducerList = {
+	// 	mainpage: mainpageReducer,
+	// };
 
 	const userblock = () => {
 		return (
@@ -47,26 +47,20 @@ const MainPage: React.FC = memo(() => {
 	};
 
 	return (
-		<DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-			<Page>
-				<div className="mb-2">
-					<h1 className="relative text-3xl font-semibold text-white">
-						Welcome back, {userblock()}
-					</h1>
-				</div>
+		// <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+		<>
+			<div className="mb-2">
+				<h1 className="relative text-3xl font-semibold text-white">Welcome back, {userblock()}</h1>
+			</div>
 
-				<div className="mt-2">
-					<FavoriteBlock isLoadingPage={isLoadingPage} />
+			{/* <div className="mt-2">
+				<FavoriteBlock isLoadingPage={isLoadingPage} />
 
-					<AlbumList
-						isLoadingPage={isLoadingPage}
-						albums={userAlbums}
-						title="Пользовательские плейлисты"
-					/>
-					<AlbumList isLoadingPage={isLoadingPage} albums={commonAlbums} title="Общие плейлисты" />
-				</div>
-			</Page>
-		</DynamicModuleLoader>
+				<AlbumList isLoadingPage={isLoadingPage} albums={userAlbums} title="Пользовательские плейлисты" />
+				<AlbumList isLoadingPage={isLoadingPage} albums={commonAlbums} title="Общие плейлисты" />
+			</div> */}
+		</>
+		// </DynamicModuleLoader>
 	);
 });
 

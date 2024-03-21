@@ -6,9 +6,10 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 import { Header } from 'widgets/Header';
+import { HeaderLoader } from 'shared/ui/HeaderLoader/HeaderLoader';
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
-import { useUser } from './providers/UserProvider/lib/useUser';
+// import { useUser } from './providers/UserProvider/lib/useUser';
 
 // import { Navbar } from 'widgets/Navbar';
 // import { Sidebar } from 'widgets/Sidebar';
@@ -55,29 +56,30 @@ const App: React.FC = memo(() => {
 
 	const dispatch = useAppDispatch();
 
-	const { toggleInit, isInit } = useUser();
+	// const { toggleInit, isInit } = useUser();
+	// console.log('app render', isInit);
 
-	useEffect(() => {
-		if (!isInit) {
-			toggleInit(true);
-			dispatch(authByCookie());
-		}
-	}, [isInit, toggleInit, dispatch]);
+	// useEffect(() => {
+	// 	if (!isInit) {
+	// 		toggleInit(true);
+	// 		dispatch(authByCookie());
+	// 	}
+	// }, [isInit, toggleInit, dispatch]);
+
+	// console.log('app render', isInit);
 
 	return (
 		<div className={classNames('app', {}, [theme])}>
-			<Suspense fallback="">
-				<div className="flex h-full overflow-x-auto">
+			<div className="flex h-full overflow-x-auto">
+				<Suspense fallback="">
 					<Sidebar />
-
 					<main className="relative flex h-full w-full overflow-y-auto py-2">
 						<Header />
-
+						{/* {isInit &&  */}
 						<AppRouter />
 					</main>
-					{/* <Player /> */}
-				</div>
-			</Suspense>
+				</Suspense>
+			</div>
 		</div>
 	);
 });

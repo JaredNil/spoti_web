@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { AuthModal } from 'features/Auth/ui/AuthModal/AuthModal';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { TransitEffect, useTransit } from 'shared/lib/hooks/useTransit/useTransit';
+// import { TransitEffect, useTransit } from 'shared/lib/hooks/useTransit/useTransit';
 import { Button } from 'shared/ui/Button/Button';
 import { HeaderLoader } from 'shared/ui/HeaderLoader/HeaderLoader';
 import { logoutByServer } from 'entities/User/model/service/logoutByServer';
@@ -29,7 +29,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 
 	const dispatch = useAppDispatch();
 
-	const transit = useTransit();
+	// const transit = useTransit();
 
 	const username = useSelector(getUsername);
 	const isLoading = useSelector(getIsLoadingUser);
@@ -57,7 +57,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 			<div className="mb-4 flex w-full items-center justify-between">
 				<div className="hidden items-center gap-x-2 md:flex">
 					<button
-						onClick={() => transit(TransitEffect.BACK)}
+						// onClick={() => transit(TransitEffect.BACK)}
 						type="button"
 						className=" flex h-[35px] w-[35px] 
                         cursor-pointer items-center justify-center 
@@ -68,7 +68,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 						<HiOutlineChevronLeft className="mr-[3px] text-white" size={23} />
 					</button>
 					<button
-						onClick={() => transit(TransitEffect.FORWARD)}
+						// onClick={() => transit(TransitEffect.FORWARD)}
 						type="button"
 						className=" flex h-[35px] w-[35px] 
                         cursor-pointer items-center justify-center 
@@ -81,7 +81,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 				</div>
 				<div className="flex items-center gap-x-2 md:hidden">
 					<button
-						onClick={() => transit('/')}
+						// onClick={() => transit('/')}
 						type="button"
 						className="flex cursor-pointer items-center justify-center 
 						rounded-full bg-white p-2 transition 
@@ -91,7 +91,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 					</button>
 					<button
 						type="button"
-						onClick={() => transit('/search')}
+						// onClick={() => transit('/search')}
 						className="flex cursor-pointer items-center justify-center 
 						rounded-full  bg-white p-2 transition 
 						hover:opacity-75"
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 					</button>
 					<button
 						type="button"
-						onClick={() => transit('/upload')}
+						// onClick={() => transit('/upload')}
 						className="flex cursor-pointer items-center justify-center 
 						rounded-full  bg-white p-2 transition 
 						hover:opacity-75"
@@ -112,8 +112,7 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 				<div className="relative flex items-center justify-between transition-all duration-300">
 					<Button
 						onClick={() => {
-							transit(!username ? '/intro' : '/account');
-
+							// transit(!username ? '/intro' : '/account');
 							// if (!username) transit('/intro');
 							// else transit('/account');
 						}}

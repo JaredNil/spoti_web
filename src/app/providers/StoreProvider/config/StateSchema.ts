@@ -17,8 +17,8 @@ export interface StateSchema {
 	auth?: AuthSchema;
 
 	// async pages
-	mainpage?: MainpageSchema;
-	searchpage?: SearchpageSchema;
+	// mainpage?: MainpageSchema;
+	// searchpage?: SearchpageSchema;
 	uploadpage?: UploadpageSchema;
 }
 

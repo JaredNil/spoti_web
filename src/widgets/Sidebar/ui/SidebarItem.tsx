@@ -2,7 +2,7 @@ import { IconType } from 'react-icons';
 import { twMerge } from 'tailwind-merge';
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
-import { useUser } from 'app/providers/UserProvider/lib/useUser';
+// import { useUser } from 'app/providers/UserProvider/lib/useUser';
 
 interface SidebarItemProps {
 	icon: IconType;
@@ -12,13 +12,13 @@ interface SidebarItemProps {
 }
 
 export const SidebarItem: React.FC<SidebarItemProps> = memo(({ icon: Icon, label, isActive, href }: SidebarItemProps) => {
-	const { toggleInit } = useUser();
+	// const { toggleInit } = useUser();
 
 	return (
 		<Link
 			to={href}
 			onClick={() => {
-				toggleInit(false);
+				// toggleInit(false);
 			}}
 			className={twMerge(
 				`transition, flex h-auto w-full cursor-pointer flex-row
