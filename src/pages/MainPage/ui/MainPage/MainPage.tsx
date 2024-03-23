@@ -7,7 +7,6 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import Page from 'shared/ui/Page/Page';
 
 import { useEffect } from 'react';
-import { AlbumList } from 'entities/Album';
 import { getIsLoadingData } from '../../model/selector/MainpageSelector';
 import { mainpageAction, mainpageReducer } from '../../model/slice/mainpageSlice';
 import { QuickBar } from '../QuickBar/QuickBar';
@@ -27,7 +26,7 @@ const MainPage: React.FC = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			dispatch(mainpageAction.offLoadingData());
-		}, 4000);
+		}, 40000);
 	}, [isLoadingData, dispatch]);
 
 	return (

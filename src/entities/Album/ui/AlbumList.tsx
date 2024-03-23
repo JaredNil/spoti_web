@@ -11,8 +11,6 @@ interface AlbumListProps {
 
 export const AlbumList: React.FC<AlbumListProps> = memo(({ albums, title, isLoadingPage }: AlbumListProps) => {
 	if (isLoadingPage) {
-		const sceletonAlbum: string[] = new Array(6).fill('').map((_, i) => String(i));
-
 		return (
 			<>
 				<span
@@ -27,9 +25,9 @@ export const AlbumList: React.FC<AlbumListProps> = memo(({ albums, title, isLoad
 				grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 
 				lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8"
 				>
-					{sceletonAlbum.map((album) => (
+					{/* {sceletonAlbum.map((album) => (
 						<AlbumSceleton key={album} />
-					))}
+					))} */}
 				</div>
 			</>
 		);
@@ -62,7 +60,7 @@ export const AlbumList: React.FC<AlbumListProps> = memo(({ albums, title, isLoad
 				lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8"
 			>
 				{albums.map((album) => (
-					<Album key={album.id} data={album} />
+					<Album key={album.id} />
 				))}
 			</div>
 		</>

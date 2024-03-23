@@ -3,19 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { useTransit } from 'shared/lib/hooks/useTransit/useTransit';
 import { AlbumInterface } from '../model/types/album';
 
-interface AlbumProps {
-	data: AlbumInterface;
-}
+// interface AlbumProps {
+// 	data: AlbumInterface;
+// }
 
-export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
-	const {
-		imagePath = 'https://i.scdn.co/image/ab67616d00001e02806c160566580d6335d1f16c',
-		author = 'JaredN',
-		href = '/',
-		id = '/',
-		title = 'NO_DATA',
-		user_id = 'global',
-	} = data;
+export const Album: React.FC = () => {
+	const id = 0;
+	const user_id = 0;
+	const author = 'JaredN';
+	const title = 'FirstAlbum';
+	const imagePath = 'none';
+
 	const transit = useTransit();
 
 	const clickAlbumHandler = () => {
