@@ -39,7 +39,7 @@ const MainPage: React.FC = () => {
 	useEffect(() => console.log('MAINPAGE_RENDER'), []);
 
 	return (
-		<DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+		<DynamicModuleLoader reducers={reducers}>
 			<Page>
 				<div className="mb-2">
 					<h1 className="relative text-3xl font-semibold text-white">
@@ -54,14 +54,6 @@ const MainPage: React.FC = () => {
 							</span>
 						)}
 					</h1>
-				</div>
-				<div className="my-2 flex flex-col">
-					<button type="button" onClick={() => dispatch(mainpageAction.onLoadingData())}>
-						onLoadingData
-					</button>
-					<button type="button" onClick={() => dispatch(mainpageAction.offLoadingData())}>
-						offLoadingData
-					</button>
 				</div>
 
 				<div className="mt-2">
