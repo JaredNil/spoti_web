@@ -1,15 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { PlayListPageSchema } from '../types/PlayListPageSchema';
 
 const initialState: PlayListPageSchema = {
 	isLoadingData: true,
 	error: '',
+	isShowTrackModal: false,
 };
 
 export const playListPageSlice = createSlice({
 	name: 'playlistpage',
 	initialState,
-	reducers: {},
+	reducers: {
+		showTrackModal: (state) => {
+			state.isShowTrackModal = true;
+		},
+		removeTrackModal: (state) => {
+			state.isShowTrackModal = false;
+		},
+	},
 	extraReducers: (builder) => {},
 });
 

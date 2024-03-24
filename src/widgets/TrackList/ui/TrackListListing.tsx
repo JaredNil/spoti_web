@@ -5,20 +5,31 @@ import { FaHeart } from 'react-icons/fa';
 import { IoIosTimer } from 'react-icons/io';
 import { debounceResize } from 'shared/lib/hooks/useDebounce/useDebounceHooks';
 import { twMerge } from 'tailwind-merge';
+import toastr from 'toastr';
 
 interface TrackListListingProps {
 	tracks?: Track[];
 	isCompact: boolean;
+	onShowModal: (id: number) => void;
 }
 
-export const TrackListListing: React.FC<TrackListListingProps> = ({ tracks, isCompact }: TrackListListingProps) => {
-	let gridTableSetting = '44px 56px 3fr 2fr 60px 80px';
-
+export const TrackListListing: React.FC<TrackListListingProps> = ({ tracks, isCompact, onShowModal }: TrackListListingProps) => {
 	const arr = new Array(30).fill('');
+
+	const onLikeTrack = (event: React.MouseEvent<HTMLElement>) => {
+		event.stopPropagation();
+		toastr.success('Лайк не засчитан');
+	};
 
 	return (
 		<div className="playlist__wrapper pb-[30px]">
-			<div className={twMerge(`playlist__table mt-3 grid w-full flex-col`, isCompact && 'playlist__compact')}>
+			<div
+				className={twMerge(
+					`playlist__table mt-3 grid w-full flex-col items-center`,
+					isCompact && 'playlist__compact',
+					'h-6'
+				)}
+			>
 				<div className="table-id pointer-events-none select-none text-center">#</div>
 				<div className=" pointer-events-none select-none font-extralight">Название</div>
 				<div className="table-image" />
@@ -26,7 +37,7 @@ export const TrackListListing: React.FC<TrackListListingProps> = ({ tracks, isCo
 				<div className="table-timer flex justify-center ">
 					<IoIosTimer />
 				</div>
-				<div className="flex justify-center ">
+				<div className="flex h-full justify-center">
 					<FaHeart fill="rgba(255, 0, 0, 1)" />
 				</div>
 			</div>
@@ -38,6 +49,7 @@ export const TrackListListing: React.FC<TrackListListingProps> = ({ tracks, isCo
 							rounded-xl transition hover:bg-neutral-400/5`,
 							isCompact && 'playlist__compact'
 						)}
+						onClick={() => onShowModal(1)}
 					>
 						<div className="table-id pointer-events-none select-none text-center">
 							{i + 1}
@@ -52,7 +64,10 @@ export const TrackListListing: React.FC<TrackListListingProps> = ({ tracks, isCo
 						<div>Name</div>
 						<div className="table-data">01.01.2000</div>
 						<div className="table-timer flex justify-center ">2:00</div>
-						<div className="flex justify-center ">
+						<div
+							className="flex h-full items-center justify-center"
+							onClick={onLikeTrack}
+						>
 							<FaHeart fill="rgba(255, 0, 0, 1)" />
 						</div>
 					</div>

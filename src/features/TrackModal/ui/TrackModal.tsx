@@ -1,7 +1,7 @@
 import { Modal } from 'shared/ui/Modal';
 import { Suspense, memo } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { TrackViewAsync } from './TrackView/TrackView.async';
+import { TrackWindowAsync } from './TrackView/TrackWindow.async';
 
 interface TrackModalProps {
 	className?: string;
@@ -15,7 +15,7 @@ export const TrackModal: React.FC<TrackModalProps> = memo((props: TrackModalProp
 	return (
 		<Modal className={twMerge('w-full', className)} isOpen={isOpen} onClose={onClose}>
 			<Suspense fallback="">
-				<TrackViewAsync onSuccess={onClose} />
+				<TrackWindowAsync onSuccess={onClose} />
 			</Suspense>
 		</Modal>
 	);

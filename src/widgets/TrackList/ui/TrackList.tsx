@@ -8,10 +8,11 @@ import { TrackListListing } from './TrackListListing';
 
 interface TrackListProps {
 	className?: string;
+	onShowModal: (id: number) => void;
 }
 
 export const TrackList: React.FC<TrackListProps> = (props: TrackListProps) => {
-	const { className } = props;
+	const { className, onShowModal } = props;
 
 	const [isCompact, setIsList] = useState<boolean>(false);
 	const toggleList = () => setIsList(!isCompact);
@@ -55,7 +56,7 @@ export const TrackList: React.FC<TrackListProps> = (props: TrackListProps) => {
 				</div>
 			</div>
 
-			<TrackListListing isCompact={isCompact} />
+			<TrackListListing isCompact={isCompact} onShowModal={onShowModal} />
 		</div>
 	);
 };
