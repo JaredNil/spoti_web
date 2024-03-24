@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { fetchAlbums } from 'entities/Album/model/service/fetchAlbums';
 import { MainpageSchema } from '../types/MainpageSchema';
 
 const initialState: MainpageSchema = {
@@ -18,18 +19,10 @@ export const mainpageSlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
-		// builder.addCase(authByCookie.pending, (state) => {
-		// 	state.isLoading = true;
-		// });
-		// builder.addCase(authByCookie.fulfilled, (state, action) => {
-		// 	console.log('authByCookie.fulfilled');
-		// 	state.username = action.payload.username;
-		// 	state.isLoading = false;
-		// });
-		// builder.addCase(authByCookie.rejected, (state, action) => {
-		// 	console.log('authByCookie.rejected');
-		// 	state.isLoading = false;
-		// });
+		builder.addCase(fetchAlbums.fulfilled, (state, action) => {
+			console.log('fetchAlbums.fulfilled');
+			state.isLoadingData = false;
+		});
 	},
 });
 

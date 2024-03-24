@@ -1,3 +1,3 @@
-import { lazy } from 'react';
+// import { lazy } from 'react';
 
-export const PlaylistPageAsync = lazy(async () => import('./PlaylistPage'));
+// export const PlaylistPageAsync = lazy(async () => import('./PlaylistPage'));

@@ -4,8 +4,6 @@ export const countSkeleton = (): number => {
 	// ибо лишний для всех слушатель просто будет грузить девайс
 
 	const widthPageOfDocument = document.body.offsetWidth;
-	console.log('widthPageOfDocument');
-	console.log(widthPageOfDocument);
 	if (widthPageOfDocument < 640) return 4;
 	if (widthPageOfDocument < 1024) return 6;
 	// If need more responsive - add new line

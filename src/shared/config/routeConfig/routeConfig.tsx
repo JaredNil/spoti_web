@@ -2,7 +2,7 @@ import { type RouteProps } from 'react-router-dom';
 import { MainPageAsync } from 'pages/MainPage';
 import { UploadPage } from 'pages/UploadPage';
 import { SearchPage } from 'pages/SearchPage';
-import { PlaylistPage } from 'pages/PlaylistPage';
+// import { PlaylistPage } from 'pages/PlaylistPage';
 import { IntroPage } from 'pages/IntroPage';
 import { AccountPage } from 'pages/AccountPage';
 
@@ -58,7 +58,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
 	},
 	[AppRoutes.PLAYLIST]: {
 		path: RoutePath.playlist,
-		element: <PlaylistPage />,
+		// element: <PlaylistPage />,
 		authOnly: true,
 	},
 	[AppRoutes.INTRO]: {

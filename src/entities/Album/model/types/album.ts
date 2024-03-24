@@ -1,8 +1,7 @@
 export interface AlbumInterface {
-	id: string;
-	user_id: string;
+	id: number;
+	user_id: number;
 	author: string;
 	title: string;
 	imagePath: string;
-	href: string;
 }

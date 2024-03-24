@@ -2,7 +2,7 @@ import { EnhancedStore, Reducer, ReducersMapObject, UnknownAction } from '@redux
 import { NavigateOptions, To } from 'react-router-dom';
 import { AxiosInstance } from 'axios';
 
-import { AlbumSchema } from 'entities/Album';
+import { AlbumsSchema } from 'entities/Album';
 import { MainpageSchema } from 'pages/MainPage/model/types/MainpageSchema';
 import { SearchpageSchema } from 'pages/SearchPage/model/types/SearchpageSchema';
 import { UploadpageSchema } from 'pages/UploadPage';
@@ -11,7 +11,7 @@ import { AuthSchema } from 'features/Auth/model/types/AuthSchema';
 
 export interface StateSchema {
 	user: UserSchema;
-	albums: AlbumSchema;
+	albums: AlbumsSchema;
 
 	// async reducer
 	auth?: AuthSchema;
