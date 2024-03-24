@@ -48,8 +48,8 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 	return (
 		<header
 			className={twMerge(
-				`absolute left-0 top-2 flex h-fit w-full
-				rounded-lg bg-gradient-to-b from-emerald-800 p-6 `,
+				`absolute left-0 top-2 z-50 flex h-fit
+				w-full rounded-lg bg-gradient-to-b from-emerald-800 p-6`,
 				className
 			)}
 		>

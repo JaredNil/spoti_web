@@ -14,3 +14,11 @@ export const useDebounceMouseMove = (value: void, delay: number) => {
 	}, [value, delay]);
 	return debouncedValue;
 };
+
+export function debounceResize(func: () => void) {
+	let timer: number;
+	return function (event: Event) {
+		if (timer) clearTimeout(timer);
+		timer = setTimeout(func, 2000, event);
+	};
+}

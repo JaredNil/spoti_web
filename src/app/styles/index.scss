@@ -1,11 +1,14 @@
+/* stylelint-disable at-rule-empty-line-before */
 /* stylelint-disable import-notation */
 /* stylelint-disable no-invalid-position-at-import-rule */
 /* stylelint-disable declaration-block-no-redundant-longhand-properties */
 /* stylelint-disable at-rule-no-unknown */
-@import url('./reset.scss');
+@import url('./fragment/reset.scss');
+
 @import url('./themes/dark.scss');
 @import url('./themes/normal.scss');
 @import url('./themes/orange.scss');
+
 @import url('./variables/global.scss');
 
 @tailwind base;
@@ -36,8 +39,9 @@ body,
     bottom: 0;
 }
 
-@import url('./loaders.scss');
-@import url('./sceleton.scss');
+@import url('./fragment/loaders.scss');
+@import url('./fragment/sceleton.scss');
+@import url('./fragment/playlist.scss');
 
 @keyframes wiggle {
     0% {

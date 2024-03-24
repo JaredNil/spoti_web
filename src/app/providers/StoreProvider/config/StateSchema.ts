@@ -8,6 +8,8 @@ import { SearchpageSchema } from 'pages/SearchPage/model/types/SearchpageSchema'
 import { UploadpageSchema } from 'pages/UploadPage';
 import { UserSchema } from 'entities/User/model/types/user';
 import { AuthSchema } from 'features/Auth/model/types/AuthSchema';
+import { PlayListPageSchema } from 'pages/PlaylistPage';
+import { CurTrackSchema } from 'features/TrackModal/model/types/CurTrack';
 
 export interface StateSchema {
 	user: UserSchema;
@@ -15,11 +17,13 @@ export interface StateSchema {
 
 	// async reducer
 	auth?: AuthSchema;
+	curTrack?: CurTrackSchema;
 
 	// async pages
 	mainpage?: MainpageSchema;
 	searchpage?: SearchpageSchema;
 	uploadpage?: UploadpageSchema;
+	playListPage?: PlayListPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

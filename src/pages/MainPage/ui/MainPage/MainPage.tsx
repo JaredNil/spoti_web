@@ -36,8 +36,6 @@ const MainPage: React.FC = () => {
 		}, 1000);
 	}, [dispatch]);
 
-	useEffect(() => console.log('MAINPAGE_RENDER'), []);
-
 	return (
 		<DynamicModuleLoader reducers={reducers}>
 			<Page>

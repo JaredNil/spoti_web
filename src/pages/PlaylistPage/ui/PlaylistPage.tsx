@@ -1,25 +1,26 @@
-// import { useSelector } from 'react-redux';
+import Page from 'shared/ui/Page/Page';
 
-// import { getAlbumCommonData } from 'entities/Album/model/selectors/getAlbumData';
+import { useParams } from 'react-router-dom';
+import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { TrackList } from 'widgets/TrackList';
+import { playListPageReducer } from '../model/slice/playListPageSlice';
+import { PlaylistTitle } from './PlaylistTitle';
 
-// import { Header } from 'widgets/Header';
-// import { TrackList } from 'widgets/TrackList';
+const PlaylistPage: React.FC = () => {
+	const par = useParams();
 
-// import Page from 'shared/ui/Page/Page';
+	const reducers: ReducerList = {
+		playListPage: playListPageReducer,
+	};
 
-// import { PlaylistTitle } from './PlaylistTitle';
+	return (
+		<DynamicModuleLoader reducers={reducers}>
+			<Page className="flex w-full flex-col">
+				<PlaylistTitle />
+				<TrackList />
+			</Page>
+		</DynamicModuleLoader>
+	);
+};
 
-// const PlaylistPage: React.FC = () => {
-// 	const data = useSelector(getAlbumCommonData)[0];
-// 	const { author, title, imagePath, id } = data;
-
-// 	return (
-// 		<Page>
-// 			<Header />
-// 			<PlaylistTitle imagePath={imagePath} title={title} author={author} />
-// 			{/* <TrackList id={id} /> */}
-// 		</Page>
-// 	);
-// };
-
-// export default PlaylistPage;
+export default PlaylistPage;

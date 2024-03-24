@@ -13,7 +13,7 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 
 	const transit = useTransit();
 	const clickAlbumHandler = () => {
-		transit(`/playlist:${id}`);
+		transit(`/playlist/${id}`);
 	};
 
 	return (
