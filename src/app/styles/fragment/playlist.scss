@@ -2,8 +2,6 @@
 /* stylelint-disable media-feature-range-notation */
 
 
-
-
 .playlist__table {
     height: 54px;
     grid-template-columns: 44px 56px 3fr 2fr 60px 80px;
@@ -80,5 +78,151 @@
     .tracklist__mainWrapper {
         padding-left: 3px !important;
         padding-right: 3px !important;
+    }
+}
+
+
+
+
+// 
+// 
+// 
+
+
+
+
+.title__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+    @media (min-width: 640px) {
+        height: 40px;
+        flex-direction: row;
+    }
+}
+
+.title__cover1 {
+    position: absolute;
+    top: -40px;
+    left: -15%;
+    width: 70%;
+    display: none;
+    aspect-ratio: 1/1;
+
+    @media (min-width: 640px) {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: auto;
+    }
+
+    img {
+        pointer-events: none;
+        user-select: none;
+        height: 100%;
+        width: 100%;
+
+    }
+}
+
+.title__block {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    @media (min-width: 640px) {
+        margin-left: 16px;
+    }
+}
+
+.title__upper {
+    position: relative;
+
+    @media (min-width: 640px) {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .title__upper-playlist {
+        user-select: none;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 300;
+
+        @media (min-width: 640px) {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+    }
+
+    .title__upper-naming {
+        user-select: none;
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 1.25rem;
+
+        @media (min-width: 640px) {
+            font-size: 3rem;
+            line-height: 1;
+        }
+    }
+}
+
+.title__cover2 {
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    div {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1/1;
+        width: 70%;
+
+        @media (min-width: 640px) {
+            display: none;
+        }
+
+        img {
+            pointer-events: none;
+            user-select: none;
+            width: 100%;
+            padding: 0.25rem;
+        }
+    }
+}
+
+.title__description {
+    width: 100%;
+
+    .title__description-info {
+        width: 100%;
+        display: flex;
+        user-select: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+
+    .title__description-author {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        user-select: none;
+        width: 100%;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
     }
 }
