@@ -17,6 +17,16 @@ export const playListPageSlice = createSlice({
 		removeTrackModal: (state) => {
 			state.isShowTrackModal = false;
 		},
+		onLoadingData: (state) => {
+			state.isLoadingData = true;
+		},
+		offLoadingData: (state) => {
+			state.isLoadingData = false;
+		},
+		// of dev
+		toggleLoadingData: (state) => {
+			state.isLoadingData = !state.isLoadingData;
+		},
 	},
 	extraReducers: (builder) => {},
 });

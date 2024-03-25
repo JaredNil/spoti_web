@@ -9,9 +9,8 @@ export const AlbumSceleton: React.FC = memo(() => {
 				hover:bg-neutral-400/10"
 		>
 			<div
-				className=" relative aspect-square 
-					h-full w-full 
-					overflow-hidden rounded-md"
+				className="relative aspect-square 
+					h-full w-full overflow-hidden rounded-md"
 			>
 				<div className="sceleton h-full w-full"> </div>
 			</div>

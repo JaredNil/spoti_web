@@ -34,6 +34,13 @@ const PlaylistPage: React.FC = () => {
 		<DynamicModuleLoader reducers={reducers}>
 			<Page className="flex w-full flex-col">
 				<PlaylistTitle />
+				<button
+					className="z-40 mt-4 h-[200px] w-full bg-red-500"
+					type="button"
+					onClick={() => dispatch(playListPageAction.toggleLoadingData())}
+				>
+					DASDSADSADADSADS
+				</button>
 				<TrackList onShowModal={onShowModal} />
 				{isShowTrackModal && <TrackModal isOpen={isShowTrackModal} onClose={() => onCloseModal()} />}
 			</Page>
