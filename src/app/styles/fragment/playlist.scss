@@ -90,6 +90,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
+    max-width: 700px;
 
     @media (min-width: 640px) {
         min-height: 220px;
@@ -223,8 +224,7 @@
         line-height: 1.25rem;
     }
 
-    .sceletonTitle {
-    }
+
 
     .title__description-author {
         display: flex;
@@ -241,7 +241,7 @@
 
 
 .sceletonPlaylist {
-    height: 100%;
+    max-width: 100%;
     background-color: #ffffff21;
     animation: 2s ease-in-out 0.5s infinite normal none running sceletonframes;
 }

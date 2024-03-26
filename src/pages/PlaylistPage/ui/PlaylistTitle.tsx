@@ -46,37 +46,17 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = memo(({ imagePath, ti
 					)}
 				</div>
 				<div className="title__description">
-					{!isLoadingData ? (
-						<>
-							<div className="title__description-info">
-								<span
-									className={twMerge(
-										isLoadingData &&
-											'sceletonTitle'
-									)}
-								>
-									LoremLoremLoremLorem Lorem
-								</span>
-							</div>
-							<div className="title__description-author">
-								<span className="font-bold">JaredN</span>
-								<span>, 2077</span>
-							</div>
-						</>
-					) : (
-						<>
-							<div className="title__description-info ">
-								<span className="sceletonTitle">
-									Playlist description
-								</span>
-							</div>
-							<div className="title__description-author">
-								<span className="sceletonTitle font-bold">
-									JaredN
-								</span>
-							</div>
-						</>
-					)}
+					<div className="title__description-info">
+						<span className={twMerge(isLoadingData && 'sceletonTitle')}>
+							LoremLoremLoremLorem Lorem
+						</span>
+					</div>
+					<div className={twMerge('title__description-author')}>
+						<span className={twMerge('font-bold', isLoadingData && 'sceletonTitle')}>
+							{isLoadingData ? '' : 'JaredN'}
+						</span>
+						<span className={twMerge(isLoadingData && 'sceletonTitle')}>, 2077</span>
+					</div>
 				</div>
 			</div>
 		</div>
