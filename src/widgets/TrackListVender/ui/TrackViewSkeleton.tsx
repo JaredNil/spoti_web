@@ -7,14 +7,12 @@ import { debounceResize } from 'shared/lib/hooks/useDebounce/useDebounceHooks';
 import { twMerge } from 'tailwind-merge';
 import toastr from 'toastr';
 
-interface TrackListListingProps {
-	tracks?: Track[];
+interface TrackViewSkeletonProps {
 	isCompact: boolean;
-	onShowModal: (id: number) => void;
 }
 
-export const TrackListListing: React.FC<TrackListListingProps> = ({ tracks, isCompact, onShowModal }: TrackListListingProps) => {
-	const arr = new Array(30).fill('');
+export const TrackViewSkeleton: React.FC<TrackViewSkeletonProps> = ({ isCompact }: TrackViewSkeletonProps) => {
+	const arr = new Array(30).fill('').map((_, i) => String(i));
 
 	const onLikeTrack = (event: React.MouseEvent<HTMLElement>) => {
 		event.stopPropagation();
@@ -44,26 +42,37 @@ export const TrackListListing: React.FC<TrackListListingProps> = ({ tracks, isCo
 			{arr.map((track, i) => {
 				return (
 					<div
+						key={track}
 						className={twMerge(
 							`playlist__table grid w-full flex-col items-center overflow-hidden
 							rounded-xl transition hover:bg-neutral-400/5`,
 							isCompact && 'playlist__compact'
 						)}
-						onClick={() => onShowModal(1)}
 					>
 						<div className="table-id pointer-events-none select-none text-center">
 							{i + 1}
 						</div>
 						<div className="table-image flex items-center justify-start">
-							<img
-								className="h-[40px]"
-								src="https://i.scdn.co/image/ab67616d00001e021efe1deb32b22eed92470019"
-								alt="/"
-							/>
+							<div className="sceleton aspect-square h-[40px] w-auto rounded-lg" />
 						</div>
-						<div>Name</div>
-						<div className="table-data">01.01.2000</div>
-						<div className="table-timer flex justify-center ">2:00</div>
+						<div
+							className="sceleton h-[24px] min-w-[100px] max-w-[30%] 
+							select-none rounded-lg text-transparent "
+						>
+							Track name of playlist
+						</div>
+						<div
+							className="table-data sceleton h-[24px] w-[60px] 
+							select-none rounded-lg text-transparent"
+						>
+							01.01.2000
+						</div>
+						<div
+							className="table-timer sceleton flex h-[24px] w-[60px] 
+							select-none justify-center rounded-lg text-transparent"
+						>
+							timer
+						</div>
 						<div
 							className="flex h-full items-center justify-center"
 							onClick={onLikeTrack}

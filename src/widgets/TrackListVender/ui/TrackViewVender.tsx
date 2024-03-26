@@ -1,18 +1,24 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { FaPlay } from 'react-icons/fa';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { PiListBulletsThin, PiListLight } from 'react-icons/pi';
 
 import { twMerge } from 'tailwind-merge';
-import { TrackListListing } from './TrackListListing';
+
+import { getIsLoadingData } from 'pages/PlaylistPage/model/selector/playListPageSelector';
+import { TrackViewListing } from './TrackViewListing';
+import { TrackViewSkeleton } from './TrackViewSkeleton';
 
 interface TrackListProps {
 	className?: string;
 	onShowModal: (id: number) => void;
 }
 
-export const TrackList: React.FC<TrackListProps> = (props: TrackListProps) => {
+export const TrackViewVender: React.FC<TrackListProps> = (props: TrackListProps) => {
 	const { className, onShowModal } = props;
+
+	const isLoadingData = useSelector(getIsLoadingData);
 
 	const [isCompact, setIsList] = useState<boolean>(false);
 	const toggleList = () => setIsList(!isCompact);
@@ -56,7 +62,11 @@ export const TrackList: React.FC<TrackListProps> = (props: TrackListProps) => {
 				</div>
 			</div>
 
-			<TrackListListing isCompact={isCompact} onShowModal={onShowModal} />
+			{isLoadingData ? (
+				<TrackViewSkeleton isCompact={isCompact} />
+			) : (
+				<TrackViewListing isCompact={isCompact} onShowModal={onShowModal} />
+			)}
 		</div>
 	);
 };

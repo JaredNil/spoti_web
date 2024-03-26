@@ -1,18 +1,20 @@
+import { useCallback } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
+import { TrackViewVender } from 'widgets/TrackListVender/ui/TrackViewVender';
+
+import { TrackModal } from 'features/TrackModal';
+
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import Page from 'shared/ui/Page/Page';
 
-import { useParams } from 'react-router-dom';
-import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { TrackList } from 'widgets/TrackList';
-import { MouseEventHandler, useCallback, useState } from 'react';
-import { TrackModal } from 'features/TrackModal';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { getIsShowTrackModal } from '../model/selector/playListPageSelector';
 import { playListPageAction, playListPageReducer } from '../model/slice/playListPageSlice';
 import { PlaylistTitle } from './PlaylistTitle';
-import { getIsShowTrackModal } from '../model/selector/playListPageSelector';
 
 const PlaylistPage: React.FC = () => {
-	const par = useParams();
 	const dispatch = useAppDispatch();
 
 	const isShowTrackModal = useSelector(getIsShowTrackModal);
@@ -21,8 +23,8 @@ const PlaylistPage: React.FC = () => {
 		dispatch(playListPageAction.removeTrackModal());
 	}, [dispatch]);
 
+	const par = useParams();
 	const onShowModal = (id: number) => {
-		console.log('onShowModal WORK');
 		dispatch(playListPageAction.showTrackModal());
 	};
 
@@ -39,9 +41,9 @@ const PlaylistPage: React.FC = () => {
 					type="button"
 					onClick={() => dispatch(playListPageAction.toggleLoadingData())}
 				>
-					DASDSADSADADSADS
+					DEV_BUTTON - TOGGLE ISLOADING_STATE
 				</button>
-				<TrackList onShowModal={onShowModal} />
+				<TrackViewVender onShowModal={onShowModal} />
 				{isShowTrackModal && <TrackModal isOpen={isShowTrackModal} onClose={() => onCloseModal()} />}
 			</Page>
 		</DynamicModuleLoader>
