@@ -49,6 +49,7 @@ export const albumSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(fetchCommonAlbums.fulfilled, (state, action: PayloadAction<AlbumsPost>) => {
+			console.log('fetchCommonAlbums.fulfilled');
 			state.isLoading = false;
 
 			action.payload.forEach((postAlbum) => {
@@ -65,17 +66,22 @@ export const albumSlice = createSlice({
 				state.commonAlbums.push(newAlbum);
 			});
 
-			const idCommonAlbum: number = action.payload[0].id;
+			if (action.payload[0].id) {
+				const idCommonAlbum: number = action.payload[0].id;
 
-			const defaultCommonAlbums = getAlbumsCommonDefault(idCommonAlbum);
+				const defaultCommonAlbums = getAlbumsCommonDefault(idCommonAlbum);
 
-			defaultCommonAlbums.forEach((album) => state.commonAlbums.push(album));
+				defaultCommonAlbums.forEach((album) => state.commonAlbums.push(album));
+			}
 		});
 		builder.addCase(fetchCommonAlbums.rejected, (state, action) => {
-			console.log('fetchAlbums.rejected');
+			console.log('fetchCommonAlbums.rejected');
 
 			state.isLoading = false;
-			state.error = action.error;
+			state.error = 'Ошибка загрузки данных. Перезагрузите страницу или попробуйте позже.';
+			const defaultCommonAlbums = getAlbumsCommonDefault(-1);
+
+			defaultCommonAlbums.forEach((album) => state.commonAlbums.push(album));
 		});
 	},
 });

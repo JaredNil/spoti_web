@@ -6,16 +6,17 @@ import { StateSchema } from 'app/providers/StoreProvider';
 import { fetchUserAlbums, fetchCommonAlbums } from 'entities/Album';
 import { getUsername } from 'entities/User/model/selectors/getUsername/getUsername';
 
-import { AlbumListType } from 'pages/MainPage/model/types/AlbumListType';
+import { AlbumListType, getErrorLoadingData, getIsLoadingData } from 'pages/MainPage';
 
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import Page from 'shared/ui/Page/Page';
 
-import { getIsLoadingData } from '../../model/selector/MainpageSelector';
+import { Button } from 'shared/ui/Button/Button';
 import { mainpageReducer } from '../../model/slice/mainpageSlice';
 import { AlbumListProvider } from '../AlbumListProvider/AlbumListProvider';
 import { QuickBar } from '../QuickBar/QuickBar';
+import { BringAuth } from '../BringAuth/BringAuth';
 
 const MainPage: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -23,6 +24,7 @@ const MainPage: React.FC = () => {
 	const username = useSelector(getUsername);
 
 	const isLoadingData = useSelector(getIsLoadingData);
+	const errorLoadingData = useSelector(getErrorLoadingData);
 
 	const commonAlbums = useSelector((state: StateSchema) => state.albums.commonAlbums);
 	const userAlbums = useSelector((state: StateSchema) => state.albums.userAlbums);
@@ -62,16 +64,36 @@ const MainPage: React.FC = () => {
 
 				<div className="mt-2">
 					<QuickBar isLoadingData={isLoadingData} />
+					{errorLoadingData && (
+						<Button
+							className="my-10 bg-red-600 px-20 font-light text-white"
+							onClick={() => window.location.reload()}
+						>
+							{errorLoadingData}
+						</Button>
+					)}
 					<AlbumListProvider
 						type={AlbumListType.COMMON}
 						isLoadingData={isLoadingData}
 						albums={commonAlbums}
 					/>
-					<AlbumListProvider
-						isLoadingData={isLoadingData}
-						type={AlbumListType.USER}
-						albums={userAlbums}
-					/>
+					{errorLoadingData && (
+						<Button
+							className="my-10 bg-red-600 px-20 font-light text-white"
+							onClick={() => window.location.reload()}
+						>
+							{errorLoadingData}
+						</Button>
+					)}
+					{username ? (
+						<AlbumListProvider
+							isLoadingData={isLoadingData}
+							type={AlbumListType.USER}
+							albums={userAlbums}
+						/>
+					) : (
+						<BringAuth isLoadingData={isLoadingData} />
+					)}
 				</div>
 			</Page>
 		</DynamicModuleLoader>

@@ -5,27 +5,31 @@ import heavyMetalImg from 'shared/assets/webp/heavy_metal.webp';
 import atmImg from 'shared/assets/png/atm.png';
 
 export const getAlbumsCommonDefault = (id: number): AlbumInterface[] => {
+	let idAlbum: number | null = id;
+	if (id === -1) {
+		idAlbum = null;
+	}
 	return [
 		{
 			author: 'Spotify',
-			id,
+			id: idAlbum,
 			imagePath: trapMetalImg,
 			title: 'Trap Metal',
-			user_id: 0,
+			user_id: null,
 		},
 		{
 			author: 'Spotify',
-			id,
+			id: idAlbum,
 			imagePath: heavyMetalImg,
 			title: 'Heavy Metal',
-			user_id: 0,
+			user_id: null,
 		},
 		{
 			author: 'Spotify',
-			id,
+			id: idAlbum,
 			imagePath: atmImg,
 			title: 'Atmosphera',
-			user_id: 0,
+			user_id: null,
 		},
 	];
 };

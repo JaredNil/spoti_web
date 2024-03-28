@@ -47,16 +47,20 @@
 
 import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { HeaderLoader } from '../HeaderLoader/HeaderLoader';
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	className?: string;
+	isLoading?: boolean;
+}
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className, children, disabled, type = 'button', ...props }, ref) => {
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className, children, isLoading, disabled, type = 'button', ...props }, ref) => {
 	return (
 		<button
 			type="button"
 			className={twMerge(
 				`w-full rounded-full border	border-transparent	bg-green-500
-				px-3 	py-3 	font-bold 	text-black	transition	hover:opacity-75
+				px-3 	py-3 	font-bold 	text-black	transition-all	hover:opacity-75
 				disabled:cursor-not-allowed	disabled:opacity-50
 				`,
 				disabled && 'cursor-not-allowed opacity-75',
@@ -66,7 +70,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className, c
 			ref={ref}
 			{...props}
 		>
-			{children}
+			{isLoading ? <HeaderLoader className="h-[22px]" /> : children}
 		</button>
 	);
 });

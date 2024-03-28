@@ -34,7 +34,7 @@ export const AlbumListProvider: React.FC<AlbumListProviderProps> = memo(({ isLoa
 			>
 				{isLoadingData
 					? sceletonAlbum.map((album) => <AlbumSceleton key={album} />)
-					: orderAlbum.map((album) => <Album key={album.id} data={album} />)}
+					: orderAlbum.reverse().map((album) => <Album key={album.id} data={album} />)}
 			</div>
 		</>
 	);
