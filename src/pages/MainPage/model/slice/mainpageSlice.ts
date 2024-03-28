@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { fetchAlbums } from 'entities/Album/model/service/fetchAlbums';
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchCommonAlbums, fetchUserAlbums } from 'entities/Album';
 import { MainpageSchema } from '../types/MainpageSchema';
 
 const initialState: MainpageSchema = {
@@ -19,8 +19,12 @@ export const mainpageSlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
-		builder.addCase(fetchAlbums.fulfilled, (state, action) => {
-			console.log('fetchAlbums.fulfilled');
+		builder.addCase(fetchUserAlbums.fulfilled, (state, action) => {
+			console.log('fetchUserAlbums.fulfilled');
+			state.isLoadingData = false;
+		});
+		builder.addCase(fetchCommonAlbums.fulfilled, (state, action) => {
+			console.log('fetchCommonAlbums.fulfilled');
 			state.isLoadingData = false;
 		});
 	},

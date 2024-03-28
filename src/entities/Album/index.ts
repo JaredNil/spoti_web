@@ -1,3 +1,7 @@
+export { fetchUserAlbums } from './model/service/fetchUserAlbums';
+
+export { fetchCommonAlbums } from './model/service/fetchCommonAlbums';
+
 export { AlbumSceleton } from './ui/AlbumSkeleton';
 
 export { albumAction } from './model/slice/albumSlice';

@@ -1,20 +1,21 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
+import { StateSchema } from 'app/providers/StoreProvider';
+
+import { fetchUserAlbums, fetchCommonAlbums } from 'entities/Album';
 import { getUsername } from 'entities/User/model/selectors/getUsername/getUsername';
+
+import { AlbumListType } from 'pages/MainPage/model/types/AlbumListType';
 
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import Page from 'shared/ui/Page/Page';
 
-import { useEffect } from 'react';
-import { fetchAlbums } from 'entities/Album/model/service/fetchAlbums';
-import { StateSchema } from 'app/providers/StoreProvider';
-import { AlbumInterface } from 'entities/Album';
-import { AlbumListType } from 'pages/MainPage/model/types/AlbumListType';
 import { getIsLoadingData } from '../../model/selector/MainpageSelector';
-import { mainpageAction, mainpageReducer } from '../../model/slice/mainpageSlice';
-import { QuickBar } from '../QuickBar/QuickBar';
+import { mainpageReducer } from '../../model/slice/mainpageSlice';
 import { AlbumListProvider } from '../AlbumListProvider/AlbumListProvider';
+import { QuickBar } from '../QuickBar/QuickBar';
 
 const MainPage: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -26,15 +27,20 @@ const MainPage: React.FC = () => {
 	const commonAlbums = useSelector((state: StateSchema) => state.albums.commonAlbums);
 	const userAlbums = useSelector((state: StateSchema) => state.albums.userAlbums);
 
+	console.log(commonAlbums);
 	const reducers: ReducerList = {
 		mainpage: mainpageReducer,
 	};
 
 	useEffect(() => {
 		setTimeout(() => {
-			dispatch(fetchAlbums());
+			if (username) {
+				dispatch(fetchUserAlbums());
+			} else {
+				dispatch(fetchCommonAlbums());
+			}
 		}, 1000);
-	}, [dispatch]);
+	}, [dispatch, username]);
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>

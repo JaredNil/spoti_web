@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { AlbumsPost } from '../types/albumsSchema';
 
-export const fetchAlbums = createAsyncThunk<AlbumsPost, void, ThunkConfig<string>>('album/fetchAlbums', async (_, thunkAPI) => {
+export const fetchUserAlbums = createAsyncThunk<AlbumsPost, void, ThunkConfig<string>>('album/fetchUserAlbums', async (_, thunkAPI) => {
 	const { rejectWithValue, extra } = thunkAPI;
 
 	try {
