@@ -15,7 +15,7 @@ export default (env: BuildEnv): webpack.Configuration => {
 
 	const PORT_DEV_SERVER = env.port || 3000;
 	const MODE = env.mode || 'development';
-	const apiUrl = 'http://localhost:5000/';
+	const apiUrl = 'https://9f85-188-168-152-46.ngrok-free.app/';
 	const isDev = MODE === 'development';
 
 	const config: webpack.Configuration = buildWebpackConfig({
