@@ -9,7 +9,7 @@ export const authByCookie = createAsyncThunk<UserSchema, void, ThunkConfig<strin
 		const res = await extra.api.get<UserSchema>('/auth/session', {
 			headers: {
 				withCredentials: true,
-				'Access-Control-Allow-Origin': 'https://9f85-188-168-152-46.ngrok-free.app',
+				'Access-Control-Allow-Origin': 'http://92.255.78.94:5000',
 				// 'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
 				// 'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
 			},
