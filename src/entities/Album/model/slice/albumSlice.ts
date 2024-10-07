@@ -58,7 +58,7 @@ export const albumSlice = createSlice({
 				const newAlbum: AlbumInterface = {
 					author: postAlbum.author,
 					id: postAlbum.id,
-					imagePath: coverPlaylist,
+					imagePath: postAlbum.imagePath,
 					title: postAlbum.title,
 					user_id: postAlbum.user_id,
 				};

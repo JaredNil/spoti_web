@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTransit } from 'shared/lib/hooks/useTransit/useTransit';
 import { FaPlay } from 'react-icons/fa';
 import { AlbumInterface } from '../model/types/album';
+import { useEffect, useState } from 'react';
 
 interface AlbumProps {
 	data: AlbumInterface;
@@ -15,7 +16,6 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 	const clickAlbumHandler = () => {
 		transit(`/playlist/${id}`);
 	};
-
 	return (
 		<div
 			className="group relative flex cursor-pointer flex-col 
@@ -29,7 +29,9 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 					h-full w-full 
 					overflow-hidden rounded-md"
 			>
-				<img className="pointer-events-none w-full select-none object-cover" src={imagePath} alt="/" />
+					<img className="pointer-events-none w-full select-none object-cover"
+					 src={imagePath} 
+					 alt="/" />
 			</div>
 			<div className="flex w-full flex-col items-start gap-y-1 pt-2">
 				<p className="w-full truncate font-semibold">{title}</p>

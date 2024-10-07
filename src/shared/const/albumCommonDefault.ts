@@ -1,8 +1,8 @@
 import { AlbumInterface } from 'entities/Album';
 
-import trapMetalImg from 'shared/assets/webp/trap_metal.webp';
-import heavyMetalImg from 'shared/assets/webp/heavy_metal.webp';
-import atmImg from 'shared/assets/png/atm.png';
+import trapMetalImg from 'shared/assets/trap_metal.webp';
+import heavyMetalImg from 'shared/assets/heavy_metal.webp';
+import atmImg from 'shared/assets/atm.png';
 
 export const getAlbumsCommonDefault = (id: number): AlbumInterface[] => {
 	let idAlbum: number | null = id;
