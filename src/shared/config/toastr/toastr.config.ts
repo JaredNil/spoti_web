@@ -1,4 +1,4 @@
-export const successUploadToastr = {
+export const successUploadToastr: ToastrOptions = {
 	progressBar: true,
 	positionClass: 'toast-bottom-right',
 	showDuration: 300,
@@ -11,7 +11,7 @@ export const successUploadToastr = {
 	hideMethod: 'fadeOut',
 };
 
-export const errorServerToastr = {
+export const errorServerToastr: ToastrOptions = {
 	progressBar: false,
 	positionClass: 'toast-bottom-right',
 	showDuration: 300,

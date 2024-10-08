@@ -22,15 +22,12 @@ export const mainpageSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchUserAlbums.fulfilled, (state, action) => {
-			console.log('fetchUserAlbums.fulfilled');
 			state.isLoadingData = false;
 		});
 		builder.addCase(fetchCommonAlbums.fulfilled, (state, action) => {
-			console.log('fetchCommonAlbums.fulfilled');
 			state.isLoadingData = false;
 		});
 		builder.addCase(fetchCommonAlbums.rejected, (state, action) => {
-			console.log('fetchCommonAlbums.rejected');
 			state.error = 'Ошибка загрузки данных с сервера. Перезагрузите страницу или зайдите позже.';
 
 			toastr.error('Перезагрузите страницу или зайдите позже', 'Ошибка соединения', errorServerToastr);

@@ -11,10 +11,12 @@ import { UserSchema } from 'entities/User/model/types/user';
 import { AuthSchema } from 'features/Auth/model/types/AuthSchema';
 import { PlayListPageSchema } from 'pages/PlaylistPage';
 import { CurTrackSchema } from 'features/TrackModal/model/types/CurTrack';
+import { rtkApi } from 'shared/api/rtkApi';
 
 export interface StateSchema {
 	user: UserSchema;
 	albums: AlbumsSchema;
+	[rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
 	// async reducer
 	auth?: AuthSchema;

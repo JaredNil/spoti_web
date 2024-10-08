@@ -10,9 +10,7 @@ import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
 import { useUser } from './providers/UserProvider/lib/useUser';
 
-// import { Navbar } from 'widgets/Navbar';
-// import { Sidebar } from 'widgets/Sidebar';
-import { authByCookie } from '../entities/User/model/service/authByCookie';
+import { authByCookie } from '../entities/User/model/service/authByCookie'; // IN DEMO NOT WORKING
 
 export interface Song {
 	id: string;
@@ -60,7 +58,8 @@ const App: React.FC = memo(() => {
 	useEffect(() => {
 		if (!isInit) {
 			toggleInit(true);
-			dispatch(authByCookie());
+			// DEMO WITHOUT NEST SERVER
+			// dispatch(authByCookie());
 		}
 	}, [isInit, toggleInit, dispatch]);
 

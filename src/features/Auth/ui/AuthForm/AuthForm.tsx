@@ -53,25 +53,30 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 
 	const onDevAuth = () => {
 		toastr.error(
-			'Фича находится на стадии разработки. Но спасибо за бетатест. :3 :3 :3',
+			'В DEMO режиме без сервера данная функция не работает',
 			`1d6. Критический провал`,
+			successUploadToastr
+		);
+	};
+	const onDevInputLogin = () => {
+		toastr.success(
+			'Проще зайдите под ОБЩИМ АККАУНТОМ',
+			`Сервер сейчас не работает`,
 			successUploadToastr
 		);
 	};
 
 	const onInfoAuth = () => {
-		toastr.info('Заходи под общим аккаунтом', `Не парься`, successUploadToastr);
+		toastr.info('Это DEMO с выключенным сервером. Заходи под ОБЩИМ АККАУНТОМ', `Не парься`, successUploadToastr);
 	};
 
 	const onAuthFromServer = useCallback(async () => {
-		console.log(authUsername, authPassword);
 		const result = await dispatch(authByUsername({ authUsername, authPassword }));
 		if (result.meta.requestStatus === 'fulfilled') onSuccess();
 	}, [dispatch, authUsername, authPassword, onSuccess]);
 
-	const onAuthCommonFromServer = useCallback(async () => {
-		console.log(authUsername, authPassword);
-		const result = await dispatch(authByUsername({ authUsername: 'common', authPassword: 'common' }));
+	const onAuthDemoFromServer = useCallback(async () => {
+		const result = await dispatch(authByUsername({ authUsername: 'Demo', authPassword: 'Demo' }));
 		if (result.meta.requestStatus === 'fulfilled') onSuccess();
 	}, [dispatch, authUsername, authPassword, onSuccess]);
 
@@ -119,6 +124,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 					placeholder={t('Sth nickname')}
 					onChange={onChangeUsername}
 					value={authUsername}
+					onClick={onDevInputLogin} // DEMO EVENT
 				/>
 				<div className="select-none font-extralight">Введите имя пользователя</div>
 				<Input
@@ -145,7 +151,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 						`ml-auto mt-[15px] text-xl
 						text-neutral-900/80`
 					)}
-					onClick={onAuthCommonFromServer}
+					onClick={onAuthDemoFromServer}
 				>
 					{t('Войти в общий аккаунт [ADMIN]')}
 				</Button>

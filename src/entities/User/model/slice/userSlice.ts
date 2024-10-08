@@ -4,12 +4,12 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { logoutByServer } from 'entities/User/model/service/logoutByServer';
 import { UserSchema } from '../types/user';
 
-import { authByCookie } from '../service/authByCookie';
+import { authByCookie } from '../service/authByCookie'; // NOT WORKING IN DEMO
 import { authByUsername } from '../service/authByUsername';
 
 const initialState: UserSchema = {
 	username: '',
-	isLoading: true,
+	isLoading: false,
 };
 
 export const userSlice = createSlice({
@@ -30,19 +30,17 @@ export const userSlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
-		builder.addCase(authByCookie.pending, (state) => {
-			state.isLoading = true;
-		});
-		builder.addCase(authByCookie.fulfilled, (state, action) => {
-			console.log('authByCookie.fulfilled');
-
-			state.username = action.payload.username;
-			state.isLoading = false;
-		});
-		builder.addCase(authByCookie.rejected, (state, action) => {
-			console.log('authByCookie.rejected');
-			state.isLoading = false;
-		});
+		// DEMO NOT WORKING
+		// builder.addCase(authByCookie.pending, (state) => {
+		// 	state.isLoading = true;
+		// });
+		// builder.addCase(authByCookie.fulfilled, (state, action) => {
+		// 	state.username = action.payload.username;
+		// 	state.isLoading = false;
+		// });
+		// builder.addCase(authByCookie.rejected, (state, action) => {
+		// 	state.isLoading = false;
+		// });
 
 		builder.addCase(authByUsername.pending, (state) => {
 			state.isLoading = true;

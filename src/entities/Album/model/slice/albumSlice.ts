@@ -39,7 +39,6 @@ export const albumSlice = createSlice({
 			});
 		});
 		builder.addCase(fetchUserAlbums.rejected, (state, action) => {
-			console.log('fetchAlbums.rejected');
 
 			state.isLoading = false;
 			state.error = action.error;
@@ -49,11 +48,9 @@ export const albumSlice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(fetchCommonAlbums.fulfilled, (state, action: PayloadAction<AlbumsPost>) => {
-			console.log('fetchCommonAlbums.fulfilled');
 			state.isLoading = false;
 
 			action.payload.forEach((postAlbum) => {
-				const coverPlaylist = postAlbum.imagePath || getRandomCover();
 
 				const newAlbum: AlbumInterface = {
 					author: postAlbum.author,
