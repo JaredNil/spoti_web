@@ -15,20 +15,25 @@ export function useTransit() {
 	const { pathname } = useLocation();
 
 	function transit(path: string | TransitEffect) {
-		dispatch(userAction.onLoadingUser());
-		toggleInit(false);
-
-		if (path === pathname) {
-			return;
+		// dispatch(userAction.onLoadingUser()); // DEMO. NOT WORKING IN DEMO
+		try {
+			console.log(path)
+			toggleInit(false);
+	
+			if (path === pathname) {
+				return;
+			}
+	
+			if (path === TransitEffect.BACK) {
+				navigate(-1);
+			} else if (path === TransitEffect.FORWARD) {
+				navigate(1);
+			}
+			navigate(path as string);
+		} catch (_) {
+			// Переписать для ErrorBoundary
+			throw new Error('Transit of useNavigate path not found');
 		}
-
-		if (path === TransitEffect.BACK) {
-			navigate(-1);
-		} else if (path === TransitEffect.FORWARD) {
-			navigate(1);
-		}
-		navigate(path as string);
-		// throw new Error('Transit of useNavigate path not found');
 	}
 
 	return transit;

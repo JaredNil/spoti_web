@@ -49,7 +49,7 @@ export const albumSlice = createSlice({
 		});
 		builder.addCase(fetchCommonAlbums.fulfilled, (state, action: PayloadAction<AlbumsPost>) => {
 			state.isLoading = false;
-
+			state.commonAlbums = []
 			action.payload.forEach((postAlbum) => {
 
 				const newAlbum: AlbumInterface = {

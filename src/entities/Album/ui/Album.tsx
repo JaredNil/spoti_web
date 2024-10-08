@@ -1,9 +1,6 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-import { useNavigate } from 'react-router-dom';
 import { useTransit } from 'shared/lib/hooks/useTransit/useTransit';
 import { FaPlay } from 'react-icons/fa';
 import { AlbumInterface } from '../model/types/album';
-import { useEffect, useState } from 'react';
 
 interface AlbumProps {
 	data: AlbumInterface;

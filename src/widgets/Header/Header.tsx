@@ -112,9 +112,6 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 					<Button
 						onClick={() => {
 							transit(!username ? '/intro' : '/account');
-
-							if (!username) transit('/intro');
-							else transit('/account');
 						}}
 						className={twMerge('bg-white transition-all duration-150')}
 					>

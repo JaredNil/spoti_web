@@ -35,13 +35,12 @@ const MainPage: FC = () => {
 
 
 	useEffect(() => {
-		if (username) dispatch(fetchUserAlbums());
+		if (username) {
+			dispatch(fetchCommonAlbums())
+			dispatch(fetchUserAlbums())
+		}
 		else dispatch(fetchCommonAlbums());
 	}, [dispatch, username]);
-
-	useEffect(()=>{
-
-	},[])
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>
