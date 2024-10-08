@@ -23,6 +23,7 @@ export const albumSlice = createSlice({
 		});
 		builder.addCase(fetchUserAlbums.fulfilled, (state, action: PayloadAction<AlbumsPost>) => {
 			state.isLoading = false;
+			state.userAlbums = []
 
 			action.payload.forEach((postAlbum) => {
 				const coverPlaylist = postAlbum.imagePath || getRandomCover();
@@ -34,7 +35,6 @@ export const albumSlice = createSlice({
 					title: postAlbum.title,
 					user_id: postAlbum.user_id,
 				};
-				state.commonAlbums.push(newAlbum);
 				state.userAlbums.push(newAlbum);
 			});
 		});

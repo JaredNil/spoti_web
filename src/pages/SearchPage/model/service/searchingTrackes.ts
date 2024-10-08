@@ -1,16 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { AlbumsPost } from '../types/albumsSchema';
-import { ALBUMS } from 'json/albums';
+import { Trackes } from 'entities/Track';
+import { TRACKES } from 'json/trackes';
 
-
-export const fetchCommonAlbums = createAsyncThunk<AlbumsPost, void, ThunkConfig<string>>('album/fetchCommonAlbum',
+export const searchingTrackes = createAsyncThunk<Trackes, void, ThunkConfig<string>>('searchpage/searchingTrackes',
 	async (_, thunkAPI) => {
 		// const { rejectWithValue, extra, dispatch } = thunkAPI;
 
-		return ALBUMS.filter(album => {
-			if (album.user_id===0) return album
-		});
+		return TRACKES
 
 		// Для работающего бэкенда
 		// try {

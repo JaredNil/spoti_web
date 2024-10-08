@@ -4,7 +4,7 @@ import { Track } from 'entities/Track';
 import { API_URL } from 'app/config';
 import axios from 'axios';
 
-export const uploadingFile = createAsyncThunk<Track, FileList, ThunkConfig<string>>('uploading/uploadingFile', async (files, thunkAPI) => {
+export const uploadingFile = createAsyncThunk<{ artist: string, title: string, idDb: string }, FileList, ThunkConfig<string>>('uploading/uploadingFile', async (files, thunkAPI) => {
 	const { rejectWithValue, dispatch } = thunkAPI;
 	try {
 		console.log({ audio: files[0] });

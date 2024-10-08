@@ -1,5 +1,10 @@
 export interface Track {
-	artist: string;
+	id: number;
+	userId: number;
+	author: string;
 	title: string;
-	idDb: string;
+	songLink: string;
+	imageLink: string;
 }
+
+export type Trackes = Track[]

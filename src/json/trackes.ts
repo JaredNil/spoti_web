@@ -1,0 +1,60 @@
+import { Trackes } from "entities/Track";
+
+export const TRACKES: Trackes = [
+    {
+        id: 0,
+        userId: 0,
+        author: 'Spotify',
+        title: 'Sth...',
+        songLink: '',
+        imageLink: '',
+    },
+    {
+        id: 1,
+        userId: 0,
+        author: 'Spotify',
+        title: 'Sth...',
+        songLink: '',
+        imageLink: '',
+    },
+    {
+        id: 2,
+        userId: 0,
+        author: 'Spotify',
+        title: 'Sth...',
+        songLink: '',
+        imageLink: '',
+    },
+    {
+        id: 3,
+        userId: 0,
+        author: 'Spotify',
+        title: 'Sth...',
+        songLink: '',
+        imageLink: '',
+    },
+    {
+        id: 4,
+        userId: 0,
+        author: 'Spotify',
+        title: 'Sth...',
+        songLink: '',
+        imageLink: '',
+    },
+    {
+        id: 5,
+        userId: 0,
+        author: 'Spotify',
+        title: 'Sth...',
+        songLink: '',
+        imageLink: '',
+    },
+    {
+        id: 6,
+        userId: 0,
+        author: 'Spotify',
+        title: 'Sth...',
+        songLink: '',
+        imageLink: '',
+    },
+]
