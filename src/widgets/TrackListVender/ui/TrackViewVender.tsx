@@ -6,7 +6,7 @@ import { PiListBulletsThin, PiListLight } from 'react-icons/pi';
 
 import { twMerge } from 'tailwind-merge';
 
-import { getIsLoadingData } from 'pages/PlaylistPage/model/selector/playListPageSelector';
+import { getIsLoadingTrackes } from 'pages/PlaylistPage/model/selector/playlistPageSelector';
 import { TrackViewListing } from './TrackViewListing';
 import { TrackViewSkeleton } from './TrackViewSkeleton';
 
@@ -18,7 +18,7 @@ interface TrackListProps {
 export const TrackViewVender: React.FC<TrackListProps> = (props: TrackListProps) => {
 	const { className, onShowModal } = props;
 
-	const isLoadingData = useSelector(getIsLoadingData);
+	const isLoadingTraces = useSelector(getIsLoadingTrackes);
 
 	const [isCompact, setIsList] = useState<boolean>(false);
 	const toggleList = () => setIsList(!isCompact);
@@ -62,7 +62,7 @@ export const TrackViewVender: React.FC<TrackListProps> = (props: TrackListProps)
 				</div>
 			</div>
 
-			{isLoadingData ? (
+			{isLoadingTraces ? (
 				<TrackViewSkeleton isCompact={isCompact} />
 			) : (
 				<TrackViewListing isCompact={isCompact} onShowModal={onShowModal} />

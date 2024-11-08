@@ -12,7 +12,7 @@ interface TrackViewSkeletonProps {
 }
 
 export const TrackViewSkeleton: React.FC<TrackViewSkeletonProps> = ({ isCompact }: TrackViewSkeletonProps) => {
-	const arr = new Array(30).fill('').map((_, i) => String(i));
+	const arr = new Array(6).fill('').map((_, i) => String(i));
 
 	const onLikeTrack = (event: React.MouseEvent<HTMLElement>) => {
 		event.stopPropagation();

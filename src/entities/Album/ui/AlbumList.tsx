@@ -1,10 +1,10 @@
 // import { memo } from 'react';
-// import { AlbumInterface } from '../model/types/album';
+// import { Album } from '../model/types/album';
 // import { Album } from './Album';
 // import { AlbumSceleton } from './AlbumSkeleton';
 
 // interface AlbumListProps {
-// 	albums: AlbumInterface[];
+// 	albums: Album[];
 // 	title?: string;
 // 	isLoadingPage?: boolean;
 // }

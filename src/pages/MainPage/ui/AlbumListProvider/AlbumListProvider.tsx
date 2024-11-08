@@ -1,4 +1,4 @@
-import { Album, AlbumInterface, AlbumSceleton } from 'entities/Album';
+import { AlbumInterface, Album, AlbumSceleton } from 'entities/Album';
 import { countSkeleton } from 'pages/MainPage/model/service/countSkeleton';
 import { AlbumListType, getAlbumListTitle } from 'pages/MainPage/model/types/AlbumListType';
 import { memo } from 'react';

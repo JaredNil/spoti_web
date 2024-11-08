@@ -1,3 +1,5 @@
+// for fake playlist
+// deprecated
 const coversDefaultPlaylist = [
 	'https://i.scdn.co/image/ab67616d00001e02f2133fc8964b505a08e5d4a3',
 	'https://i.scdn.co/image/ab67616d00001e021efe1deb32b22eed92470019',

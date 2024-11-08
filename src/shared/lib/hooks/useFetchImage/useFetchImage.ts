@@ -40,4 +40,4 @@ export const useFetchImage = (path: string) => {
 //         ...alb,
 //         imagePath: image
 //     };
-// }) as unknown as AlbumsPost;
+// }) as unknown as AlbumsCollection;

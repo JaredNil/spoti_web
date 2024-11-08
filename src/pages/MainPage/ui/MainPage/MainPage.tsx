@@ -33,7 +33,6 @@ const MainPage: FC = () => {
 	const commonAlbums = useSelector((state: StateSchema) => state.albums.commonAlbums);
 	const userAlbums = useSelector((state: StateSchema) => state.albums.userAlbums);
 
-
 	useEffect(() => {
 		if (username) {
 			dispatch(fetchCommonAlbums())

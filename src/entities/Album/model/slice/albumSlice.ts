@@ -1,7 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { getAlbumsCommonDefault } from 'shared/const/albumCommonDefault';
-import { AlbumsSchema, AlbumsPost } from '../types/albumsSchema';
-import { AlbumInterface } from '../types/album';
+import { AlbumsSchema } from '../types/albumsSchema';
+import { AlbumInterface, AlbumsCollection } from '../types/album';
 import { fetchUserAlbums } from '../service/fetchUserAlbums';
 import { getRandomCover } from '../service/getRandomCover';
 import { fetchCommonAlbums } from '../service/fetchCommonAlbums';
@@ -21,7 +20,7 @@ export const albumSlice = createSlice({
 		builder.addCase(fetchUserAlbums.pending, (state) => {
 			state.isLoading = true;
 		});
-		builder.addCase(fetchUserAlbums.fulfilled, (state, action: PayloadAction<AlbumsPost>) => {
+		builder.addCase(fetchUserAlbums.fulfilled, (state, action: PayloadAction<AlbumsCollection>) => {
 			state.isLoading = false;
 			state.userAlbums = []
 
@@ -34,6 +33,8 @@ export const albumSlice = createSlice({
 					imagePath: coverPlaylist,
 					title: postAlbum.title,
 					user_id: postAlbum.user_id,
+					trackes_id: postAlbum.trackes_id
+
 				};
 				state.userAlbums.push(newAlbum);
 			});
@@ -47,7 +48,7 @@ export const albumSlice = createSlice({
 		builder.addCase(fetchCommonAlbums.pending, (state) => {
 			state.isLoading = true;
 		});
-		builder.addCase(fetchCommonAlbums.fulfilled, (state, action: PayloadAction<AlbumsPost>) => {
+		builder.addCase(fetchCommonAlbums.fulfilled, (state, action: PayloadAction<AlbumsCollection>) => {
 			state.isLoading = false;
 			state.commonAlbums = []
 			action.payload.forEach((postAlbum) => {
@@ -58,27 +59,18 @@ export const albumSlice = createSlice({
 					imagePath: postAlbum.imagePath,
 					title: postAlbum.title,
 					user_id: postAlbum.user_id,
+					trackes_id: postAlbum.trackes_id
 				};
 
 				state.commonAlbums.push(newAlbum);
 			});
 
-			if (action.payload[0].id) {
-				const idCommonAlbum: number = action.payload[0].id;
-
-				const defaultCommonAlbums = getAlbumsCommonDefault(idCommonAlbum);
-
-				defaultCommonAlbums.forEach((album) => state.commonAlbums.push(album));
-			}
 		});
 		builder.addCase(fetchCommonAlbums.rejected, (state, action) => {
 			console.log('fetchCommonAlbums.rejected');
 
 			state.isLoading = false;
 			state.error = 'Ошибка загрузки данных. Перезагрузите страницу или попробуйте позже.';
-			const defaultCommonAlbums = getAlbumsCommonDefault(-1);
-
-			defaultCommonAlbums.forEach((album) => state.commonAlbums.push(album));
 		});
 	},
 });

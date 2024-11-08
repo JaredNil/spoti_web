@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { twMerge } from 'tailwind-merge';
-import { getIsLoadingData } from '../model/selector/playListPageSelector';
+import { getAlbum, getIsLoadingData } from '../model/selector/playlistPageSelector';
 
 interface PlaylistTitleProps {
 	imagePath?: string;
@@ -11,6 +11,8 @@ interface PlaylistTitleProps {
 
 export const PlaylistTitle: React.FC<PlaylistTitleProps> = memo(({ imagePath, title, author }: PlaylistTitleProps) => {
 	const isLoadingData = useSelector(getIsLoadingData);
+	const album = useSelector(getAlbum)
+
 
 	return (
 		<div className=" title__wrapper ">
@@ -21,7 +23,7 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = memo(({ imagePath, ti
 						rounded-md "
 					/>
 				) : (
-					<img src="https://i.scdn.co/image/ab67616d00001e021efe1deb32b22eed92470019" alt="/" />
+					<img src={album?.imagePath} alt="cover" />
 				)}
 			</div>
 			<div className="title__block">
@@ -31,7 +33,7 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = memo(({ imagePath, ti
 						{isLoadingData ? (
 							<div className="sceletonTitle">Playlist </div>
 						) : (
-							'Название плейлиста'
+							album?.title
 						)}
 					</div>
 				</div>
@@ -39,23 +41,29 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = memo(({ imagePath, ti
 					{isLoadingData ? (
 						<div className="sceletonPlaylist relative aspect-square overflow-hidden rounded-md " />
 					) : (
-						<img
-							src="https://i.scdn.co/image/ab67616d00001e021efe1deb32b22eed92470019"
-							alt="/"
-						/>
+						<img src={album?.imagePath} alt="cover" />
+
 					)}
 				</div>
 				<div className="title__description">
-					<div className="title__description-info">
-						<span className={twMerge(isLoadingData && 'sceletonTitle')}>
-							LoremLoremLoremLorem Lorem
-						</span>
-					</div>
+				{
+					(album?.description)
+					? 	<div className="title__description-info">
+							<span className={twMerge(isLoadingData && 'sceletonTitle')}>
+								{album?.description}
+							</span>
+						</div>
+					: ''
+				}
 					<div className={twMerge('title__description-author')}>
 						<span className={twMerge('font-bold', isLoadingData && 'sceletonTitle')}>
-							{isLoadingData ? '' : 'JaredN'}
+							{isLoadingData ? '' : album?.author}
 						</span>
-						<span className={twMerge(isLoadingData && 'sceletonTitle')}>, 2077</span>
+						{
+							album?.creationDate 
+							?  <span className={twMerge(isLoadingData && 'sceletonTitle')}>, {album.creationDate.getFullYear()}</span>
+							: ''
+						}
 					</div>
 				</div>
 			</div>

@@ -1,29 +1,39 @@
-import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-
-import { TrackViewVender } from 'widgets/TrackListVender/ui/TrackViewVender';
-
-import { TrackModal } from 'features/TrackModal';
 
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import Page from 'shared/ui/Page/Page';
 
-import { getIsShowTrackModal } from '../model/selector/playListPageSelector';
-import { playListPageAction, playListPageReducer } from '../model/slice/playListPageSlice';
+import { playListPageAction, playListPageReducer } from '../model/slice/playlistPageSlice';
 import { PlaylistTitle } from './PlaylistTitle';
+import {  fetchPlaylistTrackes } from '../model/service/fetchPlaylistTrackes';
+import { fetchPlaylistData } from '../model/service/fetchPlaylistData';
+import { TrackViewVender } from 'widgets/TrackListVender';
+import { useCallback, useEffect } from 'react';
+import { getTrackesList, getIsShowTrackModal, getAlbum } from '../model/selector/playlistPageSelector';
+import { TrackModal } from 'features/TrackModal';
 
 const PlaylistPage: React.FC = () => {
 	const dispatch = useAppDispatch();
+	const {id} = useParams();
 
 	const isShowTrackModal = useSelector(getIsShowTrackModal);
+	const trackes_id = useSelector(getTrackesList)
+
+
+	useEffect(()=>{
+		if (id) dispatch(fetchPlaylistData(Number(id)))
+		else dispatch(playListPageAction.albumNotFound)
+	},[])
+	useEffect(()=>{
+		if(trackes_id) dispatch(fetchPlaylistTrackes(trackes_id))
+	}, [trackes_id])
 
 	const onCloseModal = useCallback(() => {
 		dispatch(playListPageAction.removeTrackModal());
 	}, [dispatch]);
 
-	const par = useParams();
 	const onShowModal = (id: number) => {
 		dispatch(playListPageAction.showTrackModal());
 	};
@@ -36,13 +46,6 @@ const PlaylistPage: React.FC = () => {
 		<DynamicModuleLoader reducers={reducers}>
 			<Page className="flex w-full flex-col">
 				<PlaylistTitle />
-				<button
-					className="z-40 mt-4 h-[200px] w-full bg-red-500"
-					type="button"
-					onClick={() => dispatch(playListPageAction.toggleLoadingData())}
-				>
-					DEV_BUTTON - TOGGLE ISLOADING_STATE
-				</button>
 				<TrackViewVender onShowModal={onShowModal} />
 				{isShowTrackModal && <TrackModal isOpen={isShowTrackModal} onClose={() => onCloseModal()} />}
 			</Page>

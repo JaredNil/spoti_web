@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { AlbumsPost } from '../types/albumsSchema';
-import { ALBUMS } from 'json/albums';
+import { AlbumsCollection } from '../types/album';
+import { ALBUMS } from 'content/ALBUMS_CONTENT';
 
 
-export const fetchCommonAlbums = createAsyncThunk<AlbumsPost, void, ThunkConfig<string>>('album/fetchCommonAlbum',
+export const fetchCommonAlbums = createAsyncThunk<AlbumsCollection, void, ThunkConfig<string>>('album/fetchCommonAlbum',
 	async (_, thunkAPI) => {
 		// const { rejectWithValue, extra, dispatch } = thunkAPI;
 
@@ -14,7 +14,7 @@ export const fetchCommonAlbums = createAsyncThunk<AlbumsPost, void, ThunkConfig<
 
 		// Для работающего бэкенда
 		// try {
-		// 	const res = await extra.api.get<AlbumsPost>('/app', {
+		// 	const res = await extra.api.get<AlbumsCollection>('/app', {
 		// 		headers: {
 		// 			withCredentials: true,
 		// 			'Access-Control-Allow-Origin': '*',

@@ -5,6 +5,8 @@ import { FaHeart } from 'react-icons/fa';
 import { IoIosTimer } from 'react-icons/io';
 
 import { Track } from 'entities/Track';
+import { useSelector } from 'react-redux';
+import { getAlbumCreationDate, getTrackes } from 'pages/PlaylistPage/model/selector/playlistPageSelector';
 
 interface TrackViewListingProps {
 	tracks?: Track[];
@@ -13,7 +15,9 @@ interface TrackViewListingProps {
 }
 
 export const TrackViewListing: React.FC<TrackViewListingProps> = ({ tracks, isCompact, onShowModal }: TrackViewListingProps) => {
-	const arr = new Array(30).fill('');
+
+	const trackes = useSelector(getTrackes)
+	const albumCreationDate = useSelector(getAlbumCreationDate)
 
 	const onLikeTrack = (event: React.MouseEvent<HTMLElement>) => {
 		event.stopPropagation();
@@ -32,7 +36,7 @@ export const TrackViewListing: React.FC<TrackViewListingProps> = ({ tracks, isCo
 				<div className="table-id pointer-events-none select-none text-center">#</div>
 				<div className=" pointer-events-none select-none font-extralight">Название</div>
 				<div className="table-image" />
-				<div className="table-data pointer-events-none select-none">Data</div>
+				<div className="table-data pointer-events-none select-none">Релиз</div>
 				<div className="table-timer flex justify-center ">
 					<IoIosTimer />
 				</div>
@@ -40,9 +44,10 @@ export const TrackViewListing: React.FC<TrackViewListingProps> = ({ tracks, isCo
 					<FaHeart fill="rgba(255, 0, 0, 1)" />
 				</div>
 			</div>
-			{arr.map((track, i) => {
+			{trackes?.map((track, i) => {
 				return (
 					<div
+						key={track.id}
 						className={twMerge(
 							`playlist__table grid w-full flex-col items-center overflow-hidden
 							rounded-xl transition hover:bg-neutral-400/5`,
@@ -56,13 +61,17 @@ export const TrackViewListing: React.FC<TrackViewListingProps> = ({ tracks, isCo
 						<div className="table-image flex items-center justify-start">
 							<img
 								className="h-[40px]"
-								src="https://i.scdn.co/image/ab67616d00001e021efe1deb32b22eed92470019"
-								alt="/"
+								src={track.imageLink}
+								alt="track image"
 							/>
 						</div>
-						<div>Name</div>
-						<div className="table-data">01.01.2000</div>
-						<div className="table-timer flex justify-center ">2:00</div>
+					<div>{track.title}</div>
+						<div className="table-data">{
+						`${albumCreationDate?.getDate()}.${albumCreationDate?.getMonth()}.${albumCreationDate?.getFullYear()}`
+						}</div>
+						<div className="table-timer flex justify-center ">N/A
+							{/* {track.songDuration} */}
+						</div>
 						<div
 							className="flex h-full items-center justify-center"
 							onClick={onLikeTrack}
