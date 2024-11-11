@@ -49,12 +49,12 @@ export const Library: React.FC = () => {
 					</div>
 				</div>
 				<div className="flex justify-start items-center pl-2 w-full overflow-hidden">
-					<div className="select-none text-neutral-300 text-ellipsis 
+					<div className="select-none text-neutral-300 text-ellipsis text-sm
 					whitespace-nowrap tracking-wide w-full overflow-hidden"
 					>Создать плейлист</div>
 				</div>
 			</div>
-			
+
 			{((username) ? userAlbums : commonAlbums).map((item) => (
 				<LibraryItem album={item}
 				/>
