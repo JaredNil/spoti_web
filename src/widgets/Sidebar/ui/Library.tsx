@@ -1,64 +1,64 @@
-import { TbPlaylist } from 'react-icons/tb';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
-import MediaItem from 'shared/ui/MediaItem/MediaItem';
-import { Song } from 'app/App';
-// import useUploadModal from '@/hooks/useUploadModal';
-// import { useUser } from '@/hooks/useUser';
-// import useAuthModal from '@/hooks/useAuthModal';
-// import useSubscribeModal from '@/hooks/useSubscribeModal';
-// import useOnPlay from '@/hooks/useOnPlay';
+import { fetchCommonAlbums, fetchUserAlbums, getAlbumCommonData, getAlbumUserData } from "entities/Album";
+import { getUsername, userAction } from "entities/User";
 
-interface LibraryProps {
-	songs: Song[];
-}
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { HeaderLoader } from "shared/ui/HeaderLoader/HeaderLoader";
 
-export const Library: React.FC<LibraryProps> = ({ songs }: LibraryProps) => {
-	// const { user, subscription } = useUser();
-	// const uploadModal = useUploadModal();
-	// const authModal = useAuthModal();
-	// const subscribeModal = useSubscribeModal();
+import { LibraryItem } from "./LibraryItem";
+import { getIsLoading } from "../model/selector/SidebarSelector";
 
-	// const onPlay = useOnPlay(songs);
 
-	// const onClick = () => {
-	// 	if (!user) {
-	// 		return authModal.onOpen();
-	// 	}
+export const Library: React.FC = () => {
 
-	// 	if (!subscription) {
-	// 		return subscribeModal.onOpen();
-	// 	}
+	const isLoading = useSelector(getIsLoading)
+	const username = useSelector(getUsername); // userState
+	const commonAlbums = useSelector(getAlbumCommonData) // albumState
+	const userAlbums = useSelector(getAlbumUserData) // albumState
 
-	// 	return uploadModal.onOpen();
-	// };
+	const dispatch = useAppDispatch()
 
-	return (
-		<div className="flex flex-col">
-			<div className="flex items-center justify-between px-5 pt-4">
-				<div className="inline-flex items-center gap-x-2">
-					<TbPlaylist className="text-neutral-400" size={26} />
-					<p className="text-md font-medium text-neutral-400">Your Library</p>
+	useEffect(() => {
+
+		if (username) {
+			dispatch(fetchCommonAlbums())
+			dispatch(fetchUserAlbums())
+		}
+		else dispatch(fetchCommonAlbums());
+
+	}, [dispatch, username])
+
+	console.log(commonAlbums)
+
+	if (isLoading) return (
+		<div className="h-300px">
+			<HeaderLoader />
+		</div>
+	)
+	else return (
+		<div className="flex flex-col gap-y-4 px-5 py-4">
+
+			<div className="flex hover:bg-neutral-400/10 transition-all">
+				<div className="flex justify-center items-center
+				aspect-square h-[34px] bg-gray-400">
+					<div className="text-white text-3xl 
+					ml-[1px] mb-[6px] pointer-events-none select-none">
+						+
+					</div>
 				</div>
-				<AiOutlinePlus
-					// onClick={onClick}
-					size={20}
-					className="
-        	    cursor-pointer            text-neutral-400
-            transition
-            hover:text-white
-          "
+				<div className="flex justify-start items-center pl-2 w-full overflow-hidden">
+					<div className="select-none text-neutral-300 text-ellipsis 
+					whitespace-nowrap tracking-wide w-full overflow-hidden"
+					>Создать плейлист</div>
+				</div>
+			</div>
+			
+			{((username) ? userAlbums : commonAlbums).map((item) => (
+				<LibraryItem album={item}
 				/>
-			</div>
-			<div className="mt-4 flex flex-col gap-y-2 px-3">
-				{songs.map((item) => (
-					<MediaItem
-						// onClick={(id: string) => onPlay(id)}
-						key={item.id}
-						data={item}
-					/>
-				))}
-			</div>
+			))}
 		</div>
 	);
 };

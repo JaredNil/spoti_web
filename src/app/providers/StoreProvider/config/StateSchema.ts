@@ -12,10 +12,12 @@ import { AuthSchema } from 'features/Auth/model/types/AuthSchema';
 import { PlayListPageSchema } from 'pages/PlaylistPage';
 import { CurTrackSchema } from 'features/TrackModal/model/types/CurTrack';
 import { rtkApi } from 'shared/api/rtkApi';
+import { SidebarSchema } from 'widgets/Sidebar/model/types/SidebarSchema';
 
 export interface StateSchema {
 	user: UserSchema;
 	albums: AlbumsSchema;
+	sidebar: SidebarSchema;
 	[rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
 	// async reducer

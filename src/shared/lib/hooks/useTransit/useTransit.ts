@@ -1,6 +1,4 @@
-import { useUser } from 'app/providers/UserProvider';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { userAction } from 'entities/User/model/slice/userSlice';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../useAppDispatch/useAppDispatch';
 
 export enum TransitEffect {
@@ -9,7 +7,6 @@ export enum TransitEffect {
 }
 
 export function useTransit() {
-	const { toggleInit } = useUser();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const { pathname } = useLocation();
@@ -18,7 +15,6 @@ export function useTransit() {
 		// dispatch(userAction.onLoadingUser()); // DEMO. NOT WORKING IN DEMO
 		try {
 			console.log(path)
-			toggleInit(false);
 	
 			if (path === pathname) {
 				return;

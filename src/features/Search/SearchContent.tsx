@@ -1,20 +1,16 @@
-'use client';
-
-import { Song } from 'app/App';
+import { Trackes } from 'entities/Track';
+import { useState } from 'react';
 import { Input } from 'shared/ui/Input/Input';
-import MediaItem from 'shared/ui/MediaItem/MediaItem';
-
-// import { Song } from '@/types';
-// import MediaItem from '@/components/MediaItem';
-// import LikeButton from '@/components/LikeButton';
-// import useOnPlay from '@/hooks/useOnPlay';
 
 interface SearchContentProps {
-	songs: Song[];
 	isLoadingPage: boolean;
 }
 
-export const SearchContent: React.FC<SearchContentProps> = ({ songs, isLoadingPage }: SearchContentProps) => {
+export const SearchContent: React.FC<SearchContentProps> = ({ isLoadingPage }: SearchContentProps) => {
+	
+	// DEMO FEATURE
+	const [trackes, setTrackes] = useState<Trackes[]>([])
+	
 	if (isLoadingPage) {
 		const sceletonSearchList = new Array(10).fill('').map((_, i) => String(i));
 
@@ -52,7 +48,7 @@ export const SearchContent: React.FC<SearchContentProps> = ({ songs, isLoadingPa
 		);
 	}
 
-	if (songs.length === 0) {
+	if (trackes.length === 0) {
 		return (
 			<div
 				className="
@@ -69,19 +65,20 @@ export const SearchContent: React.FC<SearchContentProps> = ({ songs, isLoadingPa
 	}
 
 	return (
-		<div className="flex w-full flex-col gap-y-2">
-			{songs.map((song: Song) => (
-				<div key={song.id} className="flex w-full items-center gap-x-4">
-					<div className="flex-1">
-						<MediaItem
-							onClick={() => {}}
-							// onClick={(id: string) => onPlay(id)}
-							data={song}
-						/>
-					</div>
-					{/* <LikeButton songId={song.id} /> */}
-				</div>
-			))}
-		</div>
+		// NOT WORKING IN DEMO
+
+		<div className="flez"></div>
+
+		// <div className="flex w-full flex-col gap-y-2">
+		// 	{trackes.map((track: Track) => (
+		// 		<div key={track.id} className="flex w-full items-center gap-x-4">
+		// 			<div className="flex-1">
+		// 				<MediaItem
+		// 					data={track}
+		// 				/>
+		// 			</div>
+		// 		</div>
+		// 	))}
+		// </div>
 	);
 };

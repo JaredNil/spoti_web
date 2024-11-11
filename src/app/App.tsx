@@ -8,60 +8,20 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Header } from 'widgets/Header';
 import { AppRouter } from './providers/router';
 import { useTheme } from './providers/ThemeProvider';
-import { useUser } from './providers/UserProvider/lib/useUser';
 
-import { authByCookie } from '../entities/User/model/service/authByCookie'; // IN DEMO NOT WORKING
+// DEMO
+// import { authByCookie } from '../entities/User/model/service/authByCookie'; // IN DEMO NOT WORKING
 
-export interface Song {
-	id: string;
-	user_id: string;
-	author: string;
-	title: string;
-	song_path: string;
-	image_path: string;
-}
-// REFACTOR
-export const userSongs: Song[] = [
-	{
-		id: '1',
-		user_id: '1',
-		author: 'JaredN',
-		title: '1',
-		song_path: 'string',
-		image_path: 'string',
-	},
-	{
-		id: '2',
-		user_id: '2',
-		author: 'JaredN',
-		title: '3',
-		song_path: 'string',
-		image_path: 'string',
-	},
-	{
-		id: '3',
-		user_id: '3',
-		author: 'JaredN',
-		title: '3',
-		song_path: 'string',
-		image_path: 'string',
-	},
-];
 
 const App: React.FC = memo(() => {
 	const { theme } = useTheme();
 
 	const dispatch = useAppDispatch();
 
-	const { toggleInit, isInit } = useUser();
-
+	// COOKIE HANDLING NOT WORKING IN DEMO
 	useEffect(() => {
-		if (!isInit) {
-			toggleInit(true);
-			// DEMO WITHOUT NEST SERVER
-			// dispatch(authByCookie());
-		}
-	}, [isInit, toggleInit, dispatch]);
+		// dispatch(authByCookie());
+	}, [dispatch]);
 
 	return (
 		<div className={classNames('app', {}, [theme])}>

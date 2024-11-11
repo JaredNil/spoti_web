@@ -1,13 +1,13 @@
 'use client';
 
-import { Song } from 'app/App';
+import { Track } from 'entities/Track';
 
 // import useLoadImage from '@/hooks/useLoadImage';
 // import { Song } from '@/types';
 // import usePlayer from '@/hooks/usePlayer';
 
 interface MediaItemProps {
-	data: Song;
+	data: Track;
 	onClick?: (id: string) => void;
 }
 

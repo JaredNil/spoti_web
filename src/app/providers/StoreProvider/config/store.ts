@@ -6,6 +6,7 @@ import { userReducer } from 'entities/User/model/slice/userSlice';
 import { albumReducer } from 'entities/Album/model/slice/albumSlice';
 import { rtkApi } from 'shared/api/rtkApi';
 import { CombinedState, Reducer } from 'redux';
+import { sidebarReducer } from 'widgets/Sidebar/model/slice/SidebarSlice';
 
 
 export function createReduxStore(
@@ -16,6 +17,7 @@ export function createReduxStore(
 		...asyncReducers,
 		user: userReducer,
 		albums: albumReducer,
+        sidebar: sidebarReducer,
         [rtkApi.reducerPath]: rtkApi.reducer,
     };
 

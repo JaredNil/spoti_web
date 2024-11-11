@@ -6,9 +6,10 @@ import { HiHome } from 'react-icons/hi';
 import { BiSearch } from 'react-icons/bi';
 import { TbFileUpload } from 'react-icons/tb';
 
-import { SidebarItem } from './SidebarItem';
+import { RouteItem } from './RouteItem';
+import { Library } from './Library';
 
-const routes = [
+const sidebarRoutes = [
 	{
 		icon: HiHome,
 		label: 'Home',
@@ -31,6 +32,7 @@ const routes = [
 
 export const Sidebar: React.FC = () => {
 	const { pathname } = useLocation();
+	
 
 	return (
 		<aside
@@ -40,8 +42,8 @@ export const Sidebar: React.FC = () => {
 		>
 			<Box>
 				<div className="flex flex-col gap-y-4 px-5 py-4">
-					{routes.map((item) => (
-						<SidebarItem
+					{sidebarRoutes.map((item) => (
+						<RouteItem
 							key={item.label}
 							icon={item.icon}
 							label={item.label}
@@ -51,7 +53,12 @@ export const Sidebar: React.FC = () => {
 					))}
 				</div>
 			</Box>
-			<Box className="h-full overflow-y-auto">liba{/* <Library songs={songs} /> */}</Box>
+			<Box className="h-full overflow-y-auto">
+
+				<div className='px-5 pt-4 text-neutral-400 select-none font-semibold'>ПЛЕЙЛИСТЫ</div>
+				<Library />
+
+			</Box>
 		</aside>
 	);
 };

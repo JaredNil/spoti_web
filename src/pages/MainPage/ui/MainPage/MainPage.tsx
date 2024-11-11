@@ -1,16 +1,13 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
 import { StateSchema } from 'app/providers/StoreProvider';
 
-import { fetchUserAlbums, fetchCommonAlbums } from 'entities/Album';
 import { getUsername } from 'entities/User/model/selectors/getUsername/getUsername';
 
-import { AlbumListType, getErrorLoadingData, getIsLoadingData } from 'pages/MainPage';
+import { AlbumListType, getIsLoadingData } from 'pages/MainPage';
 
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Button } from 'shared/ui/Button/Button';
 import Page from 'shared/ui/Page/Page';
 
 import { mainpageReducer } from '../../model/slice/mainpageSlice';
@@ -20,7 +17,6 @@ import { BringAuth } from '../BringAuth/BringAuth';
 
 const MainPage: FC = () => {
 
-	const dispatch = useAppDispatch();
 	const reducers: ReducerList = {
 		mainpage: mainpageReducer,
 	};
@@ -28,18 +24,18 @@ const MainPage: FC = () => {
 	const username = useSelector(getUsername);
 
 	const isLoadingData = useSelector(getIsLoadingData);
-	const errorLoadingData = useSelector(getErrorLoadingData);
 
 	const commonAlbums = useSelector((state: StateSchema) => state.albums.commonAlbums);
 	const userAlbums = useSelector((state: StateSchema) => state.albums.userAlbums);
 
-	useEffect(() => {
-		if (username) {
-			dispatch(fetchCommonAlbums())
-			dispatch(fetchUserAlbums())
-		}
-		else dispatch(fetchCommonAlbums());
-	}, [dispatch, username]);
+	// DEPRECAT9ED - NOW STARTED FROM SIDEBAR
+	// useEffect(() => {
+	// 	if (username) {
+	// 		dispatch(fetchCommonAlbums())
+	// 		dispatch(fetchUserAlbums())
+	// 	}
+	// 	else dispatch(fetchCommonAlbums());
+	// }, [dispatch, username]);
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>

@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { StoreProvider } from 'app/providers/StoreProvider';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 import { ThemeProvider } from 'app/providers/ThemeProvider';
-import { UserProvider } from 'app/providers/UserProvider';
 
 import 'app/styles/index.scss';
 
@@ -19,9 +18,7 @@ root.render(
 		<StoreProvider>
 			<ErrorBoundary>
 				<ThemeProvider>
-					<UserProvider>
 						<App />
-					</UserProvider>
 				</ThemeProvider>
 			</ErrorBoundary>
 		</StoreProvider>
