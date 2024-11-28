@@ -4,7 +4,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { authAction } from 'features/Auth/model/slice/authSlice';
-import { getAuthUsername, getAuthIsValid, getAuthPassword } from '../../model/selector/AuthSelectors';
+import { getAuthUsername } from '../../model/selector/AuthSelectors';
 
 interface ValidateBlockProps {}
 
@@ -14,9 +14,6 @@ export const ValidateBlock: React.FC<ValidateBlockProps> = (props: ValidateBlock
 	const [minLogin, setMinLogin] = useState<boolean>(false);
 
 	const username = useSelector(getAuthUsername);
-	const password = useSelector(getAuthPassword);
-
-	const isValid = useSelector(getAuthIsValid);
 
 	useEffect(() => {
 		let commonValid = true;

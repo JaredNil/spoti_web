@@ -1,5 +1,7 @@
 import { AlbumInterface } from "entities/Album";
 import { FaPlay } from "react-icons/fa";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { playerAction } from "widgets/Player/model/slice/PlayerSlice";
 
 interface LibraryItemProps {
 	album: AlbumInterface;
@@ -7,10 +9,18 @@ interface LibraryItemProps {
 
 export const LibraryItem: React.FC<LibraryItemProps> = ({ album }: LibraryItemProps) => {
 
+	const dispatch = useAppDispatch();
+
+	const playerHandler = () => {
+		dispatch(playerAction.onActivePlayer())
+		// еще диспатчим фанку для доступа
+	}
+
 	return (
 		<div className="flex 
 		hover:bg-neutral-400/10 transition-all
 		group"
+			onClick={playerHandler}
 		>
 			<div className="flex justify-center items-center
 				aspect-square h-[34px] bg-gray-400">
@@ -33,7 +43,7 @@ export const LibraryItem: React.FC<LibraryItemProps> = ({ album }: LibraryItemPr
 					"
 				>
 					<FaPlay className="text-black scale-75" />
-			</div>
+				</div>
 			</div>
 		</div>
 	);

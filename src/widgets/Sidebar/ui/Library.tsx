@@ -1,17 +1,22 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { fetchCommonAlbums, fetchUserAlbums, getAlbumCommonData, getAlbumUserData } from "entities/Album";
-import { getUsername, userAction } from "entities/User";
+import { fetchCommonAlbums, fetchUserAlbums, 
+	getAlbumCommonData, getAlbumUserData } from "entities/Album";
+import { getUsername } from "entities/User";
 
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { HeaderLoader } from "shared/ui/HeaderLoader/HeaderLoader";
 
 import { LibraryItem } from "./LibraryItem";
 import { getIsLoading } from "../model/selector/SidebarSelector";
+import { LibraryCreation } from "./LibraryCreation";
+import { AuthModal } from "features/Auth";
 
 
 export const Library: React.FC = () => {
+
+	const [isOpenAuthModal, setIsOpenAuthModal] = useState(false);
 
 	const isLoading = useSelector(getIsLoading)
 	const username = useSelector(getUsername); // userState
@@ -19,6 +24,15 @@ export const Library: React.FC = () => {
 	const userAlbums = useSelector(getAlbumUserData) // albumState
 
 	const dispatch = useAppDispatch()
+
+	const onShowAuthModal = useCallback(() => {
+		setIsOpenAuthModal(true);
+	}, []);
+
+	const onCloseAuthModal = useCallback(() => {
+		setIsOpenAuthModal(false);
+	}, []);
+
 
 	useEffect(() => {
 
@@ -30,35 +44,24 @@ export const Library: React.FC = () => {
 
 	}, [dispatch, username])
 
-	console.log(commonAlbums)
-
-	if (isLoading) return (
-		<div className="h-300px">
-			<HeaderLoader />
-		</div>
-	)
-	else return (
-		<div className="flex flex-col gap-y-4 px-5 py-4">
-
-			<div className="flex hover:bg-neutral-400/10 transition-all">
-				<div className="flex justify-center items-center
-				aspect-square h-[34px] bg-gray-400">
-					<div className="text-white text-3xl 
-					ml-[1px] mb-[6px] pointer-events-none select-none">
-						+
-					</div>
-				</div>
-				<div className="flex justify-start items-center pl-2 w-full overflow-hidden">
-					<div className="select-none text-neutral-300 text-ellipsis text-sm
-					whitespace-nowrap tracking-wide w-full overflow-hidden"
-					>Создать плейлист</div>
-				</div>
-			</div>
-
-			{((username) ? userAlbums : commonAlbums).map((item) => (
-				<LibraryItem album={item}
-				/>
-			))}
-		</div>
+	return (
+		<>
+		{
+			(isLoading) 
+			? (<div className="h-300px">
+				<HeaderLoader />
+			</div>)
+			: (<div className="flex flex-col gap-y-1 px-5 py-4">
+				<LibraryCreation onShowModal={onShowAuthModal}/>
+				{((username) ? userAlbums : commonAlbums).map((item) => (
+					<LibraryItem album={item} key={item.id} />
+				))}
+			</div>)
+		}
+		{isOpenAuthModal && 
+			<AuthModal isOpen={isOpenAuthModal} 
+			onClose={() => onCloseAuthModal()} />
+		}
+		</>
 	);
 };

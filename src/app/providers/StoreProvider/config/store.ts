@@ -7,6 +7,8 @@ import { albumReducer } from 'entities/Album/model/slice/albumSlice';
 import { rtkApi } from 'shared/api/rtkApi';
 import { CombinedState, Reducer } from 'redux';
 import { sidebarReducer } from 'widgets/Sidebar/model/slice/SidebarSlice';
+import { authReducer } from 'features/Auth';
+import { playerReducer } from 'widgets/Player/model/slice/PlayerSlice';
 
 
 export function createReduxStore(
@@ -18,6 +20,7 @@ export function createReduxStore(
 		user: userReducer,
 		albums: albumReducer,
         sidebar: sidebarReducer,
+        player: playerReducer,
         [rtkApi.reducerPath]: rtkApi.reducer,
     };
 
@@ -46,68 +49,3 @@ export function createReduxStore(
 }
 
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export function createReduxStore(
-// 	initialState?: StateSchema,
-// 	asyncReducers?: ReducersMapObject<StateSchema>,
-// 	navigate?: (to: To, options?: NavigateOptions) => void
-// ) {
-// 	const rootReducers: ReducersMapObject<StateSchema> = {
-// 		...asyncReducers,
-// 		user: userReducer,
-// 		albums: albumReducer,
-// 	};
-
-// 	const reducerManager = createReducerManager(rootReducers);
-
-// 	const extraArg: ThunkExtraArg = {
-// 		api: $api,
-// 		navigate,
-// 	};
-
-// 	const store = configureStore({
-// 		reducer: reducerManager.reduce as Reducer<StateSchema>,
-// 		devTools: __IS_DEV__,
-// 		preloadedState: initialState,
-// 		middleware: (getDefaultMiddleware) =>
-// 			getDefaultMiddleware({
-// 				thunk: {
-// 					extraArgument: extraArg,
-// 				},
-// 			}),
-// 	});
-
-// 	// @ts-ignore
-// 	store.reducerManager = reducerManager;
-
-// 	return store;
-// }
-
-// export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

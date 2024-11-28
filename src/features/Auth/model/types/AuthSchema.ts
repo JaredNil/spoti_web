@@ -5,4 +5,9 @@ export interface AuthSchema {
 	isValid: boolean;
 	isLoading: boolean;
 	error?: string;
+
+	// DEPRECATED
+	// isOpen: boolean;
+	// onClose: ()=>void;
+	// onOpen: ()=>void;
 }
