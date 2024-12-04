@@ -1,14 +1,17 @@
-import { Trackes } from "entities/Track";
+import { Track, Trackes } from "entities/Track";
 
 export interface PlayerSchema {
 	isLoading: boolean;
 	error?: string;
-	isActivePlayer: boolean;
+	isActivePlayer: boolean; // running player predicate
 
-	volume: number;
+	volume: number; // 0-100 value
 
-	target: number[];
-	queue: Trackes;
+	target: number | null; // current position index of queue
+	queue: number[]; // mutation order playlist
+	native: number[]; // original order playlist
 
-	isRun: boolean;
+	track: Track | null; // current TrackInfo
+	isLoadingTrack: boolean;
+	isRun: boolean; // running music in player right now predicate
 }

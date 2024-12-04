@@ -1,17 +1,21 @@
 import { useTransit } from 'shared/lib/hooks/useTransit/useTransit';
 import { FaPlay } from 'react-icons/fa';
 import { AlbumInterface } from '../model/types/album';
+import { usePlayer } from 'widgets/Player';
 
 interface AlbumProps {
 	data: AlbumInterface;
 }
 
 export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
-	const { id, user_id, author, imagePath, title } = data;
+	const { id, author, imagePath, title, trackes_id } = data;
+
+	const { play } = usePlayer()
 
 	const transit = useTransit();
-	const clickAlbumHandler = () => {
-		transit(`/playlist/${id}`);
+	const clickAlbumHandler = (event : React.MouseEvent<HTMLDivElement>) => {
+		if ((event.target as EventTarget & HTMLDivElement)?.tagName != 'A')
+			transit(`/playlist/${id}`);
 	};
 	return (
 		<div
@@ -34,14 +38,15 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 				<p className="w-full truncate font-semibold">{title}</p>
 				<p className="w-full truncate pb-4 text-sm  text-neutral-400">By {author}</p>
 			</div>
-			<div
+			<a
+				onClick={()=> play(trackes_id)}
 				className="absolute bottom-[32%] right-5 flex items-center justify-center rounded-full 
 				bg-green-500 p-4 opacity-0 drop-shadow-md 
 				transition hover:scale-110 group-hover:opacity-100
 				"
 			>
-				<FaPlay className="text-black" />
-			</div>
+				<FaPlay className="text-black pointer-events-none" />
+			</a>
 		</div>
 	);
 };

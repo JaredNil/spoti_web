@@ -5,7 +5,7 @@ import { errorServerToastr } from 'shared/config/toastr/toastr.config';
 import { MainpageSchema } from '../types/MainpageSchema';
 
 const initialState: MainpageSchema = {
-	isLoadingData: true,
+	isLoadingData: false,
 	error: '',
 };
 
@@ -21,6 +21,12 @@ export const mainpageSlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
+		builder.addCase(fetchUserAlbums.pending, (state, action) => {
+			state.isLoadingData = true;
+		});
+		builder.addCase(fetchCommonAlbums.pending, (state, action) => {
+			state.isLoadingData = true;
+		});
 		builder.addCase(fetchUserAlbums.fulfilled, (state, action) => {
 			state.isLoadingData = false;
 		});

@@ -6,7 +6,10 @@ import { PiListBulletsThin, PiListLight } from 'react-icons/pi';
 
 import { twMerge } from 'tailwind-merge';
 
-import { getIsLoadingTrackes } from 'pages/PlaylistPage/model/selector/playlistPageSelector';
+import { getAlbum, getIsLoadingTrackes } from 'pages/PlaylistPage';
+
+import { usePlayer } from 'widgets/Player';
+
 import { TrackViewListing } from './TrackViewListing';
 import { TrackViewSkeleton } from './TrackViewSkeleton';
 
@@ -18,7 +21,11 @@ interface TrackListProps {
 export const TrackViewVender: React.FC<TrackListProps> = (props: TrackListProps) => {
 	const { className, onShowModal } = props;
 
-	const isLoadingTraces = useSelector(getIsLoadingTrackes);
+	const album = useSelector(getAlbum)
+
+	const { play } = usePlayer()
+
+	const isLoadingTrackes = useSelector(getIsLoadingTrackes);
 
 	const [isCompact, setIsList] = useState<boolean>(false);
 	const toggleList = () => setIsList(!isCompact);
@@ -28,6 +35,7 @@ export const TrackViewVender: React.FC<TrackListProps> = (props: TrackListProps)
 			<div className="flex justify-between">
 				<div className="flex">
 					<div
+						onClick={()=> play(album?.trackes_id as number[])}
 						className="flex h-[56px] w-[56px] items-center justify-center 
                         rounded-full bg-green-500 drop-shadow-md
                         transition hover:scale-110 group-hover:opacity-100
@@ -62,7 +70,7 @@ export const TrackViewVender: React.FC<TrackListProps> = (props: TrackListProps)
 				</div>
 			</div>
 
-			{isLoadingTraces ? (
+			{isLoadingTrackes ? (
 				<TrackViewSkeleton isCompact={isCompact} />
 			) : (
 				<TrackViewListing isCompact={isCompact} onShowModal={onShowModal} />

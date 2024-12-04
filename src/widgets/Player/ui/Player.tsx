@@ -1,12 +1,27 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Volume } from "./Volume";
+import { usePlayer } from "../model/hook/usePlayer";
+import { useSelector } from "react-redux";
+import { getIsRunPlayer, getTrack } from "../model/selector/PlayerSelector";
+import { FaPlay } from "react-icons/fa";
 
 export const Player: React.FC = () => {
 
 	useEffect(()=>{
 		// dispatch(fetchPlayerData) IN DEMO - NOT WORKING WITH SERVER
 	},[])
-	
+
+
+	const track = useSelector(getTrack)
+	const isRun = useSelector(getIsRunPlayer)
+
+	useEffect(() => {
+		if(isRun) {
+			const track2 = new Audio(track?.songLink)
+		}
+		else {}
+	}, [track, isRun])
+
 	return (
 		<div
 			className="absolute left-0 bottom-0 z-50 h-14 w-full px-4
@@ -30,6 +45,10 @@ export const Player: React.FC = () => {
 					border-[1.5px] border-neutral-400 rounded-full border-opacity-100
 					cursor-pointer"
 				>
+					<FaPlay fill="rgb(200 200 200)"
+					 className="text-black pointer-events-none 
+					 translate-y-[6px] translate-x-[1px]"
+					/>
 				</div>
 				<div className="next bg-yellow-600 aspect-square w-8 flex justify-center items-start">n</div>
 				<div className="repeat bg-yellow-600 aspect-square w-8 flex justify-center items-start">r</div>

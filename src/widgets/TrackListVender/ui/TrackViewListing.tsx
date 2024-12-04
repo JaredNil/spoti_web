@@ -2,11 +2,12 @@ import React from 'react';
 import toastr from 'toastr';
 import { twMerge } from 'tailwind-merge';
 import { FaHeart } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 import { IoIosTimer } from 'react-icons/io';
 
 import { Track } from 'entities/Track';
-import { useSelector } from 'react-redux';
-import { getAlbumCreationDate, getTrackes } from 'pages/PlaylistPage/model/selector/playlistPageSelector';
+
+import { getAlbumCreationDate, getTrackes } from 'pages/PlaylistPage';
 
 interface TrackViewListingProps {
 	tracks?: Track[];
