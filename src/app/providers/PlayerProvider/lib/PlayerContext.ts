@@ -1,7 +1,7 @@
-import { createContext } from 'react';
+import { Dispatch, SetStateAction, createContext } from 'react';
 
 export interface PlayerContextProps {
-	setCurrentTrack?: (track: string) => void;
+	setCurrentTrack?: (src: HTMLAudioElement | null) => void
 	currentTrack?: HTMLAudioElement| null;
 }
 

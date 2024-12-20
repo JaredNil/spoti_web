@@ -6,6 +6,7 @@ interface PlayerProviderI {
 }
 
 const PlayerProvider: React.FC<PlayerProviderI> = ({ children }: PlayerProviderI) => {
+
 	const [currentTrack, setCurrentTrack] = useState<HTMLAudioElement| null>(null);
 
 	const defaultProps = useMemo(

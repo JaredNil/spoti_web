@@ -12,15 +12,15 @@ export const Player: React.FC = () => {
 	},[])
 
 
-	const track = useSelector(getTrack)
-	const isRun = useSelector(getIsRunPlayer)
+	// const track = useSelector(getTrack)
+	// const isRun = useSelector(getIsRunPlayer)
+// 
 
-	useEffect(() => {
-		if(isRun) {
-			const track2 = new Audio(track?.songLink)
-		}
-		else {}
-	}, [track, isRun])
+	// useEffect(() => {
+	// 	if(isRun) {
+	// 	}
+	// 	else {}
+	// }, [track, isRun])
 
 	return (
 		<div
