@@ -11,6 +11,7 @@ export interface PlayerSchema {
 	queue: number[]; // mutation order playlist
 	native: number[]; // original order playlist
 
+	hash: string; // hash of last track in player
 	track: Track | null; // current TrackInfo
 	isLoadingTrack: boolean;
 	isRun: boolean; // running music in player right now predicate

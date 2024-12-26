@@ -4,6 +4,7 @@ import { usePlayer } from "../model/hook/usePlayer";
 import { useSelector } from "react-redux";
 import { getIsRunPlayer, getTrack } from "../model/selector/PlayerSelector";
 import { FaPlay } from "react-icons/fa";
+import { useCurrentTrack } from "app/providers/PlayerProvider";
 
 export const Player: React.FC = () => {
 
@@ -11,6 +12,12 @@ export const Player: React.FC = () => {
 		// dispatch(fetchPlayerData) IN DEMO - NOT WORKING WITH SERVER
 	},[])
 
+	const track = useSelector(getTrack)
+	const { currentTrack, toggleTrack } = useCurrentTrack()
+
+	useEffect(()=>{
+		if(track) toggleTrack(track?.songLink)
+	},[track])
 
 	// const track = useSelector(getTrack)
 	// const isRun = useSelector(getIsRunPlayer)

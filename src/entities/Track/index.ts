@@ -1,1 +1,1 @@
-export { Track, Trackes } from './model/types/track';
+export { Track, Trackes} from './model/types/track';

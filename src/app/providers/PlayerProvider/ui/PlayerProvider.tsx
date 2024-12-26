@@ -7,7 +7,9 @@ interface PlayerProviderI {
 
 const PlayerProvider: React.FC<PlayerProviderI> = ({ children }: PlayerProviderI) => {
 
-	const [currentTrack, setCurrentTrack] = useState<HTMLAudioElement| null>(null);
+	// const [currentTrack, setCurrentTrack] = useState<HTMLAudioElement| null>(null);
+	const [currentTrack, setCurrentTrack] = useState<string>('');
+
 
 	const defaultProps = useMemo(
 		() => ({
@@ -17,7 +19,12 @@ const PlayerProvider: React.FC<PlayerProviderI> = ({ children }: PlayerProviderI
 		[currentTrack]
 	);
 
-	return <PlayerContext.Provider value={defaultProps}>{children}</PlayerContext.Provider>;
+	return (
+		<PlayerContext.Provider value={defaultProps}>
+			{(currentTrack)? <audio src={currentTrack} autoPlay></audio> : ''}
+			{children}
+		</PlayerContext.Provider>
+	);
 };
 
 export default PlayerProvider;

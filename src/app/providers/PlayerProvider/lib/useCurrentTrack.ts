@@ -5,29 +5,49 @@ import { Track } from 'entities/Track';
 import { PlayerContext } from './PlayerContext';
 
 interface CurrentTrackHook {
-	toggleTrack: (newTrack: Track | null) => void;
-	currentTrack: HTMLAudioElement| null;
+	toggleTrack: (newTrack: string) => void;
+	currentTrack?: string;
 }
 
 export function useCurrentTrack(): CurrentTrackHook {
 	const { currentTrack, setCurrentTrack } = useContext(PlayerContext);
 
-	const toggleTrack = (newTrack: Track| null): void => {
-		if (setCurrentTrack) {
-            if (newTrack === null) setCurrentTrack(null)
-            else {
-				const temp = new Audio(newTrack.songLink)
-				temp.addEventListener('loadeddata', ()=>{
-					console.log('load audio')
-					temp.play()
-				})
-				setCurrentTrack(temp)
-			}
-        }
+	// DEPRECATED toggleTrack THROUGH TRACK INTERFACE
+	// const toggleTrack = (newTrack: Track): void => {
+
+	// 	if (setCurrentTrack && newTrack === null) setCurrentTrack(null)
+    //     else if (setCurrentTrack && newTrack !== null) {
+	//			const audio = new Audio(newTrack.songLink)
+	// 			audio.play()
+	//			audio.addEventListener('loadeddata', () => {
+	//			console.log('load track')
+				// audio.play()
+	//		})
+	// 		setCurrentTrack(newTrack)
+	// 	 }
+	// }
+
+	const toggleTrack = (newTrack: string): void => {
+		console.log('toggleTrack')
+
+		if (setCurrentTrack && newTrack === '') setCurrentTrack('')
+        else if (setCurrentTrack && newTrack !== null) {
+			setCurrentTrack('')
+			setCurrentTrack(newTrack)
+		}
+		else new Error('Ошибка инициализации музыки.')
 	}
 
+	const clearTrack = (): void => {
+		if (setCurrentTrack && currentTrack) {
+			// currentTrack.pause()
+			// currentTrack.removeEventListener('loadeddata', loadedDataHandler)
+		}
+	}
+
+
 	return {
-		currentTrack: currentTrack || null,
+		currentTrack: currentTrack,
 		toggleTrack,
 	};
 }

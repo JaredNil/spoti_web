@@ -5,6 +5,8 @@ export interface Track {
 	title: string;
 	songLink: string;
 	imageLink: string;
+	hash?: string; // empty, for demo. Include in interface 
 }
 
 export type Trackes = Track[]
+
