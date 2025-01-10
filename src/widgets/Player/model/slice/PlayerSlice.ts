@@ -9,7 +9,7 @@ import { randomUUID } from 'crypto';
 const initialState: PlayerSchema = {
 	isLoading: true,
 	error: undefined,
-	isActivePlayer: false,
+	isActivePlayer: true,
 
 	volume: 100,
 
@@ -20,7 +20,11 @@ const initialState: PlayerSchema = {
 	hash: '',
 	track: null,
 	isRun: false,
-	isLoadingTrack: true, 
+	isLoadingTrack: true,
+
+	timer: 0,
+	duration: 0,
+	progress: 0
 };
 export const playerSlice = createSlice({
 	name: 'player',
@@ -41,6 +45,9 @@ export const playerSlice = createSlice({
 		setTarget: (state, action: PayloadAction<number>) => {
 			state.target = action.payload
 		},
+		setTimer: (state, action: PayloadAction<number>) =>	{state.timer = action.payload},
+		setDuration: (state, action: PayloadAction<number>) => { state.duration = action.payload },
+		setProgress: (state, action: PayloadAction<number>) => { state.progress = action.payload }
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchTrackData.fulfilled, (state, action: PayloadAction<Track>) => {

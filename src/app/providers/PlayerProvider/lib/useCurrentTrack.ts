@@ -38,17 +38,9 @@ export function useCurrentTrack(): CurrentTrackHook {
 		else new Error('Ошибка инициализации музыки.')
 	}
 
-	const clearTrack = (): void => {
-		if (setCurrentTrack && currentTrack) {
-			// currentTrack.pause()
-			// currentTrack.removeEventListener('loadeddata', loadedDataHandler)
-		}
-	}
-
-
 	return {
 		currentTrack: currentTrack,
-		toggleTrack,
+		toggleTrack
 	};
 }
 

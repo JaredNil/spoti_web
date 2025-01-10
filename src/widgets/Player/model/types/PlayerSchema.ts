@@ -15,4 +15,8 @@ export interface PlayerSchema {
 	track: Track | null; // current TrackInfo
 	isLoadingTrack: boolean;
 	isRun: boolean; // running music in player right now predicate
+
+	timer: number | 0,
+	duration: number | 0,
+	progress: number | 0
 }

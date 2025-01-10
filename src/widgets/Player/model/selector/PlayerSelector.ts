@@ -8,3 +8,9 @@ export const getIsRunPlayer = (state: StateSchema) => state.player.isRun
 export const getIsLoadingTrack = (state: StateSchema) => state.player.isLoadingTrack
 
 export const getTrack = ( state: StateSchema) => state.player.track
+
+export const getPlayerLineData = (state: StateSchema) => { return {
+    duration: state.player.duration, 
+    timer: state.player.timer, 
+    progress: state.player.progress
+} }

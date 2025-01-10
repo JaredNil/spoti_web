@@ -4,19 +4,18 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Track } from 'entities/Track';
 import { TRACKES_CONTENT } from 'content/TRACKES_CONTENT';
 
-interface fetchTrackDto{
-	trackesId: number;
-	hash: string;
-}
+// DEPRECATED
+// interface fetchTrackDto{
+//		trackesId: number;
+// 		hash: string;
+// }
 
-export const fetchTrackData = createAsyncThunk<Track, fetchTrackDto, ThunkConfig<string>>('player/fetchTrackById',
-	async (action, thunkAPI) => {
+export const fetchTrackData = createAsyncThunk<Track, number, ThunkConfig<string>>('player/fetchTrackById',
+	async (trackesId, thunkAPI) => {
 		
 		const { rejectWithValue, extra, dispatch } = thunkAPI;
 
-		const track = TRACKES_CONTENT.filter((track) => {if (track.id === action.trackesId) return track})[0]
-		track.hash = action.hash
-		return track
+		return TRACKES_CONTENT.filter((track) => {if (track.id === trackesId) return track})[0]
 		
 		// IN DEMO NOT WORKING
 

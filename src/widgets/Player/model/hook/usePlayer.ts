@@ -14,26 +14,19 @@ export function usePlayer() {
 	const isLoadingTrack = useSelector(getIsLoadingTrack)
 	const isActivePlayer = useSelector(getIsActivePlayer)
 
-	const { currentTrack, toggleTrack } = useCurrentTrack()
 	
 	const dispatch = useAppDispatch();
 
-	const track = useSelector(getTrack)
 
 	async function play(trackesId: number[]) {
 
-        console.log('play hook running')
-		console.log(trackesId)
+        console.log('play hook running', trackesId)
 
 		if(!isActivePlayer) dispatch(playerAction.onActivePlayer())
 
-		const hash = uuid4()
-		console.log(hash)
-		dispatch(playerAction.setHash(hash))
-
 		dispatch(playerAction.setQueue(trackesId))
 		dispatch(playerAction.setTarget(0))
-		dispatch(fetchTrackData({trackesId: trackesId[0], hash: hash}))
+		dispatch(fetchTrackData( trackesId[0]))
 		// toggleTrack(track!.songLink)
 	}
 
