@@ -10,11 +10,13 @@ import { playerAction } from "../model/slice/PlayerSlice";
 
 export const PlayerLine: React.FC = () => {
 
+	const { shift } = useCurrentTrack()
+
 	const lineRef = useRef<HTMLDivElement>(null)
 	
 	const [line, setLine] = useState<number | undefined>(lineRef.current?.clientWidth) // width consist line in px
 
-	// initialization
+	// initialization line width in px
 	useEffect(()=>setLine(lineRef?.current?.clientWidth))
 
 	// LISTENER RESIZE WINDOW FOR OBSERVE CHANGE WIDTH LINE OF PLAYER
@@ -83,7 +85,8 @@ export const PlayerLine: React.FC = () => {
 	
 			if (newProgress > 100) newProgress = 100
 			else if (newProgress < 0) newProgress = 0
-			dispatch(playerAction.setProgress(newProgress))
+			// dispatch(playerAction.setProgress(newProgress))
+			shift(newProgress)
 		}		
 	}
 
@@ -97,9 +100,10 @@ export const PlayerLine: React.FC = () => {
 				&& (event.pageX - Number(lineRef.current?.offsetLeft)) <= line
 				&& (event.pageX - Number(lineRef.current?.offsetLeft)) >= 0
 			)
-				dispatch(playerAction.setProgress(
-					Math.floor((event.pageX - Number(lineRef.current?.offsetLeft))/(line/100))
-				))
+				// dispatch(playerAction.setProgress(
+				// 	Math.floor((event.pageX - Number(lineRef.current?.offsetLeft))/(line/100))
+				// ))
+				shift(Math.floor((event.pageX - Number(lineRef.current?.offsetLeft))/(line/100)))
 		}
 	}
 
@@ -116,10 +120,10 @@ export const PlayerLine: React.FC = () => {
 				onMouseUp={progressMouseUpHandle}
 				onMouseMove={progressMouseMoveHandle}
 			>
-				<div className="absolute left-0 bottom-[-20px] text-[12px] text-neutral-400/40">
+				<div className="absolute left-0 bottom-[-20px] text-[12px] text-neutral-400/40 select-none pointer-events-none">
 					{(Number(hourTimer)!=0) ? `${hourTimer}:`: ''}{minTimer}:{secTimer}
 				</div>
-				<div className="absolute right-0 bottom-[-20px] text-[12px] text-neutral-400/40">
+				<div className="absolute right-0 bottom-[-20px] text-[12px] text-neutral-400/40 select-none pointer-events-none">
 					{(Number(hourDuration)!=0) ? `${hourDuration}:`: ''}{minDuration}:{secDuration}
 				</div>
 				<div style={{width: getCompletedLine()}} 

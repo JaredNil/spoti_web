@@ -10,7 +10,7 @@ interface ListItemProps {
 
 export const AlbumFlat: React.FC<ListItemProps> = ({ image, name, href }: ListItemProps) => {
 	
-	const { play } = usePlayer()
+	const { start } = usePlayer()
 
 	const transit = useTransit();
 
@@ -29,7 +29,7 @@ export const AlbumFlat: React.FC<ListItemProps> = ({ image, name, href }: ListIt
 			</div>
 			<p className="truncate py-5 font-medium">{name}</p>
 			<a
-				onClick={()=> play([0,1,2,3,4,5,6,7,8,9,10])}
+				onClick={()=> start([0,1,2,3,4,5,6,7,8,9,10])}
 				className="absolute right-5 flex items-center justify-center rounded-full 
 				bg-green-500 p-4 opacity-0 drop-shadow-md 
 				transition hover:scale-110 group-hover:opacity-100

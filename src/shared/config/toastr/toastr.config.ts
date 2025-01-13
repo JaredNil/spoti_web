@@ -3,12 +3,15 @@ export const successUploadToastr: ToastrOptions = {
 	positionClass: 'toast-bottom-right',
 	showDuration: 300,
 	hideDuration: 1000,
-	timeOut: 7000,
-	extendedTimeOut: 1000,
+	timeOut: 1400,
+	extendedTimeOut: 400,
 	showEasing: 'swing',
 	hideEasing: 'linear',
 	showMethod: 'fadeIn',
 	hideMethod: 'fadeOut',
+	closeButton: true,
+    closeDuration: 150,
+    preventDuplicates: true,
 };
 
 export const errorServerToastr: ToastrOptions = {
@@ -16,10 +19,13 @@ export const errorServerToastr: ToastrOptions = {
 	positionClass: 'toast-bottom-right',
 	showDuration: 300,
 	hideDuration: 1000,
-	timeOut: 7000,
-	extendedTimeOut: 1000,
+	timeOut: 1400,
+	extendedTimeOut: 400,
 	showEasing: 'swing',
 	hideEasing: 'linear',
 	showMethod: 'fadeIn',
 	hideMethod: 'fadeOut',
+	closeButton: true,
+    closeDuration: 150,
+    preventDuplicates: true,
 };

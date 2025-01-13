@@ -1,15 +1,21 @@
-import { ChangeEvent, useMemo, useRef, useState } from 'react';
-import { PlayerContext } from '../lib/PlayerContext';
+import { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getPlayerLineData } from 'widgets/Player/model/selector/PlayerSelector';
+
+import { getVolumePlayer } from 'widgets/Player/model/selector/PlayerSelector';
 import { playerAction } from 'widgets/Player/model/slice/PlayerSlice';
+import { usePlayer } from 'widgets/Player';
+
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+
+import { PlayerContext } from '../lib/PlayerContext';
 
 interface PlayerProviderI {
 	children: React.ReactNode;
 }
 
 const PlayerProvider: React.FC<PlayerProviderI> = ({ children }: PlayerProviderI) => {
+
+
 
 	const dispatch = useAppDispatch()	
 
@@ -18,12 +24,12 @@ const PlayerProvider: React.FC<PlayerProviderI> = ({ children }: PlayerProviderI
 
 	const audioRef = useRef<HTMLAudioElement>(null)
 
-	const {duration, progress, timer} = useSelector(getPlayerLineData)
-
-	// const [timer, setTimer] = useState(audioRef?.current?.currentTime)
-	// const [duration, setDuration] = useState(audioRef?.current?.duration)
-	// const [progress, setProgress] = useState(0)
-
+	// volume handle. in next refactor rewrite as reactive func
+	const volume = useSelector(getVolumePlayer)
+	useEffect(() => { if (audioRef.current) {
+		console.log('volume is changed')
+		if(volume<=100 && volume >= 0) audioRef.current.volume = volume/100
+	}  }, [volume])
 
 	const audioTimeUpdateHandler = (event: ChangeEvent<HTMLAudioElement>) => {
 		dispatch(playerAction.setTimer(event.target.currentTime))
@@ -36,17 +42,41 @@ const PlayerProvider: React.FC<PlayerProviderI> = ({ children }: PlayerProviderI
 		dispatch(playerAction.setDuration(event.target.duration))
 	}
 
+	const setProgress = (progress: number): void => {
+		const tempDur = audioRef.current?.duration;
+		if(tempDur && audioRef.current) audioRef.current.currentTime = (progress*tempDur/100)
+	}
+
+	const setVolume = (volume: number): void => {
+		if (audioRef.current) audioRef.current.volume = volume
+	}
+
+	const playTrack = (): void => {
+		audioRef.current?.play()
+	}
+
+	const pauseTrack = (): void => {
+		audioRef.current?.pause()
+	}
+
+	const {next} = usePlayer()
+	const endedHandler = (): void => next()
+
 	const defaultProps = useMemo(
 		() => ({
 			currentTrack,
-			setCurrentTrack
+			setCurrentTrack,
+			setProgress,
+			setVolume,
+			playTrack,
+			pauseTrack
 		}),
 		[currentTrack]
 	);
 
 	return (
 		<PlayerContext.Provider value={defaultProps}>
-			{(currentTrack)? <audio ref={audioRef} src={currentTrack} onTimeUpdate={audioTimeUpdateHandler} onDurationChange={audioChangeDurationHandler} autoPlay></audio> : ''}
+			{(currentTrack)? <audio onEnded={endedHandler} ref={audioRef} src={currentTrack} onTimeUpdate={audioTimeUpdateHandler} onDurationChange={audioChangeDurationHandler} autoPlay></audio> : ''}
 			{children}
 		</PlayerContext.Provider>
 	);

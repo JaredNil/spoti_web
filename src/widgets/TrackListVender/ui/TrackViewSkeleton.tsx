@@ -6,6 +6,7 @@ import { IoIosTimer } from 'react-icons/io';
 import { debounceResize } from 'shared/lib/hooks/useDebounce/useDebounceHooks';
 import { twMerge } from 'tailwind-merge';
 import toastr from 'toastr';
+import { successUploadToastr } from 'shared/config/toastr/toastr.config';
 
 interface TrackViewSkeletonProps {
 	isCompact: boolean;
@@ -16,7 +17,7 @@ export const TrackViewSkeleton: React.FC<TrackViewSkeletonProps> = ({ isCompact 
 
 	const onLikeTrack = (event: React.MouseEvent<HTMLElement>) => {
 		event.stopPropagation();
-		toastr.success('Лайк не засчитан');
+		toastr.success('Лайк не засчитан', 'Demo', successUploadToastr);
 	};
 
 	return (

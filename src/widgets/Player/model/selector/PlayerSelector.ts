@@ -14,3 +14,5 @@ export const getPlayerLineData = (state: StateSchema) => { return {
     timer: state.player.timer, 
     progress: state.player.progress
 } }
+export const getPlayerQueue = (state: StateSchema) => state.player.queue
+export const getPlayerTarget = (state: StateSchema) => state.player.target

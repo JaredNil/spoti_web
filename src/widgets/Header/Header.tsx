@@ -49,11 +49,11 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 		<header
 			className={twMerge(
 				`absolute left-0 top-2 z-50 flex h-fit
-				w-full rounded-lg bg-gradient-to-b from-emerald-800 p-6`,
+				w-full rounded-lg bg-gradient-to-b from-emerald-800 p-6 select-none pointer-events-none`,
 				className
 			)}
 		>
-			<div className="mb-4 flex w-full items-center justify-between">
+			<div className="mb-4 flex w-full items-center justify-between pointer-events-auto">
 				<div className="hidden items-center gap-x-2 md:flex">
 					<button
 						onClick={() => transit(TransitEffect.BACK)}
@@ -111,14 +111,14 @@ export const Header: React.FC<HeaderProps> = memo(({ children, className }: Head
 				<div className="relative flex items-center justify-between transition-all duration-300">
 					<Button
 						onClick={() => {
-							transit(!username ? '/intro' : '/account');
+							transit(!username ? '/intro' : '/account'); // DEMO HANDLER
 						}}
 						className={twMerge('bg-white transition-all duration-150')}
 					>
 						{!username ? <TiInfoLarge /> : <FaUserAlt />}
 					</Button>
 					<Button
-						onClick={() => (username ? onLogout() : onShowModal())}
+						onClick={() => (username ? onLogout() : onShowModal())} // DEMO HANDLER
 						className="ml-3 flex w-24 items-center justify-center bg-white px-6 py-2"
 					>
 						{username ? 'Выйти' : 'Войти'}

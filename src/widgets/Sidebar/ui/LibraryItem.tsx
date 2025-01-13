@@ -10,7 +10,7 @@ interface LibraryItemProps {
 
 export const LibraryItem: React.FC<LibraryItemProps> = ({ album }: LibraryItemProps) => {
 
-	const { play } = usePlayer()
+	const { start } = usePlayer()
 
 	// const playerHandler = () => {
 	// 	dispatch(playerAction.onActivePlayer())
@@ -37,7 +37,7 @@ export const LibraryItem: React.FC<LibraryItemProps> = ({ album }: LibraryItemPr
 					<span>{album.title}</span>
 				</div>
 				<div
-					onClick={()=> play(album.trackes_id)}
+					onClick={()=> start(album.trackes_id)}
 					className="absolute bottom-1 right-2 aspect-square flex items-center justify-center rounded-full 
 					bg-green-500 p-1 opacity-0 drop-shadow-md 
 					transition hover:scale-110 group-hover:opacity-100

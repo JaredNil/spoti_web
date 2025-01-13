@@ -1,16 +1,18 @@
 import { useContext } from 'react';
 
-import { Track } from 'entities/Track';
-
 import { PlayerContext } from './PlayerContext';
 
 interface CurrentTrackHook {
 	toggleTrack: (newTrack: string) => void;
 	currentTrack?: string;
+	shift: (progress: number) => void;
+	setVolume?:  (volume: number) => void;
+	playTrack?: () => void;
+	pauseTrack?: () => void;
 }
 
 export function useCurrentTrack(): CurrentTrackHook {
-	const { currentTrack, setCurrentTrack } = useContext(PlayerContext);
+	const { currentTrack, setCurrentTrack, setProgress, playTrack, pauseTrack } = useContext(PlayerContext);
 
 	// DEPRECATED toggleTrack THROUGH TRACK INTERFACE
 	// const toggleTrack = (newTrack: Track): void => {
@@ -28,7 +30,6 @@ export function useCurrentTrack(): CurrentTrackHook {
 	// }
 
 	const toggleTrack = (newTrack: string): void => {
-		console.log('toggleTrack')
 
 		if (setCurrentTrack && newTrack === '') setCurrentTrack('')
         else if (setCurrentTrack && newTrack !== null) {
@@ -38,9 +39,14 @@ export function useCurrentTrack(): CurrentTrackHook {
 		else new Error('Ошибка инициализации музыки.')
 	}
 
+	const shift = (progress: number): void => {if (setProgress) setProgress(progress) }
+
 	return {
 		currentTrack: currentTrack,
-		toggleTrack
+		toggleTrack,
+		shift: shift,
+		playTrack: playTrack,
+		pauseTrack: pauseTrack
 	};
 }
 

@@ -41,16 +41,8 @@ const MainPage: FC = () => {
 		<DynamicModuleLoader reducers={reducers}>
 			<Page>
 				<div className="mb-2">
-					<h1 className="relative text-3xl font-semibold text-white">
-						Welcome back,
-						{` ${username}` || (
-							<span
-								className="sceletonHeader inline-block h-full w-32
-								select-none rounded-lg text-transparent"
-							>
-								%username%
-							</span>
-						)}
+					<h1 className="relative text-3xl font-semibold text-white select-none">
+						{`Welcome back,  ${(username) ? username : 'Гость'}`}
 					</h1>
 				</div>
 

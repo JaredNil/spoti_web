@@ -2,13 +2,13 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { logoutByServer } from 'entities/User/model/service/logoutByServer';
-import { UserSchema } from '../types/user';
 
+import { UserSchema } from '../types/user';
 import { authByCookie } from '../service/authByCookie'; // NOT WORKING IN DEMO
 import { authByUsername } from '../service/authByUsername';
 
 const initialState: UserSchema = {
-	username: '',
+	username: 'Demo',
 	isLoading: false,
 };
 

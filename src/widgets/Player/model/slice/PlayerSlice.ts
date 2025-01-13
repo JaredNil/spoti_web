@@ -4,12 +4,11 @@ import { Track } from "entities/Track";
 
 import { PlayerSchema } from '../types/PlayerSchema';
 import { fetchTrackData } from '../service/fetchTrackData';
-import { randomUUID } from 'crypto';
 
 const initialState: PlayerSchema = {
 	isLoading: true,
 	error: undefined,
-	isActivePlayer: true,
+	isActivePlayer: false,
 
 	volume: 100,
 
@@ -47,14 +46,14 @@ export const playerSlice = createSlice({
 		},
 		setTimer: (state, action: PayloadAction<number>) =>	{state.timer = action.payload},
 		setDuration: (state, action: PayloadAction<number>) => { state.duration = action.payload },
-		setProgress: (state, action: PayloadAction<number>) => { state.progress = action.payload }
+		setProgress: (state, action: PayloadAction<number>) => { state.progress = action.payload },
+		setIsRun: (state, action: PayloadAction<boolean>) => { state.isRun = action.payload },
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchTrackData.fulfilled, (state, action: PayloadAction<Track>) => {
 			state.isLoadingTrack = false;
 			state.track = action?.payload;
 			state.isRun = true;
-
 		})
 		builder.addCase(fetchTrackData.rejected, (state) => {
 			state.isLoadingTrack = true;

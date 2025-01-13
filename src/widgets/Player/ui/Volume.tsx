@@ -42,7 +42,7 @@ export const Volume: React.FC = () => {
 		
 		if (newVolume > 100) newVolume = 100
 		else if (newVolume < 0) newVolume = 0
-		else dispatch(playerAction.setVolume(newVolume))
+		dispatch(playerAction.setVolume(newVolume))
 	}
 
 	const volumeMouseDownHandle = () => setIsResize(true)

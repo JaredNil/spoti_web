@@ -9,6 +9,8 @@ import { Track } from 'entities/Track';
 
 import { getAlbumCreationDate, getTrackes } from 'pages/PlaylistPage';
 
+import { successUploadToastr } from 'shared/config/toastr/toastr.config';
+
 interface TrackViewListingProps {
 	tracks?: Track[];
 	isCompact: boolean;
@@ -22,7 +24,7 @@ export const TrackViewListing: React.FC<TrackViewListingProps> = ({ tracks, isCo
 
 	const onLikeTrack = (event: React.MouseEvent<HTMLElement>) => {
 		event.stopPropagation();
-		toastr.success('Лайк не засчитан');
+		toastr.success('Лайк не засчитан', 'Demo', successUploadToastr);
 	};
 
 	return (

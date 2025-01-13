@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../useAppDispatch/useAppDispatch';
 
 export enum TransitEffect {
 	BACK = -1,
@@ -8,7 +7,6 @@ export enum TransitEffect {
 
 export function useTransit() {
 	const navigate = useNavigate();
-	const dispatch = useAppDispatch();
 	const { pathname } = useLocation();
 
 	function transit(path: string | TransitEffect) {
