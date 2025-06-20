@@ -1,5 +1,6 @@
-import { AlbumFlat } from 'entities/Album';
-import { AlbumSceletonFlat } from 'entities/Album/ui/AlbumSceletonFlat';
+import { AlbumFlat,AlbumSceletonFlat } from 'entities/Album';
+import likedImage from 'shared/assets/mainpage/liked-songs-640.png'
+import loadedImage from 'shared/assets/mainpage/1235.png'
 
 interface QuickBarProps {
 	isLoadingData: boolean;
@@ -8,12 +9,12 @@ interface QuickBarProps {
 const quickBarList = [
 	{
 		name:"Liked trackes",
-		image:"https://misc.scdn.co/liked-songs/liked-songs-640.png",
+		image: likedImage,
 		href:"liked"
 	},
 	{
 		name:"Loaded trackes",
-		image:"https://misc.scdn.co/liked-songs/liked-songs-640.png",
+		image: loadedImage,
 		href:""
 	}
 ]

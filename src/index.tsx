@@ -4,13 +4,13 @@ import { BrowserRouter } from 'react-router-dom';
 import { StoreProvider } from 'app/providers/StoreProvider';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 import { ThemeProvider } from 'app/providers/ThemeProvider';
+import { PlayerProvider } from 'app/providers/PlayerProvider';
 
 import 'app/styles/index.scss';
 
 import 'shared/config/i18n/i18n';
 
 import App from './app/App';
-import PlayerProvider from 'app/providers/PlayerProvider/ui/PlayerProvider';
 
 const root = createRoot(document.getElementById('root')!);
 

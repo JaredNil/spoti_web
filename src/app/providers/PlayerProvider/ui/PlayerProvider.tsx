@@ -13,7 +13,7 @@ interface PlayerProviderI {
 	children: React.ReactNode;
 }
 
-const PlayerProvider: React.FC<PlayerProviderI> = ({ children }: PlayerProviderI) => {
+export const PlayerProvider: React.FC<PlayerProviderI> = ({ children }: PlayerProviderI) => {
 
 
 
@@ -81,5 +81,3 @@ const PlayerProvider: React.FC<PlayerProviderI> = ({ children }: PlayerProviderI
 		</PlayerContext.Provider>
 	);
 };
-
-export default PlayerProvider;

@@ -1,3 +1,5 @@
+export { AlbumSceletonFlat } from './ui/AlbumSceletonFlat';
+
 export { fetchUserAlbums } from './model/service/fetchUserAlbums';
 
 export { fetchCommonAlbums } from './model/service/fetchCommonAlbums';
@@ -14,3 +16,4 @@ export { AlbumInterface, AlbumsCollection } from './model/types/album';
 export { AlbumFlat } from './ui/AlbumFlat';
 
 export { Album } from './ui/Album';
+
