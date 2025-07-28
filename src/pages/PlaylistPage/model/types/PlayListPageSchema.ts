@@ -1,7 +1,7 @@
-import { AlbumInterface } from "entities/Album";
-import { Trackes } from "entities/Track";
+import { AlbumInterface } from 'entities/Album';
+import { Trackes } from 'entities/Track';
 
-export interface PlayListPageSchema {
+export interface PlaylistPageSchema {
 	isLoadingData: boolean;
 	isLoadingTrackes: boolean;
 	error: string;

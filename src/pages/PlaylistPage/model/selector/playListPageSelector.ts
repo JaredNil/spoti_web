@@ -1,16 +1,15 @@
 import { StateSchema } from 'app/providers/StoreProvider';
-import { AlbumInterface } from 'entities/Album';
 
-export const getIsShowTrackModal = (state: StateSchema) => state.playListPage?.isShowTrackModal;
+export const getIsShowTrackModal = (state: StateSchema) => state.playlistPage?.isShowTrackModal;
 export const getIsLoadingData = (state: StateSchema) => {
-	if (state.playListPage?.isLoadingData === undefined) return true;
-	return state.playListPage?.isLoadingData;
+	if (state.playlistPage?.isLoadingData === undefined) return true;
+	return state.playlistPage?.isLoadingData;
 };
 export const getIsLoadingTrackes = (state: StateSchema) => {
-	if (state.playListPage?.isLoadingTrackes === undefined) return true;
-	return state.playListPage?.isLoadingTrackes;
+	if (state.playlistPage?.isLoadingTrackes === undefined) return true;
+	return state.playlistPage?.isLoadingTrackes;
 };
-export const getTrackesList = (state: StateSchema) => state.playListPage?.album?.trackes_id;
-export const getAlbum = (state: StateSchema) => state.playListPage?.album;
-export const getTrackes = (state: StateSchema) => state.playListPage?.trackes;
-export const getAlbumCreationDate = (state: StateSchema) => state.playListPage?.album?.creationDate
+export const getTrackesList = (state: StateSchema) => state.playlistPage?.album?.trackes_id;
+export const getAlbum = (state: StateSchema) => state.playlistPage?.album;
+export const getTrackes = (state: StateSchema) => state.playlistPage?.trackes;
+export const getAlbumCreationDate = (state: StateSchema) => state.playlistPage?.album?.creationDate;

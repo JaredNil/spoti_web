@@ -1,7 +1,14 @@
-export { getIsLoadingTrackes,getTrackes,getAlbum,getAlbumCreationDate } from './model/selector/playlistPageSelector';
+export {
+	getAlbum,
+	getAlbumCreationDate,
+	getIsLoadingData,
+	getIsLoadingTrackes,
+	getIsShowTrackModal,
+	getTrackes,
+	getTrackesList,
+} from './model/selector/playlistPageSelector';
 
 export { PlaylistPageAsync as PlaylistPage } from './ui/PlaylistPage.async';
 
-
-export { PlayListPageSchema } from './model/types/PlaylistPageSchema';
-export { playListPageReducer, playListPageAction } from './model/slice/playlistPageSlice';
+export { PlaylistPageSchema } from './model/types/PlaylistPageSchema';
+export { playlistPageReducer, playlistPageAction } from './model/slice/playlistPageSlice';
