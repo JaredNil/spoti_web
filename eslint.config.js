@@ -13,7 +13,7 @@ import { eslintImportConfig } from './eslint.import.js';
 
 export default tseslint.config(
   [
-    globalIgnores(['dist', 'node_modules', 'zmaterials']),
+    globalIgnores(['dist', 'node_modules', 'fontLocal', 'oldapp']),
     {
       extends: [js.configs.recommended, ...tseslint.configs.recommended],
       files: ['**/*.{ts,tsx}'],
