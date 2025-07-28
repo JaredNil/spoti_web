@@ -1,6 +1,4 @@
-import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { twMerge } from 'tailwind-merge';
 
 import { Providers } from './providers';
 
@@ -9,12 +7,12 @@ export default function App() {
 
   return (
     <Providers>
-      <Suspense fallback="">
+      {/* <Suspense fallback=""> */}
         <div
-          className={twMerge(
-            'flex overflow-x-auto'
+          // className={twMerge(
+            // 'flex overflow-x-auto'
             // isActivePlayer ? 'h-full pb-12' : 'h-full'
-          )}
+          // )}
         >
           {/* <Sidebar /> */}
 
@@ -24,7 +22,7 @@ export default function App() {
           </main>
         </div>
         {/* {isActivePlayer && <Player />} */}
-      </Suspense>
+      {/* </Suspense> */}
     </Providers>
   );
 }
