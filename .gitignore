@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 old
+oldapp
 
 dist
 dist-ssr
