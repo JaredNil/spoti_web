@@ -18,9 +18,8 @@ interface TrackViewListingProps {
 }
 
 export const TrackViewListing: React.FC<TrackViewListingProps> = ({ tracks, isCompact, onShowModal }: TrackViewListingProps) => {
-
-	const trackes = useSelector(getTrackes)
-	const albumCreationDate = useSelector(getAlbumCreationDate)
+	const trackes = useSelector(getTrackes);
+	const albumCreationDate = useSelector(getAlbumCreationDate);
 
 	const onLikeTrack = (event: React.MouseEvent<HTMLElement>) => {
 		event.stopPropagation();
@@ -68,11 +67,10 @@ export const TrackViewListing: React.FC<TrackViewListingProps> = ({ tracks, isCo
 								alt="track image"
 							/>
 						</div>
-					<div>{track.title}</div>
-						<div className="table-data">{
-						`${albumCreationDate?.getDate()}.${albumCreationDate?.getMonth()}.${albumCreationDate?.getFullYear()}`
-						}</div>
-						<div className="table-timer flex justify-center ">N/A
+						<div>{track.title}</div>
+						<div className="table-data">{`${albumCreationDate?.getDate()}.${albumCreationDate?.getMonth()}.${albumCreationDate?.getFullYear()}`}</div>
+						<div className="table-timer flex justify-center ">
+							N/A
 							{/* {track.songDuration} */}
 						</div>
 						<div

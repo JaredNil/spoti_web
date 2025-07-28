@@ -9,7 +9,7 @@ import { SearchpageSchema } from 'pages/SearchPage/model/types/SearchpageSchema'
 import { UploadpageSchema } from 'pages/UploadPage';
 import { UserSchema } from 'entities/User/model/types/user';
 import { AuthSchema } from 'features/Auth/model/types/AuthSchema';
-import { PlayListPageSchema } from 'pages/PlaylistPage';
+import { PlaylistPageSchema } from 'pages/PlaylistPage';
 import { CurTrackSchema } from 'features/TrackModal/model/types/CurTrack';
 import { rtkApi } from 'shared/api/rtkApi';
 import { SidebarSchema } from 'widgets/Sidebar/model/types/SidebarSchema';
@@ -30,7 +30,7 @@ export interface StateSchema {
 	mainpage?: MainpageSchema;
 	searchpage?: SearchpageSchema;
 	uploadpage?: UploadpageSchema;
-	playListPage?: PlayListPageSchema;
+	playlistPage?: PlaylistPageSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
@@ -38,14 +38,11 @@ export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 
 export interface ReducerManager {
 	getReducerMap: () => ReducersMapObject<StateSchema>;
-    reduce: (
-        state: StateSchema,
-        action: AnyAction,
-    ) => CombinedState<StateSchema>;
-    add: (key: StateSchemaKey, reducer: Reducer) => void;
-    remove: (key: StateSchemaKey) => void;
-    // true - вмонтирован, false - демонтирован
-    getMountedReducers: () => MountedReducers;
+	reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
+	add: (key: StateSchemaKey, reducer: Reducer) => void;
+	remove: (key: StateSchemaKey) => void;
+	// true - вмонтирован, false - демонтирован
+	getMountedReducers: () => MountedReducers;
 }
 
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {

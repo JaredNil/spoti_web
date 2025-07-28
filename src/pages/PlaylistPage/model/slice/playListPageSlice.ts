@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { PlayListPageSchema } from '../types/PlaylistPageSchema';
-import { fetchPlaylistTrackes } from '../service/fetchPlaylistTrackes';
 import { errorServerToastr } from 'shared/config/toastr/toastr.config';
+import { fetchPlaylistTrackes } from '../service/fetchPlaylistTrackes';
 import { fetchPlaylistData } from '../service/fetchPlaylistData';
+import { PlaylistPageSchema } from '../types/PlaylistPageSchema';
 
-const initialState: PlayListPageSchema = {
+const initialState: PlaylistPageSchema = {
 	isLoadingData: true,
 	isLoadingTrackes: true,
 	error: '',
 	isShowTrackModal: false,
 	album: null,
 	album_id: null,
-	trackes: []
+	trackes: [],
 };
 
-export const playListPageSlice = createSlice({
+export const playlistPageSlice = createSlice({
 	name: 'playlistpage',
 	initialState,
 	reducers: {
@@ -30,15 +30,14 @@ export const playListPageSlice = createSlice({
 		offLoadingData: (state) => {
 			state.isLoadingData = false;
 		},
-		albumNotFound: (state) =>{
-			state.isLoadingData = false,
-			state.album = null
+		albumNotFound: (state) => {
+			state.isLoadingData = false;
+			state.album = null;
 		},
 		// of dev
 		toggleLoadingData: (state) => {
 			state.isLoadingData = !state.isLoadingData;
 		},
-
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchPlaylistData.pending, (state, action) => {
@@ -49,26 +48,34 @@ export const playListPageSlice = createSlice({
 			state.album = action.payload;
 		});
 		builder.addCase(fetchPlaylistData.rejected, (state, action) => {
-			toastr.error('Данные плейлиста не найдены. Перезагрузите страницу или зайдите позже', 'Ошибка соединения', errorServerToastr);
+			toastr.error(
+				'Данные плейлиста не найдены. Перезагрузите страницу или зайдите позже',
+				'Ошибка соединения',
+				errorServerToastr
+			);
 			state.album = null;
 			state.isLoadingData = false;
 		});
 
 		builder.addCase(fetchPlaylistTrackes.pending, (state, action) => {
-			state.isLoadingTrackes = true
-			state.trackes = []
+			state.isLoadingTrackes = true;
+			state.trackes = [];
 		});
 		builder.addCase(fetchPlaylistTrackes.fulfilled, (state, action) => {
-			state.isLoadingTrackes = false
-			state.trackes = action.payload
+			state.isLoadingTrackes = false;
+			state.trackes = action.payload;
 		});
 		builder.addCase(fetchPlaylistTrackes.rejected, (state, action) => {
-			state.isLoadingTrackes = false
-			state.trackes = []
-			toastr.error('Данные о треках из плейлиста не найдены. Перезагрузите страницу или зайдите позже', 'Ошибка соединения', errorServerToastr);
+			state.isLoadingTrackes = false;
+			state.trackes = [];
+			toastr.error(
+				'Данные о треках из плейлиста не найдены. Перезагрузите страницу или зайдите позже',
+				'Ошибка соединения',
+				errorServerToastr
+			);
 		});
 	},
 });
 
-export const { actions: playListPageAction } = playListPageSlice;
-export const { reducer: playListPageReducer } = playListPageSlice;
+export const { actions: playlistPageAction } = playlistPageSlice;
+export const { reducer: playlistPageReducer } = playlistPageSlice;

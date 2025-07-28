@@ -1,13 +1,12 @@
 import { useTranslation } from 'react-i18next';
 
-
 import { SearchContent } from 'features/Search/SearchContent';
 
 import Page from 'shared/ui/Page/Page';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { searchpageReducer } from '../model/slice/SearchpageSlice';
 import { useSelector } from 'react-redux';
 import { getIsLoadingPage } from '../model/selector/SearchpageSelector';
+import { searchpageReducer } from '../model/slice/searchpageSlice';
 
 const reducers: ReducerList = {
 	searchpage: searchpageReducer,
@@ -15,7 +14,7 @@ const reducers: ReducerList = {
 
 const SearchPage: React.FC = () => {
 	const { t } = useTranslation();
-	
+
 	const isLoadingPage = useSelector(getIsLoadingPage);
 
 	return (
@@ -24,7 +23,7 @@ const SearchPage: React.FC = () => {
 				<div className="mb-2 flex flex-col gap-y-6">
 					<h1 className="text-3xl font-semibold text-white">Search</h1>
 				</div>
-				<SearchContent isLoadingPage={isLoadingPage}  />
+				<SearchContent isLoadingPage={isLoadingPage} />
 			</Page>
 		</DynamicModuleLoader>
 	);
