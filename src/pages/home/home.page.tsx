@@ -1,0 +1,67 @@
+// import { StateSchema } from 'app/providers/StoreProvider';
+// import { getUsername } from 'entities/User/model/selectors/getUsername/getUsername';
+// import { AlbumListType, getIsLoadingData } from 'pages/MainPage';
+import { FC } from 'react';
+// import { useSelector } from 'react-redux';
+// import {
+//   DynamicModuleLoader,
+//   ReducerList,
+// } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+// import Page from 'shared/ui/Page/Page';
+
+// import { mainpageReducer } from '../../model/slice/mainpageSlice';
+// import { AlbumListProvider } from '../AlbumListProvider/AlbumListProvider';
+// import { BringAuth } from '../BringAuth/BringAuth';
+// import { QuickBar } from '../QuickBar/QuickBar';
+
+const HomePage: FC = () => {
+  // const reducers: ReducerList = {
+  //   mainpage: mainpageReducer,
+  // };
+
+  // const username = useSelector(getUsername);
+
+  // const isLoadingData = useSelector(getIsLoadingData);
+
+  // const commonAlbums = useSelector(
+  //   (state: StateSchema) => state.albums.commonAlbums
+  // );
+  // const userAlbums = useSelector(
+  //   (state: StateSchema) => state.albums.userAlbums
+  // );
+
+  return (
+    // <DynamicModuleLoader reducers={reducers}>
+    //   <Page>
+    //     <div className="mb-2">
+    //       <h1 className="relative text-3xl font-semibold text-white select-none">
+    //         {`Welcome back,  ${username ? username : 'Гость'}`}
+    //       </h1>
+    //     </div>
+
+    //     <div className="mt-2">
+    //       <QuickBar isLoadingData={isLoadingData} />
+
+    //       <AlbumListProvider
+    //         type={AlbumListType.COMMON}
+    //         isLoadingData={isLoadingData}
+    //         albums={commonAlbums}
+    //       />
+
+    //       {username ? (
+    //         <AlbumListProvider
+    //           isLoadingData={isLoadingData}
+    //           type={AlbumListType.USER}
+    //           albums={userAlbums}
+    //         />
+    //       ) : (
+    //         <BringAuth isLoadingData={isLoadingData} />
+    //       )}
+    //     </div>
+    //   </Page>
+    // </DynamicModuleLoader>
+    <div>homepage</div>
+  );
+};
+
+export const Component = HomePage;
