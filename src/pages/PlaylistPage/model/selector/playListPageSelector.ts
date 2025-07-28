@@ -9,7 +9,7 @@ export const getIsLoadingTrackes = (state: StateSchema) => {
 	if (state.playlistPage?.isLoadingTrackes === undefined) return true;
 	return state.playlistPage?.isLoadingTrackes;
 };
-export const getTrackesList = (state: StateSchema) => state.playlistPage?.album?.trackes_id;
+export const getTrackesList = (state: StateSchema) => state.playlistPage?.album?.trackesId;
 export const getAlbum = (state: StateSchema) => state.playlistPage?.album;
 export const getTrackes = (state: StateSchema) => state.playlistPage?.trackes;
 export const getAlbumCreationDate = (state: StateSchema) => state.playlistPage?.album?.creationDate;

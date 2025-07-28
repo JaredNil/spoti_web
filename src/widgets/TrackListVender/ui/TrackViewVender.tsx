@@ -21,9 +21,9 @@ interface TrackListProps {
 export const TrackViewVender: React.FC<TrackListProps> = (props: TrackListProps) => {
 	const { className, onShowModal } = props;
 
-	const album = useSelector(getAlbum)
+	const album = useSelector(getAlbum);
 
-	const { start } = usePlayer()
+	const { start } = usePlayer();
 
 	const isLoadingTrackes = useSelector(getIsLoadingTrackes);
 
@@ -35,7 +35,7 @@ export const TrackViewVender: React.FC<TrackListProps> = (props: TrackListProps)
 			<div className="flex justify-between">
 				<div className="flex">
 					<div
-						onClick={()=> start(album?.trackes_id as number[])}
+						onClick={() => start(album?.trackesId as number[])}
 						className="flex h-[56px] w-[56px] items-center justify-center 
                         rounded-full bg-green-500 drop-shadow-md
                         transition hover:scale-110 group-hover:opacity-100

@@ -12,7 +12,7 @@ import { playlistPageAction, playlistPageReducer } from '../model/slice/playlist
 import { PlaylistTitle } from './PlaylistTitle';
 import { fetchPlaylistTrackes } from '../model/service/fetchPlaylistTrackes';
 import { fetchPlaylistData } from '../model/service/fetchPlaylistData';
-import { getTrackesList, getIsShowTrackModal, getAlbum } from '../model/selector/playlistPageSelector';
+import { getTrackesList, getIsShowTrackModal } from '../model/selector/playlistPageSelector';
 
 const PlaylistPage: React.FC = () => {
 	const dispatch = useAppDispatch();

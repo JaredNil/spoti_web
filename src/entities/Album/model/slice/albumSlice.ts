@@ -22,7 +22,7 @@ export const albumSlice = createSlice({
 		});
 		builder.addCase(fetchUserAlbums.fulfilled, (state, action: PayloadAction<AlbumsCollection>) => {
 			state.isLoading = false;
-			state.userAlbums = []
+			state.userAlbums = [];
 
 			action.payload.forEach((postAlbum) => {
 				const coverPlaylist = postAlbum.imagePath || getRandomCover();
@@ -33,14 +33,12 @@ export const albumSlice = createSlice({
 					imagePath: coverPlaylist,
 					title: postAlbum.title,
 					user_id: postAlbum.user_id,
-					trackes_id: postAlbum.trackes_id
-
+					trackesId: postAlbum.trackesId,
 				};
 				state.userAlbums.push(newAlbum);
 			});
 		});
 		builder.addCase(fetchUserAlbums.rejected, (state, action) => {
-
 			state.isLoading = false;
 			state.error = action.error;
 		});
@@ -50,21 +48,19 @@ export const albumSlice = createSlice({
 		});
 		builder.addCase(fetchCommonAlbums.fulfilled, (state, action: PayloadAction<AlbumsCollection>) => {
 			state.isLoading = false;
-			state.commonAlbums = []
+			state.commonAlbums = [];
 			action.payload.forEach((postAlbum) => {
-
 				const newAlbum: AlbumInterface = {
 					author: postAlbum.author,
 					id: postAlbum.id,
 					imagePath: postAlbum.imagePath,
 					title: postAlbum.title,
 					user_id: postAlbum.user_id,
-					trackes_id: postAlbum.trackes_id
+					trackesId: postAlbum.trackesId,
 				};
 
 				state.commonAlbums.push(newAlbum);
 			});
-
 		});
 		builder.addCase(fetchCommonAlbums.rejected, (state, action) => {
 			console.log('fetchCommonAlbums.rejected');
