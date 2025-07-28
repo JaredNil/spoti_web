@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { Providers } from './providers';
 
-export function App() {
+export default function App() {
   // const { toggleTheme } = useTheme();
 
   return (
