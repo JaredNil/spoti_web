@@ -7,4 +7,7 @@ import viteTsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   plugins: [react(), viteTsconfigPaths(), tailwindcss()],
+  resolve: {
+    alias:  {'@' : './src', }
+  }
 });
