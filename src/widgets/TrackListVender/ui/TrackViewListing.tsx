@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react';
 import toastr from 'toastr';
 import { twMerge } from 'tailwind-merge';
@@ -5,19 +6,16 @@ import { FaHeart } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { IoIosTimer } from 'react-icons/io';
 
-import { Track } from 'entities/Track';
-
 import { getAlbumCreationDate, getTrackes } from 'pages/PlaylistPage';
 
 import { successUploadToastr } from 'shared/config/toastr/toastr.config';
 
 interface TrackViewListingProps {
-	tracks?: Track[];
 	isCompact: boolean;
 	onShowModal: (id: number) => void;
 }
 
-export const TrackViewListing: React.FC<TrackViewListingProps> = ({ tracks, isCompact, onShowModal }: TrackViewListingProps) => {
+export const TrackViewListing: React.FC<TrackViewListingProps> = ({ isCompact, onShowModal }: TrackViewListingProps) => {
 	const trackes = useSelector(getTrackes);
 	const albumCreationDate = useSelector(getAlbumCreationDate);
 

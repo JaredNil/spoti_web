@@ -1,16 +1,15 @@
-import { FaPlay } from "react-icons/fa";
+import { FaPlay } from 'react-icons/fa';
 
-import { AlbumInterface } from "entities/Album";
+import { AlbumInterface } from 'entities/Album';
 
-import { usePlayer } from "widgets/Player";
+import { usePlayer } from 'widgets/Player';
 
 interface LibraryItemProps {
 	album: AlbumInterface;
 }
 
 export const LibraryItem: React.FC<LibraryItemProps> = ({ album }: LibraryItemProps) => {
-
-	const { start } = usePlayer()
+	const { start } = usePlayer();
 
 	// const playerHandler = () => {
 	// 	dispatch(playerAction.onActivePlayer())
@@ -18,32 +17,38 @@ export const LibraryItem: React.FC<LibraryItemProps> = ({ album }: LibraryItemPr
 	// }
 
 	return (
-		<div className="flex 
-		hover:bg-neutral-400/10 transition-all
-		group"
+		<div
+			className="group 
+		flex transition-all
+		hover:bg-neutral-400/10"
 		>
-			<div className="flex justify-center items-center
-				aspect-square h-[34px] bg-gray-400">
+			<div
+				className="flex aspect-square h-[34px]
+				items-center justify-center bg-gray-400"
+			>
 				<img src={album.imagePath} alt="" />
 			</div>
-			<div className="flex justify-start items-center pl-2 w-full overflow-hidden
-				relative
-			">
-				<div className="select-none text-neutral-300 text-ellipsis text-sm
-					whitespace-nowrap tracking-wide w-full overflow-hidden"
+			<div
+				className="relative flex w-full items-center justify-start overflow-hidden
+				pl-2
+			"
+			>
+				<div
+					className="w-full select-none overflow-hidden text-ellipsis
+					whitespace-nowrap text-sm tracking-wide text-neutral-300"
 				>
-					{(album.id == 0) ? '' : <span className="font-medium">{album.author}</span>}
-					{(album.id == 0) ? '' : ` -	`}
+					{album.id == 0 ? '' : <span className="font-medium">{album.author}</span>}
+					{album.id == 0 ? '' : ` -	`}
 					<span>{album.title}</span>
 				</div>
 				<div
-					onClick={()=> start(album.trackes_id)}
-					className="absolute bottom-1 right-2 aspect-square flex items-center justify-center rounded-full 
+					onClick={() => start(album.trackesId)}
+					className="absolute bottom-1 right-2 flex aspect-square items-center justify-center rounded-full 
 					bg-green-500 p-1 opacity-0 drop-shadow-md 
 					transition hover:scale-110 group-hover:opacity-100
 					"
 				>
-					<FaPlay className="text-black scale-75" />
+					<FaPlay className="scale-75 text-black" />
 				</div>
 			</div>
 		</div>

@@ -5,7 +5,7 @@ export interface AlbumInterface {
 	title: string;
 	description?: string;
 	imagePath: string;
-	trackes_id: number[];
+	trackesId: number[];
 	creationDate?: Date;
 }
 export type AlbumsCollection = AlbumInterface[];

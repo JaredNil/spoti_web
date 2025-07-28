@@ -8,14 +8,13 @@ interface AlbumProps {
 }
 
 export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
-	const { id, author, imagePath, title, trackes_id } = data;
+	const { id, author, imagePath, title, trackesId } = data;
 
-	const { start } = usePlayer()
+	const { start } = usePlayer();
 
 	const transit = useTransit();
-	const clickAlbumHandler = (event : React.MouseEvent<HTMLDivElement>) => {
-		if ((event.target as EventTarget & HTMLDivElement)?.tagName != 'A')
-			transit(`/playlist/${id}`);
+	const clickAlbumHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+		if ((event.target as EventTarget & HTMLDivElement)?.tagName != 'A') transit(`/playlist/${id}`);
 	};
 	return (
 		<div
@@ -30,22 +29,20 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 					h-full w-full 
 					overflow-hidden rounded-md"
 			>
-					<img className="pointer-events-none w-full select-none object-cover"
-					 src={imagePath} 
-					 alt="/" />
+				<img className="pointer-events-none w-full select-none object-cover" src={imagePath} alt="/" />
 			</div>
 			<div className="flex w-full flex-col items-start gap-y-1 pt-2">
 				<p className="w-full truncate font-semibold">{title}</p>
 				<p className="w-full truncate pb-4 text-sm  text-neutral-400">By {author}</p>
 			</div>
 			<a
-				onClick={()=> start(trackes_id)}
+				onClick={() => start(trackesId)}
 				className="absolute bottom-[32%] right-5 flex items-center justify-center rounded-full 
 				bg-green-500 p-4 opacity-0 drop-shadow-md 
 				transition hover:scale-110 group-hover:opacity-100
 				"
 			>
-				<FaPlay className="text-black pointer-events-none" />
+				<FaPlay className="pointer-events-none text-black" />
 			</a>
 		</div>
 	);
