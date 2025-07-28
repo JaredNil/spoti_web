@@ -1,0 +1,98 @@
+/* stylelint-disable at-rule-empty-line-before */
+/* stylelint-disable import-notation */
+/* stylelint-disable no-invalid-position-at-import-rule */
+/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+/* stylelint-disable at-rule-no-unknown */
+@import url('./fragment/reset.scss');
+
+@import url('./themes/dark.scss');
+@import url('./themes/normal.scss');
+@import url('./themes/orange.scss');
+
+@import url('./variables/global.scss');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "toastr";
+
+html,
+body,
+:root {
+    height: 100%;
+    background-color: black;
+    color-scheme: dark;
+}
+
+#root {
+    height: 100vh;
+    width: 100vw;
+}
+
+.app {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+@import url('./fragment/loaders.scss');
+@import url('./fragment/sceleton.scss');
+@import url('./fragment/playlist.scss');
+
+@keyframes wiggle {
+    0% {
+        transform: translateY(1px);
+    }
+
+    50% {
+        transform: translateY(-45px);
+    }
+
+    100% {
+        transform: translateY(1px);
+    }
+}
+
+/*
+body {
+    font: var(--font-m);
+    color: var(--primary-color);
+    background: var(--bg-color);
+    min-height: 100vh;
+}
+
+.app_modal {
+    font: var(--font-m);
+    color: var(--primary-color);
+}
+
+.app {
+    font: var(--font-m);
+    color: var(--primary-color);
+    background: var(--bg-color);
+    min-height: 100vh;
+}
+
+.app_redesigned {
+    background: var(--bg-redesigned);
+    min-height: 100vh;
+    font: var(--font-m-redesigned);
+    color: var(--text-redesigned);
+}
+
+
+main.content {
+    display: flex;
+}
+
+.page-wrapper {
+    flex-grow: 1;
+    padding: 20px;
+    height: calc(100vh - var(--navber-height));
+    overflow-y: auto;
+    flex-shrink: 100;
+} */

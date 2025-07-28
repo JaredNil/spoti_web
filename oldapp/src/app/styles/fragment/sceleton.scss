@@ -1,0 +1,44 @@
+.sceleton {
+    width: 100%;
+    background-color: #ffffff21;
+    animation: 2s ease-in-out 0.5s infinite normal none running sceletonframes;
+}
+
+.empty_image {
+    aspect-ratio: 1;
+}
+
+
+@keyframes sceletonframes {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.sceletonHeader {
+    height: 100%;
+    background-color: #ffffff41;
+    animation: 2s linear 0.5s infinite normal none running sceletonheaderframes;
+}
+
+@keyframes sceletonheaderframes {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

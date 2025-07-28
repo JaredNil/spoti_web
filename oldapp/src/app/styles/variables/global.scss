@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+:root {
+	--font-family-main: oswald, serif;
+	--font-family-text-redesigned: 'Nunito Sans', sans-serif;
+	--font-family-header-redesigned: 'Roboto', sans-serif;
+
+	--font-size-m: 16px;
+	--font-line-m: 24px;
+	--font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+
+	--font-size-l: 24px;
+	--font-line-l: 32px;
+	--font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+
+	--font-size-xl: 32px;
+	--font-line-xl: 40px;
+	--font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+
+	/* wrapper */
+	--navbar-height: 50px;
+	--sidebar-width: 300px;
+	--sidebar-width-collapsed: 80px;
+
+	/* zindex */
+	--overlay-z-index: 100;
+	--modal-zindex: 1000;
+
+	/* modal setting */
+	--modal-outer-background: rgba(0 0 0 / 60%);
+
+	/* color setting */
+	--red-light: #f00;
+	--red-dark: #ce0505;
+
+	/* redisgned fonts */
+	--font-s-redesigned: var(--font-size-s) / var(--font-line-s) var(--font-family-text-redesigned);
+	--font-m-redesigned: var(--font-size-m) / var(--font-line-m) var(--font-family-text-redesigned);
+	--font-l-redesigned: var(--font-size-l) / var(--font-line-l) var(--font-family-header-redesigned);
+	--font-xl-redesigned: var(--font-size-xl) / var(--font-line-xl) var(--font-family-header-redesigned);
+}

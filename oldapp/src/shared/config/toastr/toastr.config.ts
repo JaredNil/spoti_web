@@ -1,0 +1,31 @@
+export const successUploadToastr: ToastrOptions = {
+	progressBar: true,
+	positionClass: 'toast-bottom-right',
+	showDuration: 300,
+	hideDuration: 1000,
+	timeOut: 1400,
+	extendedTimeOut: 400,
+	showEasing: 'swing',
+	hideEasing: 'linear',
+	showMethod: 'fadeIn',
+	hideMethod: 'fadeOut',
+	closeButton: true,
+    closeDuration: 150,
+    preventDuplicates: true,
+};
+
+export const errorServerToastr: ToastrOptions = {
+	progressBar: false,
+	positionClass: 'toast-bottom-right',
+	showDuration: 300,
+	hideDuration: 1000,
+	timeOut: 1400,
+	extendedTimeOut: 400,
+	showEasing: 'swing',
+	hideEasing: 'linear',
+	showMethod: 'fadeIn',
+	hideMethod: 'fadeOut',
+	closeButton: true,
+    closeDuration: 150,
+    preventDuplicates: true,
+};
