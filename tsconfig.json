@@ -1,6 +1,5 @@
 {
   "files": [],
-  // aliases schema
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
@@ -9,6 +8,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    },
+    }
   }
 }
