@@ -1,7 +1,6 @@
 // import { StateSchema } from 'app/providers/StoreProvider';
 // import { getUsername } from 'entities/User/model/selectors/getUsername/getUsername';
 // import { AlbumListType, getIsLoadingData } from 'pages/MainPage';
-import { FC } from 'react';
 // import { useSelector } from 'react-redux';
 // import {
 //   DynamicModuleLoader,
@@ -14,7 +13,7 @@ import { FC } from 'react';
 // import { BringAuth } from '../BringAuth/BringAuth';
 // import { QuickBar } from '../QuickBar/QuickBar';
 
-const HomePage: FC = () => {
+const HomePage = () => {
   // const reducers: ReducerList = {
   //   mainpage: mainpageReducer,
   // };
