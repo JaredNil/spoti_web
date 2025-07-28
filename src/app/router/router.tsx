@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { App } from '@/app/app';
+import { App } from '../app';
 import { ROUTES } from '@/shared/routes/routes';
 
 export const router = createBrowserRouter([
