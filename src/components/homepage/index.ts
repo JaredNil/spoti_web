@@ -1,5 +1,9 @@
-export { AlbumListType } from './model/types/AlbumListType';
+export { BringAuth } from './ui/bringAuth';
 
-export { getIsLoadingData, getErrorLoadingData } from './model/selector/MainpageSelector';
+export { QuickBar } from './ui/quickBar';
 
-export { MainPageAsync } from './ui/MainPage/MainPage.async';
+export { AlbumListProvider } from './ui/albumListProvider';
+
+export { AlbumListType } from './model/types/albumListType';
+
+export { getIsLoadingData, getErrorLoadingData } from './model/selector/homepageSelector';

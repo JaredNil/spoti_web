@@ -1,8 +1,8 @@
-import { AlbumInterface, Album, AlbumSceleton } from 'entities/Album';
-import { countSkeleton } from 'pages/MainPage/model/service/countSkeleton';
-import { AlbumListType, getAlbumListTitle } from 'pages/MainPage/model/types/AlbumListType';
+import { AlbumInterface, AlbumSceleton, Album } from '@/entities/album';
 import { memo } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { AlbumListType, getAlbumListTitle } from '../model/types/albumListType';
+import { countSkeleton } from '../model/service/countSkeleton';
 
 interface AlbumListProviderProps {
 	isLoadingData: boolean;
@@ -14,6 +14,7 @@ export const AlbumListProvider: React.FC<AlbumListProviderProps> = memo(({ isLoa
 	const sceletonAlbum: string[] = new Array(countSkeleton()).fill('').map((_, i) => String(i));
 	const title = getAlbumListTitle(type);
 	const orderAlbum = [...albums].reverse();
+
 
 	return (
 		<>

@@ -1,6 +1,6 @@
-import { QuickBar } from '@/components/homepage/ui/QuickBar/quickBar';
+import { AlbumListType, AlbumListProvider, QuickBar, BringAuth } from '@/components/homepage';
+import { AlbumInterface } from '@/entities/album';
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
 
 const Home: FC = () => {
 
@@ -15,7 +15,10 @@ const Home: FC = () => {
   const isLoadingData = false
 
 	// const commonAlbums = useSelector((state: StateSchema) => state.albums.commonAlbums);
+  const commonAlbums = [] as AlbumInterface[]
 	// const userAlbums = useSelector((state: StateSchema) => state.albums.userAlbums);
+
+	  const userAlbums = [] as AlbumInterface[]
 
 	return (
 			<>
@@ -28,13 +31,13 @@ const Home: FC = () => {
 				<div className="mt-2">
 					<QuickBar isLoadingData={isLoadingData} />
 
-					{/* <AlbumListProvider
+					<AlbumListProvider
 						type={AlbumListType.COMMON}
 						isLoadingData={isLoadingData}
 						albums={commonAlbums}
-					/> */}
+					/>
 
-					{/* {username ? (
+					{username ? (
 						<AlbumListProvider
 							isLoadingData={isLoadingData}
 							type={AlbumListType.USER}
@@ -42,7 +45,7 @@ const Home: FC = () => {
 						/>
 					) : (
 						<BringAuth isLoadingData={isLoadingData} />
-					)} */}
+					)}
 				</div>
 			</>
 	);

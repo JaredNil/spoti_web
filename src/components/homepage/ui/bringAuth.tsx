@@ -1,6 +1,6 @@
-import { AuthModal } from 'features/Auth';
-import React, { useCallback, useState } from 'react';
-import { Button } from 'shared/ui/Button/Button';
+// import { AuthModal } from 'features/Auth';
+import { Button } from '@/shared/ui/kit/button';
+import React, { useCallback } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 interface BringAuthProps {
@@ -8,14 +8,14 @@ interface BringAuthProps {
 }
 
 export const BringAuth: React.FC<BringAuthProps> = ({ isLoadingData }: BringAuthProps) => {
-	const [isAuthModal, setIsAuthModal] = useState(false);
+	// const [isAuthModal, setIsAuthModal] = useState(false);
 
 	const onShowAuthModal = useCallback(() => {
-		setIsAuthModal(true);
+		// setIsAuthModal(true);
 	}, []);
 
 	const onCloseAuthModal = useCallback(() => {
-		setIsAuthModal(false);
+		// setIsAuthModal(false);
 	}, []);
 
 	return (
@@ -45,12 +45,12 @@ export const BringAuth: React.FC<BringAuthProps> = ({ isLoadingData }: BringAuth
 			<Button
 				onClick={onShowAuthModal}
 				className="text-xl font-light tracking-wide text-white"
-				isLoading={isLoadingData}
+				// isLoading={isLoadingData}
 				disabled={isLoadingData}
 			>
 				Вход / Регистрация
 			</Button>
-			{isAuthModal && <AuthModal isOpen={isAuthModal} onClose={() => onCloseAuthModal()} />}
+			{/* {isAuthModal && <AuthModal isOpen={isAuthModal} onClose={() => onCloseAuthModal()} />} */}
 		</>
 	);
 };

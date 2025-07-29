@@ -1,6 +1,6 @@
 import { AlbumInterface } from './album';
 
-export interface AlbumsSchema {
+export type AlbumsSchema = {
 	isLoading: boolean;
 	error: string;
 	commonAlbums: AlbumInterface[];
