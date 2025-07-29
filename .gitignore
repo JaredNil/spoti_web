@@ -12,6 +12,8 @@
 /oldapp
 oldapp
 /fontLocal
+/.next
+.next
 
 # testing
 /coverage
