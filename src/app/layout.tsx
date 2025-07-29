@@ -7,26 +7,23 @@ import Page from "@/shared/ui/page";
 import "@/shared/css/index.css";
 import localFont from 'next/font/local'
 
-const SegoeUI = localFont({ src: './font/SegoeSemibold.woff2' })
+const SegoeUI = localFont({ src: '../shared/font/SegoeSemibold.woff2' })
 
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
+}: Readonly<{  children: React.ReactNode;
 }>) {
 
 	// const { theme } = useTheme();
-
 	// const isActivePlayer = useSelector(getIsActivePlayer)
-
 	// const dispatch = useAppDispatch();
 
   return (
     <html lang="ru">
       <body>
         <div className={`fixed top-0 left-0 right-0 bottom-0 w-dvw h-vh 
-          bg-black scheme-dark font-main font-bold ${SegoeUI.className}`}
+          bg-black scheme-dark text-white
+          font-main font-bold ${SegoeUI.className}`}
         >
 			    <Suspense fallback="">
 				    <div className={twMerge("flex overflow-x-auto h-full", 

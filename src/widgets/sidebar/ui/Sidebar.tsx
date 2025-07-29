@@ -1,36 +1,29 @@
-// import { Box } from 'shared/ui/Box/Box';
-
+"use client";
 import { HiHome } from 'react-icons/hi';
 import { BiSearch } from 'react-icons/bi';
 import { TbFileUpload } from 'react-icons/tb';
 
+// import { Box } from 'shared/ui/Box/Box';
 import { RouteItem } from './RouteItem';
 import { Library } from './Library';
 
+
 const sidebarRoutes = [
 	{
-		icon: HiHome,
-		label: 'Home',
 		href: '/',
-		isActive: (pathname: string) => pathname === '/',
+		label: 'Home',
 	},
 	{
-		icon: BiSearch,
-		label: 'Search',
 		href: '/search',
-		isActive: (pathname: string) => pathname === '/search',
+		label: 'Search',
 	},
 	{
-		icon: TbFileUpload,
-		label: 'Upload',
 		href: '/upload',
-		isActive: (pathname: string) => pathname === '/upload',
+		label: 'Upload',
 	},
 ];
 
-export const Sidebar: React.FC = () => {
-	
-
+export function Sidebar(){
 	return (
 		<aside
 			className=" hidden h-full min-w-[300px]
@@ -38,13 +31,9 @@ export const Sidebar: React.FC = () => {
 			md:flex"
 		>
 			<div className="flex flex-col gap-y-4 px-5 py-4 bg-neutral-900 rounded-lg">
-				{sidebarRoutes.map((item) => (
+				{sidebarRoutes.map((item, key) => (
 					<RouteItem
-						key={item.label}
-						icon={item.icon}
-						label={item.label}
-						// isActive={item.isActive(pathname)}
-						href={item.href}
+						routeInfo={item} key={key}
 					/>
 				))}
 			</div>
