@@ -1,5 +1,11 @@
 {
   "app": {
+    "[project]/src/app/_not-found/page": [
+      "static/media/SegoeSemibold-s.p.5ce7a368.woff2"
+    ],
+    "[project]/src/app/account/page": [
+      "static/media/SegoeSemibold-s.p.5ce7a368.woff2"
+    ],
     "[project]/src/app/page": [
       "static/media/SegoeSemibold-s.p.5ce7a368.woff2"
     ],

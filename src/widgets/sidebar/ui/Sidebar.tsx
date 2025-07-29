@@ -1,12 +1,7 @@
 "use client";
-import { HiHome } from 'react-icons/hi';
-import { BiSearch } from 'react-icons/bi';
-import { TbFileUpload } from 'react-icons/tb';
-
 // import { Box } from 'shared/ui/Box/Box';
 import { RouteItem } from './RouteItem';
-import { Library } from './Library';
-
+import { Library } from './library';
 
 const sidebarRoutes = [
 	{

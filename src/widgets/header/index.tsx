@@ -1,14 +1,16 @@
 "use client"
 
-import { memo, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
+import { Button } from '@/shared/ui/kit/button';
+import { useRouter } from 'next/navigation';
 import { BiSearch } from 'react-icons/bi';
 import { FaUserAlt } from 'react-icons/fa';
 import { HiHome } from 'react-icons/hi';
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2';
 import { TbFileUpload } from 'react-icons/tb';
-import { TiInfoLarge } from 'react-icons/ti';
-import { useSelector } from 'react-redux';
 import { twMerge } from 'tailwind-merge';
+
+import { WidgetLoader } from '@/shared/ui/widgetLoader';
 
 // import { AuthModal } from 'features/Auth/ui/AuthModal/AuthModal';
 // import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -27,24 +29,26 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderProps) => {
 	const [isAuthModal, setIsAuthModal] = useState(false);
 
+	const routing = useRouter()
+
 	// const dispatch = useAppDispatch();
 
-	// const transit = useTransit();
-
 	// const username = useSelector(getUsername);
+	const username = 'user'
 	// const isLoading = useSelector(getIsLoadingUser);
+	const isLoading = false
 
-	// const onCloseModal = useCallback(() => {
-	// 	setIsAuthModal(false);
-	// }, []);
+	const onCloseModal = useCallback(() => {
+		// setIsAuthModal(false);
+	}, []);
 
-	// const onShowModal = useCallback(() => {
-	// 	setIsAuthModal(true);
-	// }, []);
+	const onShowModal = useCallback(() => {
+		// setIsAuthModal(true);
+	}, []);
 
-	// const onLogout = useCallback(() => {
-	// 	dispatch(logoutByServer());
-	// }, [dispatch]);
+	const onLogout = useCallback(() => {
+		// dispatch(logoutByServer());
+	}, []);
 
 	return (
 		<div
@@ -57,7 +61,7 @@ export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderPro
 			<div className="mb-4 flex w-full items-center justify-between pointer-events-auto">
 				<div className="hidden items-center gap-x-2 md:flex">
 					<button
-						// onClick={() => transit(TransitEffect.BACK)}
+						onClick={() => routing.back()}
 						type="button"
 						className=" flex h-[35px] w-[35px] 
                         cursor-pointer items-center justify-center 
@@ -68,20 +72,20 @@ export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderPro
 						<HiOutlineChevronLeft className="mr-[3px] text-white" size={23} />
 					</button>
 					<button
-						// onClick={() => transit(TransitEffect.FORWARD)}
+						onClick={() => routing.forward()}
 						type="button"
-						className=" flex h-[35px] w-[35px] 
+						className={`flex h-[35px] w-[35px] 
                         cursor-pointer items-center justify-center 
 						rounded-full  bg-black 
 						transition hover:opacity-75
-                        "
+                        `}
 					>
 						<HiOutlineChevronRight className="ml-[2px] text-white" size={23} />
 					</button>
 				</div>
 				<div className="flex items-center gap-x-2 md:hidden">
 					<button
-						// onClick={() => transit('/')}
+						onClick={() => routing.push('/')}
 						type="button"
 						className="flex cursor-pointer items-center justify-center 
 						rounded-full bg-white p-2 transition 
@@ -91,7 +95,7 @@ export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderPro
 					</button>
 					<button
 						type="button"
-						// onClick={() => transit('/search')}
+						onClick={() => routing.push('search')}
 						className="flex cursor-pointer items-center justify-center 
 						rounded-full  bg-white p-2 transition 
 						hover:opacity-75"
@@ -100,7 +104,7 @@ export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderPro
 					</button>
 					<button
 						type="button"
-						// onClick={() => transit('/upload')}
+						onClick={() => routing.push('upload')}
 						className="flex cursor-pointer items-center justify-center 
 						rounded-full  bg-white p-2 transition 
 						hover:opacity-75"
@@ -110,34 +114,36 @@ export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderPro
 				</div>
 
 				<div className="relative flex items-center justify-between transition-all duration-300">
-					<button
-						onClick={() => {
-							// transit(!username ? '/intro' : '/account'); // DEMO HANDLER
-						}}
-						className={twMerge('bg-white transition-all duration-150')}
+					<Button 
+						onClick={() => routing.push('/account')} 
+						className="transition-all duration-150 bg-white cursor-pointer rounded-full"
 					>
-						{/* {!username ? <TiInfoLarge /> : <FaUserAlt />} */}
-					</button>
-					<button
-						// onClick={() => (username ? onLogout() : onShowModal())} // DEMO HANDLER
-						className="ml-3 flex w-24 items-center justify-center bg-white px-6 py-2"
+						 <FaUserAlt fill='#000000' />
+					</Button>
+					<Button
+						onClick={() => (username ? onLogout() : onShowModal())} // DEMO HANDLER
+						className="ml-3 flex w-24 items-center justify-center px-6 py-2
+						bg-white cursor-pointer rounded-full text-black
+						"
 					>
-						{/* {username ? 'Выйти' : 'Войти'} */}
-						Войти
-					</button>
+						{username ? 'Выйти' : 'Войти'}
+					</Button>
 					{/* {isAuthModal && <AuthModal isOpen={isAuthModal} onClose={() => onCloseModal()} />} */}
-					<button
+					<Button
 						className={twMerge(
-							`hover:opacity-1 pointer-events-none absolute z-30
-							flex h-full w-full select-none
+							`absolute pointer-events-none 
+							flex w-full select-none
 							items-center justify-center bg-transparent
-							px-6 py-2 transition-all duration-300`,
-
-							// isLoading && 'pointer-events-auto cursor-wait bg-green-500'
+							px-6 py-2 my-3 transition-all duration-300`,
+							isLoading && 'pointer-events-auto cursor-wait bg-green-500'
 						)}
 					>
-						{/* <HeaderLoader className={isLoading ? 'transition ' : 'opacity-0'} /> */}
-					</button>
+						<div className={twMerge(isLoading ? 'transition' : 'opacity-0', 
+							'pointer-events-none select-none')}
+						>
+							<WidgetLoader />
+						</div>
+					</Button>
 				</div>
 			</div>
 		</div>
