@@ -1,4 +1,4 @@
-import { AlbumsCollection } from "entities/Album"
+import { AlbumsCollection } from "@/entities/album"
 
 import trapMetalImg from 'shared/assets/trap_metal.webp';
 import heavyMetalImg from 'shared/assets/heavy_metal.webp';
@@ -9,7 +9,7 @@ export const ALBUMS: AlbumsCollection = [
     {
         author: "Spotify",
         id: 0,
-        imagePath: likedImg,
+        // imagePath: likedImg,
         title: "Популярные треки",
         user_id: 0,
         trackes_id: [3, 9, 10, 16, 17],
@@ -18,7 +18,7 @@ export const ALBUMS: AlbumsCollection = [
     {
         author: "Architects",
         id: 1,
-        imagePath: heavyMetalImg,
+        // imagePath: heavyMetalImg,
         title: "Best trackes",
         user_id: 1,
         trackes_id: [0, 1, 2],
@@ -27,7 +27,7 @@ export const ALBUMS: AlbumsCollection = [
     {
         author: "Cyberpunk",
         id: 2,
-        imagePath: atmImg,
+        // imagePath: atmImg,
         title: "Cyberpunk game OST",
         user_id: 1,
         trackes_id: [4,5,6,7,8],
@@ -37,7 +37,7 @@ export const ALBUMS: AlbumsCollection = [
     {
         author: "DVRST",
         id: 3,
-        imagePath: heavyMetalImg,
+        // imagePath: heavyMetalImg,
         title: "Best",
         user_id: 1,
         trackes_id: [9,10],
@@ -47,7 +47,7 @@ export const ALBUMS: AlbumsCollection = [
     {
         author: "Istasha The Scrub",
         id: 4,
-        imagePath: trapMetalImg,
+        // imagePath: trapMetalImg,
         title: "Stump",
         user_id: 1,
         trackes_id: [11,12,13,14,15],
@@ -57,7 +57,7 @@ export const ALBUMS: AlbumsCollection = [
     {
         author: "Kito ft. Reija Lee",
         id: 5,
-        imagePath: atmImg,
+        // imagePath: atmImg,
         title: "UserAlbum",
         user_id: 1,
         trackes_id: [16,17],

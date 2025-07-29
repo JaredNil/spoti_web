@@ -1,16 +1,1 @@
-{
-  "app": {
-    "[project]/src/app/page": [
-      "static/media/SegoeSemibold-s.p.5ce7a368.woff2"
-    ],
-    "[project]/src/app/search/page": [
-      "static/media/SegoeSemibold-s.p.5ce7a368.woff2"
-    ],
-    "[project]/src/app/upload/page": [
-      "static/media/SegoeSemibold-s.p.5ce7a368.woff2"
-    ]
-  },
-  "appUsingSizeAdjust": true,
-  "pages": {},
-  "pagesUsingSizeAdjust": false
-}
+{"pages":{},"app":{},"appUsingSizeAdjust":false,"pagesUsingSizeAdjust":false}

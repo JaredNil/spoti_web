@@ -3,8 +3,8 @@ export interface Track {
 	userId: number;
 	author: string;
 	title: string;
-	songLink: string;
-	imageLink: string;
+	songLink?: string;
+	imageLink?: string;
 	hash?: string; // empty, for demo. Include in interface 
 }
 

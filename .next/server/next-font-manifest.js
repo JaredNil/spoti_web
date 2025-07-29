@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST="{\n  \"app\": {\n    \"[project]/src/app/page\": [\n      \"static/media/SegoeSemibold-s.p.5ce7a368.woff2\"\n    ],\n    \"[project]/src/app/search/page\": [\n      \"static/media/SegoeSemibold-s.p.5ce7a368.woff2\"\n    ],\n    \"[project]/src/app/upload/page\": [\n      \"static/media/SegoeSemibold-s.p.5ce7a368.woff2\"\n    ]\n  },\n  \"appUsingSizeAdjust\": true,\n  \"pages\": {},\n  \"pagesUsingSizeAdjust\": false\n}"
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{},"appUsingSizeAdjust":false,"pagesUsingSizeAdjust":false}';

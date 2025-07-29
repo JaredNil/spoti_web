@@ -4,7 +4,7 @@ export interface AlbumInterface {
 	author: string;
 	title: string;
 	description?: string;
-	imagePath: string;
+	imagePath?: string;
 	trackes_id: number[];
 	creationDate?: Date;
 }
