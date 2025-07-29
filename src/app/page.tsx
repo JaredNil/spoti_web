@@ -1,6 +1,11 @@
-import { AlbumListType, AlbumListProvider, QuickBar, BringAuth } from '@/components/homepage';
+import { AlbumListProvider, QuickBar, BringAuth } from '@/components/homepage';
 import { AlbumInterface } from '@/entities/album';
 import { FC } from 'react';
+
+export enum AlbumListType {
+	COMMON = 0,
+	USER = 1,
+}
 
 const Home: FC = () => {
 
