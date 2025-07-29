@@ -1,12 +1,12 @@
 export { Album } from './ui/album';
 
-export { AlbumSceletonFlat } from './ui/AlbumSceletonFlat';
+export { AlbumSceletonFlat } from './ui/albumSceletonFlat';
 
 // export { fetchUserAlbums } from './model/service/fetchUserAlbums';
 // 
 // export { fetchCommonAlbums } from './model/service/fetchCommonAlbums';
 
-export { AlbumSceleton } from './ui/albumSkeleton';
+export { AlbumSceleton } from './ui/albumSceleton';
 
 // export { albumAction } from './model/slice/albumSlice';
 

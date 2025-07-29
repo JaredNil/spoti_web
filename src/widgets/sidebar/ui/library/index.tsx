@@ -1,7 +1,6 @@
 'use client'
 
-import { useCallback, useState } from "react";
-import { useSelector } from "react-redux";
+import { useCallback } from "react";
 
 // import { fetchCommonAlbums, fetchUserAlbums, 
 	// getAlbumCommonData, getAlbumUserData } from "entities/Album";
@@ -24,7 +23,7 @@ export const Library: React.FC = () => {
 	// const isLoading = useSelector(getIsLoading)
 	const isLoading = false
 	// const username = useSelector(getUsername); // userState
-	const username = 'user'
+	// const username = 'user'
 	// const commonAlbums = useSelector(getAlbumCommonData) // albumState
 	// const userAlbums = useSelector(getAlbumUserData) // albumState
 

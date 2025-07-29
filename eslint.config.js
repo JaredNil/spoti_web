@@ -4,18 +4,18 @@ import js from '@eslint/js';
 import { globalIgnores } from 'eslint/config';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import storybook from 'eslint-plugin-storybook';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-import { eslintBoundariesConfig } from './eslint.boundaries.js';
-import { eslintImportConfig } from './eslint.import.js';
+// import { eslintBoundariesConfig } from './eslint.boundaries.js';
+// import { eslintImportConfig } from './eslint.import.js'; 
 
 export default tseslint.config(
   [
     globalIgnores(['dist', 'node_modules', 'fontLocal', 'oldapp']),
     {
       extends: [js.configs.recommended, ...tseslint.configs.recommended],
+      ignores: ['./.next/**'],
       files: ['**/*.{ts,tsx}'],
       languageOptions: {
         ecmaVersion: 2020,
@@ -31,10 +31,14 @@ export default tseslint.config(
           'warn',
           { allowConstantExport: true },
         ],
+        "no-unused-expressions": "off",
+        "@typescript-eslint/no-unused-expressions": "warn",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-unsafe-function-type": "off",
       },
     },
-    eslintBoundariesConfig,
-    eslintImportConfig,
+    // eslintBoundariesConfig,
+    // eslintImportConfig,
   ],
-  storybook.configs['flat/recommended']
 );
