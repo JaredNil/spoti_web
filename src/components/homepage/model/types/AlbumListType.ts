@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 export enum AlbumListType {
 	COMMON = 0,
 	USER = 1,
