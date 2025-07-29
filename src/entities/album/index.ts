@@ -1,4 +1,4 @@
-export { Album } from './ui/Album';
+export { Album } from './ui/album';
 
 export { AlbumSceletonFlat } from './ui/AlbumSceletonFlat';
 
@@ -6,7 +6,7 @@ export { AlbumSceletonFlat } from './ui/AlbumSceletonFlat';
 // 
 // export { fetchCommonAlbums } from './model/service/fetchCommonAlbums';
 
-export { AlbumSceleton } from './ui/AlbumSkeleton';
+export { AlbumSceleton } from './ui/albumSkeleton';
 
 // export { albumAction } from './model/slice/albumSlice';
 
@@ -15,6 +15,6 @@ export { AlbumSceleton } from './ui/AlbumSkeleton';
 export type { AlbumsSchema } from './model/types/albumsSchema';
 export type { AlbumInterface, AlbumsCollection } from './model/types/album';
 
-export { AlbumFlat } from './ui/AlbumFlat';
+export { AlbumFlat } from './ui/albumFlat';
 
 
