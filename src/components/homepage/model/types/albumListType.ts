@@ -1,4 +1,4 @@
-export enum AlbumListType {
+enum AlbumListType {
 	COMMON = 0,
 	USER = 1,
 }

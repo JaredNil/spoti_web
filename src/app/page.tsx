@@ -1,6 +1,9 @@
+'use client'
 import { AlbumListProvider, QuickBar, BringAuth } from '@/components/homepage';
 import { AlbumInterface } from '@/entities/album';
+import { userAction } from '@/entities/user';
 import { FC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 enum AlbumListType {
 	COMMON = 0,
@@ -14,16 +17,28 @@ const Home: FC = () => {
 	// };
 
 	// const username = useSelector(getUsername);
-  const username = 'user'
+  const username = useSelector((state: any) => state.user.username);
 
 	// const isLoadingData = useSelector(getIsLoadingData);
   const isLoadingData = false
 
 	// const commonAlbums = useSelector((state: StateSchema) => state.albums.commonAlbums);
-  const commonAlbums = [] as AlbumInterface[]
+	const commonAlbums = [] as AlbumInterface[]
 	// const userAlbums = useSelector((state: StateSchema) => state.albums.userAlbums);
 
 	  const userAlbums = [] as AlbumInterface[]
+
+	  const dispatch = useDispatch()
+
+	
+
+	  const clickTest = ()=>{
+		console.log('click')
+              dispatch(userAction.setUserData({
+                username: 'Dem32o',
+                isLoading: false,
+              }))
+            }
 
 	return (
 			<>
@@ -51,6 +66,9 @@ const Home: FC = () => {
 					) : (
 						<BringAuth isLoadingData={isLoadingData} />
 					)}
+					            <div onClick={clickTest}>
+                {username}
+            </div>
 				</div>
 			</>
 	);
