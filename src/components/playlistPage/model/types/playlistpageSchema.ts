@@ -1,9 +1,9 @@
 import { AlbumInterface } from "@/entities/album";
 // import { Trackes } from "@/entities/track";
 
-export interface PlaylistPageSchema {
+export interface playlistpageSchema {
 	isLoadingData: boolean;
-	isLoadingTrackes: boolean;
+	isLoadingTrackes: boolean; 
 	error: string;
 	isShowTrackModal: boolean;
 	album_id: number | null;

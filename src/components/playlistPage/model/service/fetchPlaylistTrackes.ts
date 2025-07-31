@@ -5,7 +5,7 @@
 // import { Trackes } from 'entities/Track';
 
 
-// export const fetchPlaylistTrackes = createAsyncThunk<Trackes, number[], ThunkConfig<string>>('playListPage/fetchPlaylistTrackes',
+// export const fetchPlaylistTrackes = createAsyncThunk<Trackes, number[], ThunkConfig<string>>('playlistPage/fetchPlaylistTrackes',
 // 	async (trackesIds, thunkAPI) => {
 // 		// const { rejectWithValue, extra, dispatch } = thunkAPI;
 
@@ -31,7 +31,7 @@
 // 		// 			'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
 // 		// 		},
 // 		// 	});
-// 		// 	dispatch(playListPageSlice.offLoadingData());
+// 		// 	dispatch(playlistPageSlice.offLoadingData());
 // 		// 	return res.data;
 // 		// } catch (error) {
 // 		// 	return rejectWithValue('error');

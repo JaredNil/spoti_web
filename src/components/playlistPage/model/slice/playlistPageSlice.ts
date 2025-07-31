@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { PlaylistPageSchema } from '../types/playlistpageSchema';
+import { playlistpageSchema } from '../types/playlistpageSchema';
 
 // import { fetchPlaylistData } from '../service/fetchPlaylistData';
 // import { fetchPlaylistTrackes } from '../service/fetchPlaylistTrackes';
-// import { PlayListPageSchema } from '../types/PlaylistPageSchema';
+// import { playlistPageSchema } from '../types/playlistPageSchema';
 
-const initialState: PlaylistPageSchema = {
+const initialState: playlistpageSchema = {
 	isLoadingData: true,
 	isLoadingTrackes: true,
 	error: '',
@@ -16,8 +16,8 @@ const initialState: PlaylistPageSchema = {
 	// trackes: []
 };
 
-export const playListPageSlice = createSlice({
-	name: 'playlistpage',
+export const playlistPageSlice = createSlice({
+	name: 'playlistPage',
 	initialState,
 	reducers: {
 		showTrackModal: (state) => {
@@ -72,5 +72,5 @@ export const playListPageSlice = createSlice({
 	},
 });
 
-export const { actions: playListPageAction } = playListPageSlice;
-export const { reducer: playListPageReducer } = playListPageSlice;
+export const { actions: playlistPageAction } = playlistPageSlice;
+export const { reducer: playlistPageReducer } = playlistPageSlice;

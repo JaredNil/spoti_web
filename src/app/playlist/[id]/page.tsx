@@ -4,11 +4,11 @@ import { FC } from "react";
 
 
 import { DynamicModuleLoader, ReducerList } from "@/app/(providers)/storeProvider";
-import { playListPageReducer, PlaylistTitle } from "@/components/playlistPage";
+import { playlistPageReducer, PlaylistTitle } from "@/components/playlistPage";
 import { useAppDispatch } from "@/shared/hooks";
 
 const reducers: ReducerList = {
-	playListPage: playListPageReducer,
+	playlistpage: playlistPageReducer,
 };
 
 const PlaylistPage: FC = () => {
@@ -22,30 +22,30 @@ const PlaylistPage: FC = () => {
 
     // 	useEffect(()=>{
 	// 	if (id) dispatch(fetchPlaylistData(Number(id)))
-	// 	else dispatch(playListPageAction.albumNotFound)
+	// 	else dispatch(playlistPageAction.albumNotFound)
 	// },[])
 	// // useEffect(()=>{
 	// 	if(trackes_id) dispatch(fetchPlaylistTrackes(trackes_id))
 	// }, [trackes_id])
 
 	// const onCloseModal = useCallback(() => {
-	// 	dispatch(playListPageAction.removeTrackModal());
+	// 	dispatch(playlistPageAction.removeTrackModal());
 	// }, [dispatch]);
 
 	// const onShowModal = useCallback(() => {
-	// 	dispatch(playListPageAction.showTrackModal());
+	// 	dispatch(playlistPageAction.showTrackModal());
     // }, [dispatch]);
 
 
     return (
-    <DynamicModuleLoader reducers={reducers}>
-			<div className="flex w-full flex-col">
-                <p>Playlist: {id}</p>
-				<PlaylistTitle />
-				{/* <TrackViewVender onShowModal={onShowModal} /> */}
-				{/* {isShowTrackModal && <TrackModal isOpen={isShowTrackModal} onClose={() => onCloseModal()} />} */}
-			</div>
-	</DynamicModuleLoader>
+		<DynamicModuleLoader reducers={reducers}>
+				<div className="flex w-full flex-col">
+					<p>Playlist: {id}</p>
+					<PlaylistTitle />
+					{/* <TrackViewVender onShowModal={onShowModal} /> */}
+					{/* {isShowTrackModal && <TrackModal isOpen={isShowTrackModal} onClose={() => onCloseModal()} />} */}
+				</div>
+		</DynamicModuleLoader>
     );
 };
 

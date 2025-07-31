@@ -6,7 +6,7 @@
 // import { Trackes } from 'entities/Track';
 
 
-// export const fetchPlaylistData = createAsyncThunk<AlbumInterface, number, ThunkConfig<string>>('playListPage/fetchPlaylistData',
+// export const fetchPlaylistData = createAsyncThunk<AlbumInterface, number, ThunkConfig<string>>('playlistPage/fetchPlaylistData',
 // 	async (albums_id, thunkAPI) => {
 // 		// const { rejectWithValue, extra, dispatch } = thunkAPI;
 

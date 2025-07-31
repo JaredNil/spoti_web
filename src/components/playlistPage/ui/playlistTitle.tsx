@@ -3,6 +3,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { getAlbum, getIsLoadingData } from '../model/selector/playlistPageSelector';
 
+import { AlbumInterface } from '@/entities/album';
 import { useAppSelector } from '@/shared/hooks';
 
 interface PlaylistTitleProps {
@@ -13,7 +14,15 @@ interface PlaylistTitleProps {
 
 export const PlaylistTitle: React.FC<PlaylistTitleProps> = memo(({ imagePath, title, author }: PlaylistTitleProps) => {
 	const isLoadingData = useAppSelector(getIsLoadingData);
-	const album = useAppSelector(getAlbum)
+	// const album = useAppSelector(getAlbum)
+	const album: AlbumInterface = {
+		imagePath: imagePath || '',
+		title: title || '',
+		author: author || '',
+		id: null,
+		user_id: null,
+		trackes_id: []
+	}
 
 
 	return (
@@ -25,7 +34,8 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = memo(({ imagePath, ti
 						rounded-md "
 					/>
 				) : (
-					<img src={album?.imagePath} alt="cover" />
+					<div></div>
+					// <img src={album?.imagePath} alt="cover" />
 				)}
 			</div>
 			<div className="title__block">
