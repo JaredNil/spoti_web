@@ -14,12 +14,12 @@ enum AlbumListType {
 	COMMON = 0,
 	USER = 1,
 }
-
-
-const Home: FC = () => {
 	const reducers: ReducerList = {
 		homepage: homepageReducer,
 	};
+
+const Home: FC = () => {
+
   	const username = useAppSelector(getUsername);
 
 	// useEffect(()=>{

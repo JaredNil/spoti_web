@@ -1,5 +1,6 @@
+ 
 import { Reducer } from '@reduxjs/toolkit';
-import { FC, ReactNode, useEffect } from 'react';
+import { FC, memo, ReactNode, useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 
 import { ReduxStoreWithManager } from './reducerManager';
@@ -11,7 +12,7 @@ interface DynamicModuleLoaderProps {
 	children: ReactNode;
 }
 
-export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = ({ reducers, children, removeAfterUnmount = true }: DynamicModuleLoaderProps) => {
+export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = memo(({ reducers, children, removeAfterUnmount = true }: DynamicModuleLoaderProps) => {
 
 	useEffect(()=> console.log('DynamicModuleLoader RENDER'))
 	const store = useStore() as ReduxStoreWithManager;
@@ -20,59 +21,24 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = ({ reducers, ch
 	useEffect(() => {
 		Object.entries(reducers).forEach(([name, reducer]): void => {
 			store.reducerManager.add(name as string, reducer as Reducer);
-			dispatch({ type: `@INIT ${name} reducer` });
+			dispatch({ type: `@load ${name}` });
 		});
 
 		return () => {
 			if (removeAfterUnmount) {
-				Object.entries(reducers).forEach(([name, reducer]) => {
+				Object.entries(reducers).forEach(([name]) => {
 					store.reducerManager.remove(name as string);
 					dispatch({
-						type: `@DESTROY ${name} reducer`,
+						type: `@unload ${name}`,
 					});
 				});
 			}
 		};
-	}, []);
+	}, [reducers]);
 
 	return (
     <>
       {children}
     </>
   );
-};
-
-
-// import { useRef, useEffect } from 'react';
-// import { useStore } from 'react-redux';
-
-// import { DynamicReducer } from './types';
-
-// export function useDynamicReducer(
-//   key: string,
-//   reducer: DynamicReducer,
-//   options: { removeOnUnmount?: boolean } = {}
-// ) {
-//   const store = useStore();
-//   const reducerManager = (store as any).reducerManager;
-//   const isAdded = useRef(false);
-
-//   useEffect(() => {
-//     if (!reducerManager) {
-//       console.warn('ReducerManager not found in store');
-//       return;
-//     }
-
-//     if (!reducerManager.has(key)) {
-//       reducerManager.add(key, reducer);
-//       isAdded.current = true;
-//     }
-
-//     return () => {
-//       if (options.removeOnUnmount && isAdded.current) {
-//         reducerManager.remove(key);
-//         isAdded.current = false;
-//       }
-//     };
-//   }, [key, reducer, reducerManager, options.removeOnUnmount]);
-// }
+});
