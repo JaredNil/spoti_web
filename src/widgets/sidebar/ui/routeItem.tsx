@@ -1,7 +1,8 @@
-import { twMerge } from 'tailwind-merge';
-import { memo } from 'react';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { memo } from 'react';
+import { twMerge } from 'tailwind-merge';
+
 import { Icons } from '@/shared/icons';
 
 interface RouteItem {

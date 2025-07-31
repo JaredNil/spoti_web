@@ -1,4 +1,4 @@
-import { AlbumInterface } from './album';
+import { AlbumInterface } from "@/shared/api/album";
 
 export type AlbumsSchema = {
 	isLoading: boolean;

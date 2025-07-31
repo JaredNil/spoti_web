@@ -3,8 +3,7 @@ import { Reducer } from '@reduxjs/toolkit';
 import { FC, memo, ReactNode, useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 
-import { ReduxStoreWithManager } from './reducerManager';
-import { ReducerList } from './types';
+import { ReducerList, ReduxStoreWithManager} from './types';
 
 interface DynamicModuleLoaderProps {
 	reducers: ReducerList;
@@ -34,6 +33,7 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = memo(({ reducer
 				});
 			}
 		};
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [reducers]);
 
 	return (

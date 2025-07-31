@@ -1,7 +1,7 @@
 // import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { ThunkConfig } from 'app/providers/StoreProvider';
-// import { Trackes } from 'entities/Track';
 // import { TRACKES_CONTENT } from 'content/TRACKES_CONTENT';
+// import { Trackes } from 'entities/Track';
 
 // export const searchingTrackes = createAsyncThunk<Trackes, void, ThunkConfig<string>>('searchpage/searchingTrackes',
 // 	async (_, thunkAPI) => {

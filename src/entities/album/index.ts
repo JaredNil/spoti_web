@@ -8,12 +8,13 @@ export { AlbumSceletonFlat } from './ui/albumSceletonFlat';
 
 export { AlbumSceleton } from './ui/albumSceleton';
 
+export type { AlbumInterface } from '@/shared/api/album';
+
 // export { albumAction } from './model/slice/albumSlice';
 
 // export { getAlbumUserData, getAlbumCommonData } from './model/selectors/getAlbumData';
 
 export type { AlbumsSchema } from './model/types/albumsSchema';
-export type { AlbumInterface, AlbumsCollection } from './model/types/album';
 
 export { AlbumFlat } from './ui/albumFlat';
 

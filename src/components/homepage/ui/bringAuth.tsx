@@ -1,7 +1,8 @@
 // import { AuthModal } from 'features/Auth';
-import { Button } from '@/shared/ui/kit/button';
 import React, { useCallback } from 'react';
 import { twMerge } from 'tailwind-merge';
+
+import { Button } from '@/shared/ui/kit/button';
 
 interface BringAuthProps {
 	isLoadingData: boolean;

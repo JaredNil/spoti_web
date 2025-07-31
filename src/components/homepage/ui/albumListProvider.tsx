@@ -1,8 +1,15 @@
-import { AlbumInterface, AlbumSceleton, Album } from '@/entities/album';
 import { memo } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { AlbumListType, getAlbumListTitle } from '../model/types/albumListType';
+
 import { countSkeleton } from '../model/service/countSkeleton';
+import { getAlbumListTitle } from '../model/types/albumListType';
+
+import { AlbumInterface, AlbumSceleton, Album } from '@/entities/album';
+
+enum AlbumListType {
+	COMMON = 0,
+	USER = 1,
+}
 
 interface AlbumListProviderProps {
 	isLoadingData: boolean;

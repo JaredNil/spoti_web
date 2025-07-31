@@ -1,8 +1,7 @@
 "use client"
 
-import { useCallback, useState } from 'react';
-import { Button } from '@/shared/ui/kit/button';
 import { useRouter } from 'next/navigation';
+import { useCallback, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { FaUserAlt } from 'react-icons/fa';
 import { HiHome } from 'react-icons/hi';
@@ -10,6 +9,7 @@ import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2';
 import { TbFileUpload } from 'react-icons/tb';
 import { twMerge } from 'tailwind-merge';
 
+import { Button } from '@/shared/ui/kit/button';
 import { WidgetLoader } from '@/shared/ui/widgetLoader';
 
 // import { AuthModal } from 'features/Auth/ui/AuthModal/AuthModal';

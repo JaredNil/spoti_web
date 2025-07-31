@@ -1,7 +1,7 @@
 "use client";
 // import { Box } from 'shared/ui/Box/Box';
-import { RouteItem } from './routeItem';
 import { Library } from './library';
+import { RouteItem } from './routeItem';
 
 const sidebarRoutes = [
 	{

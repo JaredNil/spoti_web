@@ -1,13 +1,11 @@
 'use client'
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
 import { DynamicModuleLoader, ReducerList } from './(providers)/storeProvider';
 
-import { AlbumListProvider, QuickBar, BringAuth } from '@/components/homepage';
-import { getIsLoadingData } from '@/components/homepage';
-import { homepageAction, homepageReducer } from '@/components/homepage/model/slice/homepageSlice';
-import { AlbumInterface } from '@/entities/album';
+import { AlbumListProvider, QuickBar, BringAuth, homepageReducer, getIsLoadingData } from '@/components/homepage';
 import { getUsername, userAction } from '@/entities/user';
+import { AlbumInterface } from '@/shared/api/album';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks';
 
 enum AlbumListType {

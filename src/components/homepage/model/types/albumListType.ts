@@ -1,8 +1,8 @@
+
 enum AlbumListType {
 	COMMON = 0,
 	USER = 1,
 }
-
 export const getAlbumListTitle = (type: AlbumListType): string => {
 	let title: string;
 	switch (type) {

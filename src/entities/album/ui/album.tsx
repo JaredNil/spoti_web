@@ -1,6 +1,7 @@
 // import { useTransit } from 'shared/lib/hooks/useTransit/useTransit';
 import { FaPlay } from 'react-icons/fa';
-import { AlbumInterface } from '../model/types/album';
+
+import { AlbumInterface } from '../index';
 // import { usePlayer } from 'widgets/Player';
 
 interface AlbumProps {

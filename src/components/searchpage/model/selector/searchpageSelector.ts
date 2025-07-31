@@ -1,3 +1,3 @@
-// import { SearchpageSchema } from '../types/SearchpageSchema';
+import { StateSchema } from '@/shared/lib/state';
 
-// export const getIsLoadingPage = (state: SearchpageSchema) => state.isLoading || true;
+export const getIsLoadingPage = (state: StateSchema) => state?.searchpage?.isLoading || true;

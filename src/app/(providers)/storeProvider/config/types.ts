@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
-import { AnyAction, Reducer } from '@reduxjs/toolkit';
+import { AnyAction, EnhancedStore, Reducer } from '@reduxjs/toolkit';
 
 import { StateSchema } from '@/shared/lib/state';
 
@@ -13,10 +13,11 @@ export interface DynamicReducer<S = any> extends Reducer<S, AnyAction> {}
 
 export interface ReducerManager {
   getReducerMap: () => Record<string, DynamicReducer>;
+  getMountedReducers: () => MountedReducers;
   reduce: (state: any, action: AnyAction) => any;
   add: (key: string, reducer: DynamicReducer) => void;
   remove: (key: string) => void;
-  has: (key: string) => boolean;
+  // has: (key: string) => boolean;
 }
 
 export interface StaticReducers {
@@ -26,15 +27,14 @@ export interface StaticReducers {
 export interface ReducerList{
 	[key: string]: Reducer;
 };
-// export interface RootState {
-//   app: any; // замените на реальный тип вашего app состояния
-//   user: any; // замените на реальный тип вашего user состояния
-  
-//   // Динамические редьюсеры (опциональные)
-//   [key: string]: any;
-// }
 
-// Тип для конфигурации store
+export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
+	reducerManager: ReducerManager;
+}
+
+export type StateSchemaKey = keyof StateSchema;
+export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
+
 export interface StoreConfig {
     initialState?: StateSchema;
     staticReducers: StaticReducers;

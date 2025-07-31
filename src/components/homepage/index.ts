@@ -1,3 +1,5 @@
+export { homepageAction, homepageReducer } from './model/slice/homepageSlice';
+
 export { BringAuth } from './ui/bringAuth';
 
 export { QuickBar } from './ui/quickBar';

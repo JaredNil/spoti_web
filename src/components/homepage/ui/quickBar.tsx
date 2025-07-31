@@ -1,5 +1,6 @@
-import { AlbumFlat,AlbumSceletonFlat } from '@/entities/album';
 import Image from 'next/image';
+
+import { AlbumFlat,AlbumSceletonFlat } from '@/entities/album';
 
 interface QuickBarProps {
 	isLoadingData: boolean;

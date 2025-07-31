@@ -7,9 +7,11 @@ import { useCallback } from "react";
 // import { getUsername } from "entities/User";
 
 // import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { WidgetLoader } from "@/shared/ui/widgetLoader";
-import '@/shared/ui/widgetLoader/headerLoader.css'
 import { LibraryCreation } from "./libraryCreation";
+
+import { WidgetLoader } from "@/shared/ui/widgetLoader";
+
+import '@/shared/ui/widgetLoader/headerLoader.css'
 
 // import { LibraryItem } from "./LibraryItem";
 // import { LibraryCreation } from "./LibraryCreation";
@@ -31,7 +33,6 @@ export const Library: React.FC = () => {
 
 	const onShowAuthModal = useCallback(() => {
 	// 	setIsOpenAuthModal(true);
-	()=>{}
 	}, []);
 
 	// const onCloseAuthModal = useCallback(() => {

@@ -1,3 +1,3 @@
 import { StateSchema } from "@/shared/lib/state";
 
-export const getUsername = (state: StateSchema) => state.user.username || '';
+export const getUsername = (state: StateSchema) => state?.user?.username || '';
