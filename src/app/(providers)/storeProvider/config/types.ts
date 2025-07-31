@@ -1,10 +1,16 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 import { AnyAction, Reducer } from '@reduxjs/toolkit';
 
-// Базовые типы для динамических редьюсеров
+import { StateSchema } from '@/shared/lib/state';
+
+export type DeepPartial<T> = {
+	[P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+};
+export type OptionalRecord<K extends keyof any, T> = {
+    [P in K]?: T;
+};
 export interface DynamicReducer<S = any> extends Reducer<S, AnyAction> {}
 
-// Интерфейс для менеджера редьюсеров
 export interface ReducerManager {
   getReducerMap: () => Record<string, DynamicReducer>;
   reduce: (state: any, action: AnyAction) => any;
@@ -13,24 +19,25 @@ export interface ReducerManager {
   has: (key: string) => boolean;
 }
 
-// Тип для статических редьюсеров (обязательные)
 export interface StaticReducers {
   [key: string]: DynamicReducer;
 }
 
-// Тип для RootState с учетом динамических редьюсеров
-export interface RootState {
-  // Обязательные редьюсеры
-  app: any; // замените на реальный тип вашего app состояния
-  user: any; // замените на реальный тип вашего user состояния
+export interface ReducerList{
+	[key: string]: Reducer;
+};
+// export interface RootState {
+//   app: any; // замените на реальный тип вашего app состояния
+//   user: any; // замените на реальный тип вашего user состояния
   
-  // Динамические редьюсеры (опциональные)
-  [key: string]: any;
-}
+//   // Динамические редьюсеры (опциональные)
+//   [key: string]: any;
+// }
 
 // Тип для конфигурации store
 export interface StoreConfig {
-  staticReducers: StaticReducers;
-  middleware?: any[];
-  devTools?: boolean;
+    initialState?: StateSchema;
+    staticReducers: StaticReducers;
+    middleware?: any[];
+    devTools?: boolean;
 }

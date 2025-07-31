@@ -1,13 +1,14 @@
 'use client'
+import localFont from 'next/font/local'
 import { Suspense } from "react";
 import { twMerge } from "tailwind-merge";
 
+import { GeneralProviders } from "./(providers)";
+
+import Page from "@/shared/ui/page";
 import { Header } from "@/widgets/header";
 import { Sidebar } from "@/widgets/sidebar";
-import Page from "@/shared/ui/page";
 import "@/shared/css/index.css";
-import localFont from 'next/font/local'
-import { GeneralProviders } from "./(providers)";
 
 const SegoeUI = localFont({ src: '../shared/font/SegoeSemibold.woff2' })
 
@@ -17,7 +18,7 @@ export default function RootLayout({
 }>) {
 
 	// const { theme } = useTheme();
-	// const isActivePlayer = useSelector(getIsActivePlayer)
+	// const isActivePlayer = useAppSelector(getIsActivePlayer)
 
 
   return (
@@ -28,6 +29,7 @@ export default function RootLayout({
             font-main font-bold ${SegoeUI.className}`}
           >
 			    <Suspense fallback="">
+
             <GeneralProviders>
               <div className={twMerge("flex overflow-x-auto h-full", 
                 // (isActivePlayer) ? 'h-full pb-12': 'h-full'
@@ -40,9 +42,9 @@ export default function RootLayout({
                   </Page>
                 </main>
               </div>
+				    {/* {isActivePlayer && <Player />}	 */}
             </GeneralProviders>
 
-				    {/* {isActivePlayer && <Player />}	 */}
 			    </Suspense>
           </div>
       </body>

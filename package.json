@@ -2,6 +2,7 @@
   "name": "spoti_web",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -29,6 +30,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9.32.0",
     "eslint-config-next": "15.4.4",
+    "eslint-plugin-boundaries": "^5.0.1",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "prettier": "^3.6.2",
     "tailwindcss": "^4",

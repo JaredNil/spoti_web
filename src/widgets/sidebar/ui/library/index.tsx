@@ -20,12 +20,12 @@ export const Library: React.FC = () => {
 
 	// const [isOpenAuthModal, setIsOpenAuthModal] = useState(false);
 
-	// const isLoading = useSelector(getIsLoading)
+	// const isLoading = useAppSelector(getIsLoading)
 	const isLoading = false
-	// const username = useSelector(getUsername); // userState
+	// const username = useAppSelector(getUsername); // userState
 	// const username = 'user'
-	// const commonAlbums = useSelector(getAlbumCommonData) // albumState
-	// const userAlbums = useSelector(getAlbumUserData) // albumState
+	// const commonAlbums = useAppSelector(getAlbumCommonData) // albumState
+	// const userAlbums = useAppSelector(getAlbumUserData) // albumState
 
 	// const dispatch = useAppDispatch()
 

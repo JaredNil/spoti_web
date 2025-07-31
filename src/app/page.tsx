@@ -1,26 +1,32 @@
 'use client'
+import { FC, useEffect } from 'react';
+
+import { DynamicModuleLoader, ReducerList } from './(providers)/storeProvider';
+
 import { AlbumListProvider, QuickBar, BringAuth } from '@/components/homepage';
+import { getIsLoadingData } from '@/components/homepage';
+import { homepageAction, homepageReducer } from '@/components/homepage/model/slice/homepageSlice';
 import { AlbumInterface } from '@/entities/album';
-import { userAction } from '@/entities/user';
-import { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { getUsername, userAction } from '@/entities/user';
+import { useAppDispatch, useAppSelector } from '@/shared/hooks';
 
 enum AlbumListType {
 	COMMON = 0,
 	USER = 1,
 }
 
+
 const Home: FC = () => {
+	const reducers: ReducerList = {
+		homepage: homepageReducer,
+	};
+  	const username = useAppSelector(getUsername);
 
-	// const reducers: ReducerList = {
-	// 	homepage: homepageReducer,
-	// };
+	// useEffect(()=>{
+	// 	dispatch(homepageAction.onLoadingData())
+	// })
 
-	// const username = useSelector(getUsername);
-  const username = useSelector((state: any) => state.user.username);
-
-	// const isLoadingData = useSelector(getIsLoadingData);
-  const isLoadingData = false
+  	const isLoadingData = useAppSelector(getIsLoadingData)
 
 	// const commonAlbums = useSelector((state: StateSchema) => state.albums.commonAlbums);
 	const commonAlbums = [] as AlbumInterface[]
@@ -28,7 +34,7 @@ const Home: FC = () => {
 
 	  const userAlbums = [] as AlbumInterface[]
 
-	  const dispatch = useDispatch()
+	  const dispatch = useAppDispatch()
 
 	
 
@@ -41,7 +47,7 @@ const Home: FC = () => {
             }
 
 	return (
-			<>
+			<DynamicModuleLoader reducers={reducers} removeAfterUnmount={true}>
 				<div className="mb-2">
 					<h1 className="relative text-3xl font-semibold text-white select-none">
 						{`Welcome back,  ${(username) ? username : 'Гость'}`}
@@ -70,7 +76,7 @@ const Home: FC = () => {
                 {username}
             </div>
 				</div>
-			</>
+			</DynamicModuleLoader>
 	);
 };
 

@@ -1,5 +1,4 @@
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-
+import typescriptParser from '@typescript-eslint/parser';
 import js from '@eslint/js';
 import { globalIgnores } from 'eslint/config';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -7,26 +6,41 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-// import { eslintBoundariesConfig } from './eslint.boundaries.js';
-// import { eslintImportConfig } from './eslint.import.js'; 
+import { eslintBoundariesConfig } from './config/eslint.boundaries.config.js';
+import { eslintImportConfig } from './config/eslint.import.config.js';
+import { eslintUseDispatchConfig } from './config/eslint.useDispatch.config.js';
+import { eslintUseSelectorConfig } from './config/eslint.useSelector.config.js';
 
-export default tseslint.config(
-  [
-    globalIgnores(['dist', 'node_modules', 'fontLocal', 'oldapp']),
-    {
-      extends: [js.configs.recommended, ...tseslint.configs.recommended],
-      ignores: ['./.next/**'],
-      files: ['**/*.{ts,tsx}'],
-      languageOptions: {
-        ecmaVersion: 2020,
-        globals: globals.browser,
-      },
-      plugins: {
+export default tseslint.config([
+  {
+    ignores: [
+      '.next/**',
+      'node_modules/**',
+      'dist/**',
+      'build/**',
+      'coverage/**',
+      '*.config.{js,ts}',
+    ],
+  },
+  {
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    files: ['src/**/*.{ts,tsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parser: typescriptParser,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true
+        }
+      }
+    },
+    plugins: {
         'react-hooks': reactHooks,
         'react-refresh': reactRefresh,
-      },
-      rules: {
-        ...reactHooks.configs.recommended.rules,
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
         'react-refresh/only-export-components': [
           'warn',
           { allowConstantExport: true },
@@ -36,9 +50,10 @@ export default tseslint.config(
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-unsafe-function-type": "off",
-      },
     },
-    // eslintBoundariesConfig,
-    // eslintImportConfig,
-  ],
-);
+  },
+  eslintUseDispatchConfig,
+  eslintUseSelectorConfig,
+  // eslintBoundariesConfig,
+  eslintImportConfig,
+]);

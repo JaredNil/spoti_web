@@ -33,9 +33,9 @@ export const Header: React.FC<HeaderProps> = ({ children, className }: HeaderPro
 
 	// const dispatch = useAppDispatch();
 
-	// const username = useSelector(getUsername);
+	// const username = useAppSelector(getUsername);
 	const username = 'user'
-	// const isLoading = useSelector(getIsLoadingUser);
+	// const isLoading = useAppSelector(getIsLoadingUser);
 	const isLoading = false
 
 	const onCloseModal = useCallback(() => {
