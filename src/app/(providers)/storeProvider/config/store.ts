@@ -1,37 +1,45 @@
 
 import { Action, configureStore } from '@reduxjs/toolkit';
+import { AxiosInstance } from 'axios';
 
 import { createReducerManager } from './reducerManager';
-import { StoreConfig } from './types';
+import { ReduxStoreWithManager, StoreConfig } from './types';
 
 import { userReducer } from '@/entities/user';
-import { $api, rtkApi, ThunkExtraArg } from '@/shared/api/rtkApi';
+import { $api, rtkApi } from '@/shared/api/rtkApi';
+import { StateSchema } from '@/shared/lib/state';
 
-export const staticReducers = {
-  user: userReducer,
+export interface ThunkExtraArg {
+	api: typeof $api;
+	// navigate?: AppRouterInstance;
+}
 
-  [rtkApi.reducerPath]: rtkApi.reducer,
-};
+export interface ThunkConfig<T> {
+	serializedErrorType: T;
+	extra: ThunkExtraArg;
+	state: StateSchema;
+}
 
-export function createStore(config: StoreConfig) {
-  const reducerManager = createReducerManager(staticReducers);
+export type RootState = ReturnType<ReturnType<typeof configureStore>['getState']>;
 
-  const extraArg: ThunkExtraArg = {
-    api: $api,
-    // navigate: config.navigate,
-  };
+
+export function createStore() {
+
+  const reducerManager = createReducerManager({ 
+    user: userReducer,
+    [rtkApi.reducerPath]: rtkApi.reducer,
+  });
 
   const store = configureStore({
-    preloadedState: config?.initialState,
     reducer: (state, action) => {
       return reducerManager.reduce(state, action);
     },
-    // middleware: (getDefaultMiddleware) =>
-    //   getDefaultMiddleware({
-    //     thunk: {
-    //       extraArgument: extraArg,
-    //     },
-    //   }).concat(config.middleware || []),
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        thunk: {
+          extraArgument: { api: $api },
+        },
+      }),
     devTools: true,
   });
 

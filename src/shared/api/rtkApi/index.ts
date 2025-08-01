@@ -29,13 +29,3 @@ export const $api = axios.create({
 	// },
 });
 
-export interface ThunkConfig<T> {
-	serializedErrorType: T;
-	extra: ThunkExtraArg;
-	state: StateSchema;
-}
-
-export interface ThunkExtraArg {
-	api: AxiosInstance;
-	navigate?: AppRouterInstance;
-}

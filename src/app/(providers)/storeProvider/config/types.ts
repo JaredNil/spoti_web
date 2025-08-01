@@ -39,9 +39,5 @@ export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 
 export interface StoreConfig {
     initialState?: StateSchema;
-    staticReducers: StaticReducers;
-    middleware?: Middleware;
-    devTools?: boolean;
-    navigate?: () => AppRouterInstance
 }
 

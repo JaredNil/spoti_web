@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { ThunkConfig } from "@/shared/api/rtkApi";
+
+import { ThunkConfig } from "@/app/(providers)/storeProvider/config/store";
 import { Trackes } from "@/shared/api/track";
 
 export const fetchPlaylistData = createAsyncThunk<Trackes, number, ThunkConfig<string>>('playlistPage/fetchPlaylistData',
@@ -8,13 +9,8 @@ export const fetchPlaylistData = createAsyncThunk<Trackes, number, ThunkConfig<s
 		const { rejectWithValue, extra, dispatch } = thunkAPI;
 
 		try {
-			const res = await extra.api.get<Trackes>('/user', {
-				headers: {
-					withCredentials: true,
-					'Access-Control-Allow-Origin': '*',
-					'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
-					'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
-				},
+			const res = await extra.api.get<Trackes>('/users', {
+				headers: {},
 			});
 			return res.data;
 		} catch (error) {

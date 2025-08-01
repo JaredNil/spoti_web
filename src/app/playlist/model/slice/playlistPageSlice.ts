@@ -49,6 +49,7 @@ export const playlistPageSlice = createSlice({
 		});
 		builder.addCase(fetchPlaylistData.fulfilled, (state, action) => {
 			state.isLoadingData = false;
+			console.log(action.payload)
 			// state.album = action.payload;
 		});
 		builder.addCase(fetchPlaylistData.rejected, (state, action) => {
