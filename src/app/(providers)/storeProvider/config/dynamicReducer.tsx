@@ -14,11 +14,13 @@ interface DynamicModuleLoaderProps {
 export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = memo(({ reducers, children, removeAfterUnmount = true }: DynamicModuleLoaderProps) => {
 
 	useEffect(()=> console.log('DynamicModuleLoader RENDER'))
+	
 	const store = useStore() as ReduxStoreWithManager;
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		Object.entries(reducers).forEach(([name, reducer]): void => {
+			console.log(name)
 			store.reducerManager.add(name as string, reducer as Reducer);
 			dispatch({ type: `@load ${name}` });
 		});

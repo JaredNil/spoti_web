@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { fetchPlaylistData } from '../service/fetchPlaylistData';
 import { playlistpageSchema } from '../types/playlistpageSchema';
 
 // import { fetchPlaylistData } from '../service/fetchPlaylistData';
@@ -43,18 +44,18 @@ export const playlistPageSlice = createSlice({
 
 	},
 	extraReducers: (builder) => {
-		// builder.addCase(fetchPlaylistData.pending, (state, action) => {
-		// 	state.isLoadingData = true;
-		// });
-		// builder.addCase(fetchPlaylistData.fulfilled, (state, action) => {
-		// 	state.isLoadingData = false;
-		// 	state.album = action.payload;
-		// });
-		// builder.addCase(fetchPlaylistData.rejected, (state, action) => {
-		// 	toastr.error('Данные плейлиста не найдены. Перезагрузите страницу или зайдите позже', 'Ошибка соединения', errorServerToastr);
-		// 	state.album = null;
-		// 	state.isLoadingData = false;
-		// });
+		builder.addCase(fetchPlaylistData.pending, (state, action) => {
+			state.isLoadingData = true;
+		});
+		builder.addCase(fetchPlaylistData.fulfilled, (state, action) => {
+			state.isLoadingData = false;
+			// state.album = action.payload;
+		});
+		builder.addCase(fetchPlaylistData.rejected, (state, action) => {
+			// toastr.error('Данные плейлиста не найдены. Перезагрузите страницу или зайдите позже', 'Ошибка соединения', errorServerToastr);
+			state.album = null;
+			state.isLoadingData = false;
+		});
 
 		// builder.addCase(fetchPlaylistTrackes.pending, (state, action) => {
 		// 	state.isLoadingTrackes = true

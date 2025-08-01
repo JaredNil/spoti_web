@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
-import { AnyAction, EnhancedStore, Reducer } from '@reduxjs/toolkit';
+import { AnyAction, EnhancedStore, Middleware, Reducer } from '@reduxjs/toolkit';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 import { StateSchema } from '@/shared/lib/state';
+
 
 export type DeepPartial<T> = {
 	[P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
@@ -38,6 +40,8 @@ export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 export interface StoreConfig {
     initialState?: StateSchema;
     staticReducers: StaticReducers;
-    middleware?: any[];
+    middleware?: Middleware;
     devTools?: boolean;
+    navigate?: () => AppRouterInstance
 }
+

@@ -1,5 +1,3 @@
-export { PlaylistTitle } from './ui/playlistTitle';
-
 export { getIsLoadingTrackes, getAlbum,getAlbumCreationDate } from './model/selector/playlistPageSelector';
 
 export type { playlistpageSchema } from './model/types/playlistpageSchema';
