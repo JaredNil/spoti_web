@@ -8,13 +8,13 @@ import { UploadpageSchema } from "@/components/uploadpage";
 import { UserSchema } from "@/entities/user";
 
 export interface StateSchema {
-	user: UserSchema;
+  user: UserSchema;
 
-	homepage?: HomepageSchema;
-	accountpage?: AccountpageSchema;
-	searchpage?: SearchpageSchema;
-	uploadpage?: UploadpageSchema;
-	playlistpage?: playlistpageSchema;
-	// [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
-	[key: string]: any;
+  homepage?: HomepageSchema;
+  accountpage?: AccountpageSchema;
+  searchpage?: SearchpageSchema;
+  uploadpage?: UploadpageSchema;
+  playlistpage?: playlistpageSchema;
+  // [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
+  [key: string]: any;
 }

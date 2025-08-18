@@ -1,15 +1,19 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
-import { AnyAction, EnhancedStore, Middleware, Reducer } from '@reduxjs/toolkit';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import {
+  AnyAction,
+  EnhancedStore,
+  Middleware,
+  Reducer,
+} from "@reduxjs/toolkit";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-import { StateSchema } from '@/shared/lib/state';
-
+import { StateSchema } from "@/shared/lib/state";
 
 export type DeepPartial<T> = {
-	[P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
 };
 export type OptionalRecord<K extends keyof any, T> = {
-    [P in K]?: T;
+  [P in K]?: T;
 };
 export interface DynamicReducer<S = any> extends Reducer<S, AnyAction> {}
 
@@ -26,18 +30,17 @@ export interface StaticReducers {
   [key: string]: DynamicReducer;
 }
 
-export interface ReducerList{
-	[key: string]: Reducer;
-};
+export interface ReducerList {
+  [key: string]: Reducer;
+}
 
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
-	reducerManager: ReducerManager;
+  reducerManager: ReducerManager;
 }
 
 export type StateSchemaKey = keyof StateSchema;
 export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 
 export interface StoreConfig {
-    initialState?: StateSchema;
+  initialState?: StateSchema;
 }
-
