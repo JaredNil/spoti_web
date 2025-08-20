@@ -1,8 +1,6 @@
-import { Action, configureStore } from '@reduxjs/toolkit'
-import { AxiosInstance } from 'axios'
+import { configureStore } from '@reduxjs/toolkit'
 
 import { createReducerManager } from './reducerManager'
-import { ReduxStoreWithManager, StoreConfig } from './types'
 
 import { userReducer } from '@/entities/user'
 import { $api, rtkApi } from '@/shared/api/rtkApi'

@@ -1,12 +1,12 @@
-import { ReactNode } from "react";
+'use client'
+import dynamic from 'next/dynamic'
+import { ReactNode } from 'react'
 
-import { StoreProvider } from "./storeProvider/ui/storeProvider";
+const ClientProviders = dynamic(() => import('./ClientProviders'), {
+    ssr: false,
+    loading: () => null,
+})
 
-export const GeneralProviders = ({children}: {children: ReactNode}) =>{
-
-		return (
-            <StoreProvider>
-                {children}
-            </StoreProvider>
-        );
-};
+export const GeneralProviders = ({ children }: { children: ReactNode }) => {
+    return <ClientProviders>{children}</ClientProviders>
+}
