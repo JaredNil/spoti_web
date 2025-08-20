@@ -1,22 +1,29 @@
-// import { createAsyncThunk } from '@reduxjs/toolkit'
+import { ALBUMS } from '../../../../../public/content/ALBUMS_CONTENT'
 
-// import { ThunkConfig } from '@/app/(providers)/storeProvider/config/store'
-
-import { AlbumsCollection } from '@/shared/api/album'
-
+// dev realise
 export async function fetchAlbums(user_id: number) {
-	const res = await fetch(`http://localhost:3000/api/albums`, {
-		method: 'POST',
-		body: JSON.stringify({
-			user_id: user_id,
-		}),
-		headers: {
-			'Content-Type': 'application/json',
-		},
+	const albums = ALBUMS.filter((album) => {
+		if (album.user_id === user_id) {
+			return album
+		}
 	})
-	if (!res.ok) throw new Error(String(res.status))
-	return res.json() as Promise<AlbumsCollection>
+
+	return albums
 }
+
+// export async function fetchAlbums(user_id: number) {
+// 	const res = await fetch(`http://localhost:3000/api/albums`, {
+// 		method: 'POST',
+// 		body: JSON.stringify({
+// 			user_id: user_id,
+// 		}),
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 		},
+// 	})
+// 	if (!res.ok) throw new Error(String(res.status))
+// 	return res.json() as Promise<AlbumsCollection>
+// }
 
 // export const fetchCommonAlbums = createAsyncThunk<
 // 	AlbumsCollection,

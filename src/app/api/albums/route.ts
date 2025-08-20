@@ -13,6 +13,7 @@ export async function POST(request: Request) {
 			return album
 		}
 	})
+	console.log(albums)
 	return new Response(JSON.stringify(albums), {
 		status: 200,
 		headers: { 'Content-Type': 'application/json' },

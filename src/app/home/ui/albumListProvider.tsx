@@ -11,7 +11,7 @@ interface AlbumListProviderProps {
 }
 
 export const AlbumListProvider: React.FC<AlbumListProviderProps> = memo(
-	({ albums, type }: AlbumListProviderProps) => {
+	({ albums = [], type }: AlbumListProviderProps) => {
 		const title = getAlbumListTitle(type)
 
 		return (

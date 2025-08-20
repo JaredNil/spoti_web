@@ -5,7 +5,6 @@ import HomeHeader from './ui/homeHeader'
 
 import { AlbumListProvider, QuickBar, BringAuth } from '@/app/home'
 import { fetchAlbums } from '@/entities/album'
-import { AlbumInterface } from '@/shared/api/album'
 
 export const metadata: Metadata = {
 	title: 'Jarefy',
@@ -15,12 +14,7 @@ export const metadata: Metadata = {
 }
 
 const Home = async () => {
-	// const username = useAppSelector(getUsername)
-
-	const username = 'User'
-
 	const commonAlbums = await fetchAlbums(0)
-	// Request user_id from server
 	const userAlbums = await fetchAlbums(1)
 
 	return (
@@ -32,7 +26,7 @@ const Home = async () => {
 				albums={commonAlbums}
 			/>
 			<AlbumListProvider type={AlbumListType.USER} albums={userAlbums} />
-			{!username && <BringAuth />}
+			<BringAuth />
 		</>
 	)
 }
