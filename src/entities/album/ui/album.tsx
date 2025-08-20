@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { FaPlay } from 'react-icons/fa'
 
 import { AlbumInterface } from '../index'
@@ -21,17 +22,17 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 	// const { start } = usePlayer()
 
 	// const transit = useTransit();
-	// const clickAlbumHandler = (event : React.MouseEvent<HTMLDivElement>) => {
+	// const clickAlbumHandler = (event: React.MouseEvent<HTMLDivElement>) => {
 	// 	if ((event.target as EventTarget & HTMLDivElement)?.tagName != 'A')
-	// 		transit(`/playlist/${id}`);
-	// };
+	// 		transit(`/playlist/${id}`)
+	// }
 	return (
-		<div
+		<Link
+			href={`/playlist/${id}`}
 			className="group relative flex cursor-pointer flex-col 
 				items-center justify-center gap-x-4 overflow-hidden 
 				rounded-md  bg-neutral-400/5 px-3 py-2 transition-all
 				hover:bg-neutral-400/10"
-			// onClick={clickAlbumHandler}
 		>
 			<div
 				className=" relative aspect-square 
@@ -54,7 +55,7 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 					By {author}
 				</p>
 			</div>
-			<a
+			<div
 				// onClick={()=> start(trackes_id)}
 				className="absolute bottom-[32%] right-5 flex items-center justify-center rounded-full 
 				bg-green-500 p-4 opacity-0 drop-shadow-md 
@@ -62,7 +63,7 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 				"
 			>
 				<FaPlay className="text-black pointer-events-none" />
-			</a>
-		</div>
+			</div>
+		</Link>
 	)
 }

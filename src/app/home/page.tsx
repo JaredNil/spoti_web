@@ -1,70 +1,40 @@
-'use client'
+import { Metadata } from 'next'
 
-import { FC } from 'react'
+import { AlbumListType } from './model/types/albumListType'
+import HomeHeader from './ui/homeHeader'
 
-// import { DynamicModuleLoader, ReducerList } from '../(providers)/storeProvider'
+import { AlbumListProvider, QuickBar, BringAuth } from '@/app/home'
+import { fetchAlbums } from '@/entities/album'
+import { AlbumInterface } from '@/shared/api/album'
 
-// import {
-//     AlbumListProvider,
-//     QuickBar,
-//     BringAuth,
-//     homepageReducer,
-//     getIsLoadingData,
-// } from '@/app/home'
-// import { getUsername, userAction } from '@/entities/user'
-// import { AlbumInterface } from '@/shared/api/album'
-// import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+export const metadata: Metadata = {
+	title: 'Jarefy',
+	description:
+		'Jarefy - это музыкальный сервис, который позволяет слушать музыку словно в Spotify, а также слушать музыку, которая была добавлена в избранное.',
+	keywords: ['Jarefy', 'Музыка', 'Spotify', 'Искусство'],
+}
 
-// const reducers: ReducerList = {
-//     homepage: homepageReducer,
-// }
+const Home = async () => {
+	// const username = useAppSelector(getUsername)
 
-const Home: FC = () => {
-    // const username = useAppSelector(getUsername)
-    //
-    // useEffect(()=>{
-    // 	dispatch(homepageAction.onLoadingData())
-    // })
+	const username = 'User'
 
-    // const isLoadingData = useAppSelector(getIsLoadingData)
+	const commonAlbums = await fetchAlbums(0)
+	// Request user_id from server
+	const userAlbums = await fetchAlbums(1)
 
-    // const commonAlbums = useSelector((state: StateSchema) => state.albums.commonAlbums);
-    // const commonAlbums = [] as AlbumInterface[]
-    // // const userAlbums = useSelector((state: StateSchema) => state.albums.userAlbums);
-
-    // const userAlbums = [] as AlbumInterface[]
-
-    return (
-        // <DynamicModuleLoader reducers={reducers} removeAfterUnmount={true}>
-        //     <div className="mb-2">
-        //         <h1 className="relative text-3xl font-semibold text-white select-none">
-        //             {`Welcome back,  ${username ? username : 'Гость'}`}
-        //         </h1>
-        //     </div>
-
-        //     <div className="mt-2">
-        //         <QuickBar isLoadingData={isLoadingData} />
-
-        //         <AlbumListProvider
-        //             type={AlbumListType.COMMON}
-        //             isLoadingData={isLoadingData}
-        //             albums={commonAlbums}
-        //         />
-
-        //         {username ? (
-        //             <AlbumListProvider
-        //                 isLoadingData={isLoadingData}
-        //                 type={AlbumListType.USER}
-        //                 albums={userAlbums}
-        //             />
-        //         ) : (
-        //             <BringAuth isLoadingData={isLoadingData} />
-        //         )}
-        //         <div onClick={clickTest}>{username}</div>
-        //     </div>
-        // </DynamicModuleLoader>
-        <div></div>
-    )
+	return (
+		<>
+			<HomeHeader svUsername={'User'} />
+			<QuickBar />
+			<AlbumListProvider
+				type={AlbumListType.COMMON}
+				albums={commonAlbums}
+			/>
+			<AlbumListProvider type={AlbumListType.USER} albums={userAlbums} />
+			{!username && <BringAuth />}
+		</>
+	)
 }
 
 export default Home
