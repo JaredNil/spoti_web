@@ -1,16 +1,13 @@
-import localFont from 'next/font/local'
-import { Suspense } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { GeneralProviders } from './(providers)'
 
+import AppWrapper from '@/shared/ui/appwrapper'
 import Page from '@/shared/ui/page'
 import { Header } from '@/widgets/header'
 import { Sidebar } from '@/widgets/sidebar'
 
 import '@/shared/css/index.css'
-
-const SegoeUI = localFont({ src: '../shared/font/SegoeSemibold.woff2' })
 
 // export const metadata: Metadata = {
 //     title: 'Jarefy',
@@ -25,11 +22,7 @@ export default function RootLayout({
     return (
         <html lang="ru">
             <body>
-                <div
-                    className={`fixed top-0 left-0 right-0 bottom-0 w-dvw h-vh 
-            bg-black scheme-dark text-white
-            font-main font-bold ${SegoeUI.className}`}
-                >
+                <AppWrapper>
                     <GeneralProviders>
                         <div
                             className={twMerge(
@@ -45,7 +38,7 @@ export default function RootLayout({
                         </div>
                         {/* {isActivePlayer && <Player />}	 */}
                     </GeneralProviders>
-                </div>
+                </AppWrapper>
             </body>
         </html>
     )
