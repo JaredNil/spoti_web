@@ -1,21 +1,17 @@
-export { Album } from './ui/album';
+export { fetchAlbums } from './model/service/fetchAlbums'
 
-export { AlbumSceletonFlat } from './ui/albumSceletonFlat';
+export { Album } from './ui/album'
 
-// export { fetchUserAlbums } from './model/service/fetchUserAlbums';
-// 
-// export { fetchCommonAlbums } from './model/service/fetchCommonAlbums';
+export { AlbumSceletonFlat } from './ui/albumSceletonFlat'
 
-export { AlbumSceleton } from './ui/albumSceleton';
+export { AlbumSceleton } from './ui/albumSceleton'
 
-export type { AlbumInterface } from '@/shared/api/album';
+export type { AlbumInterface } from '@/shared/api/album'
 
 // export { albumAction } from './model/slice/albumSlice';
 
 // export { getAlbumUserData, getAlbumCommonData } from './model/selectors/getAlbumData';
 
-export type { AlbumsSchema } from './model/types/albumsSchema';
+export type { AlbumsSchema } from './model/types/albumsSchema'
 
-export { AlbumFlat } from './ui/albumFlat';
-
-
+export { AlbumFlat } from './ui/albumFlat'

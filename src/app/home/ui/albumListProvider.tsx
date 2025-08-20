@@ -1,49 +1,46 @@
-import { memo } from 'react';
-import { twMerge } from 'tailwind-merge';
+import { memo } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-import { countSkeleton } from '../model/service/countSkeleton';
-import { getAlbumListTitle } from '../model/types/albumListType';
+import { getAlbumListTitle } from '../model/types/albumListType'
+import { AlbumListType } from '../model/types/albumListType'
 
-import { AlbumInterface, AlbumSceleton, Album } from '@/entities/album';
-
-enum AlbumListType {
-	COMMON = 0,
-	USER = 1,
-}
+import { AlbumInterface, AlbumSceleton, Album } from '@/entities/album'
 
 interface AlbumListProviderProps {
-	isLoadingData: boolean;
-	type: AlbumListType;
-	albums: AlbumInterface[];
+	isLoadingData?: boolean
+	type: AlbumListType
+	albums: AlbumInterface[]
 }
 
-export const AlbumListProvider: React.FC<AlbumListProviderProps> = memo(({ isLoadingData, albums, type }: AlbumListProviderProps) => {
-	const sceletonAlbum: string[] = new Array(countSkeleton()).fill('').map((_, i) => String(i));
-	const title = getAlbumListTitle(type);
-	const orderAlbum = [...albums].reverse();
+const sceletonAlbum: string[] = new Array(4).fill('').map((_, i) => String(i))
 
+export const AlbumListProvider: React.FC<AlbumListProviderProps> = memo(
+	({ isLoadingData = false, albums, type }: AlbumListProviderProps) => {
+		const title = getAlbumListTitle(type)
 
-	return (
-		<>
-			<span
-				className={twMerge(
-					`mb-3 mt-5 inline-block
+		return (
+			<>
+				<span
+					className="mb-3 mt-5 inline-block
 					h-full select-none rounded-lg 
-					pr-4 text-2xl `,
-					isLoadingData && ' sceletonHeader text-transparent transition-all duration-500'
-				)}
-			>
-				{!isLoadingData ? title : <span className="text-transparent">{title}</span>}
-			</span>
-			<div
-				className="
-				grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 
-				lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8"
-			>
-				{isLoadingData
-					? sceletonAlbum.map((album) => <AlbumSceleton key={album} />)
-					: orderAlbum.reverse().map((album) => <Album key={album.id} data={album} />)}
-			</div>
-		</>
-	);
-});
+					pr-4 text-2xl"
+				>
+					{title}
+				</span>
+				<div
+					className="
+				    grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 
+				    lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8"
+				>
+					{isLoadingData
+						? sceletonAlbum.map((_, index) => (
+								<AlbumSceleton key={index} />
+							))
+						: albums.map((album) => (
+								<Album key={album.id} data={album} />
+							))}
+				</div>
+			</>
+		)
+	}
+)

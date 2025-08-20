@@ -1,21 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit'
 
-import { HomepageSchema } from '../types/homepageSchema';
+import { HomepageSchema } from '../types/homepageSchema'
 
 const initialState: HomepageSchema = {
 	isLoadingData: false,
 	error: '',
-};
+}
 
 export const homepageSlice = createSlice({
 	name: 'homepage',
 	initialState,
 	reducers: {
 		onLoadingData: (state) => {
-			state.isLoadingData = true;
+			state.isLoadingData = true
 		},
 		offLoadingData: (state) => {
-			state.isLoadingData = false;
+			state.isLoadingData = false
 		},
 	},
 	extraReducers: (builder) => {
@@ -32,13 +32,11 @@ export const homepageSlice = createSlice({
 		// 	state.isLoadingData = false;
 		// });
 		// builder.addCase(fetchCommonAlbums.rejected, (state, action) => {
-			// state.error = 'Ошибка загрузки данных с сервера. Перезагрузите страницу или зайдите позже.';
-
-			// toastr.error('Перезагрузите страницу или зайдите позже', 'Ошибка соединения', errorServerToastr);
-
-			// state.isLoadingData = false;
+		// state.error = 'Ошибка загрузки данных с сервера. Перезагрузите страницу или зайдите позже.';
+		// toastr.error('Перезагрузите страницу или зайдите позже', 'Ошибка соединения', errorServerToastr);
+		// state.isLoadingData = false;
 	},
-});
+})
 
-export const { actions: homepageAction } = homepageSlice;
-export const { reducer: homepageReducer } = homepageSlice;
+export const { actions: homepageAction } = homepageSlice
+export const { reducer: homepageReducer } = homepageSlice

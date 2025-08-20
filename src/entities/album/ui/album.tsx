@@ -1,15 +1,22 @@
-// import { useTransit } from 'shared/lib/hooks/useTransit/useTransit';
-import { FaPlay } from 'react-icons/fa';
+import Image from 'next/image'
+import { FaPlay } from 'react-icons/fa'
 
-import { AlbumInterface } from '../index';
+import { AlbumInterface } from '../index'
+
 // import { usePlayer } from 'widgets/Player';
 
 interface AlbumProps {
-	data: AlbumInterface;
+	data: AlbumInterface
 }
 
 export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
-	const { id, author, imagePath, title, trackes_id } = data;
+	const {
+		id,
+		author,
+		imagePath = '/album-placeholder.webp',
+		title,
+		trackes_id,
+	} = data
 
 	// const { start } = usePlayer()
 
@@ -31,13 +38,21 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 					h-full w-full 
 					overflow-hidden rounded-md"
 			>
-					<img className="pointer-events-none w-full select-none object-cover"
-					 src={imagePath} 
-					 alt="/" />
+				<Image
+					src={'/album-placeholder.webp'}
+					alt="/"
+					loading="lazy"
+					className="pointer-events-none w-full select-none object-cover"
+					width={200}
+					height={200}
+					priority={false}
+				/>
 			</div>
 			<div className="flex w-full flex-col items-start gap-y-1 pt-2">
 				<p className="w-full truncate font-semibold">{title}</p>
-				<p className="w-full truncate pb-4 text-sm  text-neutral-400">By {author}</p>
+				<p className="w-full truncate pb-4 text-sm  text-neutral-400">
+					By {author}
+				</p>
 			</div>
 			<a
 				// onClick={()=> start(trackes_id)}
@@ -49,5 +64,5 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 				<FaPlay className="text-black pointer-events-none" />
 			</a>
 		</div>
-	);
-};
+	)
+}

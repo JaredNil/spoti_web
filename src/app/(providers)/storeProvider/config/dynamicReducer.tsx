@@ -1,3 +1,4 @@
+'use client'
 import { Reducer } from '@reduxjs/toolkit'
 import { FC, memo, ReactNode, useEffect } from 'react'
 import { useDispatch, useStore } from 'react-redux'
