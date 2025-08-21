@@ -1,4 +1,5 @@
 export { fetchAlbums } from './model/service/fetchAlbums'
+export { fetchAlbum } from './model/service/fetchAlbum'
 
 export { Album } from './ui/album'
 

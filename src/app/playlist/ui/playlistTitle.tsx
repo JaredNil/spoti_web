@@ -1,32 +1,26 @@
-import { memo } from 'react';
-import { twMerge } from 'tailwind-merge';
+import Image from 'next/image'
+import { twMerge } from 'tailwind-merge'
 
-import { getAlbum, getIsLoadingData } from '../model/selector/playlistPageSelector';
-
-import { AlbumInterface } from '@/entities/album';
-import { useAppSelector } from '@/shared/hooks';
+import { AlbumInterface } from '@/entities/album'
 
 interface PlaylistTitleProps {
-	imagePath?: string;
-	title?: string;
-	author?: string;
+	album: AlbumInterface
 }
 
-export const PlaylistTitle: React.FC<PlaylistTitleProps> = memo(({ imagePath, title, author }: PlaylistTitleProps) => {
-	const isLoadingData = useAppSelector(getIsLoadingData);
-	// const album = useAppSelector(getAlbum)
-	const album: AlbumInterface = {
-		imagePath: imagePath || '',
-		title: title || '',
-		author: author || '',
-		id: null,
-		user_id: null,
-		trackes_id: []
-	}
+const isLoadingData = false
 
+export const PlaylistTitle: React.FC<PlaylistTitleProps> = ({
+	album,
+}: PlaylistTitleProps) => {
+	const {
+		imagePath = '/album-placeholder.webp',
+		title = 'Playlist',
+		description = '',
+		creationDate,
+	} = album
 
 	return (
-		<div className=" title__wrapper ">
+		<div className="title__wrapper ">
 			<div className="title__cover-left">
 				{isLoadingData ? (
 					<div
@@ -34,8 +28,13 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = memo(({ imagePath, ti
 						rounded-md "
 					/>
 				) : (
-					<div></div>
-					// <img src={album?.imagePath} alt="cover" />
+					<Image
+						src={imagePath}
+						width={300}
+						height={300}
+						loading="lazy"
+						alt="cover"
+					/>
 				)}
 			</div>
 			<div className="title__block">
@@ -45,7 +44,7 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = memo(({ imagePath, ti
 						{isLoadingData ? (
 							<div className="sceletonTitle">Playlist </div>
 						) : (
-							album?.title
+							title
 						)}
 					</div>
 				</div>
@@ -53,32 +52,46 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = memo(({ imagePath, ti
 					{isLoadingData ? (
 						<div className="sceletonPlaylist relative aspect-square overflow-hidden rounded-md " />
 					) : (
-						<img src={album?.imagePath} alt="cover" />
-
+						<img src={imagePath} alt="cover" />
 					)}
 				</div>
 				<div className="title__description">
-				{
-					(album?.description)
-					? 	<div className="title__description-info">
-							<span className={twMerge(isLoadingData && 'sceletonTitle')}>
-								{album?.description}
+					{description ? (
+						<div className="title__description-info">
+							<span
+								className={twMerge(
+									isLoadingData && 'sceletonTitle'
+								)}
+							>
+								{description}
 							</span>
 						</div>
-					: ''
-				}
+					) : (
+						''
+					)}
 					<div className={twMerge('title__description-author')}>
-						<span className={twMerge('font-bold', isLoadingData && 'sceletonTitle')}>
+						<span
+							className={twMerge(
+								'font-bold',
+								isLoadingData && 'sceletonTitle'
+							)}
+						>
 							{isLoadingData ? '' : album?.author}
 						</span>
-						{
-							album?.creationDate 
-							?  <span className={twMerge(isLoadingData && 'sceletonTitle')}>, {album.creationDate.getFullYear()}</span>
-							: ''
-						}
+						{creationDate ? (
+							<span
+								className={twMerge(
+									isLoadingData && 'sceletonTitle'
+								)}
+							>
+								, {creationDate.getFullYear()}
+							</span>
+						) : (
+							''
+						)}
 					</div>
 				</div>
 			</div>
 		</div>
-	);
-});
+	)
+}

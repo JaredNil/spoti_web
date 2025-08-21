@@ -1,16 +1,16 @@
 import { ALBUMS } from '../../../../../public/content/ALBUMS_CONTENT'
 
-// dev realise
+// SERVER NO REST IMPLEMENT
 export async function fetchAlbums(user_id: number) {
 	const albums = ALBUMS.filter((album) => {
 		if (album.user_id === user_id) {
 			return album
 		}
 	})
-
 	return albums
 }
 
+// SERVER REST API IMPLEMENT
 // export async function fetchAlbums(user_id: number) {
 // 	const res = await fetch(`http://localhost:3000/api/albums`, {
 // 		method: 'POST',
@@ -25,6 +25,7 @@ export async function fetchAlbums(user_id: number) {
 // 	return res.json() as Promise<AlbumsCollection>
 // }
 
+// CLIENT IMPLEMENT
 // export const fetchCommonAlbums = createAsyncThunk<
 // 	AlbumsCollection,
 // 	void,

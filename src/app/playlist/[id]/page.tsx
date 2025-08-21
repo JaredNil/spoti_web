@@ -1,17 +1,23 @@
-'use client'
-import { PlaylistPageClient } from './client.page'
+import { PlaylistTitle } from '../ui/playlistTitle'
+import { TrackViewVender } from '../ui/trackView'
 
-export default async function PlaylistPage() {
-    // const res = await fetch('http://localhost:3000/api/users');
-    // const data = await res.json();
+import { fetchAlbum } from '@/entities/album'
+import { fetchTrackes } from '@/entities/track'
 
-    return (
-        <>
-            <span>1</span>
-            <PlaylistPageClient />
-            {/* {data.map((user: any) => (
-			<li key={user.id}>{user.name}</li>
-			))} */}
-        </>
-    )
+export default async function PlaylistPage({
+	params,
+}: {
+	params: { id: string }
+}) {
+	const { id } = await params
+	const album = await fetchAlbum(Number(id))
+	const trackes = await fetchTrackes(album.trackes_id)
+
+	return (
+		<div className="flex w-full flex-col">
+			<PlaylistTitle album={album} />
+			<TrackViewVender trackes={trackes} />
+			{/* {isShowTrackModal && <TrackMdal isOpen={isShowTrackModal} onClose={() => onCloseModal()} />} */}
+		</div>
+	)
 }
