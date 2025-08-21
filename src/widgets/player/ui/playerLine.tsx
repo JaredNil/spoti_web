@@ -1,7 +1,6 @@
-import { useCurrentTrack } from 'app/providers/PlayerProvider'
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 import {
 	getPlayerLineData,
@@ -9,6 +8,9 @@ import {
 	getVolumePlayer,
 } from '../model/selector/playerSelector'
 import { playerAction } from '../model/slice/playerSlice'
+
+import { useCurrentTrack } from '@/app/(providers)/playerProvider'
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 
 export const PlayerLine: React.FC = () => {
 	const { shift } = useCurrentTrack()
@@ -20,7 +22,7 @@ export const PlayerLine: React.FC = () => {
 	) // width consist line in px
 
 	// initialization line width in px
-	useEffect(() => setLine(lineRef?.current?.clientWidth))
+	useEffect(() => setLine(lineRef?.current?.clientWidth), [])
 
 	// LISTENER RESIZE WINDOW FOR OBSERVE CHANGE WIDTH LINE OF PLAYER
 	useEffect(() => {
@@ -29,8 +31,8 @@ export const PlayerLine: React.FC = () => {
 	}, [])
 	const resizeTolalLine = () => setLine(lineRef.current?.clientWidth)
 
-	const track = useSelector(getTrack)
-	const { timer, duration, progress } = useSelector(getPlayerLineData)
+	const track = useAppSelector(getTrack)
+	const { timer, duration, progress } = useAppSelector(getPlayerLineData)
 
 	// TIMER LOGIC
 	const [hourTimer, setHourTimer] = useState<string>('0')
@@ -70,7 +72,7 @@ export const PlayerLine: React.FC = () => {
 		setSecDuration(
 			td.getSeconds() <= 9 ? `0${td.getSeconds()}` : `${td.getSeconds()}`
 		)
-	}, [timer])
+	}, [duration])
 
 	const dispatch = useAppDispatch()
 

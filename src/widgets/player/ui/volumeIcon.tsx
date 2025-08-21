@@ -1,15 +1,17 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { IoIosVolumeHigh } from 'react-icons/io'
 import { IoIosVolumeLow } from 'react-icons/io'
 import { IoIosVolumeMute } from 'react-icons/io'
-import { useSelector } from 'react-redux'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 import { getVolumePlayer } from '../model/selector/playerSelector'
 import { playerAction } from '../model/slice/playerSlice'
 
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+
 export const VolumeIcon: React.FC = () => {
-	const volume = useSelector(getVolumePlayer)
+	const volume = useAppSelector(getVolumePlayer)
 
 	const dispatch = useAppDispatch()
 

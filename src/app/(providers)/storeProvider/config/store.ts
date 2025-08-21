@@ -5,6 +5,7 @@ import { createReducerManager } from './reducerManager'
 import { userReducer } from '@/entities/user'
 // import { $api, rtkApi } from '@/shared/api/rtkApi'
 import { StateSchema } from '@/shared/lib/state'
+import { playerReducer } from '@/widgets/player'
 
 // export interface ThunkExtraArg {
 // 	api: typeof $api
@@ -24,6 +25,7 @@ export type RootState = ReturnType<
 export function createStore() {
 	const reducerManager = createReducerManager({
 		user: userReducer,
+		player: playerReducer,
 		// [rtkApi.reducerPath]: rtkApi.reducer,
 	})
 

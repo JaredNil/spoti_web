@@ -6,42 +6,42 @@ import { useDispatch, useStore } from 'react-redux'
 import { ReducerList, ReduxStoreWithManager } from './types'
 
 interface DynamicModuleLoaderProps {
-    reducers: ReducerList
-    removeAfterUnmount?: boolean
-    children: ReactNode
+	reducers: ReducerList
+	removeAfterUnmount?: boolean
+	children: ReactNode
 }
 
 export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = memo(
-    ({
-        reducers,
-        children,
-        removeAfterUnmount = true,
-    }: DynamicModuleLoaderProps) => {
-        useEffect(() => console.log('DynamicModuleLoader RENDER'))
+	({
+		reducers,
+		children,
+		removeAfterUnmount = true,
+	}: DynamicModuleLoaderProps) => {
+		useEffect(() => console.log('DynamicModuleLoader RENDER'))
 
-        const store = useStore() as ReduxStoreWithManager
-        const dispatch = useDispatch()
+		const store = useStore() as ReduxStoreWithManager
+		const dispatch = useDispatch()
 
-        useEffect(() => {
-            Object.entries(reducers).forEach(([name, reducer]): void => {
-                console.log(name)
-                store.reducerManager.add(name as string, reducer as Reducer)
-                dispatch({ type: `@load ${name}` })
-            })
+		useEffect(() => {
+			Object.entries(reducers).forEach(([name, reducer]): void => {
+				console.log(name)
+				store.reducerManager.add(name as string, reducer as Reducer)
+				dispatch({ type: `@load ${name}` })
+			})
 
-            return () => {
-                if (removeAfterUnmount) {
-                    Object.entries(reducers).forEach(([name]) => {
-                        store.reducerManager.remove(name as string)
-                        dispatch({
-                            type: `@unload ${name}`,
-                        })
-                    })
-                }
-            }
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [reducers])
+			return () => {
+				if (removeAfterUnmount) {
+					Object.entries(reducers).forEach(([name]) => {
+						store.reducerManager.remove(name as string)
+						dispatch({
+							type: `@unload ${name}`,
+						})
+					})
+				}
+			}
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		}, [reducers])
 
-        return <>{children}</>
-    }
+		return <>{children}</>
+	}
 )

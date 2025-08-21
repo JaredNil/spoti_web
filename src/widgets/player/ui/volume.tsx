@@ -1,15 +1,17 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 
 import { VolumeIcon } from './volumeIcon'
 import { getVolumePlayer } from '../model/selector/playerSelector'
 import { playerAction } from '../model/slice/playerSlice'
 
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+
 const PLAYER_VOLUME_WIDTH = 60 // px
 
 export const Volume: React.FC = () => {
-	const volume = useSelector(getVolumePlayer)
+	const volume = useAppSelector(getVolumePlayer)
 
 	const dispatch = useAppDispatch()
 

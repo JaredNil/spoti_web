@@ -1,10 +1,3 @@
-import { useSelector } from 'react-redux'
-
-import { useCurrentTrack } from 'app/providers/PlayerProvider'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
-
-import { playerAction } from '../slice/playerSlice'
-import { fetchTrackData } from '../service/fetchTrackData'
 import {
 	getIsActivePlayer,
 	getIsLoadingTrack,
@@ -12,19 +5,25 @@ import {
 	getPlayerQueue,
 	getPlayerTarget,
 } from '../selector/playerSelector'
+import { fetchTrackData } from '../service/fetchTrackData'
+import { playerAction } from '../slice/playerSlice'
+
+import { useCurrentTrack } from '@/app/(providers)/playerProvider'
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 
 export function usePlayer() {
 	const { playTrack, pauseTrack } = useCurrentTrack()
 
-	const isRun = useSelector(getIsRunPlayer)
-	const isLoadingTrack = useSelector(getIsLoadingTrack)
-	const isActivePlayer = useSelector(getIsActivePlayer)
-	const queue = useSelector(getPlayerQueue)
-	const target = useSelector(getPlayerTarget)
+	const isRun = useAppSelector(getIsRunPlayer)
+	const isLoadingTrack = useAppSelector(getIsLoadingTrack)
+	const isActivePlayer = useAppSelector(getIsActivePlayer)
+	const queue = useAppSelector(getPlayerQueue)
+	const target = useAppSelector(getPlayerTarget)
 
 	const dispatch = useAppDispatch()
 
-	function start(trackesId: number[]) {
+	function start(trackesId: number[] = [1]) {
+		console.log(trackesId)
 		if (!isActivePlayer) dispatch(playerAction.onActivePlayer())
 
 		dispatch(playerAction.setQueue(trackesId))

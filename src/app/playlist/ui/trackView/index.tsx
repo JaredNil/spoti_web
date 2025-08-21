@@ -9,10 +9,13 @@ import { twMerge } from 'tailwind-merge'
 import { TrackViewListing } from './trackViewListing'
 import { TrackViewSkeleton } from './trackViewSkeleton'
 
+import { AlbumInterface } from '@/entities/album'
 import { Trackes } from '@/shared/api/track'
+import { usePlayer } from '@/widgets/player'
 
 interface TrackListProps {
 	trackes: Trackes
+	albumIds?: number[]
 	onShowModal?: (id: number) => void
 }
 
@@ -21,9 +24,12 @@ const isLoadingTrackes = false
 export const TrackViewVender: React.FC<TrackListProps> = ({
 	onShowModal,
 	trackes,
+	albumIds,
 }: TrackListProps) => {
 	const [isCompact, setIsList] = useState<boolean>(false)
 	const toggleList = () => setIsList(!isCompact)
+
+	const { start } = usePlayer()
 
 	return (
 		<div
@@ -35,7 +41,9 @@ export const TrackViewVender: React.FC<TrackListProps> = ({
 			<div className="flex justify-between">
 				<div className="flex">
 					<div
-						// onClick={() => start(album?.trackes_id as number[])}
+						onClick={() => {
+							start(albumIds as number[])
+						}}
 						className="flex h-[56px] w-[56px] items-center justify-center 
                         rounded-full bg-green-500 drop-shadow-md
                         transition hover:scale-110 group-hover:opacity-100

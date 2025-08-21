@@ -1,5 +1,3 @@
-// // import { AlbumsCollection } from "@/entities/album"
-
 import { AlbumsCollection } from '@/shared/api/album'
 
 export const ALBUMS: AlbumsCollection = [

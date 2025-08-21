@@ -1,3 +1,4 @@
+'use client'
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react'
 
 import { PlayerContext } from '../lib/playerContext'

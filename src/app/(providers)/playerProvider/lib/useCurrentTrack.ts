@@ -36,6 +36,7 @@ export function useCurrentTrack(): CurrentTrackHook {
 	// }
 
 	const toggleTrack = (newTrack: string): void => {
+		console.log('toggleTrack is calling', newTrack)
 		if (setCurrentTrack && newTrack === '') setCurrentTrack('')
 		else if (setCurrentTrack && newTrack !== null) {
 			setCurrentTrack('')

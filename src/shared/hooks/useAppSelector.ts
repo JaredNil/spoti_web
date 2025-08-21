@@ -1,5 +1,5 @@
-import { TypedUseSelectorHook, useSelector } from "react-redux";
+import { TypedUseSelectorHook, useSelector } from 'react-redux'
 
-import { StateSchema } from "../lib/state";
+import { StateSchema } from '../lib/state'
 
-export const useAppSelector: TypedUseSelectorHook<StateSchema> = useSelector;
+export const useAppSelector: TypedUseSelectorHook<StateSchema> = useSelector

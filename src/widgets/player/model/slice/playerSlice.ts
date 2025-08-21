@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { Track } from 'entities/Track'
 
 import { fetchTrackData } from '../service/fetchTrackData'
 import { PlayerSchema } from '../types/playerSchema'
+
+import { Track } from '@/shared/api/track'
 
 const initialState: PlayerSchema = {
 	isLoading: true,

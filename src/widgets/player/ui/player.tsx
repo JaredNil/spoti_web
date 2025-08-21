@@ -1,37 +1,32 @@
-import { useCurrentTrack } from 'app/providers/PlayerProvider'
+'use client'
+
+import Image from 'next/image'
 import { useEffect } from 'react'
 import { FaPlay } from 'react-icons/fa'
-import { useSelector } from 'react-redux'
-import { successUploadToastr } from 'shared/config/toastr/toastr.config'
-import { useTransit } from 'shared/lib/hooks/useTransit/useTransit'
 import { twMerge } from 'tailwind-merge'
-import toastr from 'toastr'
 
 import { PlayerLine } from './playerLine'
 import { Volume } from './volume'
 import { usePlayer } from '../model/hook/usePlayer'
 import { getIsRunPlayer, getTrack } from '../model/selector/playerSelector'
 
+import { useCurrentTrack } from '@/app/(providers)/playerProvider'
+import { useAppSelector } from '@/shared/hooks'
+
 export const Player: React.FC = () => {
 	const { next, play, pause, prev } = usePlayer()
 
-	const isRun = useSelector(getIsRunPlayer)
+	const isRun = useAppSelector(getIsRunPlayer)
 
 	const playHandler = () => (isRun ? pause() : play())
 
-	// useEffect(()=>{
-	// dispatch(fetchPlayerData) IN DEMO - NOT WORKING WITHOUT SERVER
-	// },[])
-
-	const track = useSelector(getTrack)
+	const track = useAppSelector(getTrack)
 
 	const { toggleTrack } = useCurrentTrack()
 
-	const transit = useTransit()
-
 	useEffect(() => {
-		if (track) toggleTrack(track?.songLink)
-	}, [track])
+		if (track) toggleTrack(track?.songLink as string)
+	}, [toggleTrack, track])
 
 	return (
 		<div
@@ -42,21 +37,16 @@ export const Player: React.FC = () => {
 			"
 		>
 			<div className="flex justify-start items-center w-[315px] ">
-				<div
-					className="aspect-square w-[40px] bg-white hidden cursor-pointer sm:block"
-					onClick={() => {
-						toastr.info(
-							'Фича в разработке',
-							'Demo',
-							successUploadToastr
-						)
-					}}
-				>
-					<img
-						src={track?.imageLink}
-						alt="LOGOTYPE"
-						className="w-full h-full"
-					/>
+				<div className="aspect-square w-[40px] bg-white hidden cursor-pointer sm:block">
+					{track?.imageLink && (
+						<Image
+							src={track.imageLink}
+							alt="LOGOTYPE"
+							width={100}
+							height={100}
+							className="w-full h-full"
+						/>
+					)}
 				</div>
 				<div className="flex flex-col justify-around pl-3">
 					<div
@@ -65,14 +55,6 @@ export const Player: React.FC = () => {
 						sm:w-[165px] sm:text-[14px]
 						"
 						title={track?.title}
-						onClick={() => {
-							toastr.info(
-								'Фича в разработке',
-								'Demo',
-								successUploadToastr
-							)
-						}}
-						// onClick={() => {if(albumId!=null) transit(`playlist/${albumId}`)}}
 					>
 						<span className="cursor-pointer">{track?.title}</span>
 					</div>
@@ -81,13 +63,6 @@ export const Player: React.FC = () => {
 						text-neutral-300 whitespace-nowrap overflow-hidden select-none
 						sm:w-[165px] sm:text-[11px]"
 						title={track?.author}
-						onClick={() => {
-							toastr.info(
-								'Фича в разработке',
-								'Demo',
-								successUploadToastr
-							)
-						}}
 					>
 						<span className="cursor-pointer">{track?.author}</span>
 					</span>
