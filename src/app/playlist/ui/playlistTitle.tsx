@@ -39,14 +39,14 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = ({
 			</div>
 			<div className="title__block">
 				<div className="title__upper">
-					<div className="title__upper-playlist">Плейлист</div>
-					<div className="title__upper-naming">
+					<h1 className="title__upper-playlist">Плейлист</h1>
+					<h2 className="title__upper-naming">
 						{isLoadingData ? (
 							<div className="sceletonTitle">Playlist </div>
 						) : (
 							title
 						)}
-					</div>
+					</h2>
 				</div>
 				<div className="title__cover-center ">
 					{isLoadingData ? (
@@ -58,13 +58,13 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = ({
 				<div className="title__description">
 					{description ? (
 						<div className="title__description-info">
-							<span
+							<h3
 								className={twMerge(
 									isLoadingData && 'sceletonTitle'
 								)}
 							>
 								{description}
-							</span>
+							</h3>
 						</div>
 					) : (
 						''

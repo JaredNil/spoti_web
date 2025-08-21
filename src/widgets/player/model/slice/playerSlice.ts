@@ -81,9 +81,6 @@ export const playerSlice = createSlice({
 			state.isRun = false
 			// handling new notification
 		})
-		// builder.addCase(fetchCommonAlbums.fulfilled, (state, action: PayloadAction<AlbumsCollection>) => {
-		// 	state.isLoading = false;
-		// });
 	},
 })
 

@@ -1,21 +1,21 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { SearchpageSchema } from '../types/searchpageSchema';
+import { AccountpageSchema } from '../types/accountpageSchema'
 
-const initialState: SearchpageSchema = {
+const initialState: AccountpageSchema = {
 	isLoading: true,
 	error: undefined,
-};
+}
 
-export const searchpageSlice = createSlice({
-	name: 'searchpage',
+export const accountpageSlice = createSlice({
+	name: 'accountpage',
 	initialState,
 	reducers: {
 		onLoadingPage: (state) => {
-			state.isLoading = true;
+			state.isLoading = true
 		},
 		offLoadingPage: (state) => {
-			state.isLoading = false;
+			state.isLoading = false
 		},
 	},
 	extraReducers: (builder) => {
@@ -32,7 +32,7 @@ export const searchpageSlice = createSlice({
 		// 	state.isLoading = false;
 		// });
 	},
-});
+})
 
-export const { actions: searchpageAction } = searchpageSlice;
-export const { reducer: searchpageReducer } = searchpageSlice;
+export const { actions: accountpageAction } = accountpageSlice
+export const { reducer: accountpageReducer } = accountpageSlice

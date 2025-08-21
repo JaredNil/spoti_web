@@ -1,9 +1,9 @@
 // import { rtkApi } from '../api/rtkApi'
 
+import { AccountpageSchema } from '@/app/account'
 import { HomepageSchema } from '@/app/home/model/types/homepageSchema'
-import { AccountpageSchema } from '@/components/accountpage'
-import type { SearchpageSchema } from '@/components/searchpage'
-import { UploadpageSchema } from '@/components/uploadpage'
+import type { SearchpageSchema } from '@/app/search'
+import { UploadpageSchema } from '@/app/upload'
 import { UserSchema } from '@/entities/user'
 import { PlayerSchema } from '@/widgets/player/model/types/playerSchema'
 

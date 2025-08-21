@@ -18,7 +18,7 @@ export const Volume: React.FC = () => {
 	const volumeRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
-		// dispatch(fetchPlayerData) IN DEMO - NOT WORKING WITH SERVER
+		// dispatch(fetchPlayerData) CACHING IN USER DATA IN FUTURE
 	}, [])
 
 	useEffect(() => {

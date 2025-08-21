@@ -26,7 +26,7 @@ export const Player: React.FC = () => {
 
 	useEffect(() => {
 		if (track) toggleTrack(track?.songLink as string)
-	}, [toggleTrack, track])
+	}, [track, toggleTrack])
 
 	return (
 		<div

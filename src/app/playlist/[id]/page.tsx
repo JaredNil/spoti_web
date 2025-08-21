@@ -1,8 +1,11 @@
-import { PlaylistTitle } from '../ui/playlistTitle'
-import { TrackViewVender } from '../ui/trackView'
+import { redirect } from 'next/navigation'
 
-import { fetchAlbum } from '@/entities/album'
-import { fetchTrackes } from '@/entities/track'
+import { PlaylistTitle } from '../ui/playlistTitle'
+import { TrackViewVender } from '../ui/trackView/trackView'
+
+import { AlbumInterface, fetchAlbum } from '@/entities/album'
+import { fetchTrackes } from '@/entities/track/model'
+import { Trackes } from '@/shared/api/track'
 
 export default async function PlaylistPage({
 	params,
@@ -10,16 +13,21 @@ export default async function PlaylistPage({
 	params: Promise<{ id: string }>
 }) {
 	const { id } = await params
-	console.log('render page', id)
-	const album = await fetchAlbum(Number(id))
-	const trackes = await fetchTrackes(album.trackes_id as number[])
+
+	let album: AlbumInterface
+	let trackes: Trackes
+
+	try {
+		album = await fetchAlbum(Number(id))
+		trackes = await fetchTrackes(album.trackes_id as number[])
+	} catch (error) {
+		redirect('/home')
+	}
 
 	return (
-		<div className="flex w-full flex-col">
+		<>
 			<PlaylistTitle album={album} />
-			<TrackViewVender trackes={trackes} albumIds={album?.trackes_id} />
-
-			{/* {isShowTrackModal && <TrackMdal isOpen={isShowTrackModal} onClose={() => onCloseModal()} />} */}
-		</div>
+			<TrackViewVender trackes={trackes} album={album} />
+		</>
 	)
 }

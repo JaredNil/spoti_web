@@ -11,7 +11,6 @@ export const fetchTrackData = createAsyncThunk<
 	number,
 	ThunkConfig<string>
 >('player/fetchTrackById', async (trackId, thunkAPI) => {
-	console.log('here', trackId)
 	const { dispatch } = thunkAPI
 
 	dispatch(playerAction.setIsRun(true))

@@ -1,21 +1,20 @@
 'use client'
 
 import { useState } from 'react'
-import { FaPlay } from 'react-icons/fa'
-import { HiOutlineDotsHorizontal } from 'react-icons/hi'
 import { PiListBulletsThin, PiListLight } from 'react-icons/pi'
 import { twMerge } from 'tailwind-merge'
 
 import { TrackViewListing } from './trackViewListing'
 import { TrackViewSkeleton } from './trackViewSkeleton'
+import { Dropdown } from '../dropdown'
 
 import { AlbumInterface } from '@/entities/album'
 import { Trackes } from '@/shared/api/track'
-import { usePlayer } from '@/widgets/player'
+import { PlayButton } from '@/shared/ui/playButton/playButton'
 
 interface TrackListProps {
 	trackes: Trackes
-	albumIds?: number[]
+	album: AlbumInterface
 	onShowModal?: (id: number) => void
 }
 
@@ -24,12 +23,10 @@ const isLoadingTrackes = false
 export const TrackViewVender: React.FC<TrackListProps> = ({
 	onShowModal,
 	trackes,
-	albumIds,
+	album,
 }: TrackListProps) => {
 	const [isCompact, setIsList] = useState<boolean>(false)
 	const toggleList = () => setIsList(!isCompact)
-
-	const { start } = usePlayer()
 
 	return (
 		<div
@@ -38,30 +35,12 @@ export const TrackViewVender: React.FC<TrackListProps> = ({
 				'tracklist__mainWrapper'
 			)}
 		>
-			<div className="flex justify-between">
-				<div className="flex">
-					<div
-						onClick={() => {
-							start(albumIds as number[])
-						}}
-						className="flex h-[56px] w-[56px] items-center justify-center 
-                        rounded-full bg-green-500 drop-shadow-md
-                        transition hover:scale-110 group-hover:opacity-100
-                    "
-					>
-						<FaPlay className="text-black" />
+			<div className="flex justify-between h-13">
+				<div className="flex items-center">
+					<div className="h-full aspect-square">
+						<PlayButton relayTrackesId={album.trackes_id} />
 					</div>
-					<div
-						className="flex h-[56px] w-[56px] items-center justify-center 
-                        rounded-full drop-shadow-md
-                        transition hover:scale-110 group-hover:opacity-100
-                    "
-					>
-						<HiOutlineDotsHorizontal
-							size={32}
-							className="text-neutral-400"
-						/>
-					</div>
+					<Dropdown />
 				</div>
 
 				<div className="flex cursor-pointer" onClick={toggleList}>

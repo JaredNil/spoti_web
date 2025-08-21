@@ -1,29 +1,29 @@
 .playlist__table {
-	height: 54px;
-	grid-template-columns: 44px 56px 3fr 2fr 60px 80px;
+	height: 44px;
+	grid-template-columns: 54px 40px 3fr 2fr 60px 80px;
 }
 @media (max-width: 960px) {
 	.playlist__table {
-		grid-template-columns: 44px 56px 3fr 60px 60px;
+		grid-template-columns: 54px 56px 3fr 60px 60px;
 	}
 }
 @media (max-width: 530px) {
 	.playlist__table {
-		grid-template-columns: 30px 56px 1fr 60px;
+		grid-template-columns: 54px 56px 1fr 60px;
 	}
 }
 .playlist__compact.playlist__table {
 	height: 34px;
-	grid-template-columns: 44px 3fr 2fr 60px 80px;
+	grid-template-columns: 54px 3fr 2fr 60px 80px;
 }
 @media (max-width: 960px) {
 	.playlist__compact.playlist__table {
-		grid-template-columns: 44px 3fr 60px 60px;
+		grid-template-columns: 54px 3fr 60px 60px;
 	}
 }
 @media (max-width: 530px) {
 	.playlist__compact.playlist__table {
-		grid-template-columns: 30px 1fr 60px;
+		grid-template-columns: 54px 1fr 60px;
 	}
 }
 .playlist__compact .table-image {

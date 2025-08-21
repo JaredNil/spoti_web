@@ -19,4 +19,5 @@ export const getPlayerLineData = (state: StateSchema) => {
 	}
 }
 export const getPlayerQueue = (state: StateSchema) => state.player.queue
+export const getPlayerNativeQueue = (state: StateSchema) => state.player.native
 export const getPlayerTarget = (state: StateSchema) => state.player.target

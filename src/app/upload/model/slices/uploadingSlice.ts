@@ -1,24 +1,36 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { TrackBlob, TrackBlobUpdate, UploadpageSchema } from '../types/uploadpageSchema';
+import {
+	TrackBlob,
+	TrackBlobUpdate,
+	UploadpageSchema,
+} from '../types/uploadpageSchema'
 
-const initialState: UploadpageSchema = { isLoading: false, uploading: [], error: undefined, isDragEvent: false };
+const initialState: UploadpageSchema = {
+	isLoading: false,
+	uploading: [],
+	error: undefined,
+	isDragEvent: false,
+}
 
 export const uploadSlice = createSlice({
 	name: 'uploading',
 	initialState,
 	reducers: {
 		addNewUploading: (state, action: PayloadAction<TrackBlob>) => {
-			state.uploading = [...state.uploading, action.payload];
+			state.uploading = [...state.uploading, action.payload]
 		},
 		activeDragEvent: (state) => {
-			state.isDragEvent = true;
+			state.isDragEvent = true
 		},
 		disableDragEvent: (state) => {
-			state.isDragEvent = false;
+			state.isDragEvent = false
 		},
-		updateProgressUploading: (state, action: PayloadAction<TrackBlobUpdate>) => {
-			console.log(action.payload.progress);
+		updateProgressUploading: (
+			state,
+			action: PayloadAction<TrackBlobUpdate>
+		) => {
+			console.log(action.payload.progress)
 			if (action.payload.progress === 100) {
 				// toastr.success(
 				// 	'Успешно загружен',
@@ -28,12 +40,11 @@ export const uploadSlice = createSlice({
 			}
 			state.uploading = state.uploading.map((item, index) => {
 				if (index === action.payload.id) {
-					item.progress = action.payload.progress;
+					item.progress = action.payload.progress
 				}
-				return item;
-			});
+				return item
+			})
 		},
-
 	},
 	extraReducers: (builder) => {
 		// builder.addCase(uploadingFile.pending, (state) => {
@@ -50,7 +61,7 @@ export const uploadSlice = createSlice({
 		// 	// state.error = action.error;
 		// });
 	},
-});
+})
 
-export const { actions: uploadAction } = uploadSlice;
-export const { reducer: uploadReducer } = uploadSlice;
+export const { actions: uploadAction } = uploadSlice
+export const { reducer: uploadReducer } = uploadSlice

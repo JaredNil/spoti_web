@@ -1,7 +1,7 @@
 'use client'
 import { DynamicModuleLoader, ReducerList } from '../(providers)/storeProvider'
 
-import { getIsLoadingPage, accountpageReducer } from '@/components/accountpage'
+import { getIsLoadingPage, accountpageReducer } from '@/app/account'
 import { useAppSelector } from '@/shared/hooks'
 
 const reducers: ReducerList = {

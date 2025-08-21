@@ -22,8 +22,7 @@ export function usePlayer() {
 
 	const dispatch = useAppDispatch()
 
-	function start(trackesId: number[] = [1]) {
-		console.log(trackesId)
+	function start(trackesId: number[]) {
 		if (!isActivePlayer) dispatch(playerAction.onActivePlayer())
 
 		dispatch(playerAction.setQueue(trackesId))
@@ -32,7 +31,6 @@ export function usePlayer() {
 	}
 
 	function play() {
-		console.log('play')
 		if (queue.length === 0) {
 			start([1, 2, 3, 4, 5, 6]) // as like Liked trackes, in future put in from backend
 		} else {
