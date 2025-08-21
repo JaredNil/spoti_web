@@ -7,5 +7,5 @@ const store = createStore()
 export type AppDispatch = typeof store.dispatch
 
 export const StoreProvider = ({ children }: { children: ReactNode }) => {
-    return <Provider store={store}>{children}</Provider>
+	return <Provider store={store}>{children}</Provider>
 }
