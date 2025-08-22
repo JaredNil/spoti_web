@@ -1,26 +1,15 @@
-'use client'
-import { DynamicModuleLoader, ReducerList } from '../(providers)/storeProvider'
+import { ReactNode } from 'react'
 
-import { getIsLoadingPage, accountpageReducer } from '@/app/account'
-import { useAppSelector } from '@/shared/hooks'
-
-const reducers: ReducerList = {
-	account: accountpageReducer,
-}
+import Account from './ui/account'
 
 const AccountPage: React.FC = () => {
-	// const { t } = useTranslation();
-
-	const isLoadingPage = useAppSelector(getIsLoadingPage)
-
 	return (
-		<DynamicModuleLoader reducers={reducers}>
-			<div className="mb-2 flex flex-col gap-y-6">
-				<h1 className="text-3xl font-semibold text-white">
-					Account page
-				</h1>
-			</div>
-		</DynamicModuleLoader>
+		<div className="mb-2 flex flex-col justify-start">
+			<h1 className="text-3xl font-semibold text-white pb-4">
+				Account page
+			</h1>
+			<Account />
+		</div>
 	)
 }
 

@@ -1,6 +1,5 @@
 // import { rtkApi } from '../api/rtkApi'
 
-import { AccountpageSchema } from '@/app/account'
 import { HomepageSchema } from '@/app/home/model/types/homepageSchema'
 import type { SearchpageSchema } from '@/app/search'
 import { UploadpageSchema } from '@/app/upload'
@@ -12,7 +11,6 @@ export interface StateSchema {
 	player: PlayerSchema
 
 	homepage?: HomepageSchema
-	accountpage?: AccountpageSchema
 	searchpage?: SearchpageSchema
 	uploadpage?: UploadpageSchema
 	// [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
