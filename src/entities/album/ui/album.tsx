@@ -19,13 +19,6 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 		trackes_id,
 	} = data
 
-	// const { start } = usePlayer()
-
-	// const transit = useTransit();
-	// const clickAlbumHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-	// 	if ((event.target as EventTarget & HTMLDivElement)?.tagName != 'A')
-	// 		transit(`/playlist/${id}`)
-	// }
 	return (
 		<Link
 			href={`/playlist/${id}`}
@@ -40,8 +33,8 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 					overflow-hidden rounded-md"
 			>
 				<Image
-					src={'/album-placeholder.webp'}
-					alt="/"
+					src={imagePath}
+					alt={title}
 					loading="lazy"
 					className="pointer-events-none w-full select-none object-cover"
 					width={200}

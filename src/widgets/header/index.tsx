@@ -38,11 +38,11 @@ export const Header: FC = () => {
 
 	return (
 		<div
-			className="absolute left-0 top-2 z-50 flex h-fit
+			className="absolute left-0 top-0 z-50 flex h-fit
 				w-full rounded-lg bg-gradient-to-b from-emerald-800 p-6 
 				select-none pointer-events-none"
 		>
-			<div className="mb-4 flex w-full items-center justify-between pointer-events-auto">
+			<div className="mb-4 flex w-full items-center justify-between pointer-events-none [&>*]:pointer-events-auto">
 				<div className="hidden items-center gap-x-2 md:flex">
 					{headerSetting.arrow.map((btn, key) => (
 						<div

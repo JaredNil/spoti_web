@@ -14,9 +14,6 @@ const nextConfig: NextConfig = {
 			'.mp3',
 		],
 	},
-	outputFileTracingExcludes: {
-		'*': ['oldapp/**'], // любые пути, которые нужно выкинуть
-	},
 }
 
 export default nextConfig

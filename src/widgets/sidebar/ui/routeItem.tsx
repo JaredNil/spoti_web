@@ -1,37 +1,38 @@
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { memo } from 'react';
-import { twMerge } from 'tailwind-merge';
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { memo } from 'react'
+import { twMerge } from 'tailwind-merge'
 
-import { Icons } from '@/shared/icons';
+import { Icons } from '@/shared/icons'
 
 interface RouteItem {
 	routeInfo: {
-		label: string;
-		href: string;
-	};
+		label: string
+		href: string
+	}
 }
 
-export const RouteItem: React.FC<RouteItem> = memo(({routeInfo}: RouteItem) => {
+export const RouteItem: React.FC<RouteItem> = memo(
+	({ routeInfo }: RouteItem) => {
+		const { href, label } = routeInfo
 
-	const {href, label} = routeInfo;
+		const pathname = usePathname()
 
-	const pathname = usePathname();
+		const isActive = routeInfo.href === pathname
 
-	const isActive = (routeInfo.href === pathname);
-
-	return (
-		<Link
-			href={href}
-			className={twMerge(
-				`transition, flex h-auto w-full cursor-pointer flex-row
+		return (
+			<Link
+				href={href}
+				className={twMerge(
+					`transition, flex h-auto w-full cursor-pointer flex-row
 				items-center gap-x-4 py-1  font-medium text-neutral-400
 				hover:text-white`,
-				isActive && 'text-white'
-			)}
-		>
-			<Icons label={label}/>
-			<p className="w-100 truncate">{label}</p>
-		</Link>
-	);
-});
+					isActive && 'text-white'
+				)}
+			>
+				<Icons label={label} />
+				<p className="w-100 truncate">{label}</p>
+			</Link>
+		)
+	}
+)

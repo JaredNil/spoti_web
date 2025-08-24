@@ -21,6 +21,7 @@ const Home = async () => {
 		<>
 			<HomeHeader svUsername={'User'} />
 			<QuickBar />
+
 			<AlbumListProvider
 				type={AlbumListType.COMMON}
 				albums={commonAlbums}

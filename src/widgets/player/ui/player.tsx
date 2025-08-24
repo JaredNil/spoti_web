@@ -29,8 +29,10 @@ export const Player: React.FC = () => {
 	}, [track, toggleTrack])
 
 	return (
-		<div
-			className="absolute left-0 bottom-0 z-50 h-14 w-full px-2 
+		<div // absolute left-0 bottom-0
+			className="
+			relative
+			z-50 h-14 w-full px-2 
 			flex justify-between items-center
 			bg-black
 			sm:px-4

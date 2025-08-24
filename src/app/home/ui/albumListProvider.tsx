@@ -3,7 +3,7 @@ import { memo } from 'react'
 import { getAlbumListTitle } from '../model/types/albumListType'
 import { AlbumListType } from '../model/types/albumListType'
 
-import { AlbumInterface, AlbumSceleton, Album } from '@/entities/album'
+import { AlbumInterface, Album } from '@/entities/album'
 
 interface AlbumListProviderProps {
 	type: AlbumListType
@@ -19,7 +19,7 @@ export const AlbumListProvider: React.FC<AlbumListProviderProps> = memo(
 				<span
 					className="mb-3 mt-5 inline-block
 					select-none rounded-lg 
-					pr-4 text-2xl"
+					pr-4 text-2xl pointer-events-none"
 				>
 					{title}
 				</span>

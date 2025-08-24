@@ -18,14 +18,9 @@ export default function RootLayout({
 			<body>
 				<AppWrapper>
 					<GeneralProviders>
-						<div
-							className={twMerge(
-								'flex overflow-x-auto h-full pb-12'
-								// isActivePlayer ? 'h-full pb-12' : 'h-full'
-							)}
-						>
+						<div className="flex overflow-x-auto h-full nth-last-of-type-1:pb-2 pt-2">
 							<Sidebar />
-							<main className="relative flex h-full w-full overflow-y-auto mx-1 py-2">
+							<main className="relative flex h-full w-full overflow-y-auto mx-1 rounded-lg">
 								<Header />
 								<Page>{children}</Page>
 							</main>
