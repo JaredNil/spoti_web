@@ -3,18 +3,18 @@ import { configureStore } from '@reduxjs/toolkit'
 import { createReducerManager } from './reducerManager'
 
 import { userReducer } from '@/entities/user'
-// import { $api, rtkApi } from '@/shared/api/rtkApi'
+import { authReducer } from '@/features/auth'
+import { $api, rtkApi } from '@/shared/api/rtkApi'
 import { StateSchema } from '@/shared/lib/state'
 import { playerReducer } from '@/widgets/player'
 
-// export interface ThunkExtraArg {
-// 	api: typeof $api
-// 	// navigate?: AppRouterInstance;
-// }
+export interface ThunkExtraArg {
+	api: typeof $api
+}
 
 export interface ThunkConfig<T> {
 	serializedErrorType: T
-	// extra: ThunkExtraArg
+	extra: ThunkExtraArg
 	state: StateSchema
 }
 
@@ -26,7 +26,9 @@ export function createStore() {
 	const reducerManager = createReducerManager({
 		user: userReducer,
 		player: playerReducer,
-		// [rtkApi.reducerPath]: rtkApi.reducer,
+		auth: authReducer,
+
+		[rtkApi.reducerPath]: rtkApi.reducer,
 	})
 
 	const store = configureStore({
@@ -35,10 +37,10 @@ export function createStore() {
 		},
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware({
-				// thunk: {
-				// 	extraArgument: { api: $api },
-				// },
-			}),
+				thunk: {
+					extraArgument: { api: $api },
+				},
+			}).concat(rtkApi.middleware),
 		devTools: true,
 	})
 

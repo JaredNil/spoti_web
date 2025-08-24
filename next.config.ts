@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-	reactStrictMode: true,
+	reactStrictMode: false,
 	turbopack: {
 		resolveExtensions: [
 			'.mdx',
@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
 			'.json',
 			'.mp3',
 		],
+	},
+	outputFileTracingExcludes: {
+		'*': ['oldapp/**'], // любые пути, которые нужно выкинуть
 	},
 }
 

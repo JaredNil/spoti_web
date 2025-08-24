@@ -1,12 +1,11 @@
+'use client'
+
 import Image from 'next/image'
 
-import { fetchTrack } from '../model/fetchTrackes'
-
+import { Track } from '@/shared/api/track'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
-export async function Track({ id }: { id: number }) {
-	const track = await fetchTrack(id)
-
+export function TrackByQ({ track }: { track: Track }) {
 	return (
 		<div
 			className="relative flex items-center justify-between overflow-hidden
@@ -41,7 +40,7 @@ export async function Track({ id }: { id: number }) {
 				</div>
 			</div>
 			<div className="w-30 md:w-16 py-16 md:py-0">
-				<PlayButton relayTrackesId={[track.id]} />
+				{/* <PlayButton relayTrackesId={[track.id]} /> */}
 			</div>
 		</div>
 	)

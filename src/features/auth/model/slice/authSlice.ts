@@ -1,9 +1,8 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { AuthSchema } from '../types/AuthSchema';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
+import { AuthSchema } from '../types/authSchema'
 
 const initialState: AuthSchema = {
-	
 	authUser: '',
 	authPass: '',
 
@@ -15,20 +14,20 @@ const initialState: AuthSchema = {
 	// isOpen: false,
 	// onClose: ()=>{},
 	// onOpen: ()=>{},
-};
+}
 
 export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
 		setUserName: (state, action: PayloadAction<string>) => {
-			state.authUser = action.payload;
+			state.authUser = action.payload
 		},
 		setPassword: (state, action: PayloadAction<string>) => {
-			state.authPass = action.payload;
+			state.authPass = action.payload
 		},
 		setVaild: (state, action: PayloadAction<boolean>) => {
-			state.isValid = action.payload;
+			state.isValid = action.payload
 		},
 		// DEPRECATED
 		// setTools: (state, action: PayloadAction<toolsModal>) =>{
@@ -43,7 +42,7 @@ export const authSlice = createSlice({
 		// 	state.isOpen = true;
 		// },
 	},
-});
+})
 
-export const { actions: authAction } = authSlice;
-export const { reducer: authReducer } = authSlice;
+export const { actions: authAction } = authSlice
+export const { reducer: authReducer } = authSlice
