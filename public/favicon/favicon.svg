@@ -1,0 +1,19 @@
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="64"
+      height="64"
+      viewBox="0 0 64 64" 
+    >
+      <circle cx="32" cy="32" r="32" fill="#1DB954" />
+
+      <g transform="translate(32 32) scale(0.6) translate(-32 -32)">
+        <path
+          fill="none"
+          stroke="#fff"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="4"
+          d="M8 27.8v11m9.9-19.2v27.5m9.8-37.1v46.7m9.8-36.4v25.9m9.9-19.5v13m9.8-9.2v5.5"
+        />
+      </g>
+    </svg>

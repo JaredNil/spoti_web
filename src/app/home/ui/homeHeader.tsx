@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react'
 
-const HomeHeader = ({ svUsername }: { svUsername: string }) => {
-	const [username, setUsername] = useState(svUsername)
+import { Title } from '@/shared/ui/pageTitle/pageTitle'
+
+const HomeHeader = ({ hydrateUsername }: { hydrateUsername: string }) => {
+	const [username, setUsername] = useState(hydrateUsername)
 
 	useEffect(() => {
 		// req of change username from server data
@@ -11,11 +13,7 @@ const HomeHeader = ({ svUsername }: { svUsername: string }) => {
 		// setUsername(getUserByCookie)
 	})
 
-	return (
-		<h1 className="relative text-3xl font-semibold text-white select-none">
-			{`Welcome back, ${username}`}
-		</h1>
-	)
+	return <Title title={`Welcome back, ${username}`} />
 }
 
 export default HomeHeader

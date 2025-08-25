@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { SearchpageSchema } from '../types/searchpageSchema'
 
 const initialState: SearchpageSchema = {
-	isLoading: true,
+	isLoading: false,
 	error: undefined,
 }
 

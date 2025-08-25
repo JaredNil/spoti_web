@@ -6,7 +6,9 @@ import { MdDone } from 'react-icons/md'
 import { DynamicModuleLoader, ReducerList } from '../(providers)/storeProvider'
 
 import { getIsDragEvent, uploadAction, uploadReducer } from '@/app/upload'
+import { createMeta } from '@/shared/const/metadata'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { Title } from '@/shared/ui/pageTitle/pageTitle'
 
 const files: any[] = []
 
@@ -14,8 +16,6 @@ const UploadPage: FC = () => {
 	const dispatch = useAppDispatch()
 
 	const isDragEvent = useAppSelector(getIsDragEvent)
-
-	// const files = useAppSelector(getUploadingList) || [];
 
 	const mouseHandler = () => {
 		if (isDragEvent) {
@@ -30,12 +30,6 @@ const UploadPage: FC = () => {
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
 			<div onMouseUp={mouseHandler} onMouseLeave={mouseHandler}>
-				<div className="mb-7 flex  w-full flex-col  overflow-hidden">
-					<h1 className="mb-2 text-3xl font-semibold text-white">
-						Upload
-					</h1>
-				</div>
-
 				<div
 					className=" pointer-events-none mb-7  select-none pr-[0%] text-justify 
 						leading-5 md:pr-[27%]

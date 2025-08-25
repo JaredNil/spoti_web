@@ -1,30 +1,18 @@
-'use client'
-
 import { FC } from 'react'
 
-import { DynamicModuleLoader, ReducerList } from '../(providers)/storeProvider'
+import SearchClient from './ui/search'
 
-import {
-	SearchContent,
-	getIsLoadingPage,
-	searchpageReducer,
-} from '@/app/search'
-import { useAppSelector } from '@/shared/hooks'
+import { createMeta } from '@/shared/const/metadata'
+import { Title } from '@/shared/ui/pageTitle/pageTitle'
 
-const reducers: ReducerList = {
-	searchpage: searchpageReducer,
-}
+export const metadata = createMeta({ title: 'Search' })
 
 const SearchPage: FC = () => {
-	const isLoadingPage = useAppSelector(getIsLoadingPage)
-
 	return (
-		<DynamicModuleLoader reducers={reducers}>
-			<div className="mb-2 flex flex-col gap-y-6">
-				<h1 className="text-3xl font-semibold text-white">Search</h1>
-			</div>
-			<SearchContent isLoadingPage={isLoadingPage} />
-		</DynamicModuleLoader>
+		<>
+			<Title title="Search page" />
+			<SearchClient />
+		</>
 	)
 }
 

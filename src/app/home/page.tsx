@@ -5,13 +5,9 @@ import HomeHeader from './ui/homeHeader'
 
 import { AlbumListProvider, QuickBar, BringAuth } from '@/app/home'
 import { fetchAlbums } from '@/entities/album'
+import { createMeta } from '@/shared/const/metadata'
 
-export const metadata: Metadata = {
-	title: 'Jarefy',
-	description:
-		'Jarefy - это музыкальный сервис, который позволяет слушать музыку словно в Spotify, а также слушать музыку, которая была добавлена в избранное.',
-	keywords: ['Jarefy', 'Музыка', 'Spotify', 'Искусство'],
-}
+export const metadata = createMeta({ title: 'Home' })
 
 const Home = async () => {
 	const commonAlbums = await fetchAlbums(0)
@@ -19,7 +15,7 @@ const Home = async () => {
 
 	return (
 		<>
-			<HomeHeader svUsername={'User'} />
+			<HomeHeader hydrateUsername={'User'} />
 			<QuickBar />
 
 			<AlbumListProvider

@@ -15,7 +15,6 @@ export const fetchQueue = createAsyncThunk<Trackes, void, ThunkConfig<string>>(
 			const res = await fetch(`/api/track?query=${queue.join(',')}`)
 
 			const trackes = orderByIds(await res.json(), queue) as Trackes
-			console.log(trackes)
 			if (!trackes) {
 				throw new Error()
 			}

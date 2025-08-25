@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 
 import { PlaylistTitle } from '../ui/playlistTitle'
@@ -7,6 +8,19 @@ import { AlbumInterface, fetchAlbum } from '@/entities/album'
 import { fetchTrackes } from '@/entities/track'
 import { fetchAllTrackes } from '@/entities/track/model/fetchAllTrackes'
 import { Trackes } from '@/shared/api/track'
+import { createMeta } from '@/shared/const/metadata'
+
+export async function generateMetadata({
+	params,
+}: {
+	params: { id: string }
+}): Promise<Metadata> {
+	const { id } = await params
+
+	return createMeta({
+		title: id,
+	})
+}
 
 export default async function PlaylistPage({
 	params,

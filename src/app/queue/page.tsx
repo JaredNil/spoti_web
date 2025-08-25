@@ -5,10 +5,10 @@ import { useEffect } from 'react'
 import { TrackQueue } from './ui/trackQueue'
 import { DynamicModuleLoader, ReducerList } from '../(providers)/storeProvider'
 import { getQueueTrackes } from './model/selectors'
+import { fetchQueue } from './model/service/fetchQueue'
 import { queuepageReducer } from './model/slices/queuepageSlice'
 import { QueueTools } from './ui/queueTools'
 
-import { fetchQueue } from '@/app/queue/model/service/fetchQueue'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { getPlayerQueue, getPlayerTarget } from '@/widgets/player'
 
@@ -30,9 +30,6 @@ export default function QueuePage() {
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>
-			<h1 className="relative text-3xl font-semibold text-white select-none pb-2">
-				Queue trackes
-			</h1>
 			<QueueTools />
 			<div className="flex flex-col gap-4 pt-2 transition-all">
 				{queueTrackes.length === 0 && (

@@ -1,6 +1,20 @@
-import TrackPageHeader from '../ui/trackPageHeader'
+import { Metadata } from 'next'
 
 import { Track } from '@/entities/track'
+import { createMeta } from '@/shared/const/metadata'
+import { Title } from '@/shared/ui/pageTitle/pageTitle'
+
+export async function generateMetadata({
+	params,
+}: {
+	params: { id: string }
+}): Promise<Metadata> {
+	const { id } = await params
+
+	return createMeta({
+		title: id,
+	})
+}
 
 export default async function PlaylistPage({
 	params,
@@ -11,7 +25,7 @@ export default async function PlaylistPage({
 
 	return (
 		<>
-			<TrackPageHeader title={'Track page'} />
+			<Title title={'Track page'} />
 			<Track id={Number(id)} />
 		</>
 	)
