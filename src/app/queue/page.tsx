@@ -2,13 +2,15 @@
 
 import { useEffect } from 'react'
 
-import { TrackByQ } from './ui/trackByQ'
+import { TrackQueue } from './ui/trackQueue'
 import { DynamicModuleLoader, ReducerList } from '../(providers)/storeProvider'
 import { getQueueTrackes } from './model/selectors'
 import { queuepageReducer } from './model/slices/queuepageSlice'
+import { QueueTools } from './ui/queueTools'
 
 import { fetchQueue } from '@/app/queue/model/service/fetchQueue'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { getPlayerQueue, getPlayerTarget } from '@/widgets/player'
 
 const reducers: ReducerList = {
 	queuepage: queuepageReducer,
@@ -17,25 +19,51 @@ const reducers: ReducerList = {
 export default function QueuePage() {
 	const dispatch = useAppDispatch()
 
+	const playerQueue = useAppSelector(getPlayerQueue)
+	const trackesId = useAppSelector(getPlayerQueue)
+	const queueTrackes = useAppSelector(getQueueTrackes)
+	const currentTarget = useAppSelector(getPlayerTarget)
+
 	useEffect(() => {
 		dispatch(fetchQueue())
-	}, [dispatch])
-
-	const trackes = useAppSelector(getQueueTrackes)
+	}, [dispatch, playerQueue])
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>
 			<h1 className="relative text-3xl font-semibold text-white select-none pb-2">
 				Queue trackes
 			</h1>
-			<div className="flex flex-col gap-4">
-				{trackes.length === 0 && (
+			<QueueTools />
+			<div className="flex flex-col gap-4 pt-2 transition-all">
+				{queueTrackes.length === 0 && (
 					<div className="h-80 flex items-center justify-center select-none">
 						Очередь пуста
 					</div>
 				)}
-				{trackes.map((track) => (
-					<TrackByQ key={track.id} track={track} />
+				{queueTrackes?.map((track, index) => (
+					<div key={track.id}>
+						<div
+							className={` text-2xl  text-white select-none
+									opacity-0 transition-all duration-400 absolute pb-2
+									${currentTarget === index && 'opacity-100 relative pb-0'}`}
+						>
+							{currentTarget === index && 'Текущий трек'}
+						</div>
+						<TrackQueue
+							target={index}
+							track={track}
+							trackesId={trackesId}
+						/>
+						<div
+							className={`text-2xl  text-white select-none
+									opacity-0 transition-all duration-400 absolute pt-2
+									${currentTarget === index && 'opacity-100 relative pt-0'}`}
+						>
+							{currentTarget === index &&
+								queueTrackes.length - 1 != currentTarget &&
+								'Очередь'}
+						</div>
+					</div>
 				))}
 			</div>
 		</DynamicModuleLoader>

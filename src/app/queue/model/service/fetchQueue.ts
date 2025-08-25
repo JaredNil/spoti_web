@@ -13,7 +13,9 @@ export const fetchQueue = createAsyncThunk<Trackes, void, ThunkConfig<string>>(
 			const state = getState()
 			const queue = state.player.queue
 			const res = await fetch(`/api/track?query=${queue.join(',')}`)
-			const trackes = (await res.json()) as Trackes
+
+			const trackes = orderByIds(await res.json(), queue) as Trackes
+			console.log(trackes)
 			if (!trackes) {
 				throw new Error()
 			}
@@ -23,3 +25,11 @@ export const fetchQueue = createAsyncThunk<Trackes, void, ThunkConfig<string>>(
 		}
 	}
 )
+
+export function orderByIds<T extends { id: number | string }>(
+	items: T[],
+	ids: (number | string)[]
+): T[] {
+	const map = new Map(items.map((i) => [i.id, i]))
+	return ids.map((id) => map.get(id)).filter(Boolean) as T[]
+}

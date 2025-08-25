@@ -5,7 +5,12 @@ import { FaPause, FaPlay } from 'react-icons/fa'
 
 import { Track } from '@/shared/api/track'
 import { useAppSelector } from '@/shared/hooks'
-import { getTrack, usePlayer } from '@/widgets/player'
+import {
+	getPlayerQueue,
+	getPlayerTarget,
+	getTrack,
+	usePlayer,
+} from '@/widgets/player'
 import { getPlayerNativeQueue } from '@/widgets/player'
 
 // RELAY(TED) TRACKES ID - В КОМПОНЕНТ ЗАМЫКАЕТСЯ ПЕРЕДАННЫЙ К ЭТОЙ КНОПКЕ МАССИВ ID ТРЕКОВ,
@@ -28,7 +33,11 @@ export const PlayButton: React.FC<PlayButtonProps> = ({
 	target = 0,
 	classname,
 }: PlayButtonProps) => {
-	console.log('render playButton')
+	const queue = useAppSelector(getPlayerQueue)
+	const playerTarget = useAppSelector(getPlayerTarget)
+	console.log()
+
+	console.log(relayTrackesId, target, queue, playerTarget)
 	const { start, isRun, pause, play } = usePlayer()
 	const playerTrack = useAppSelector(getTrack)
 
@@ -88,9 +97,10 @@ export const PlayButton: React.FC<PlayButtonProps> = ({
 			transition hover:scale-110 group-hover:opacity-100 pointer-events-auto 
 			${classname} 
 			${
-				isRun && track?.id == playerTrack?.id && type == 'track'
-					? 'bg-transparent *:fill-green-500'
-					: ''
+				isRun &&
+				track?.id == playerTrack?.id &&
+				type == 'track' &&
+				'bg-transparent *:fill-green-500'
 			}`}
 		>
 			{activeIcon}
