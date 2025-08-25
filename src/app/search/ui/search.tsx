@@ -1,33 +1,59 @@
 'use client'
+import { useDeferredValue, useEffect, useState } from 'react'
 
-import { FC } from 'react'
-
-import { SearchContent } from './searchContent'
-
+import { SearchView } from './searchView'
 import {
-	DynamicModuleLoader,
-	ReducerList,
-} from '@/app/(providers)/storeProvider'
-import {
-	SearchContentSkeleton,
 	getIsLoadingPage,
-	searchpageReducer,
-} from '@/app/search'
-import { useAppSelector } from '@/shared/hooks'
+	getSearchTrackes,
+	getSearchTrackesId,
+} from '../model/selector/searchpageSelector'
+import { searchingTrackes } from '../model/service/searchingTrackes'
 
-const reducers: ReducerList = {
-	searchpage: searchpageReducer,
-}
+import { getUserSearch } from '@/entities/user'
+import { userAction, userSlice } from '@/entities/user/model/slice/userSlice'
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { Input } from '@/shared/ui/kit/input'
 
-const SearchClient: FC = () => {
-	const isLoadingPage = useAppSelector(getIsLoadingPage)
+export const Search: React.FC = () => {
+	const dispatch = useAppDispatch()
+
+	const trackes = useAppSelector(getSearchTrackes)
+	const trackesId = useAppSelector(getSearchTrackesId)
+	const searchInput = useAppSelector(getUserSearch)
+	const isLoading = useAppSelector(getIsLoadingPage)
+	const deferredQuery = useDeferredValue(searchInput)
+
+	useEffect(() => {
+		if (
+			deferredQuery.trim() &&
+			deferredQuery != '' &&
+			deferredQuery.length > 1
+		) {
+			dispatch(searchingTrackes(deferredQuery.trim()))
+		}
+	}, [deferredQuery, dispatch])
 
 	return (
-		<DynamicModuleLoader reducers={reducers}>
-			{isLoadingPage && <SearchContentSkeleton />}
-			{!isLoadingPage && <SearchContent />}
-		</DynamicModuleLoader>
+		<div className="pt-2 flex flex-col">
+			<Input
+				type="text"
+				value={searchInput}
+				onChange={(e) =>
+					dispatch(userAction.setSearched(e.target.value))
+				}
+				className="sceleton xl:w-[50%]"
+				placeholder="Scarlxrd...  architect...   genre..."
+			/>
+			<div className="w-full mt-3 flex flex-col">
+				<span className="text-2xl select-none">Результаты поиска:</span>
+				{trackes && trackesId && (
+					<SearchView
+						trackes={trackes}
+						trackesId={trackesId}
+						isLoading={isLoading}
+					/>
+				)}
+			</div>
+		</div>
 	)
 }
-
-export default SearchClient

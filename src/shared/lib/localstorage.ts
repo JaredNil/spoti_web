@@ -11,6 +11,7 @@ export const cacheKeys = [
 	'track',
 	'progress',
 	'timer',
+	'search',
 ] as const
 
 type KeyToUnion<T extends readonly string[]> = T[number]

@@ -2,10 +2,12 @@
 // export { authByUsername } from './model/service/authByUsername';
 // export { logoutByServer } from './model/service/logoutByServer';
 
-export { getIsLoadingUser } from './model/selectors/getIsLoadingUser';
+export { getUserSearch } from './model/selectors/getSearched'
 
-export { userReducer, userAction } from './model/slice/userSlice';
+export { getIsLoadingUser } from './model/selectors/getIsLoadingUser'
 
-export type { UserSchema } from './model/types/user';
+export { userReducer, userAction } from './model/slice/userSlice'
 
-export { getUsername } from './model/selectors/getUsername';
+export type { UserSchema } from './model/types/user'
+
+export { getUsername } from './model/selectors/getUsername'

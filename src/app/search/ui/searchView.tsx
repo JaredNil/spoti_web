@@ -3,28 +3,25 @@
 import { useState } from 'react'
 import { PiListBulletsThin, PiListLight } from 'react-icons/pi'
 
-import { TrackViewListing } from './trackViewListing'
-import { TrackViewSkeleton } from './trackViewSkeleton'
-import { Dropdown } from '../dropdown'
+import { SearchLoading } from './piece/searchLoading'
 
-import { AlbumInterface } from '@/entities/album'
+import { Dropdown } from '@/app/playlist/ui/dropdown'
+import { TrackViewListing } from '@/app/playlist/ui/trackView/trackViewListing'
 import { Trackes } from '@/shared/api/track'
-import { PlayButton } from '@/shared/ui/playButton/playButton'
 
-interface TrackViewProps {
+interface SearchViewProps {
 	trackes: Trackes
-	album: AlbumInterface
+	trackesId: number[]
+	isLoading: boolean
 }
 
-const isLoadingTrackes = false
-
-export const TrackViewVender: React.FC<TrackViewProps> = ({
+export const SearchView: React.FC<SearchViewProps> = ({
 	trackes,
-	album,
-}: TrackViewProps) => {
+	trackesId,
+	isLoading,
+}: SearchViewProps) => {
 	const [isCompact, setIsList] = useState<boolean>(false)
 	const toggleList = () => setIsList(!isCompact)
-
 	return (
 		<div
 			className="my-4 flex w-full flex-col bg-[#121212] px-6 py-4
@@ -32,12 +29,6 @@ export const TrackViewVender: React.FC<TrackViewProps> = ({
 		>
 			<div className="flex justify-between h-13">
 				<div className="flex items-center">
-					<div className="h-full aspect-square">
-						<PlayButton
-							relayTrackesId={album.trackes_id}
-							type="album"
-						/>
-					</div>
 					<Dropdown />
 				</div>
 
@@ -66,12 +57,12 @@ export const TrackViewVender: React.FC<TrackViewProps> = ({
 				</div>
 			</div>
 
-			{isLoadingTrackes ? (
-				<TrackViewSkeleton isCompact={isCompact} />
+			{isLoading ? (
+				<SearchLoading />
 			) : (
 				<TrackViewListing
 					isCompact={isCompact}
-					trackesId={album.trackes_id}
+					trackesId={trackesId}
 					trackes={trackes}
 				/>
 			)}

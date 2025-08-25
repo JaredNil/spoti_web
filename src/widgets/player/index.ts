@@ -10,7 +10,6 @@ export { Player } from './ui/player'
 export type { PlayerSchema } from './model/types/playerSchema'
 
 export { PlayerClientSlot } from './model/ui/playerClientSlot'
-
 export {
 	getIsLoading,
 	getIsActivePlayer,

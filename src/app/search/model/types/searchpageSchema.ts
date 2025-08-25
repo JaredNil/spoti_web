@@ -1,4 +1,8 @@
+import { Trackes } from '@/shared/api/track'
+
 export interface SearchpageSchema {
-	isLoading?: boolean;
-	error?: string;
+	isLoading?: boolean
+	trackes: Trackes
+	trackesId: number[]
+	error?: string
 }

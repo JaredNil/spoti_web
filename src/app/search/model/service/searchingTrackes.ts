@@ -1,27 +1,35 @@
-// import { createAsyncThunk } from '@reduxjs/toolkit';
-// import { ThunkConfig } from 'app/providers/StoreProvider';
-// import { TRACKES_CONTENT } from 'content/TRACKES_CONTENT';
-// import { Trackes } from 'entities/Track';
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
-// export const searchingTrackes = createAsyncThunk<Trackes, void, ThunkConfig<string>>('searchpage/searchingTrackes',
-// 	async (_, thunkAPI) => {
-// 		// const { rejectWithValue, extra, dispatch } = thunkAPI;
+import type { ThunkConfig } from '@/app/(providers)/storeProvider/config/store'
+import { TRACKES } from '@/shared/api/cache/TRACKES_CONTENT'
+import { Trackes } from '@/shared/api/track'
 
-// 		return TRACKES_CONTENT
+interface searchingTrackesDto {
+	trackes: Trackes
+	trackesId: number[]
+}
 
-// 		// Для работающего бэкенда
-// 		// try {
-// 		// 	const res = await extra.api.get<AlbumsCollection>('/app', {
-// 		// 		headers: {
-// 		// 			withCredentials: true,
-// 		// 			'Access-Control-Allow-Origin': '*',
-// 		// 			'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
-// 		// 			'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
-// 		// 		},
-// 		// 	});
-// 		// 	dispatch(mainpageAction.offLoadingData());
-// 		// 	return res.data;
-// 		// } catch (error) {
-// 		// 	return rejectWithValue('error');
-// 		// }
-// 	});
+export const searchingTrackes = createAsyncThunk<
+	searchingTrackesDto,
+	string,
+	ThunkConfig<string>
+>('searchpage/searchingTrackes', async (searching) => {
+	const searchedTrackes = findByReq(TRACKES, searching)
+	const trackesId = extractIds(searchedTrackes)
+
+	return { trackes: searchedTrackes, trackesId }
+})
+
+export function findByReq(tracks: Trackes, query: string): Trackes {
+	if (!query.trim()) return tracks
+
+	const q = query.trim().toLowerCase()
+
+	return tracks.filter(
+		(t) =>
+			t.title.toLowerCase().includes(q) ||
+			t.author.toLowerCase().includes(q)
+	)
+}
+export const extractIds = <T extends { id: number }>(items: T[]): number[] =>
+	items.map(({ id }) => id)

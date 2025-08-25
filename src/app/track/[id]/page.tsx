@@ -4,17 +4,17 @@ import { Track } from '@/entities/track'
 import { createMeta } from '@/shared/const/metadata'
 import { Title } from '@/shared/ui/pageTitle/pageTitle'
 
-export async function generateMetadata({
-	params,
-}: {
-	params: { id: string }
-}): Promise<Metadata> {
-	const { id } = await params
+// export async function generateMetadata({
+// 	params,
+// }: {
+// 	params: { id: string }
+// }): Promise<Metadata> {
+// 	const { id } = await params
 
-	return createMeta({
-		title: id,
-	})
-}
+// 	return createMeta({
+// 		title: id,
+// 	})
+// }
 
 export default async function PlaylistPage({
 	params,

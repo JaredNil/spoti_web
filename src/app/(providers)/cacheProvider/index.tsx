@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 
 import { AppDispatch } from '../storeProvider/ui/storeProvider'
 
+import { userSlice } from '@/entities/user/model/slice/userSlice'
 import { useAppDispatch } from '@/shared/hooks'
 import { cacheHandle, cacheKey, cacheKeys } from '@/shared/lib/localstorage'
 import { playerSlice } from '@/widgets/player'
@@ -56,6 +57,9 @@ const cacheManager = (
 			break
 		case 'timer':
 			dispatch(playerSlice.actions.setTimer(cacheData))
+			break
+		case 'search':
+			if (cacheData) dispatch(userSlice.actions.setSearched(cacheData))
 			break
 	}
 }

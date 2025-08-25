@@ -1,10 +1,15 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
+import { searchingTrackes } from '../service/searchingTrackes'
 import { SearchpageSchema } from '../types/searchpageSchema'
+
+import { Trackes } from '@/shared/api/track'
 
 const initialState: SearchpageSchema = {
 	isLoading: false,
 	error: undefined,
+	trackes: [],
+	trackesId: [],
 }
 
 export const searchpageSlice = createSlice({
@@ -17,20 +22,25 @@ export const searchpageSlice = createSlice({
 		offLoadingPage: (state) => {
 			state.isLoading = false
 		},
+		setSearchTrackes: (state, action: PayloadAction<Trackes>) => {
+			state.trackes = action.payload
+		},
+		setSearchTrackesId: (state, action: PayloadAction<number[]>) => {
+			state.trackesId = action.payload
+		},
 	},
 	extraReducers: (builder) => {
-		// builder.addCase(authByCookie.pending, (state) => {
-		// 	state.isLoading = true;
-		// });
-		// builder.addCase(authByCookie.fulfilled, (state, action) => {
-		// 	console.log('authByCookie.fulfilled');
-		// 	state.username = action.payload.username;
-		// 	state.isLoading = false;
-		// });
-		// builder.addCase(authByCookie.rejected, (state, action) => {
-		// 	console.log('authByCookie.rejected');
-		// 	state.isLoading = false;
-		// });
+		builder.addCase(searchingTrackes.pending, (state) => {
+			// state.isLoading = true
+		})
+		builder.addCase(searchingTrackes.fulfilled, (state, action) => {
+			state.trackes = action.payload.trackes
+			state.trackesId = action.payload.trackesId
+			state.isLoading = false
+		})
+		builder.addCase(searchingTrackes.rejected, (state, action) => {
+			state.isLoading = false
+		})
 	},
 })
 
