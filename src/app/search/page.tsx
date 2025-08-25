@@ -1,4 +1,5 @@
 'use client'
+
 import { FC } from 'react'
 
 import { DynamicModuleLoader, ReducerList } from '../(providers)/storeProvider'
@@ -15,8 +16,6 @@ const reducers: ReducerList = {
 }
 
 const SearchPage: FC = () => {
-	// const { t } = useTranslation();
-
 	const isLoadingPage = useAppSelector(getIsLoadingPage)
 
 	return (

@@ -33,11 +33,6 @@ export const PlayButton: React.FC<PlayButtonProps> = ({
 	target = 0,
 	classname,
 }: PlayButtonProps) => {
-	const queue = useAppSelector(getPlayerQueue)
-	const playerTarget = useAppSelector(getPlayerTarget)
-	console.log()
-
-	console.log(relayTrackesId, target, queue, playerTarget)
 	const { start, isRun, pause, play } = usePlayer()
 	const playerTrack = useAppSelector(getTrack)
 

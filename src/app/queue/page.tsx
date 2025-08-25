@@ -41,11 +41,11 @@ export default function QueuePage() {
 					</div>
 				)}
 				{queueTrackes?.map((track, index) => (
-					<div key={track.id}>
+					<div key={track.id} className="relative w-full">
 						<div
-							className={` text-2xl  text-white select-none
-									opacity-0 transition-all duration-400 absolute pb-2
-									${currentTarget === index && 'opacity-100 relative pb-0'}`}
+							className={`text-2xl  text-white select-none
+							opacity-0 transition-all duration-400 absolute pb-2
+							${currentTarget === index && 'opacity-100 relative pb-0'}`}
 						>
 							{currentTarget === index && 'Текущий трек'}
 						</div>

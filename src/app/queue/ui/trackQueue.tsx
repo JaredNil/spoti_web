@@ -20,17 +20,16 @@ export function TrackQueue({
 	const currentTarget = useAppSelector(getPlayerTarget)
 	return (
 		<div
-			className="relative flex items-center justify-between overflow-hidden
-				h-auto transition-all
-				cursor-pointer gap-x-4 rounded-md
+			className="relative flex flex-row items-center justify-between overflow-hidden
+				cursor-pointer gap-x-4 rounded-md transition-all
 				bg-neutral-100/10  hover:bg-neutral-100/20
-				md:flex-row flex-col md:h-24 md:pr-4 pt-6 md:pt-0"
+				h-24 pr-4 pt-0"
 		>
 			<div
-				className="flex h-full  pointer-events-none select-none
-					md:flex-row flex-col md:items-end items-center"
+				className="flex h-full w-3/4 relative pointer-events-none select-none 
+					items-center"
 			>
-				<div className="relative h-full aspect-square ">
+				<div className="h-full aspect-square ">
 					<Image
 						src={track.imageLink || '/homepage/1235.png'}
 						alt={track.title}
@@ -39,38 +38,35 @@ export function TrackQueue({
 						className={`h-full w-full ${currentTarget && target < currentTarget && 'blur-xs grayscale'}`}
 					/>
 				</div>
-				<div
-					className="md:pl-3 h-full flex flex-col justify-evenly 
-						md:items-start items-center"
-				>
-					<p
-						className={`truncate text-2xl font-medium text-neutral-100 py-2
+				<div className="pl-3 h-full w-[70%] flex flex-col justify-evenly items-start">
+					<div
+						className={`truncate w-full text-lg sm:text-2xl font-medium text-neutral-100 py-2
+						
 						${currentTarget && target < currentTarget && 'text-neutral-500'} `}
 					>
 						{track.title}
-					</p>
+					</div>
 					<p
-						className={`truncate text-sm text-neutral-400"
+						className={`truncate text-xs sm:text-sm text-neutral-400"
 						${currentTarget && target < currentTarget && 'text-neutral-500'} `}
 					>
 						{track.author}
 					</p>
 				</div>
 			</div>
-			<div
-				className="flex justify-center items-center gap-x
-			relative w-22 md:w-30 py-16 md:py-0"
-			>
+			<div className="flex justify-center items-center gap-x min-w-24 absolute right-2">
 				{/* REFACTOR LIKE FEATURE IN FUTURE */}
-				<div className="cursor-pointer items-center md:w-20 justify-center">
+				<div className="cursor-pointer items-center justify-center mr-2">
 					{/* <FaRegHeart fill="rgba(255, 0, 0, 1)" /> */}
 					<FaHeart fill="rgba(255, 0, 0, 1)" />
 				</div>
-				<PlayButton
-					relayTrackesId={trackesId}
-					target={target}
-					track={track}
-				/>
+				<div className="w-16">
+					<PlayButton
+						relayTrackesId={trackesId}
+						target={target}
+						track={track}
+					/>
+				</div>
 			</div>
 		</div>
 	)
