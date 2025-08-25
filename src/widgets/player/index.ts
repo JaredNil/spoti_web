@@ -1,6 +1,8 @@
-export { playerReducer } from './model/slice/playerSlice'
-
-export { playerAction } from './model/slice/playerSlice'
+export {
+	playerAction,
+	playerSlice,
+	playerReducer,
+} from './model/slice/playerSlice'
 
 export { usePlayer } from './model/hook/usePlayer'
 export { Player } from './ui/player'

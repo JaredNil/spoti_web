@@ -40,7 +40,7 @@ export function TrackByQ({ track }: { track: Track }) {
 				</div>
 			</div>
 			<div className="w-30 md:w-16 py-16 md:py-0">
-				{/* <PlayButton relayTrackesId={[track.id]} /> */}
+				<PlayButton relayTrackesId={[track.id]} />
 			</div>
 		</div>
 	)

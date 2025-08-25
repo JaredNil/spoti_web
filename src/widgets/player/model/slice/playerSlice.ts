@@ -4,6 +4,7 @@ import { fetchTrackData } from '../service/fetchTrackData'
 import { PlayerSchema } from '../types/playerSchema'
 
 import { Track } from '@/shared/api/track'
+import { cacheHandle } from '@/shared/lib/localstorage'
 
 const initialState: PlayerSchema = {
 	isLoading: true,
@@ -37,22 +38,32 @@ export const playerSlice = createSlice({
 		},
 		onActivePlayer: (state) => {
 			state.isActivePlayer = true
+			cacheHandle.set('isActivePlayer', true)
 		},
 		offActivePlayer: (state) => {
 			state.isActivePlayer = false
+			cacheHandle.set('isActivePlayer', false)
 		},
 		setHash: (state, action: PayloadAction<string>) => {
 			state.hash = action.payload
 		},
 		setVolume: (state, action: PayloadAction<number>) => {
 			state.volume = action.payload
+			cacheHandle.set('volume', action.payload)
+		},
+		setNative: (state, action: PayloadAction<number[]>) => {
+			state.native = action.payload
+			cacheHandle.set('native', action.payload)
 		},
 		setQueue: (state, action: PayloadAction<number[]>) => {
 			state.native = action.payload
 			state.queue = state.native
+			cacheHandle.set('queue', action.payload)
+			cacheHandle.set('native', action.payload)
 		},
 		setTarget: (state, action: PayloadAction<number>) => {
 			state.target = action.payload
+			cacheHandle.set('targetQueue', action.payload)
 		},
 		setTimer: (state, action: PayloadAction<number>) => {
 			state.timer = action.payload

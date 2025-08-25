@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
+import { fetchQueue } from '../service/fetchQueuet'
 import { QueuepageSchema } from '../types/queuepageSchema'
 
-import { fetchTrackesByClient } from '@/app/queue/model/service/fetchTrackesByClient'
 import { Trackes } from '@/shared/api/track'
 
 const initialState: QueuepageSchema = {
@@ -20,21 +20,17 @@ export const queuepageSlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
-		builder.addCase(fetchTrackesByClient.pending, (state) => {
+		builder.addCase(fetchQueue.pending, (state) => {
 			state.error = ''
 			state.isLoading = true
 		})
 		builder.addCase(
-			fetchTrackesByClient.fulfilled,
+			fetchQueue.fulfilled,
 			(state, action: PayloadAction<Trackes>) => {
 				state.isLoading = false
 				state.trackes = action.payload
 			}
 		)
-		// builder.addCase(uploadingFile.rejected, (state) => {
-		// 	state.isLoading = false;
-		// 	// state.error = action.error;
-		// });
 	},
 })
 

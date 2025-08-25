@@ -17,8 +17,6 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = memo(
 		children,
 		removeAfterUnmount = true,
 	}: DynamicModuleLoaderProps) => {
-		useEffect(() => console.log('DynamicModuleLoader RENDER'))
-
 		const store = useStore() as ReduxStoreWithManager
 		const dispatch = useDispatch()
 
