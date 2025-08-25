@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import { PiListBulletsThin, PiListLight } from 'react-icons/pi'
 
+import { Dropdown } from '../dropdown'
 import { TrackViewListing } from './trackViewListing'
 import { TrackViewSkeleton } from './trackViewSkeleton'
-import { Dropdown } from '../dropdown'
 
 import { AlbumInterface } from '@/entities/album'
 import { Trackes } from '@/shared/api/track'

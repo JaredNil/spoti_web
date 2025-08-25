@@ -1,9 +1,11 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 import { twMerge } from 'tailwind-merge'
 
 import { TrackViewButton } from './trackViewButton'
+import { TrackViewListingSearch } from './trackViewListingSearch'
 
 import { SearchEmpty } from '@/app/search/ui/piece/searchEmpty'
 import { Trackes } from '@/shared/api/track'
@@ -81,10 +83,12 @@ export const TrackViewListing: React.FC<TrackViewListingProps> = ({
 									alt="track image"
 								/>
 							</div>
-							<div className="truncate pl-2">{track.title}</div>
-							<div className="table-data select-auto">
-								{track.author}
+							<div className="truncate pl-2 select-none cursor-pointer">
+								<Link href={`/track/${track.id}`}>
+									{track.title}
+								</Link>
 							</div>
+							<TrackViewListingSearch author={track.author} />
 							<div
 								className="flex cursor-pointer items-center justify-center"
 								onClick={onLikeTrack}
