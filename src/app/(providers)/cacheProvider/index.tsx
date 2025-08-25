@@ -16,6 +16,7 @@ export const CacheProvider = ({ children }: { children: ReactNode }) => {
 
 	return <>{children}</>
 }
+
 const cacheManager = (
 	cacheKey: cacheKey,
 	cacheData: any,
@@ -46,6 +47,15 @@ const cacheManager = (
 			dispatch(playerSlice.actions.setVolume(cacheData))
 			break
 
-		default:
+		case 'progress':
+			dispatch(playerSlice.actions.setProgress(cacheData))
+			break
+
+		case 'track':
+			dispatch(playerSlice.actions.setTrack(cacheData))
+			break
+		case 'timer':
+			dispatch(playerSlice.actions.setTimer(cacheData))
+			break
 	}
 }

@@ -10,7 +10,7 @@ export default function AppWrapper({
 			className={`fixed top-0 left-0 right-0 bottom-0 w-dvw h-vh
             flex flex-col
             bg-black scheme-dark text-white
-            font-main font-bold ${SegoeUI.className}`}
+            font-main ${SegoeUI.className}`}
 		>
 			{children}
 		</div>

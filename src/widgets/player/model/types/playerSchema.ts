@@ -7,12 +7,12 @@ export interface PlayerSchema {
 
 	volume: number // 0-100 value
 
-	target: number | null // current position index of queue
+	target: number | undefined // current position index of queue
 	queue: number[] // mutation order playlist
 	native: number[] // original order playlist
 
 	hash: string // hash of last track in player
-	track: Track | null // current TrackInfo
+	track?: Track // current TrackInfo
 	isLoadingTrack: boolean
 	isRun: boolean // running music in player right now predicate
 

@@ -8,6 +8,9 @@ export const cacheKeys = [
 	'native',
 	'targetQueue',
 	'isActivePlayer',
+	'track',
+	'progress',
+	'timer',
 ] as const
 
 type KeyToUnion<T extends readonly string[]> = T[number]

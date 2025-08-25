@@ -13,12 +13,12 @@ const initialState: PlayerSchema = {
 
 	volume: 100,
 
-	target: null,
+	target: undefined,
 	queue: [],
 	native: [],
 
 	hash: '',
-	track: null,
+	track: undefined,
 	isRun: false,
 	isLoadingTrack: true,
 
@@ -67,15 +67,20 @@ export const playerSlice = createSlice({
 		},
 		setTimer: (state, action: PayloadAction<number>) => {
 			state.timer = action.payload
+			cacheHandle.set('timer', action.payload)
 		},
 		setDuration: (state, action: PayloadAction<number>) => {
 			state.duration = action.payload
 		},
 		setProgress: (state, action: PayloadAction<number>) => {
 			state.progress = action.payload
+			cacheHandle.set('progress', action.payload)
 		},
 		setIsRun: (state, action: PayloadAction<boolean>) => {
 			state.isRun = action.payload
+		},
+		setTrack: (state, action: PayloadAction<Track>) => {
+			state.track = action.payload
 		},
 	},
 	extraReducers: (builder) => {
@@ -85,6 +90,7 @@ export const playerSlice = createSlice({
 				state.isLoadingTrack = false
 				state.track = action?.payload
 				state.isRun = true
+				cacheHandle.set('track', action.payload)
 			}
 		)
 		builder.addCase(fetchTrackData.rejected, (state) => {
