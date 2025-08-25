@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { fetchQueue } from '../service/fetchQueuet'
+import { fetchQueue } from '../service/fetchQueue'
 import { QueuepageSchema } from '../types/queuepageSchema'
 
 import { Trackes } from '@/shared/api/track'

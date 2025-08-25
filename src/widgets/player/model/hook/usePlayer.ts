@@ -22,12 +22,11 @@ export function usePlayer() {
 
 	const dispatch = useAppDispatch()
 
-	function start(trackesId: number[]) {
+	function start(trackesId: number[], target: number = 0) {
 		if (!isActivePlayer) dispatch(playerAction.onActivePlayer())
-
 		dispatch(playerAction.setQueue(trackesId))
-		dispatch(playerAction.setTarget(0))
-		dispatch(fetchTrackData(trackesId[0]))
+		dispatch(playerAction.setTarget(target))
+		dispatch(fetchTrackData(trackesId[target]))
 	}
 
 	function play() {
@@ -49,7 +48,7 @@ export function usePlayer() {
 	}
 
 	function next() {
-		if (target !== null) {
+		if (target) {
 			if (queue.length - 1 === target) {
 				// idk what doing
 			} else if (queue.length - 1 > target) {
@@ -63,7 +62,7 @@ export function usePlayer() {
 	}
 
 	function prev() {
-		if (target !== null && target !== 0) {
+		if (target && target !== 0) {
 			dispatch(playerAction.setIsRun(true))
 
 			const nextTarget = target - 1

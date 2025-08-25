@@ -7,7 +7,7 @@ import { DynamicModuleLoader, ReducerList } from '../(providers)/storeProvider'
 import { getQueueTrackes } from './model/selectors'
 import { queuepageReducer } from './model/slices/queuepageSlice'
 
-import { fetchQueue } from '@/app/queue/model/service/fetchQueuet'
+import { fetchQueue } from '@/app/queue/model/service/fetchQueue'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 
 const reducers: ReducerList = {
@@ -15,8 +15,6 @@ const reducers: ReducerList = {
 }
 
 export default function QueuePage() {
-	console.log('queue render')
-
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {

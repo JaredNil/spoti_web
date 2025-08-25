@@ -30,15 +30,16 @@ export const TrackViewVender: React.FC<TrackListProps> = ({
 
 	return (
 		<div
-			className={twMerge(
-				'my-4 flex w-full flex-col bg-[#121212] px-6 py-4',
-				'tracklist__mainWrapper'
-			)}
+			className="my-4 flex w-full flex-col bg-[#121212] px-6 py-4
+			tracklist__mainWrapper"
 		>
 			<div className="flex justify-between h-13">
 				<div className="flex items-center">
 					<div className="h-full aspect-square">
-						<PlayButton relayTrackesId={album.trackes_id} />
+						<PlayButton
+							relayTrackesId={album.trackes_id}
+							type="album"
+						/>
 					</div>
 					<Dropdown />
 				</div>
@@ -73,6 +74,7 @@ export const TrackViewVender: React.FC<TrackListProps> = ({
 			) : (
 				<TrackViewListing
 					isCompact={isCompact}
+					trackesId={album.trackes_id}
 					trackes={trackes}
 					// onShowModal={onShowModal}
 				/>

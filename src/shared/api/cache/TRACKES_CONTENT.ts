@@ -25,7 +25,7 @@ const sweet = '/content/playlist/Kito ft. Reija Lee — Sweet Talk.mp3'
 const rebel = '/content/playlist/P.T. Adamczyk The Rebel Path.mp3'
 const nosave =
 	'/content/playlist/Run The Jewels, El-P, Killer Mike — No Save Point.mp3'
-const chippin = '/public/content/playlist/SAMURAI — Chippin In.mp3'
+const chippin = '/public/content/playlist/Chippin.mp3'
 
 import { Trackes } from '@/shared/api/track'
 

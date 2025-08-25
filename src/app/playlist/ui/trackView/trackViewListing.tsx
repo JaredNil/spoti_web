@@ -1,20 +1,22 @@
 import Image from 'next/image'
 import React from 'react'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
-import { IoIosTimer } from 'react-icons/io'
 import { twMerge } from 'tailwind-merge'
 
+import { TrackViewButton } from './trackViewButton'
+
 import { Trackes } from '@/shared/api/track'
-import { PlayButton } from '@/shared/ui/playButton/playButton'
 
 interface TrackViewListingProps {
 	trackes?: Trackes
+	trackesId: number[]
 	isCompact: boolean
 	onShowModal?: (id: number) => void
 }
 
 export const TrackViewListing: React.FC<TrackViewListingProps> = ({
 	trackes = [],
+	trackesId,
 	isCompact,
 	onShowModal,
 }: TrackViewListingProps) => {
@@ -60,24 +62,11 @@ export const TrackViewListing: React.FC<TrackViewListingProps> = ({
 							className="table-id h-full aspect-square text-center relative overflow-hidden
 							pointer-events-none select-none "
 						>
-							<div className="h-full w-full flex items-center justify-center relative">
-								{i + 1}
-							</div>
-							<div
-								className="absolute top-0 left-0 overflow-hidden h-full w-full 
-								flex items-center justify-center
-								transition-all duration-100
-								opacity-0 group-hover:opacity-200
-								"
-							>
-								<div className="w-[80%] h-[80%] flex items-center justify-center">
-									<PlayButton
-										key={track.id}
-										relayTrackesId={[track.id]}
-										classname=""
-									/>
-								</div>
-							</div>
+							<TrackViewButton
+								index={i}
+								trackesId={trackesId}
+								track={track}
+							/>
 						</div>
 						<div className="table-image h-full flex items-center justify-center">
 							<Image
