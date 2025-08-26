@@ -48,16 +48,14 @@ export function usePlayer() {
 	}
 
 	function next() {
-		if (target) {
-			if (queue.length - 1 === target) {
-				// idk what doing
-			} else if (queue.length - 1 > target) {
-				dispatch(playerAction.setIsRun(true))
+		if (queue.length - 1 === target) {
+			// idk what doing
+		} else if (target !== undefined && queue.length - 1 > target) {
+			dispatch(playerAction.setIsRun(true))
 
-				const nextTarget = target + 1
-				dispatch(playerAction.setTarget(nextTarget))
-				dispatch(fetchTrackData(queue[nextTarget]))
-			}
+			const nextTarget = target + 1
+			dispatch(playerAction.setTarget(nextTarget))
+			dispatch(fetchTrackData(queue[nextTarget]))
 		}
 	}
 
