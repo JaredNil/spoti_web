@@ -1,53 +1,56 @@
-import { FaPlay } from "react-icons/fa";
+import Image from 'next/image'
+import Link from 'next/link'
 
-import { AlbumInterface } from "@/entities/album";
+import { AlbumInterface } from '@/entities/album'
+import { PlayButton } from '@/shared/ui/playButton/playButton'
 
-// import { usePlayer } from "widgets/Player";
-// 
 interface LibraryItemProps {
-	album?: AlbumInterface;
+	album: AlbumInterface
 }
 
-export const LibraryItem: React.FC<LibraryItemProps> = ({ album }: LibraryItemProps) => {
-
-	// const { start } = usePlayer()
-
-	// const playerHandler = () => {
-	// 	dispatch(playerAction.onActivePlayer())
-	// 	// еще диспатчим фанку для доступа
-	// }
-
+export const LibraryItem: React.FC<LibraryItemProps> = ({
+	album,
+}: LibraryItemProps) => {
 	return (
-		<div className="flex 
-		hover:bg-neutral-400/10 transition-all
-		group"
+		<div
+			className="flex relative
+			hover:bg-neutral-400/10 transition-all
+			group"
 		>
-			<div className="flex justify-center items-center
-				aspect-square h-[34px] bg-gray-400">
-				<img src={album?.imagePath} alt="" />
+			<div
+				className="flex justify-center items-center
+				aspect-square h-[34px] bg-gray-400"
+			>
+				<Image
+					src={album?.imagePath ?? '/album-placeholder.webp'}
+					className="h-full w-full"
+					width={60}
+					height={60}
+					alt=""
+				/>
 			</div>
-			<div className="flex justify-start items-center pl-2 w-full overflow-hidden
-				relative
-			">
-				<div className="select-none text-neutral-300 text-ellipsis text-sm
+
+			<div className="flex justify-start items-center pl-2 w-full overflow-hidden relative">
+				<div
+					className="select-none text-neutral-300 text-ellipsis text-sm
 					whitespace-nowrap tracking-wide w-full overflow-hidden"
 				>
-					{/* // album && 
-					// 	(album.id == 0) ? '' : <span className="font-medium">{album.author}</span>
-					// 	(album.id == 0) ? '' : ` -	`
-					//  <span>{album.title}</span>
-					//  */}
+					{album && album.id == 0 ? '' : ' '}
+					<span className="font-medium">{album.author}</span>
+					{album && album.id == 0 ? '' : ` - `}
+					<span>{album.title}</span>
 				</div>
-				<div
-					// onClick={()=> start(album.trackes_id)}
-					className="absolute bottom-1 right-2 aspect-square flex items-center justify-center rounded-full 
-					bg-green-500 p-1 opacity-0 drop-shadow-md 
-					transition hover:scale-110 group-hover:opacity-100
-					"
-				>
-					<FaPlay className="text-black scale-75" />
+				<Link
+					href={`/playlist/${album.id}`}
+					className="absolute w-full h-full top-0 left-0 "
+				/>
+				<div className="relative h-3/4 opacity-0 group-hover:opacity-100 right-1">
+					<PlayButton
+						relayTrackesId={album.trackes_id}
+						type="album"
+					/>
 				</div>
 			</div>
 		</div>
-	);
-};
+	)
+}

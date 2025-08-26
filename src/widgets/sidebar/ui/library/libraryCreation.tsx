@@ -1,5 +1,5 @@
 interface LibraryCreationProps {
-	onShowModal: () => void
+	onShowModal?: () => void
 }
 
 export const LibraryCreation: React.FC<LibraryCreationProps> = ({

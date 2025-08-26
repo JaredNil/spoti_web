@@ -1,74 +1,29 @@
-'use client'
+import { LibraryCreation } from './libraryCreation'
+import { LibraryItem } from '../libraryItem'
 
-import { useCallback } from "react";
+import { fetchAlbums } from '@/entities/album'
+import { WidgetLoader } from '@/shared/ui/widgetLoader'
 
-// import { fetchCommonAlbums, fetchUserAlbums, 
-// getAlbumCommonData, getAlbumUserData } from "entities/Album";
-// import { getUsername } from "entities/User";
-
-// import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { LibraryCreation } from "./libraryCreation";
-
-import { WidgetLoader } from "@/shared/ui/widgetLoader";
-
-import '@/shared/ui/widgetLoader/headerLoader.css'
-
-// import { LibraryItem } from "./LibraryItem";
-// import { LibraryCreation } from "./LibraryCreation";
-// import { AuthModal } from "features/Auth";
-
-
-export const Library: React.FC = () => {
-
-	// const [isOpenAuthModal, setIsOpenAuthModal] = useState(false);
-
-	// const isLoading = useAppSelector(getIsLoading)
+export const Library: React.FC = async () => {
 	const isLoading = false
-	// const username = useAppSelector(getUsername); // userState
-	// const username = 'user'
-	// const commonAlbums = useAppSelector(getAlbumCommonData) // albumState
-	// const userAlbums = useAppSelector(getAlbumUserData) // albumState
 
-	// const dispatch = useAppDispatch()
-
-	const onShowAuthModal = useCallback(() => {
-	// 	setIsOpenAuthModal(true);
-	}, []);
-
-	// const onCloseAuthModal = useCallback(() => {
-	// 	setIsOpenAuthModal(false);
-	// }, []);
-
-
-	// useEffect(() => {
-
-	// 	if (username) {
-	// 		dispatch(fetchCommonAlbums())
-	// 		dispatch(fetchUserAlbums())
-	// 	}
-	// 	else dispatch(fetchCommonAlbums());
-
-	// }, [dispatch, username])
+	const userAlbums = await fetchAlbums(1)
 
 	return (
 		<>
-			{
-				isLoading && <div className="h-300px">
+			{isLoading && (
+				<div className="h-300px">
 					<WidgetLoader />
 				</div>
-			}
-			{
-				!isLoading && (<div className="flex flex-col gap-y-1 px-5 py-4">
-					<LibraryCreation onShowModal={onShowAuthModal}/>
-					{/* {((username) ? userAlbums : commonAlbums).map((item) => (
+			)}
+			{!isLoading && (
+				<div className="flex flex-col gap-y-1 px-5 py-4">
+					<LibraryCreation />
+					{userAlbums.map((item) => (
 						<LibraryItem album={item} key={item.id} />
-					))} */}
-			 </div>)
-			}
-		{/* {isOpenAuthModal && 
-			<AuthModal isOpen={isOpenAuthModal} 
-			onClose={() => onCloseAuthModal()} />
-		} */}
+					))}
+				</div>
+			)}
 		</>
-	);
-};
+	)
+}

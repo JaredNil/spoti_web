@@ -1,5 +1,3 @@
-'use client'
-// import { Box } from 'shared/ui/Box/Box';
 import { Library } from './library'
 import { RouteItem } from './routeItem'
 
