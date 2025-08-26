@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { JSX } from 'react'
-import { FaPlay } from 'react-icons/fa'
 
 import { fetchAlbum } from '../model/service/fetchAlbum'
 
@@ -10,7 +9,7 @@ interface ListItemProps {
 	image: JSX.Element
 	name: string
 	href: string
-	albumId: number[]
+	albumId: number
 }
 
 export const AlbumFlat: React.FC<ListItemProps> = async ({
@@ -19,6 +18,8 @@ export const AlbumFlat: React.FC<ListItemProps> = async ({
 	href,
 	albumId,
 }: ListItemProps) => {
+	const album = await fetchAlbum(albumId)
+
 	return (
 		<div
 			className="group relative flex cursor-pointer items-center 
@@ -40,7 +41,11 @@ export const AlbumFlat: React.FC<ListItemProps> = async ({
 				transition hover:scale-110 group-hover:opacity-100
 				"
 			>
-				<PlayButton classname="h-full" relayTrackesId={albumId} />
+				<PlayButton
+					classname="h-full"
+					relayTrackesId={album.trackes_id}
+					type="album"
+				/>
 			</div>
 		</div>
 	)

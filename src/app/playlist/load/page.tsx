@@ -6,7 +6,7 @@ import { fetchTrackes } from '@/entities/track'
 
 export default async function PlaylistPageLoaded() {
 	// REFACTOR LOGIC - NEED RETURN ID USER INSTEAD 1
-	const album = await fetchAlbum(1)
+	const album = await fetchAlbum(2)
 	const trackes = await fetchTrackes(album.trackes_id as number[])
 
 	return (

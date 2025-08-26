@@ -26,40 +26,40 @@ const cacheManager = (
 	switch (cacheKey) {
 		case 'isActivePlayer':
 			if (cacheData == true) {
-				dispatch(playerSlice.actions.onActivePlayer())
+				// dispatch(playerSlice.actions.onActivePlayer())
 			} else {
-				dispatch(playerSlice.actions.offActivePlayer())
+				// dispatch(playerSlice.actions.offActivePlayer())
 			}
 			break
 
 		case 'native':
-			dispatch(playerSlice.actions.setNative(cacheData))
+			// dispatch(playerSlice.actions.setNative(cacheData))
 			break
 
 		case 'queue':
-			dispatch(playerSlice.actions.setQueue(cacheData))
+			// dispatch(playerSlice.actions.setQueue(cacheData))
 			break
 
 		case 'targetQueue':
-			dispatch(playerSlice.actions.setTarget(cacheData))
+			// dispatch(playerSlice.actions.setTarget(cacheData))
 			break
 
 		case 'volume':
-			dispatch(playerSlice.actions.setVolume(cacheData))
+			// dispatch(playerSlice.actions.setVolume(cacheData))
 			break
 
 		case 'progress':
-			dispatch(playerSlice.actions.setProgress(cacheData))
+			// dispatch(playerSlice.actions.setProgress(cacheData))
 			break
 
 		case 'track':
-			dispatch(playerSlice.actions.setTrack(cacheData))
+			// dispatch(playerSlice.actions.setTrack(cacheData))
 			break
 		case 'timer':
-			dispatch(playerSlice.actions.setTimer(cacheData))
+			// dispatch(playerSlice.actions.setTimer(cacheData))
 			break
 		case 'search':
-			if (cacheData) dispatch(userSlice.actions.setSearched(cacheData))
+			// if (cacheData) dispatch(userSlice.actions.setSearched(cacheData))
 			break
 	}
 }

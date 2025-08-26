@@ -15,7 +15,7 @@ const quickBarList = [
 			/>
 		),
 		href: '/playlist/liked',
-		albumId: [0],
+		albumId: 1,
 	},
 	{
 		name: 'Loaded trackes',
@@ -29,7 +29,7 @@ const quickBarList = [
 		),
 		href: '/playlist/load',
 		// REFACROR RETURN USER LOADED ID PLAYLIST IN DB
-		albumId: [1],
+		albumId: 2,
 	},
 ]
 
@@ -37,7 +37,8 @@ export const QuickBar: FC = () => {
 	return (
 		<div
 			className="mt-4 grid grid-cols-1 gap-3  
-			sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+			sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4
+			select-none"
 		>
 			{quickBarList.map((bar, index) => (
 				<AlbumFlat

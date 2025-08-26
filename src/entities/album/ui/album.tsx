@@ -4,7 +4,7 @@ import { FaPlay } from 'react-icons/fa'
 
 import { AlbumInterface } from '../index'
 
-// import { usePlayer } from 'widgets/Player';
+import { PlayButton } from '@/shared/ui/playButton/playButton'
 
 interface AlbumProps {
 	data: AlbumInterface
@@ -20,8 +20,7 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 	} = data
 
 	return (
-		<Link
-			href={`/playlist/${id}`}
+		<div
 			className="group relative flex cursor-pointer flex-col 
 				items-center justify-center gap-x-4 overflow-hidden 
 				rounded-md  bg-neutral-400/5 px-3 py-2 transition-all
@@ -48,15 +47,18 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 					By {author}
 				</p>
 			</div>
+			<Link
+				href={`/playlist/${id}`}
+				className="absolute  w-full h-full"
+			/>
 			<div
-				// onClick={()=> start(trackes_id)}
-				className="absolute bottom-[32%] right-5 flex items-center justify-center rounded-full 
-				bg-green-500 p-4 opacity-0 drop-shadow-md 
-				transition hover:scale-110 group-hover:opacity-100
-				"
+				className="absolute bottom-[28%] right-5 h-13
+				flex items-center justify-center 
+				opacity-0 group-hover:opacity-100
+				transition hover:scale-105"
 			>
-				<FaPlay className="text-black pointer-events-none" />
+				<PlayButton relayTrackesId={trackes_id} type="album" />
 			</div>
-		</Link>
+		</div>
 	)
 }

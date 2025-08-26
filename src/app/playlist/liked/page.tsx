@@ -5,7 +5,7 @@ import { fetchAlbum } from '@/entities/album'
 import { fetchTrackes } from '@/entities/track'
 
 export default async function PlaylistPageLiked() {
-	const album = await fetchAlbum(0)
+	const album = await fetchAlbum(1)
 	const trackes = await fetchTrackes(album.trackes_id as number[])
 
 	return (

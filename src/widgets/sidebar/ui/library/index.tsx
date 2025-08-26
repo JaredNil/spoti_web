@@ -1,13 +1,13 @@
 import { LibraryCreation } from './libraryCreation'
 import { LibraryItem } from '../libraryItem'
 
-import { fetchAlbums } from '@/entities/album'
+import { fetchAlbumsByUser } from '@/entities/album'
 import { WidgetLoader } from '@/shared/ui/widgetLoader'
 
 export const Library: React.FC = async () => {
 	const isLoading = false
 
-	const userAlbums = await fetchAlbums(1)
+	const userAlbums = await fetchAlbumsByUser(1)
 
 	return (
 		<>
