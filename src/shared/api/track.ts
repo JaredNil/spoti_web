@@ -1,5 +1,3 @@
-import { StaticImageData } from 'next/image'
-
 export interface Track {
 	id: number
 	userId: number
