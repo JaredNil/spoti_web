@@ -41,7 +41,11 @@ export async function Track({ id }: { id: number }) {
 				</div>
 			</div>
 			<div className="w-30 md:w-16 py-16 md:py-0">
-				<PlayButton relayTrackesId={[track.id]} />
+				<PlayButton
+					relayTrackesId={[track.id]}
+					track={track}
+					type="track"
+				/>
 			</div>
 		</div>
 	)

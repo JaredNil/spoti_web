@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { FaPlay } from 'react-icons/fa'
 import { twMerge } from 'tailwind-merge'
@@ -15,6 +16,7 @@ import { useAppSelector } from '@/shared/hooks'
 
 export const Player: React.FC = () => {
 	const { next, play, pause, prev } = usePlayer()
+	const router = useRouter()
 
 	const isRun = useAppSelector(getIsRunPlayer)
 
@@ -47,7 +49,10 @@ export const Player: React.FC = () => {
 						/>
 					)}
 				</div>
-				<div className="flex flex-col justify-around pl-3">
+				<div
+					className="flex flex-col justify-around pl-3"
+					onClick={() => router.push('/queue')}
+				>
 					<div
 						className="text-[11px] text-ellipsis w-[130px] 
 						whitespace-nowrap overflow-hidden select-none
@@ -76,7 +81,7 @@ export const Player: React.FC = () => {
 				<div
 					className="w-4 h-5 ml-1 mr-1
 						flex justify-center items-center 
-						cursor-pointer bg-slate-900
+						cursor-pointer
 						rotate-180
 						max-[420px]:hidden"
 					onClick={() => prev()}
@@ -84,7 +89,7 @@ export const Player: React.FC = () => {
 					<div className="relative flex justify-center items-center">
 						<FaPlay
 							fill="rgb(200 200 200)"
-							className="text-black pointer-events-none"
+							className="pointer-events-none"
 						/>
 						<svg
 							className="absolute right-[-6px] scale-[1.4] scale-x-[1.6]"
@@ -156,7 +161,7 @@ export const Player: React.FC = () => {
 				<div
 					className="w-4 h-5 ml-1 mr-1
 						flex justify-center items-center 
-						cursor-pointer bg-slate-900
+						cursor-pointer
 						max-[420px]:hidden"
 					onClick={() => next()}
 				>

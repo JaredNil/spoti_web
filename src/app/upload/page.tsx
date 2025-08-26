@@ -50,16 +50,17 @@ const UploadPage: FC = () => {
 
 	return (
 		<>
-			<DragArea
-				setTracks={setTracks}
-				isDragging={isDragging}
-				setIsDragging={setIsDragging}
-			/>
 			<UploadManager
-				classname="mt-6"
+				classname="mt-2"
 				tracks={tracks}
 				uploadTrack={uploadTrack}
 				isUploading={isUploading}
+			/>
+			<DragArea
+				classname="mt-6"
+				setTracks={setTracks}
+				isDragging={isDragging}
+				setIsDragging={setIsDragging}
 			/>
 			<UploadView
 				tracks={tracks}

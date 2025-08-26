@@ -62,6 +62,7 @@ export function TrackQueue({
 				</div>
 				<div className="w-16">
 					<PlayButton
+						type="track"
 						relayTrackesId={trackesId}
 						target={target}
 						track={track}

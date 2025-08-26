@@ -27,12 +27,9 @@ export const UploadView = ({
 	if (tracks.length === 0) {
 		return (
 			<div className={`text-center ${classname}`}>
-				<h3 className="text-xl font-medium text-gray-400">
-					Нет файлов для загрузки
+				<h3 className="text-xl font-medium select-none">
+					Not uploading data ;c
 				</h3>
-				<p className="text-gray-300 mt-2">
-					Перетащите аудиофайлы в область выше
-				</p>
 			</div>
 		)
 	} else {

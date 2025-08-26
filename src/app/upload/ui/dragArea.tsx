@@ -6,10 +6,12 @@ export const DragArea = ({
 	setTracks,
 	isDragging,
 	setIsDragging,
+	classname,
 }: {
 	isDragging: boolean
 	setTracks: (value: SetStateAction<TrackForm[]>) => void
 	setIsDragging: (value: boolean) => void
+	classname: string
 }) => {
 	const handleDrag = useCallback((e: DragEvent) => {
 		e.preventDefault()
@@ -79,8 +81,10 @@ export const DragArea = ({
 	} else
 		return (
 			<div
-				className={`box-content border-2 border-dashed rounded-xl border-emerald-500 p-12 text-center transition-colors
-			${isDragging ? 'border-indigo-500 bg-indigo-50' : 'border-emerald-500'}`}
+				className={`box-content border-2 border-dashed rounded-xl border-emerald-500 
+					p-12 text-center transition-colors
+					${isDragging ? 'border-indigo-500 bg-indigo-50' : 'border-emerald-500'}
+					${classname}`}
 				onDragEnter={handleDragEnterBox}
 				onDragLeave={handleDragLeave}
 				onDragOver={handleDrag}
