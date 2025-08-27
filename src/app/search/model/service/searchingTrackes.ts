@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import type { ThunkConfig } from '@/app/(providers)/storeProvider/config/store'
+import { Trackes } from '@/shared/api'
 import { TRACKES } from '@/shared/api/cache/TRACKES_CONTENT'
-import { Trackes } from '@/shared/api/track'
 
 interface searchingTrackesDto {
 	trackes: Trackes

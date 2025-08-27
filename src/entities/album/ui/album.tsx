@@ -16,7 +16,7 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 		author,
 		imagePath = '/album-placeholder.webp',
 		title,
-		trackes_id,
+		trackesId,
 	} = data
 
 	return (
@@ -57,7 +57,7 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 				opacity-0 group-hover:opacity-100
 				transition hover:scale-105"
 			>
-				<PlayButton relayTrackesId={trackes_id} type="album" />
+				<PlayButton relayTrackesId={trackesId} type="album" />
 			</div>
 		</div>
 	)

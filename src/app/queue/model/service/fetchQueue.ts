@@ -3,12 +3,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 import { ThunkConfig } from '@/app/(providers)/storeProvider/config/store'
-import { Trackes } from '@/shared/api/track'
+import { Trackes, TrackesId } from '@/shared/api'
 
 export const fetchQueue = createAsyncThunk<Trackes, void, ThunkConfig<string>>(
 	'queue/fetchQueue',
 	async (_, thunkAPI) => {
-		const { rejectWithValue, dispatch, getState } = thunkAPI
+		const { rejectWithValue, getState } = thunkAPI
 		try {
 			const state = getState()
 			const queue = state.player.queue

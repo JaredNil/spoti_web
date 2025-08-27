@@ -1,4 +1,4 @@
-import { Track } from '@/shared/api/track'
+import { Track } from '@/shared/api'
 
 export interface PlayerSchema {
 	isLoading: boolean

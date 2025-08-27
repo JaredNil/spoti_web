@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { fetchTrackData } from '../service/fetchTrackData'
 import { PlayerSchema } from '../types/playerSchema'
 
-import { Track } from '@/shared/api/track'
+import { Track } from '@/shared/api'
 import { cacheHandle } from '@/shared/lib/localstorage'
 
 const initialState: PlayerSchema = {

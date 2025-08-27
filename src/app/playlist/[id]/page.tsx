@@ -1,4 +1,3 @@
-import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 
 import { PlaylistTitle } from '../ui/playlistTitle'
@@ -7,8 +6,7 @@ import { TrackViewVender } from '../ui/trackView/trackView'
 import { AlbumInterface, fetchAlbum } from '@/entities/album'
 import { fetchTrackes } from '@/entities/track'
 import { fetchAllTrackes } from '@/entities/track/model/fetchAllTrackes'
-import { Trackes } from '@/shared/api/track'
-import { createMeta } from '@/shared/const/metadata'
+import { Trackes } from '@/shared/api'
 
 // export async function generateMetadata({
 // 	params,
@@ -35,7 +33,7 @@ export default async function PlaylistPage({
 	try {
 		album = await fetchAlbum(Number(id))
 		if (album.id === 0) trackes = await fetchAllTrackes()
-		else trackes = await fetchTrackes(album.trackes_id as number[])
+		else trackes = await fetchTrackes(album.trackesId as number[])
 	} catch (error) {
 		console.warn('Handle error fetch in playlist page', error)
 		redirect('/home')

@@ -1,9 +1,9 @@
 'use client'
 
 import { FC } from 'react'
-import { useState, useCallback, DragEvent, FormEvent } from 'react'
+import { useState } from 'react'
 
-import { DynamicModuleLoader, ReducerList } from '../(providers)/storeProvider'
+import { ReducerList } from '../(providers)/storeProvider'
 import { TrackForm } from './model/types'
 import { DragArea } from './ui/dragArea'
 import { UploadManager } from './ui/uploadManager'
@@ -11,7 +11,6 @@ import { UploadView } from './ui/uploadView'
 
 import { uploadReducer } from '@/app/upload'
 import { useUploadAudioMutation } from '@/shared/api/rtkApi'
-import { Button } from '@/shared/ui/kit/button'
 
 const reducers: ReducerList = {
 	uploadpage: uploadReducer,

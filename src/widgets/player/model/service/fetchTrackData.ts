@@ -4,7 +4,7 @@ import { TRACKES } from '../../../../shared/api/cache/TRACKES_CONTENT'
 import { playerAction } from '../slice/playerSlice'
 
 import { ThunkConfig } from '@/app/(providers)/storeProvider/config/store'
-import { Track } from '@/shared/api/track'
+import { Track } from '@/shared/api'
 
 export const fetchTrackData = createAsyncThunk<
 	Track,

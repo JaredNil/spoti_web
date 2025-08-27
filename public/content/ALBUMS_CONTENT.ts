@@ -1,4 +1,4 @@
-import { AlbumsCollection } from '@/shared/api/album'
+import { AlbumsCollection } from '@/shared/api'
 
 export const ALBUMS: AlbumsCollection = [
 	{
@@ -6,7 +6,7 @@ export const ALBUMS: AlbumsCollection = [
 		id: 0,
 		title: 'All trackes',
 		user_id: 0,
-		trackes_id: Array.from({ length: 100 }, (_, i) => i + 1),
+		trackesId: Array.from({ length: 100 }, (_, i) => i + 1),
 		creationDate: new Date(2022, 6, 13),
 	},
 	{
@@ -14,7 +14,7 @@ export const ALBUMS: AlbumsCollection = [
 		id: 1,
 		title: 'Trend trackes',
 		user_id: 0,
-		trackes_id: [3, 9, 10, 16, 17],
+		trackesId: [3, 9, 10, 16, 17],
 		creationDate: new Date(2016, 6, 13),
 	},
 	{
@@ -22,7 +22,7 @@ export const ALBUMS: AlbumsCollection = [
 		id: 2,
 		title: 'Load trackes',
 		user_id: 0,
-		trackes_id: [0, 1, 2],
+		trackesId: [0, 1, 2],
 		creationDate: new Date(2016, 6, 13),
 	},
 	{
@@ -30,7 +30,7 @@ export const ALBUMS: AlbumsCollection = [
 		id: 3,
 		title: 'Cyberpunk game OST',
 		user_id: 1,
-		trackes_id: [4, 5, 6, 7, 8],
+		trackesId: [4, 5, 6, 7, 8],
 		creationDate: new Date(2020, 10, 4),
 	},
 	{
@@ -38,7 +38,7 @@ export const ALBUMS: AlbumsCollection = [
 		id: 4,
 		title: 'Best',
 		user_id: 1,
-		trackes_id: [9, 10],
+		trackesId: [9, 10],
 		creationDate: new Date(2019, 1, 26),
 	},
 	{
@@ -46,7 +46,7 @@ export const ALBUMS: AlbumsCollection = [
 		id: 5,
 		title: 'Stump',
 		user_id: 1,
-		trackes_id: [11, 12, 13, 14, 15],
+		trackesId: [11, 12, 13, 14, 15],
 		creationDate: new Date(2017, 12, 3),
 	},
 	{
@@ -54,7 +54,7 @@ export const ALBUMS: AlbumsCollection = [
 		id: 6,
 		title: 'UserAlbum',
 		user_id: 1,
-		trackes_id: [16, 17],
+		trackesId: [16, 17],
 		creationDate: new Date(2014, 2, 1),
 	},
 	{
@@ -62,7 +62,7 @@ export const ALBUMS: AlbumsCollection = [
 		id: 7,
 		title: 'UserAlbum',
 		user_id: 1,
-		trackes_id: [16, 17],
+		trackesId: [16, 17],
 		creationDate: new Date(2014, 2, 1),
 	},
 ]

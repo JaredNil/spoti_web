@@ -43,7 +43,7 @@ export const AlbumFlat: React.FC<ListItemProps> = async ({
 			>
 				<PlayButton
 					classname="h-full"
-					relayTrackesId={album.trackes_id}
+					relayTrackesId={album.trackesId}
 					type="album"
 				/>
 			</div>

@@ -33,7 +33,7 @@
 // 					imagePath: coverPlaylist,
 // 					title: postAlbum.title,
 // 					user_id: postAlbum.user_id,
-// 					trackes_id: postAlbum.trackes_id
+// 					trackesId: postAlbum.trackesId
 
 // 				};
 // 				state.userAlbums.push(newAlbum);
@@ -59,7 +59,7 @@
 // 					imagePath: postAlbum.imagePath,
 // 					title: postAlbum.title,
 // 					user_id: postAlbum.user_id,
-// 					trackes_id: postAlbum.trackes_id
+// 					trackesId: postAlbum.trackesId
 // 				};
 
 // 				state.commonAlbums.push(newAlbum);

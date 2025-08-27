@@ -1,4 +1,4 @@
-import { Trackes } from '@/shared/api/track'
+import { Trackes } from '@/shared/api'
 
 export interface SearchpageSchema {
 	isLoading?: boolean

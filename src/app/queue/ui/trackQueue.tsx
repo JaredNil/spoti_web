@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { FaHeart } from 'react-icons/fa'
 
-import { Track } from '@/shared/api/track'
+import { Track } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 import { getPlayerTarget } from '@/widgets/player'

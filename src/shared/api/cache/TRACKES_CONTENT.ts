@@ -27,7 +27,7 @@ const nosave =
 	'/content/playlist/Run The Jewels, El-P, Killer Mike — No Save Point.mp3'
 const chippin = '/public/content/playlist/Chippin.mp3'
 
-import { Trackes } from '@/shared/api/track'
+import { Trackes } from '@/shared/api'
 
 export const TRACKES: Trackes = [
 	{

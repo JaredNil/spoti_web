@@ -7,7 +7,7 @@ import { SearchLoading } from './piece/searchLoading'
 
 import { Dropdown } from '@/app/playlist/ui/dropdown'
 import { TrackViewListing } from '@/app/playlist/ui/trackView/trackViewListing'
-import { Trackes } from '@/shared/api/track'
+import { Trackes } from '@/shared/api'
 
 interface SearchViewProps {
 	trackes: Trackes

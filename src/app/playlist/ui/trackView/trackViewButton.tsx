@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 
-import { Track, Trackes } from '@/shared/api/track'
+import { Track, Trackes } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 import { getTrack } from '@/widgets/player'

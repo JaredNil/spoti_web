@@ -8,7 +8,7 @@ import { TrackViewButton } from './trackViewButton'
 import { TrackViewListingSearch } from './trackViewListingSearch'
 
 import { SearchEmpty } from '@/app/search/ui/piece/searchEmpty'
-import { Trackes } from '@/shared/api/track'
+import { Trackes } from '@/shared/api'
 
 interface TrackViewListingProps {
 	trackes?: Trackes

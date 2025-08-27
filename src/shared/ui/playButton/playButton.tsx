@@ -3,7 +3,7 @@
 import { useMemo } from 'react'
 import { FaPause, FaPlay } from 'react-icons/fa'
 
-import { Track } from '@/shared/api/track'
+import { Track } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
 import {
 	getPlayerQueue,

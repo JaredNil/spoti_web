@@ -7,7 +7,7 @@ export { AlbumSceletonFlat } from './ui/albumSceletonFlat'
 
 export { AlbumSceleton } from './ui/albumSceleton'
 
-export type { AlbumInterface } from '@/shared/api/album'
+export type { AlbumInterface } from '@/shared/api'
 
 // export { albumAction } from './model/slice/albumSlice';
 

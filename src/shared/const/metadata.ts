@@ -33,5 +33,4 @@ export const createMeta = (params?: {
 		icon: '/favicon/favicon.ico',
 		apple: '/favicon/favicon.png',
 	},
-	manifest: '/site.webmanifest',
 })

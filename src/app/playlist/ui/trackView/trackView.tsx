@@ -8,7 +8,7 @@ import { TrackViewListing } from './trackViewListing'
 import { TrackViewSkeleton } from './trackViewSkeleton'
 
 import { AlbumInterface } from '@/entities/album'
-import { Trackes } from '@/shared/api/track'
+import { Trackes } from '@/shared/api'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
 interface TrackViewProps {
@@ -34,7 +34,7 @@ export const TrackViewVender: React.FC<TrackViewProps> = ({
 				<div className="flex items-center">
 					<div className="h-full aspect-square">
 						<PlayButton
-							relayTrackesId={album.trackes_id}
+							relayTrackesId={album.trackesId}
 							type="album"
 						/>
 					</div>
@@ -71,7 +71,7 @@ export const TrackViewVender: React.FC<TrackViewProps> = ({
 			) : (
 				<TrackViewListing
 					isCompact={isCompact}
-					trackesId={album.trackes_id}
+					trackesId={album.trackesId}
 					trackes={trackes}
 				/>
 			)}

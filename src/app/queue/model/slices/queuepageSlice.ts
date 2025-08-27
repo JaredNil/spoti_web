@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { fetchQueue } from '../service/fetchQueue'
 import { QueuepageSchema } from '../types/queuepageSchema'
 
-import { Trackes } from '@/shared/api/track'
+import { Trackes } from '@/shared/api'
 
 const initialState: QueuepageSchema = {
 	isLoading: false,

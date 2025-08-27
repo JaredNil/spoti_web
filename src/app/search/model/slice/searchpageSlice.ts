@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { searchingTrackes } from '../service/searchingTrackes'
 import { SearchpageSchema } from '../types/searchpageSchema'
 
-import { Trackes } from '@/shared/api/track'
+import { Trackes } from '@/shared/api'
 
 const initialState: SearchpageSchema = {
 	isLoading: false,

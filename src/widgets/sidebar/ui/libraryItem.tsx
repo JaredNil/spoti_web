@@ -45,10 +45,7 @@ export const LibraryItem: React.FC<LibraryItemProps> = ({
 					className="absolute w-full h-full top-0 left-0 "
 				/>
 				<div className="relative h-3/4 opacity-0 group-hover:opacity-100 right-1">
-					<PlayButton
-						relayTrackesId={album.trackes_id}
-						type="album"
-					/>
+					<PlayButton relayTrackesId={album.trackesId} type="album" />
 				</div>
 			</div>
 		</div>
