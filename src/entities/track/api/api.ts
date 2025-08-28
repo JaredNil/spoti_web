@@ -34,7 +34,7 @@ export const trackApi = rtkApi.injectEndpoints({
 				},
 
 				// serializeQueryArgs: ({ queryArgs }) => ({
-				// 	fetchTrackes: queryArgs.sort().join(','),
+				// 	fetchTrackesServer: queryArgs.sort().join(','),
 				// }),
 
 				// providesTags: (result) => {
@@ -53,3 +53,10 @@ export const trackApi = rtkApi.injectEndpoints({
 		}
 	},
 })
+
+export const {
+	useFetchTrackQuery,
+	useLazyFetchTrackQuery,
+	useFetchTrackesQuery,
+	useLazyFetchTrackesQuery,
+} = trackApi

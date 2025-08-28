@@ -1,7 +1,4 @@
-import { Metadata } from 'next'
-
 import { Track } from '@/entities/track'
-import { createMeta } from '@/shared/const/metadata'
 import { Title } from '@/shared/ui/pageTitle/pageTitle'
 
 // export async function generateMetadata({

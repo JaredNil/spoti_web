@@ -4,7 +4,7 @@ import { PlaylistTitle } from '../ui/playlistTitle'
 import { TrackViewVender } from '../ui/trackView/trackView'
 
 import { AlbumInterface, fetchAlbum } from '@/entities/album'
-import { fetchTrackes } from '@/entities/track'
+import { fetchTrackesServer } from '@/entities/track'
 import { fetchAllTrackes } from '@/entities/track/model/fetchAllTrackes'
 import { Trackes } from '@/shared/api'
 
@@ -33,7 +33,7 @@ export default async function PlaylistPage({
 	try {
 		album = await fetchAlbum(Number(id))
 		if (album.id === 0) trackes = await fetchAllTrackes()
-		else trackes = await fetchTrackes(album.trackesId as number[])
+		else trackes = await fetchTrackesServer(album.trackesId)
 	} catch (error) {
 		console.warn('Handle error fetch in playlist page', error)
 		redirect('/home')

@@ -34,33 +34,19 @@ export const PlayButton: React.FC<PlayButtonProps> = ({
 	classname,
 }: PlayButtonProps) => {
 	const { start, isRun, pause, play } = usePlayer()
-	const playerTrack = useAppSelector(getTrack)
 
+	const playerTrack = useAppSelector(getTrack)
 	const currentQueve = useAppSelector(getPlayerNativeQueue)
 
 	const isActivePlayerAlbum = relayTrackesId === currentQueve
 
 	const activeIcon = useMemo(() => {
 		if (type == 'album') {
-			if (isRun && isActivePlayerAlbum) {
-				return pauseIcon
-			} else if (isRun && !isActivePlayerAlbum) {
-				return playIcon
-			} else if (!isRun && !isActivePlayerAlbum) {
-				return playIcon
-			} else if (!isRun && isActivePlayerAlbum) {
-				return playIcon
-			}
+			if (isRun && isActivePlayerAlbum) return pauseIcon
+			else return playIcon
 		} else if (type == 'track') {
-			if (isRun && track?.id == playerTrack?.id) {
-				return pauseIcon
-			} else if (!isRun && track?.id == playerTrack?.id) {
-				return playIcon
-			} else if (!isRun && track?.id != playerTrack?.id) {
-				return playIcon
-			} else if (isRun && track?.id != playerTrack?.id) {
-				return playIcon
-			}
+			if (isRun && track?.id == playerTrack?.id) return pauseIcon
+			else return playIcon
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps

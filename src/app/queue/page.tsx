@@ -2,12 +2,11 @@
 
 import { TrackQueue } from './ui/trackQueue'
 import { DynamicModuleLoader, ReducerList } from '../(providers)/storeProvider'
-import { getQueueTrackes } from './model/selectors'
 import { queuepageReducer } from './model/slices/queuepageSlice'
 import { QueueTools } from './ui/queueTools'
 
 import { trackApi } from '@/entities/track/api/api'
-import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { useAppSelector } from '@/shared/hooks'
 import { getPlayerQueue, getPlayerTarget } from '@/widgets/player'
 
 const reducers: ReducerList = {
@@ -15,25 +14,12 @@ const reducers: ReducerList = {
 }
 
 export default function QueuePage() {
-	// const dispatch = useAppDispatch()
-
-	// const playerQueue = useAppSelector(getPlayerQueue)
 	const trackesId = useAppSelector(getPlayerQueue)
-	// const queueTrackes = useAppSelector(getQueueTrackes)
 	const currentTarget = useAppSelector(getPlayerTarget)
 
 	const { useFetchTrackesQuery } = trackApi
 
-	const {
-		data: trackes,
-		isLoading,
-		isError,
-		error,
-	} = useFetchTrackesQuery(trackesId)
-
-	// useEffect(() => {
-	// 	dispatch(fetchQueue())
-	// }, [dispatch, playerQueue])
+	const { data: trackes } = useFetchTrackesQuery(trackesId)
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>
@@ -60,8 +46,8 @@ export default function QueuePage() {
 						/>
 						<div
 							className={`text-2xl  text-white select-none
-									opacity-0 transition-all duration-400 absolute pt-2
-									${currentTarget === index && 'opacity-100 relative pt-0'}`}
+							opacity-0 transition-all duration-400 absolute pt-2
+							${currentTarget === index && 'opacity-100 relative pt-0'}`}
 						>
 							{currentTarget === index &&
 								trackes.length - 1 != currentTarget &&

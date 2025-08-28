@@ -1,11 +1,11 @@
 import Image from 'next/image'
 
-import { fetchTrack } from '../model/fetchTrackes'
+import { fetchTrackServer } from '../model/fetchTrackesServer'
 
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
 export async function Track({ id }: { id: number }) {
-	const track = await fetchTrack(id)
+	const track = await fetchTrackServer(id)
 
 	return (
 		<div
