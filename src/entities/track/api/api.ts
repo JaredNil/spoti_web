@@ -1,6 +1,5 @@
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
-import { searchpageAction } from '@/app/search/model/slice/searchpageSlice'
 import { Track, Trackes, TrackesId, TrackId } from '@/shared/api'
 import { rtkApi } from '@/shared/api/rtkApi'
 import { extractIds } from '@/shared/lib/extractIds'
@@ -12,6 +11,7 @@ export const trackApi = rtkApi.injectEndpoints({
 				query: (trackId) => ({
 					url: `/track?query=${trackId}`,
 				}),
+				transformResponse: (res: Track[]) => res[0],
 			}),
 			fetchTrackes: build.query<Trackes, TrackesId>({
 				queryFn: async (ids, _, __, baseQuery) => {

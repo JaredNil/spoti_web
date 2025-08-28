@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { JSX } from 'react'
 
-import { fetchAlbum } from '../model/service/fetchAlbum'
+import { fetchAlbumServer } from '../model/service/fetchAlbumServer'
 
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
@@ -18,7 +18,7 @@ export const AlbumFlat: React.FC<ListItemProps> = async ({
 	href,
 	albumId,
 }: ListItemProps) => {
-	const album = await fetchAlbum(albumId)
+	const album = await fetchAlbumServer(albumId)
 
 	return (
 		<div

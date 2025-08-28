@@ -5,14 +5,17 @@ import {
 	getPlayerQueue,
 	getPlayerTarget,
 } from '../selector/playerSelector'
-import { fetchTrackData } from '../service/fetchTrackData'
 import { playerAction } from '../slice/playerSlice'
 
 import { useCurrentTrack } from '@/app/(providers)/playerProvider'
+import { useLazyFetchTrackQuery } from '@/entities/track'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { cacheHandle } from '@/shared/lib/localstorage'
 
 export function usePlayer() {
 	const { playTrack, pauseTrack } = useCurrentTrack()
+
+	const [triggerFetchTrack] = useLazyFetchTrackQuery()
 
 	const isRun = useAppSelector(getIsRunPlayer)
 	const isLoadingTrack = useAppSelector(getIsLoadingTrack)
@@ -22,11 +25,21 @@ export function usePlayer() {
 
 	const dispatch = useAppDispatch()
 
+	async function loadTrack(trackId: number) {
+		const { data: track } = await triggerFetchTrack(trackId)
+		if (track) {
+			dispatch(playerAction.setIsRun(true))
+			dispatch(playerAction.offLoadingTrack())
+			dispatch(playerAction.setTrack(track))
+			cacheHandle.set('track', track)
+		}
+	}
+
 	function start(trackesId: number[], target: number = 0) {
 		if (!isActivePlayer) dispatch(playerAction.onActivePlayer())
 		dispatch(playerAction.setQueue(trackesId))
 		dispatch(playerAction.setTarget(target))
-		dispatch(fetchTrackData(trackesId[target]))
+		loadTrack(trackesId[target])
 	}
 
 	function play() {
@@ -55,7 +68,7 @@ export function usePlayer() {
 
 			const nextTarget = target + 1
 			dispatch(playerAction.setTarget(nextTarget))
-			dispatch(fetchTrackData(queue[nextTarget]))
+			loadTrack(queue[nextTarget])
 		}
 	}
 
@@ -65,7 +78,7 @@ export function usePlayer() {
 
 			const nextTarget = target - 1
 			dispatch(playerAction.setTarget(nextTarget))
-			dispatch(fetchTrackData(queue[nextTarget]))
+			loadTrack(queue[nextTarget])
 		}
 	}
 

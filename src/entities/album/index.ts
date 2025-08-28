@@ -1,5 +1,5 @@
-export { fetchAlbumsByUser } from './model/service/fetchAlbums'
-export { fetchAlbum } from './model/service/fetchAlbum'
+export { fetchAlbumsServer } from './model/service/fetchAlbumsServer'
+export { fetchAlbumServer } from './model/service/fetchAlbumServer'
 
 export { Album } from './ui/album'
 
@@ -8,10 +8,6 @@ export { AlbumSceletonFlat } from './ui/albumSceletonFlat'
 export { AlbumSceleton } from './ui/albumSceleton'
 
 export type { AlbumInterface } from '@/shared/api'
-
-// export { albumAction } from './model/slice/albumSlice';
-
-// export { getAlbumUserData, getAlbumCommonData } from './model/selectors/getAlbumData';
 
 export type { AlbumsSchema } from './model/types/albumsSchema'
 

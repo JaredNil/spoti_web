@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { fetchTrackData } from '../service/fetchTrackData'
 import { PlayerSchema } from '../types/playerSchema'
 
 import { Track } from '@/shared/api'
@@ -34,6 +33,12 @@ export const playerSlice = createSlice({
 			state.isLoading = true
 		},
 		offLoadingData: (state) => {
+			state.isLoading = false
+		},
+		onLoadingTrack: (state) => {
+			state.isLoading = true
+		},
+		offLoadingTrack: (state) => {
 			state.isLoading = false
 		},
 		onActivePlayer: (state) => {
@@ -84,20 +89,20 @@ export const playerSlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
-		builder.addCase(
-			fetchTrackData.fulfilled,
-			(state, action: PayloadAction<Track>) => {
-				state.isLoadingTrack = false
-				state.track = action?.payload
-				state.isRun = true
-				cacheHandle.set('track', action.payload)
-			}
-		)
-		builder.addCase(fetchTrackData.rejected, (state) => {
-			state.isLoadingTrack = true
-			state.isRun = false
-			// handling new notification
-		})
+		// builder.addCase(
+		// 	fetchTrackData.fulfilled,
+		// 	(state, action: PayloadAction<Track>) => {
+		// 		state.isLoadingTrack = false
+		// 		state.track = action?.payload
+		// 		state.isRun = true
+		// 		cacheHandle.set('track', action.payload)
+		// 	}
+		// )
+		// builder.addCase(fetchTrackData.rejected, (state) => {
+		// 	state.isLoadingTrack = true
+		// 	state.isRun = false
+		// 	// handling new notification
+		// })
 	},
 })
 

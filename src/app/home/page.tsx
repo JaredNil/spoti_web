@@ -4,14 +4,14 @@ import { AlbumListType } from './model/types/albumListType'
 import HomeHeader from './ui/homeHeader'
 
 import { AlbumListProvider, QuickBar, BringAuth } from '@/app/home'
-import { fetchAlbumsByUser } from '@/entities/album'
+import { fetchAlbumsServer } from '@/entities/album'
 import { createMeta } from '@/shared/const/metadata'
 
 export const metadata = createMeta({ title: 'Home' })
 
 const Home = async () => {
-	const commonAlbums = await fetchAlbumsByUser(0)
-	const userAlbums = await fetchAlbumsByUser(1)
+	const commonAlbums = await fetchAlbumsServer(0)
+	const userAlbums = await fetchAlbumsServer(1)
 
 	return (
 		<>
