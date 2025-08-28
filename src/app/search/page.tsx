@@ -4,7 +4,6 @@ import { FC } from 'react'
 
 import { getIsLoadingPage } from './model/selector/searchpageSelector'
 import { searchpageReducer } from './model/slice/searchpageSlice'
-import { SearchContentSkeleton } from './ui/piece/searchContentSkeleton'
 import { Search } from './ui/search'
 
 import {

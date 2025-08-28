@@ -1,9 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { searchingTrackes } from '../service/searchingTrackes'
 import { SearchpageSchema } from '../types/searchpageSchema'
 
-import { Trackes } from '@/shared/api'
+import { Trackes, TrackesId } from '@/shared/api'
 
 const initialState: SearchpageSchema = {
 	isLoading: false,
@@ -28,19 +27,13 @@ export const searchpageSlice = createSlice({
 		setSearchTrackesId: (state, action: PayloadAction<number[]>) => {
 			state.trackesId = action.payload
 		},
-	},
-	extraReducers: (builder) => {
-		builder.addCase(searchingTrackes.pending, (state) => {
-			// state.isLoading = true
-		})
-		builder.addCase(searchingTrackes.fulfilled, (state, action) => {
+		setSearchedData: (
+			state,
+			action: PayloadAction<{ trackes: Trackes; trackesId: TrackesId }>
+		) => {
 			state.trackes = action.payload.trackes
 			state.trackesId = action.payload.trackesId
-			state.isLoading = false
-		})
-		builder.addCase(searchingTrackes.rejected, (state, action) => {
-			state.isLoading = false
-		})
+		},
 	},
 })
 

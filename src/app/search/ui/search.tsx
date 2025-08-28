@@ -1,5 +1,5 @@
 'use client'
-import { useDeferredValue, useEffect, useState } from 'react'
+import { useDeferredValue, useEffect } from 'react'
 
 import { SearchView } from './searchView'
 import {
@@ -7,10 +7,11 @@ import {
 	getSearchTrackes,
 	getSearchTrackesId,
 } from '../model/selector/searchpageSelector'
-import { searchingTrackes } from '../model/service/searchingTrackes'
+import { searchpageAction } from '../model/slice/searchpageSlice'
 
+import { useSearchTrackesQuery } from '@/entities/track/api/api'
 import { getUserSearch } from '@/entities/user'
-import { userAction, userSlice } from '@/entities/user/model/slice/userSlice'
+import { userAction } from '@/entities/user/model/slice/userSlice'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Input } from '@/shared/ui/kit/input'
 
@@ -23,15 +24,10 @@ export const Search: React.FC = () => {
 	const isLoading = useAppSelector(getIsLoadingPage)
 	const deferredQuery = useDeferredValue(searchInput)
 
+	const { data: searchData } = useSearchTrackesQuery(deferredQuery)
 	useEffect(() => {
-		if (
-			deferredQuery.trim() &&
-			deferredQuery != '' &&
-			deferredQuery.length > 1
-		) {
-			dispatch(searchingTrackes(deferredQuery.trim()))
-		}
-	}, [deferredQuery, dispatch])
+		if (searchData) dispatch(searchpageAction.setSearchedData(searchData))
+	}, [dispatch, searchData])
 
 	return (
 		<div className="pt-2 flex flex-col">

@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { fetchQueue } from '../service/fetchQueue'
 import { QueuepageSchema } from '../types/queuepageSchema'
 
 import { Trackes } from '@/shared/api'
@@ -18,19 +17,6 @@ export const queuepageSlice = createSlice({
 		setQueue: (state, action: PayloadAction<Trackes>) => {
 			state.trackes = action.payload
 		},
-	},
-	extraReducers: (builder) => {
-		builder.addCase(fetchQueue.pending, (state) => {
-			state.error = ''
-			state.isLoading = true
-		})
-		builder.addCase(
-			fetchQueue.fulfilled,
-			(state, action: PayloadAction<Trackes>) => {
-				state.isLoading = false
-				state.trackes = action.payload
-			}
-		)
 	},
 })
 
