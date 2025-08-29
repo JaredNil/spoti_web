@@ -1,6 +1,8 @@
 import { Library } from './library'
 import { RouteItem } from './routeItem'
 
+import { SidebarResizer } from '@/shared/ui/sidebarResizer'
+
 const sidebarRoutes = [
 	{
 		href: '/home',
@@ -23,7 +25,7 @@ const sidebarRoutes = [
 export function Sidebar() {
 	return (
 		<aside
-			className=" hidden h-full min-w-[300px]
+			className="sidebar hidden h-full min-w-[250px] max-w-[500px] relative
 			flex-col gap-y-2 pl-2 pr-1
 			md:flex"
 		>
@@ -38,6 +40,7 @@ export function Sidebar() {
 				</div>
 				<Library />
 			</div>
+			<SidebarResizer />
 		</aside>
 	)
 }

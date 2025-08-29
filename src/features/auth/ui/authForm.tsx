@@ -3,20 +3,19 @@ import { FaGithub } from 'react-icons/fa'
 import { FcGoogle } from 'react-icons/fc'
 import { twMerge } from 'tailwind-merge'
 
-import { ValidateBlock } from './validateBlock'
-
-import {
-	DynamicModuleLoader,
-	ReducerList,
-} from '@/app/(providers)/storeProvider'
+import { ValidateBlock } from './validationBlock'
 import {
 	getAuthIsLoading,
 	getAuthIsValid,
 	getAuthPassword,
 	getAuthUsername,
-	authAction,
-	authReducer,
-} from '@/features/auth'
+} from '../model/authSelector'
+import { authAction, authReducer } from '../model/authSlice'
+
+import {
+	DynamicModuleLoader,
+	ReducerList,
+} from '@/app/(providers)/storeProvider'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui/kit/button'
 import { Input } from '@/shared/ui/kit/input'
@@ -129,7 +128,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 						<span className="mx-2">{'Войти по Google'}</span>
 					</Button>
 				</div>
-				<div className="select-none font-extralight">
+				{/* <div className="select-none font-extralight">
 					Введите имя пользователя
 				</div>
 				<Input
@@ -150,7 +149,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 					placeholder={'Sth password'}
 					// onChange={onChangePassword}
 					value={authPassword}
-				/>
+				/> */}
 				<ValidateBlock />
 				<Button
 					className={twMerge(

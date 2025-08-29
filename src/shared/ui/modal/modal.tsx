@@ -5,17 +5,13 @@ import Portal from '../portal/portal'
 
 interface ModalProps {
 	isOpen?: boolean
-	onClose?: () => void
+	onClose: () => void
 	className?: string
 	children?: ReactNode
 }
 
 const Modal: React.FC<ModalProps> = memo((props: ModalProps) => {
 	const { isOpen, onClose, className, children } = props
-
-	const closeHandler = useCallback(() => {
-		if (onClose) onClose()
-	}, [onClose])
 
 	const onContentClick = useCallback((e: React.MouseEvent) => {
 		e.stopPropagation()
@@ -48,9 +44,7 @@ const Modal: React.FC<ModalProps> = memo((props: ModalProps) => {
 		<Portal>
 			<div
 				className={twMerge(
-					`pointer-events-none fixed inset-0 z-50 
-					w-full opacity-0 transition duration-150`,
-					isOpen && ' pointer-events-auto z-50',
+					`fixed inset-0	w-full opacity-0 transition duration-150`,
 					animate && 'opacity-100',
 					[className]
 				)}
@@ -61,7 +55,7 @@ const Modal: React.FC<ModalProps> = memo((props: ModalProps) => {
 						bg-neutral-900/0 transition duration-100`,
 						animate && 'bg-neutral-900/70'
 					)}
-					onClick={closeHandler}
+					onClick={onClose}
 				>
 					<div
 						className={twMerge(

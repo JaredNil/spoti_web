@@ -1,13 +1,19 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { FaUserAlt } from 'react-icons/fa'
 
-import { getUsername } from '@/entities/user'
-import { useAppSelector } from '@/shared/hooks'
+import { getUsername, userAction } from '@/entities/user'
+import { getIsVisibleModal } from '@/entities/user/model/selectors/getIsVisibleModal'
+import { AuthModal } from '@/features/auth'
+import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui/kit/button'
 
 export const HeaderAuthButton = () => {
+	const dispatch = useAppDispatch()
+
+	const isVisibleModal = useAppSelector(getIsVisibleModal)
 	const username = useAppSelector(getUsername)
 	const routing = useRouter()
 
@@ -20,11 +26,13 @@ export const HeaderAuthButton = () => {
 				<FaUserAlt fill="#000000" />
 			</Button>
 			<Button
+				onClick={() => dispatch(userAction.onVisibleModal())}
 				className="ml-3 flex w-24 items-center justify-center px-6 py-2
 				bg-white cursor-pointer rounded-full text-black"
 			>
 				{username ? 'Выйти' : 'Войти'}
 			</Button>
+			{isVisibleModal && <AuthModal type="auth" />}
 		</div>
 	)
 }

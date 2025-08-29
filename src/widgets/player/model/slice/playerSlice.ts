@@ -88,22 +88,6 @@ export const playerSlice = createSlice({
 			state.track = action.payload
 		},
 	},
-	extraReducers: (builder) => {
-		// builder.addCase(
-		// 	fetchTrackData.fulfilled,
-		// 	(state, action: PayloadAction<Track>) => {
-		// 		state.isLoadingTrack = false
-		// 		state.track = action?.payload
-		// 		state.isRun = true
-		// 		cacheHandle.set('track', action.payload)
-		// 	}
-		// )
-		// builder.addCase(fetchTrackData.rejected, (state) => {
-		// 	state.isLoadingTrack = true
-		// 	state.isRun = false
-		// 	// handling new notification
-		// })
-	},
 })
 
 export const { actions: playerAction } = playerSlice

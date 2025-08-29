@@ -8,6 +8,9 @@ const initialState: UserSchema = {
 	username: 'Demo',
 	isLoading: false,
 	search: '',
+	isSidebarVisible: true,
+	sidebarWidth: undefined,
+	isVisibleModal: false,
 }
 
 export const userSlice = createSlice({
@@ -30,6 +33,18 @@ export const userSlice = createSlice({
 		setSearched: (state, action: PayloadAction<string>) => {
 			state.search = action.payload
 			cacheHandle.set('search', action.payload)
+		},
+		setSidebarWidth: (state, action: PayloadAction<string>) => {
+			state.sidebarWidth = action.payload
+		},
+		setIsSidebarVisible: (state, action: PayloadAction<boolean>) => {
+			state.isSidebarVisible = action.payload
+		},
+		onVisibleModal: (state) => {
+			state.isVisibleModal = true
+		},
+		offVisibleModal: (state) => {
+			state.isVisibleModal = false
 		},
 	},
 	extraReducers: (builder) => {

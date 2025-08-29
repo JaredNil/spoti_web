@@ -1,6 +1,9 @@
-// export { authByCookie } from './model/service/authByCookie';
-// export { authByUsername } from './model/service/authByUsername';
-// export { logoutByServer } from './model/service/logoutByServer';
+import { getIsVisibleModal } from './model/selectors/getIsVisibleModal'
+
+export {
+	getIsSidebarVisible,
+	getSidebarWidth,
+} from './model/selectors/getSidebar'
 
 export { getUserSearch } from './model/selectors/getSearched'
 
