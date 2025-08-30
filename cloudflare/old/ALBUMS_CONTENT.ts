@@ -1,0 +1,60 @@
+import { AlbumsCollection } from '@/shared/api'
+
+export const ALBUM_S: AlbumsCollection = [
+	{
+		author: 'Spotify',
+		id: 0,
+		title: 'All trackes',
+		user_id: 0,
+		trackesId: Array.from({ length: 100 }, (_, i) => i + 1),
+		creationDate: new Date(2022, 6, 13),
+	},
+	{
+		author: 'Spotify',
+		id: 1,
+		title: 'Trend trackes',
+		user_id: 0,
+		trackesId: [3, 9, 10, 16, 17],
+		creationDate: new Date(2016, 6, 13),
+	},
+	{
+		author: 'Architects',
+		id: 2,
+		title: 'Load trackes',
+		user_id: 0,
+		trackesId: [0, 1, 2],
+		creationDate: new Date(2016, 6, 13),
+	},
+	{
+		author: 'Cyberpunk',
+		id: 3,
+		title: 'Cyberpunk game OST',
+		user_id: 1,
+		trackesId: [4, 5, 6, 7, 8],
+		creationDate: new Date(2020, 10, 4),
+	},
+	{
+		author: 'DVRST',
+		id: 4,
+		title: 'Best',
+		user_id: 1,
+		trackesId: [9, 10],
+		creationDate: new Date(2019, 1, 26),
+	},
+	{
+		author: 'Istasha The Scrub',
+		id: 5,
+		title: 'Stump',
+		user_id: 1,
+		trackesId: [11, 12, 13, 14, 15],
+		creationDate: new Date(2017, 12, 3),
+	},
+	{
+		author: 'Kito ft. Reija Lee',
+		id: 6,
+		title: 'UserAlbum',
+		user_id: 1,
+		trackesId: [16, 17],
+		creationDate: new Date(2014, 2, 1),
+	},
+]

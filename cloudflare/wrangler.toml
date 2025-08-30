@@ -1,0 +1,7 @@
+name = "cf-kv-albums-api"
+main = "index.ts"
+compatibility_date = "2025-01-01"
+
+kv_namespaces = [
+  { binding = "ALBUMS_KV", id = "13e1aa4d08ce4eee83cf5ebfb72d143c" }
+]
