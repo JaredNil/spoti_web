@@ -1,6 +1,3 @@
-export { fetchAlbumsServer } from './model/service/fetchAlbumsServer'
-export { fetchAlbumServer } from './model/service/fetchAlbumServer'
-
 export { Album } from './ui/album'
 
 export { AlbumSceletonFlat } from './ui/albumSceletonFlat'

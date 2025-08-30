@@ -1,4 +1,5 @@
-// src/index.ts
+/// <reference types="@cloudflare/workers-types" />
+
 export interface Env {
 	ALBUMS_KV: KVNamespace
 }
@@ -59,7 +60,7 @@ export default {
 			// Неизвестный маршрут
 			return new Response('Not Found', { status: 404 })
 		} catch (error) {
-			return new Response(`Internal Error: ${error.message}`, {
+			return new Response(`Internal Error:`, {
 				status: 500,
 			})
 		}

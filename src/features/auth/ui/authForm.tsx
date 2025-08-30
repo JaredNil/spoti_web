@@ -5,7 +5,6 @@ import { twMerge } from 'tailwind-merge'
 
 import { ValidateBlock } from './validationBlock'
 import {
-	getAuthIsLoading,
 	getAuthIsValid,
 	getAuthPassword,
 	getAuthUsername,
@@ -35,7 +34,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 
 	const authUsername = useAppSelector(getAuthUsername)
 	const authPassword = useAppSelector(getAuthPassword)
-	const isLoading = useAppSelector(getAuthIsLoading)
+	const isLoading = false
 	const isValid = useAppSelector(getAuthIsValid)
 
 	const onChangeUsername = useCallback(

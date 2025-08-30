@@ -10,7 +10,7 @@ import { UploadManager } from './ui/uploadManager'
 import { UploadView } from './ui/uploadView'
 
 import { uploadReducer } from '@/app/upload'
-import { useUploadAudioMutation } from '@/shared/api/rtkApi'
+import { useUploadAudioMutation } from '@/shared/api/api'
 
 const reducers: ReducerList = {
 	uploadpage: uploadReducer,

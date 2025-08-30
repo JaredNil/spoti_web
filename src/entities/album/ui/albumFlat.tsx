@@ -1,7 +1,8 @@
+'use client'
 import Link from 'next/link'
 import { JSX } from 'react'
 
-import { fetchAlbumServer } from '../model/service/fetchAlbumServer'
+import { useFetchAlbumQuery } from '../api/albumApi'
 
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
@@ -12,13 +13,13 @@ interface ListItemProps {
 	albumId: number
 }
 
-export const AlbumFlat: React.FC<ListItemProps> = async ({
+export const AlbumFlat: React.FC<ListItemProps> = ({
 	image,
 	name,
 	href,
 	albumId,
 }: ListItemProps) => {
-	const album = await fetchAlbumServer(albumId)
+	const { data: album, isFetching } = useFetchAlbumQuery(albumId)
 
 	return (
 		<div
@@ -41,11 +42,13 @@ export const AlbumFlat: React.FC<ListItemProps> = async ({
 				transition hover:scale-110 group-hover:opacity-100
 				"
 			>
-				<PlayButton
-					classname="h-full"
-					relayTrackesId={album.trackesId}
-					type="album"
-				/>
+				{!isFetching && album && (
+					<PlayButton
+						classname="h-full"
+						relayTrackesId={album?.trackesId}
+						type="album"
+					/>
+				)}
 			</div>
 		</div>
 	)

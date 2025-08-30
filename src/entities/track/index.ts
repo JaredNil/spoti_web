@@ -10,4 +10,4 @@ export {
 	trackApi,
 	useFetchTrackesQuery,
 	useLazyFetchTrackesQuery,
-} from './api/api'
+} from './api/trackApi'

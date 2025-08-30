@@ -5,7 +5,7 @@ import { DynamicModuleLoader, ReducerList } from '../(providers)/storeProvider'
 import { queuepageReducer } from './model/slices/queuepageSlice'
 import { QueueTools } from './ui/queueTools'
 
-import { trackApi } from '@/entities/track/api/api'
+import { trackApi } from '@/entities/track/api/trackApi'
 import { useAppSelector } from '@/shared/hooks'
 import { getPlayerQueue, getPlayerTarget } from '@/widgets/player'
 

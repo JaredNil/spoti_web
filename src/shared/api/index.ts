@@ -9,7 +9,7 @@ export interface AlbumInterface {
 	description?: string
 	imagePath?: string
 	trackesId: TrackesId
-	creationDate?: Date
+	creationDate?: string
 }
 export type AlbumsCollection = AlbumInterface[]
 

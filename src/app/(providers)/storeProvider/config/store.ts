@@ -4,7 +4,7 @@ import { createReducerManager } from './reducerManager'
 
 import { userReducer } from '@/entities/user'
 import { authReducer } from '@/features/auth'
-import { $api, rtkApi } from '@/shared/api/rtkApi'
+import { $api, rtkApi } from '@/shared/api/api'
 import { StateSchema } from '@/shared/lib/state'
 import { playerReducer } from '@/widgets/player'
 
@@ -29,6 +29,7 @@ export function createStore() {
 		auth: authReducer,
 
 		[rtkApi.reducerPath]: rtkApi.reducer,
+		// [cfApi.reducerPath]: cfApi.reducer,
 	})
 
 	const store = configureStore({
@@ -41,6 +42,7 @@ export function createStore() {
 					extraArgument: { api: $api },
 				},
 			}).concat(rtkApi.middleware),
+		// .concat(cfApi.middleware),
 		devTools: true,
 	})
 

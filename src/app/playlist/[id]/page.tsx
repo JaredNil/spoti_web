@@ -3,7 +3,8 @@ import { redirect } from 'next/navigation'
 import { PlaylistTitle } from '../ui/playlistTitle'
 import { TrackViewVender } from '../ui/trackView/trackView'
 
-import { AlbumInterface, fetchAlbumServer } from '@/entities/album'
+import { fetchAlbumById } from '@/app/api/album/handler'
+import { AlbumInterface } from '@/entities/album'
 import { fetchTrackesServer } from '@/entities/track'
 import { fetchAllTrackes } from '@/entities/track/model/fetchAllTrackes'
 import { Trackes } from '@/shared/api'
@@ -31,7 +32,8 @@ export default async function PlaylistPage({
 	let trackes: Trackes
 
 	try {
-		album = await fetchAlbumServer(Number(id))
+		album = await fetchAlbumById(id)
+		console.log(album)
 		if (album.id === 0) trackes = await fetchAllTrackes()
 		else trackes = await fetchTrackesServer(album.trackesId)
 	} catch (error) {

@@ -9,7 +9,7 @@ import {
 } from '../model/selector/searchpageSelector'
 import { searchpageAction } from '../model/slice/searchpageSlice'
 
-import { useSearchTrackesQuery } from '@/entities/track/api/api'
+import { useSearchTrackesQuery } from '@/entities/track/api/trackApi'
 import { getUserSearch } from '@/entities/user'
 import { userAction } from '@/entities/user/model/slice/userSlice'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'

@@ -1,4 +1,4 @@
-import { rtkApi } from '../api/rtkApi'
+import { rtkApi } from '../api/api'
 
 import { HomepageSchema } from '@/app/home'
 import { QueuepageSchema } from '@/app/queue'
@@ -18,5 +18,6 @@ export interface StateSchema {
 	uploadpage?: UploadpageSchema
 	queuepage?: QueuepageSchema
 	[rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
+	// [cfApi.reducerPath]: ReturnType<typeof cfApi.reducer>
 	[key: string]: any
 }

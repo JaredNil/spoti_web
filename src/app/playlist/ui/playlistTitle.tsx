@@ -84,7 +84,7 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = ({
 									isLoadingData && 'sceletonTitle'
 								)}
 							>
-								, {creationDate.getFullYear()}
+								, {creationDate}
 							</span>
 						) : (
 							''

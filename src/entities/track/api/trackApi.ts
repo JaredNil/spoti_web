@@ -1,7 +1,7 @@
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
 import { Track, Trackes, TrackesId, TrackId } from '@/shared/api'
-import { rtkApi } from '@/shared/api/rtkApi'
+import { rtkApi } from '@/shared/api/api'
 import { extractIds } from '@/shared/lib/extractIds'
 
 export const trackApi = rtkApi.injectEndpoints({

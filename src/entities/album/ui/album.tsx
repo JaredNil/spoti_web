@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaPlay } from 'react-icons/fa'
 
 import { AlbumInterface } from '../index'
 

@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { AuthSchema } from '../authSchema'
+import { AuthSchema } from '../model/authSchema'
 
 const initialState: AuthSchema = {
 	authUser: '',
