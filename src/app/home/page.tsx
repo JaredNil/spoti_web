@@ -1,11 +1,8 @@
-import { Metadata } from 'next'
-
 import { AlbumListType } from './model/types/albumListType'
 import HomeHeader from './ui/homeHeader'
-import { fetchAlbumById, fetchAlbumByUser } from '../api/album/handler'
+import { fetchAlbumByUser } from '../api/album/handler'
 
 import { AlbumListProvider, QuickBar, BringAuth } from '@/app/home'
-import { AlbumInterface } from '@/entities/album'
 import { createMeta } from '@/shared/const/metadata'
 
 export const metadata = createMeta({ title: 'Home' })

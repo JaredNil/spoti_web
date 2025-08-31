@@ -24,11 +24,15 @@ export const Player: React.FC = () => {
 
 	const track = useAppSelector(getTrack)
 
-	const { toggleTrack } = useCurrentTrack()
+	const { toggleTrack, pauseTrack } = useCurrentTrack()
 
 	useEffect(() => {
 		if (track) toggleTrack(track?.songLink as string)
 	}, [track, toggleTrack])
+
+	useEffect(() => {
+		if (!isRun && pauseTrack) pauseTrack()
+	}, [isRun, pauseTrack])
 
 	return (
 		<div

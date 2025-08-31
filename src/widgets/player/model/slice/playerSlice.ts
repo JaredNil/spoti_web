@@ -1,7 +1,8 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { PlayerSchema } from '../types/playerSchema'
 
+import { ThunkConfig } from '@/app/(providers)/storeProvider/config/store'
 import { Track } from '@/shared/api'
 import { cacheHandle } from '@/shared/lib/localstorage'
 
@@ -54,41 +55,61 @@ export const playerSlice = createSlice({
 		},
 		setVolume: (state, action: PayloadAction<number>) => {
 			state.volume = action.payload
-			cacheHandle.set('volume', action.payload)
+			if (action.payload) cacheHandle.set('volume', action.payload)
 		},
 		setNative: (state, action: PayloadAction<number[]>) => {
 			state.native = action.payload
-			cacheHandle.set('native', action.payload)
+			if (action.payload) cacheHandle.set('native', action.payload)
 		},
 		setQueue: (state, action: PayloadAction<number[]>) => {
 			state.native = action.payload
 			state.queue = state.native
-			cacheHandle.set('queue', action.payload)
-			cacheHandle.set('native', action.payload)
+			if (action.payload) cacheHandle.set('native', action.payload)
+			if (action.payload) cacheHandle.set('queue', state.native)
 		},
 		setTarget: (state, action: PayloadAction<number>) => {
 			state.target = action.payload
-			cacheHandle.set('targetQueue', action.payload)
+			if (action.payload) cacheHandle.set('targetQueue', action.payload)
 		},
 		setTimer: (state, action: PayloadAction<number>) => {
 			state.timer = action.payload
-			cacheHandle.set('timer', action.payload)
 		},
 		setDuration: (state, action: PayloadAction<number>) => {
 			state.duration = action.payload
 		},
 		setProgress: (state, action: PayloadAction<number>) => {
 			state.progress = action.payload
-			cacheHandle.set('progress', action.payload)
 		},
 		setIsRun: (state, action: PayloadAction<boolean>) => {
 			state.isRun = action.payload
 		},
 		setTrack: (state, action: PayloadAction<Track>) => {
 			state.track = action.payload
+			cacheHandle.set('track', action.payload)
+		},
+		setTrackPause: (state, action: PayloadAction<Track>) => {
+			state.track = action.payload
+			state.isRun = false
 		},
 	},
 })
 
 export const { actions: playerAction } = playerSlice
 export const { reducer: playerReducer } = playerSlice
+
+export const setAsyncTrack = createAsyncThunk<void, Track, ThunkConfig>(
+	'player/setTrackPause',
+	async (track, { dispatch }) => {
+		await new Promise<void>(() =>
+			setTimeout(() => dispatch(playerAction.setTrackPause(track)), 10)
+		)
+	}
+)
+export const setAsyncVolume = createAsyncThunk<void, number, ThunkConfig>(
+	'player/setTrackVolume',
+	async (newVolume, { dispatch }) => {
+		await new Promise<void>(() =>
+			setTimeout(() => dispatch(playerAction.setVolume(newVolume)), 100)
+		)
+	}
+)

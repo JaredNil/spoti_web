@@ -87,6 +87,7 @@ export function LoginForm() {
 										<FormLabel>Почта</FormLabel>
 										<FormControl>
 											<Input
+												autoComplete="address-level2 webauthn"
 												placeholder="ivan@example.com"
 												disabled={isLoadingLogin}
 												type="email"
@@ -114,6 +115,7 @@ export function LoginForm() {
 										<FormControl>
 											<Input
 												placeholder="******"
+												autoComplete="current-password"
 												disabled={isLoadingLogin}
 												type="password"
 												{...field}

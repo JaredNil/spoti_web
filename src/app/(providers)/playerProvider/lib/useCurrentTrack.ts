@@ -38,7 +38,7 @@ export function useCurrentTrack(): CurrentTrackHook {
 	const toggleTrack = (newTrack: string): void => {
 		if (setCurrentTrack && newTrack === '') setCurrentTrack('')
 		else if (setCurrentTrack && newTrack !== null) {
-			setCurrentTrack('')
+			// setCurrentTrack('')
 			setCurrentTrack(newTrack)
 		} else new Error('Ошибка инициализации музыки.')
 	}

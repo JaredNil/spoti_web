@@ -31,7 +31,7 @@ export function usePlayer() {
 			dispatch(playerAction.setIsRun(true))
 			dispatch(playerAction.offLoadingTrack())
 			dispatch(playerAction.setTrack(track))
-			cacheHandle.set('track', track)
+			// cacheHandle.set('track', track)
 		}
 	}
 

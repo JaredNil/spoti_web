@@ -6,14 +6,14 @@ import { userReducer } from '@/entities/user'
 import { authReducer } from '@/features/authModal'
 import { $api, rtkApi } from '@/shared/api/api'
 import { StateSchema } from '@/shared/lib/state'
-import { playerReducer } from '@/widgets/player'
+import { playerReducer, usePlayer } from '@/widgets/player'
 
 export interface ThunkExtraArg {
 	api: typeof $api
 }
 
-export interface ThunkConfig<T> {
-	serializedErrorType: T
+export interface ThunkConfig {
+	// serializedErrorType: T
 	extra: ThunkExtraArg
 	state: StateSchema
 }
@@ -29,7 +29,6 @@ export function createStore() {
 		auth: authReducer,
 
 		[rtkApi.reducerPath]: rtkApi.reducer,
-		// [cfApi.reducerPath]: cfApi.reducer,
 	})
 
 	const store = configureStore({
@@ -42,7 +41,6 @@ export function createStore() {
 					extraArgument: { api: $api },
 				},
 			}).concat(rtkApi.middleware),
-		// .concat(cfApi.middleware),
 		devTools: true,
 	})
 

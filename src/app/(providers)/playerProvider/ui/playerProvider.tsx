@@ -6,13 +6,13 @@ import { PlayerContext } from '../lib/playerContext'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { getVolumePlayer, playerAction, usePlayer } from '@/widgets/player'
 
-interface PlayerProviderI {
+interface PlayerProvider {
 	children: React.ReactNode
 }
 
-export const PlayerProvider: React.FC<PlayerProviderI> = ({
+export const PlayerProvider: React.FC<PlayerProvider> = ({
 	children,
-}: PlayerProviderI) => {
+}: PlayerProvider) => {
 	const dispatch = useAppDispatch()
 
 	// const [currentTrack, setCurrentTrack] = useState<HTMLAudioElement| null>(null); // DEPRECATED. NOW THROUTH STRING
@@ -23,7 +23,6 @@ export const PlayerProvider: React.FC<PlayerProviderI> = ({
 	const volume = useAppSelector(getVolumePlayer)
 	useEffect(() => {
 		if (audioRef.current) {
-			console.log('volume is changed')
 			if (volume <= 100 && volume >= 0)
 				audioRef.current.volume = volume / 100
 		}
