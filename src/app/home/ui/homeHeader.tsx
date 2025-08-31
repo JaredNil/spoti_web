@@ -1,19 +1,26 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
 
-import { Title } from '@/shared/ui/pageTitle/pageTitle'
+const HomeHeader = () => {
+	// const [isLoading, setIsLoading] = useState(true)
 
-const HomeHeader = ({ hydrateUsername }: { hydrateUsername: string }) => {
-	const [username, setUsername] = useState(hydrateUsername)
+	const { data, status } = useSession()
 
-	useEffect(() => {
-		// req of change username from server data
-		// Заглушка
-		// setUsername(getUserByCookie)
-	})
-
-	return <Title title={`Welcome back, ${username}`} />
+	return (
+		<div
+			className="flex font-semibold text-white 
+			select-none pointer-events-none pb-2
+			text-xl lg:text-3xl"
+		>
+			<h1 className="mr-3">{`Welcome back,`}</h1>
+			{status === 'loading' && (
+				<div className="h-8 w-40 bg-neutral-200 animate-pulse"></div>
+			)}
+			{status === 'authenticated' && data.user?.name}
+			{status === 'unauthenticated' && 'user'}
+		</div>
+	)
 }
 
 export default HomeHeader

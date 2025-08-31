@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { createReducerManager } from './reducerManager'
 
 import { userReducer } from '@/entities/user'
-import { authReducer } from '@/features/auth'
+import { authReducer } from '@/features/authModal'
 import { $api, rtkApi } from '@/shared/api/api'
 import { StateSchema } from '@/shared/lib/state'
 import { playerReducer } from '@/widgets/player'

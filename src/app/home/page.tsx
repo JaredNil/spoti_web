@@ -15,7 +15,7 @@ const Home = async () => {
 
 	return (
 		<>
-			<HomeHeader hydrateUsername={'User'} />
+			<HomeHeader />
 			<QuickBar />
 
 			<AlbumListProvider

@@ -5,7 +5,7 @@ import { QueuepageSchema } from '@/app/queue'
 import { SearchpageSchema } from '@/app/search'
 import { UploadpageSchema } from '@/app/upload'
 import { UserSchema } from '@/entities/user'
-import { AuthSchema } from '@/features/auth'
+import { AuthSchema } from '@/features/authModal'
 import { PlayerSchema } from '@/widgets/player'
 
 export interface StateSchema {

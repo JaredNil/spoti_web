@@ -1,5 +1,5 @@
 'use client'
-
+import { SessionProvider } from 'next-auth/react'
 import { ReactNode } from 'react'
 import { Toaster } from 'sonner'
 
@@ -9,11 +9,13 @@ import { StoreProvider } from './storeProvider'
 
 export default function ClientProviders({ children }: { children: ReactNode }) {
 	return (
-		<StoreProvider>
-			<CacheProvider>
-				<PlayerProvider>{children}</PlayerProvider>
-				<Toaster position="top-right" />
-			</CacheProvider>
-		</StoreProvider>
+		<SessionProvider>
+			<StoreProvider>
+				<CacheProvider>
+					<PlayerProvider>{children}</PlayerProvider>
+					<Toaster position="top-center" />
+				</CacheProvider>
+			</StoreProvider>
+		</SessionProvider>
 	)
 }

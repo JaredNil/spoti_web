@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
 import { FaGoogle, FaYandex } from 'react-icons/fa'
 
 import { Button } from '@/shared/ui/kit/button'
@@ -17,10 +18,7 @@ export function AuthSocial() {
 	// })
 
 	const onClick = async (provider: 'google' | 'yandex') => {
-		// const response = await mutateAsync(provider)
-		// if (response) {
-		// 	router.push(response.url)
-		// }
+		await signIn(provider)
 	}
 
 	return (
