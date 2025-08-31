@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 import { AuthWrapper } from './authWrapper'
-import { LoginSchema, TypeLoginSchema } from '../model/type/authSchema'
+import { LoginSchema, TypeLoginSchema } from '../model/schema'
 
 import { Button } from '@/shared/ui/kit/button'
 import {

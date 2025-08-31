@@ -8,8 +8,8 @@ import {
 	getAuthIsValid,
 	getAuthPassword,
 	getAuthUsername,
-} from '../../model/selector/authSelector'
-import { authAction, authReducer } from '../../model/slice/authSlice'
+} from '../model/selector/authSelector'
+import { authAction, authReducer } from '../model/slice/authSlice'
 
 import {
 	DynamicModuleLoader,

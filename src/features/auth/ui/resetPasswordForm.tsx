@@ -7,10 +7,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 import { AuthWrapper } from './authWrapper'
-import {
-	ResetPasswordSchema,
-	TypeResetPasswordSchema,
-} from '../model/type/authSchema'
+import { ResetPasswordSchema, TypeResetPasswordSchema } from '../model/schema'
 
 import { Button } from '@/shared/ui/kit/button'
 import {

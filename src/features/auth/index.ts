@@ -1,4 +1,4 @@
-export { authReducer } from './model/slice/authSlice'
+export { authReducer } from '../authModal/model/slice/authSlice'
 
-export { AuthModal } from './ui/modal/authModal'
-export type { AuthSchema } from './model/type/authSchema'
+export { AuthModal } from '../authModal/ui/authModal'
+export type { AuthSchema } from '../authModal/model/type/authSchema'

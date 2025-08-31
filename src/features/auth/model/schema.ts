@@ -1,14 +1,5 @@
 import { z } from 'zod'
 
-export interface AuthSchema {
-	authUser: string
-	authPass: string
-
-	isValid: boolean
-	isLoading: boolean
-	error?: string
-}
-
 export const RegisterSchema = z
 	.object({
 		name: z.string().min(1, {
