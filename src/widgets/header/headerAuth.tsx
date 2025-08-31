@@ -29,7 +29,7 @@ export const HeaderAuthButton = () => {
 		if (status === 'unauthenticated') {
 			routing.push('/auth/login')
 		} else if (status === 'authenticated') {
-			signOut()
+			signOut({ redirect: false })
 		}
 	}
 

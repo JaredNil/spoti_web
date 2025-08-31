@@ -76,7 +76,7 @@ export const ProfileTabs = () => {
 			<div className="text-center">
 				<div className="relative inline-block mt-6">
 					<Image
-						src={'/album-placeholder.webp'}
+						src={'/content/cover/album-placeholder.webp'}
 						width={100}
 						height={100}
 						alt="Avatar"

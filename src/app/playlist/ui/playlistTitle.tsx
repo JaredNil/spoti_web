@@ -13,7 +13,7 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = ({
 	album,
 }: PlaylistTitleProps) => {
 	const {
-		imagePath = '/album-placeholder.webp',
+		imagePath = '/content/cover/album-placeholder.webp',
 		title = 'Playlist',
 		description = '',
 		creationDate,

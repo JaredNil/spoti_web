@@ -22,7 +22,10 @@ export const LibraryItem: React.FC<LibraryItemProps> = ({
 				aspect-square h-[34px] bg-gray-400"
 			>
 				<Image
-					src={album?.imagePath ?? '/album-placeholder.webp'}
+					src={
+						album?.imagePath ??
+						'/content/cover/album-placeholder.webp'
+					}
 					className="h-full w-full"
 					width={60}
 					height={60}

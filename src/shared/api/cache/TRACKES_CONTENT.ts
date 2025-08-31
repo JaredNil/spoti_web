@@ -1,6 +1,6 @@
-const atmImg = '/atm.png'
-const heavyMetalImg = '/heavy_metal.webp'
-const trapMetalImg = '/trap_metal.webp'
+const atmImg = '/content/cover/atm.png'
+const heavyMetalImg = '/content/cover/heavy_metal.webp'
+const trapMetalImg = '/content/cover/trap_metal.webp'
 const burn = '/content/playlist/Architects burn down my house.mp3'
 const doomsday = '/content/playlist/Architects Doomsday.mp3'
 const animals = '/content/playlist/Architects_Animals.mp3'
@@ -25,7 +25,7 @@ const sweet = '/content/playlist/Kito ft. Reija Lee — Sweet Talk.mp3'
 const rebel = '/content/playlist/P.T. Adamczyk The Rebel Path.mp3'
 const nosave =
 	'/content/playlist/Run The Jewels, El-P, Killer Mike — No Save Point.mp3'
-const chippin = '/public/content/playlist/Chippin.mp3'
+const chippin = '/content/playlist/Chippin.mp3'
 
 import { Trackes } from '@/shared/api'
 

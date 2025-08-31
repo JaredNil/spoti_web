@@ -13,7 +13,7 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 	const {
 		id,
 		author,
-		imagePath = '/album-placeholder.webp',
+		imagePath = '/content/cover/album-placeholder.webp',
 		title,
 		trackesId,
 	} = data
