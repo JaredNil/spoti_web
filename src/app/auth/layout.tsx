@@ -1,0 +1,21 @@
+import { ReactNode } from 'react'
+
+import { createMeta } from '@/shared/const/metadata'
+import { Title } from '@/shared/ui/pageTitle/pageTitle'
+
+export const metadata = createMeta({ title: 'Auth' })
+
+export default async function PlaylistPageLayout({
+	children,
+}: {
+	children: ReactNode
+}) {
+	return (
+		<>
+			<Title title="Authentication account" />
+			<div className="flex w-full h-[90%] flex-col justify-center items-center">
+				{children}
+			</div>
+		</>
+	)
+}

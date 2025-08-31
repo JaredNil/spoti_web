@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { getAuthUsername } from '../model/authSelector'
+import { getAuthUsername } from '../../model/selector/authSelector'
 
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 

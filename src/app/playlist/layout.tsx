@@ -9,11 +9,5 @@ export default async function PlaylistPageLayout({
 }: {
 	children: ReactNode
 }) {
-	return (
-		<div className="flex w-full flex-col">
-			{children}
-			{/* DEPRECATED */}
-			{/* {isShowTrackModal && <TrackModal isOpen={isShowTrackModal} onClose={() => onCloseModal()} />} */}
-		</div>
-	)
+	return <div className="flex w-full flex-col">{children}</div>
 }

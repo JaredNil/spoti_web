@@ -25,22 +25,24 @@ const sidebarRoutes = [
 export function Sidebar() {
 	return (
 		<aside
-			className="sidebar hidden h-full min-w-[250px] max-w-[500px] relative
-			flex-col gap-y-2 pl-2 pr-1
+			className="sidebar relative hidden h-full min-w-[250px] max-w-[500px]
+			gap-y-2 pl-2 pr-1 w-auto
 			md:flex"
 		>
-			<div className="flex flex-col gap-y-4 px-5 py-4 bg-neutral-900 rounded-lg">
-				{sidebarRoutes.map((item, key) => (
-					<RouteItem routeInfo={item} key={key} />
-				))}
-			</div>
-			<div className="h-full overflow-y-auto bg-neutral-900 rounded-lg">
-				<div className="px-5 pt-4 text-neutral-400 select-none font-semibold">
-					ПЛЕЙЛИСТЫ
+			<div className="sidebar_container flex flex-col relative w-full">
+				<div className="flex flex-col gap-y-4 px-5 py-4 bg-neutral-900 rounded-lg w-full">
+					{sidebarRoutes.map((item, key) => (
+						<RouteItem routeInfo={item} key={key} />
+					))}
 				</div>
-				<Library />
+				<div className="h-full overflow-y-auto mt-2 bg-neutral-900 rounded-lg w-full">
+					<div className="px-5 pt-4 text-neutral-400 select-none font-semibold">
+						ПЛЕЙЛИСТЫ
+					</div>
+					<Library />
+				</div>
+				{/* <SidebarResizer /> */}
 			</div>
-			<SidebarResizer />
 		</aside>
 	)
 }

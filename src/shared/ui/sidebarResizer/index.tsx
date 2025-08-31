@@ -12,7 +12,6 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 export const SidebarResizer = () => {
 	const handleRef = useRef<HTMLDivElement>(null)
 	const asideRef = useRef<HTMLElement | null>(null)
-	// const [isActive, setIsActive] = useState(false)
 
 	const dispatch = useAppDispatch()
 
@@ -21,7 +20,7 @@ export const SidebarResizer = () => {
 
 	useEffect(() => {
 		asideRef.current = document.querySelector(
-			'aside.sidebar'
+			'div.sidebar_container'
 		) as HTMLElement
 	}, [])
 
@@ -38,7 +37,7 @@ export const SidebarResizer = () => {
 	useEffect(() => {
 		if (asideRef.current) {
 			if (isSidebarVisible) {
-				asideRef.current.style.display = `block`
+				asideRef.current.style.display = ``
 			} else {
 				asideRef.current.style.display = `none`
 			}
@@ -46,39 +45,32 @@ export const SidebarResizer = () => {
 	}, [isSidebarVisible])
 
 	const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-		// setIsActive(true)
 		const startX = e.clientX
 
-		const startWidth = handleRef.current?.parentElement?.offsetWidth ?? 0
-
 		const onMouseMove = (moveEvent: MouseEvent) => {
+			const startWidth =
+				handleRef.current?.parentElement?.clientWidth ?? 0
 			const deltaX = moveEvent.clientX - startX
 			const newWidth = startWidth + deltaX
-			// console.log('Δpx:', deltaX, 'new width:', newWidth)
+			console.log('Δpx:', deltaX, 'new width:', startWidth)
 			dispatch(userAction.setSidebarWidth(newWidth.toString()))
 		}
 
-		// const onMouseLeave = () => setIsActive(false)
-
 		const onMouseUp = () => {
-			// setIsActive(false)
 			document.removeEventListener('mousemove', onMouseMove)
 			document.removeEventListener('mouseup', onMouseUp)
-			// document.removeEventListener('mouseleave', onMouseLeave)
 		}
 		document.addEventListener('mousemove', onMouseMove)
 		document.addEventListener('mouseup', onMouseUp)
-		// document.addEventListener('mouseleave', () => setIsActive(false))
 	}
 
 	return (
 		<div
-			className={`absolute right-[-2px] top-0 w-1 h-full
+			className={`absolute right-[-6px] top-0 w-1 h-full
 			cursor-e-resize transition-colors
-			hidden md:flex
 			hover:bg-neutral-400/50`}
 			ref={handleRef}
 			onMouseDown={onMouseDown}
-		></div>
+		/>
 	)
 }
