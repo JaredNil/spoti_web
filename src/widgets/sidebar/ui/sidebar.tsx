@@ -1,4 +1,4 @@
-import { Library } from './library'
+import { Library } from './library/library'
 import { RouteItem } from './routeItem'
 
 import { SidebarResizer } from '@/shared/ui/sidebarResizer'
