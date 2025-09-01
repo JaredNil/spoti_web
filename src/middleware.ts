@@ -36,7 +36,7 @@ export async function middleware(req: NextRequest) {
 			console.warn('JWT verify error:', err)
 		}
 	}
-	console.log('TOKEN2:', token2)
+	console.log('TOKEN2:', sessionCookie)
 
 	if (!isPublicRoute && !token && !isPublicContent) {
 		console.log('START LOG')
