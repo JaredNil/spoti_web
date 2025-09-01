@@ -12,6 +12,10 @@ export async function middleware(req: NextRequest) {
 	const token = await getToken({ req, secret: process.env.AUTH_SECRET })
 
 	if (!isPublicRoute && !token && !isPublicContent) {
+		console.log('START LOG')
+		console.log(token)
+		console.log(isPublicRoute)
+		console.log(isPublicContent)
 		console.warn('REDIRECT REQUEST WITHOUT AUTH', path)
 		return NextResponse.redirect(new URL('/auth/login', req.nextUrl))
 	}
