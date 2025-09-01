@@ -19,14 +19,24 @@ export async function middleware(req: NextRequest) {
 
 	console.log('TOKEN', token)
 
-	const sessionCookie = req.cookies.get(
-		'__Secure-authjs.session-token'
-	)?.value
-	const secret2 = new TextEncoder().encode(process.env.AUTH_SECRET!)
-	if (sessionCookie) {
-		const { payload: token2 } = await jwtVerify(sessionCookie, secret2)
-		console.log('TOKEN2', token2)
+	const sessionCookie = req.cookies
+		.get('__Secure-authjs.session-token')
+		?.value?.trim()
+
+	let token2: any = null
+	if (sessionCookie && sessionCookie.split('.').length === 3) {
+		try {
+			const { payload } = await jwtVerify(
+				sessionCookie,
+				new TextEncoder().encode(secret)
+			)
+			token2 = payload
+		} catch (err) {
+			// JWT повреждён или просрочен
+			console.warn('JWT verify error:', err)
+		}
 	}
+	console.log('TOKEN2:', token2)
 
 	if (!isPublicRoute && !token && !isPublicContent) {
 		console.log('START LOG')
