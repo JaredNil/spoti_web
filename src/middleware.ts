@@ -19,12 +19,13 @@ export async function middleware(req: NextRequest) {
 
 	console.log('TOKEN', token)
 
-	const sessionCookie = req.cookies.get('next-auth.session-token')?.value
-	const secret2 = new TextEncoder().encode(process.env.AUTH_SECRET!)
-	const { payload } = await jwtVerify(sessionCookie ?? '', secret2)
-	const token2 = payload
+	const sessionCookie = req.cookies
+	// .get('next-auth.session-token')?.value
+	// const secret2 = new TextEncoder().encode(process.env.AUTH_SECRET!)
+	// const { payload } = await jwtVerify(sessionCookie ?? '', secret2)
+	// const token2 = payload
 
-	console.log('TOKEN2', token2)
+	console.log('TOKEN2', sessionCookie)
 
 	if (!isPublicRoute && !token && !isPublicContent) {
 		console.log('START LOG')
