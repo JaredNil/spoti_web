@@ -2,8 +2,8 @@ export type TrackId = string
 export type TrackesId = TrackId[]
 
 export interface AlbumInterface {
-	id: number | null
-	user_id: number | null
+	id: string
+	user_id: string
 	author: string
 	title: string
 	description?: string

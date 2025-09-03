@@ -1,42 +1,28 @@
 'use client'
 
+import Link from 'next/link'
+import { useSession } from 'next-auth/react'
 import { FC, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { BringAuthModal } from './bringAuthModal'
 
 export const BringAuth: FC = () => {
-	const [username, setUsername] = useState(undefined)
+	const { status } = useSession()
 
-	useEffect(() => {
-		// req of change username from server data
-		// Заглушка
-		// setUsername(getUserByCookie)
-	})
-
-	return (
-		username && (
-			<>
-				<span
-					className={twMerge(
-						`mt-5 inline-block
-			h-full select-none rounded-lg 
-			pr-4 text-2xl `
-					)}
+	if (status === 'unauthenticated')
+		return (
+			<div
+				className="my-6 flex items-center justify-center
+				select-none rounded-xl text-xl font-light"
+			>
+				<Link
+					href="/auth/login"
+					className="bg-green-500 py-2 px-8 rounded-2xl text-lg
+					cursor-pointer hover:bg-green-500/60 transition-colors"
 				>
-					<span>Пользовательские плейлисты</span>
-				</span>
-
-				<span
-					className={`mb-4 mt-4 
-					flex h-full select-none 
-					justify-center rounded-lg pr-4 text-xl font-light`}
-				>
-					<span>Войдите для создания плейлистов.</span>
-				</span>
-
-				<BringAuthModal />
-			</>
+					Auth for creation playlists.
+				</Link>
+			</div>
 		)
-	)
 }

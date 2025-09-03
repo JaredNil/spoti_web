@@ -1,15 +1,16 @@
-export enum AlbumListType {
-	COMMON = 0,
-	USER = 1,
-}
+export type AlbumListType = 'COMMON' | 'USER' | 'COMMUNITY'
+
 export const getAlbumListTitle = (type: AlbumListType): string => {
 	let title: string
 	switch (type) {
-		case 0:
-			title = 'Общие плейлисты'
+		case 'COMMON':
+			title = 'Common Jarefy playlist'
 			break
-		case 1:
-			title = 'Пользовательские плейлисты'
+		case 'USER':
+			title = 'My playlist'
+			break
+		case 'COMMUNITY':
+			title = 'Playlists other users'
 			break
 
 		default:
