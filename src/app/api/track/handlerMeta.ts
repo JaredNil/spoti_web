@@ -36,3 +36,16 @@ export async function fetchMetaTrackServer(trackId: TrackId): Promise<Track> {
 	track.id = trackId // REFACTOR IN FUTURE FOR HASH_TRACK
 	return track
 }
+
+export async function fetchAllMetaTrackesServer(): Promise<Trackes> {
+	const trackesMetadata = await fetch(`${process.env.KV_STORAGE}/tracks`, {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' },
+		cache: 'force-cache',
+	})
+	if (!trackesMetadata.ok) {
+		throw new Error(`Trackes not found`)
+	}
+	const trackes = (await trackesMetadata.json()) as Trackes
+	return trackes
+}

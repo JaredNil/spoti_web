@@ -31,7 +31,7 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 					overflow-hidden rounded-md"
 			>
 				<Image
-					src={imagePath}
+					src={'/content/cover/album-placeholder.webp'}
 					alt={title}
 					loading="lazy"
 					className="pointer-events-none w-full select-none object-cover"

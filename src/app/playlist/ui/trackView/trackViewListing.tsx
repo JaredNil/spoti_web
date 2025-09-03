@@ -56,7 +56,7 @@ export const TrackViewListing: React.FC<TrackViewListingProps> = ({
 				{trackes?.map((track, i) => {
 					return (
 						<div
-							key={track.id}
+							key={i}
 							className={twMerge(
 								`playlist__table grid w-full flex-col items-center overflow-hidden
 							group

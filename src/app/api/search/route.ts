@@ -1,10 +1,10 @@
 import { NextRequest } from 'next/server'
 
-import { TRACKES } from '../../../shared/api/cache/TRACKES_CONTENT'
+import { fetchAllMetaTrackesServer } from '../track/handlerMeta'
 
 import { Trackes } from '@/shared/api'
 
-export function GET(request: NextRequest) {
+export async function GET(request: NextRequest) {
 	const searchParams = request.nextUrl.searchParams
 	const searching = searchParams.get('query')?.trim()
 	if (searching === undefined) {
@@ -14,7 +14,9 @@ export function GET(request: NextRequest) {
 		return new Response('Empty track list ids', { status: 400 })
 	}
 
-	return new Response(JSON.stringify(findByReq(TRACKES, searching)), {
+	const trackes = await fetchAllMetaTrackesServer()
+
+	return new Response(JSON.stringify(findByReq(trackes, searching)), {
 		status: 200,
 		headers: { 'Content-Type': 'application/json' },
 	})

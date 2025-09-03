@@ -29,7 +29,7 @@ export const PlaylistTitle: React.FC<PlaylistTitleProps> = ({
 					/>
 				) : (
 					<Image
-						src={imagePath}
+						src={'/content/cover/album-placeholder.webp'}
 						width={300}
 						height={300}
 						loading="lazy"

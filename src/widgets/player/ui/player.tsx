@@ -45,7 +45,7 @@ export const Player: React.FC = () => {
 				<div className="aspect-square w-[40px] bg-white hidden cursor-pointer sm:block">
 					{track?.imageLink && (
 						<Image
-							src={track.imageLink}
+							src={'/content/cover/album-placeholder.webp'}
 							alt="LOGOTYPE"
 							width={100}
 							height={100}

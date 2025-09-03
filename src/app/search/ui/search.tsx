@@ -28,9 +28,11 @@ export const Search: React.FC = () => {
 	const trackesId = useAppSelector(getSearchTrackesId)
 	const searchInput = useAppSelector(getUserSearch)
 	const isLoading = useAppSelector(getIsLoadingPage)
+
 	const deferredQuery = useDeferredValue(searchInput)
 
 	const { data: searchData } = useSearchTrackesQuery(deferredQuery)
+
 	useEffect(() => {
 		if (searchData) dispatch(searchpageAction.setSearchedData(searchData))
 	}, [dispatch, searchData])

@@ -31,7 +31,7 @@ export function TrackQueue({
 			>
 				<div className="h-full aspect-square ">
 					<Image
-						src={track.imageLink || '/homepage/1235.png'}
+						src={'/homepage/1235.png'}
 						alt={track.title}
 						width={60}
 						height={60}
