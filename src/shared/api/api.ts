@@ -1,3 +1,4 @@
+import { S3Client } from '@aws-sdk/client-s3'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import axios from 'axios'
 
@@ -22,4 +23,13 @@ export const { useUploadAudioMutation } = rtkApi
 export const $api = axios.create({
 	baseURL: 'http://localhost:3000/api/',
 	withCredentials: true,
+})
+
+export const s3 = new S3Client({
+	endpoint: process.env.VK_ENDPOINT!,
+	region: 'ru-1',
+	credentials: {
+		accessKeyId: process.env.VK_CLIENT!,
+		secretAccessKey: process.env.VK_SECRET!,
+	},
 })

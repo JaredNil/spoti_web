@@ -1,2 +1,2 @@
-export const extractIds = <T extends { id: number }>(items: T[]): number[] =>
+export const extractIds = <T extends { id: string }>(items: T[]): string[] =>
 	items.map(({ id }) => id)

@@ -1,13 +1,13 @@
 'use client'
 import React from 'react'
 
-import { Track, Trackes } from '@/shared/api'
+import { Track, TrackesId } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 import { getTrack } from '@/widgets/player'
 
 interface TrackViewButtonProps {
-	trackesId: number[]
+	trackesId: TrackesId
 	track: Track
 	index: number
 }

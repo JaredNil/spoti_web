@@ -1,4 +1,4 @@
-export type TrackId = number
+export type TrackId = string
 export type TrackesId = TrackId[]
 
 export interface AlbumInterface {
@@ -14,8 +14,8 @@ export interface AlbumInterface {
 export type AlbumsCollection = AlbumInterface[]
 
 export interface Track {
-	id: number
-	userId: number
+	id: string
+	userId: string
 	author: string
 	title: string
 	songLink?: string

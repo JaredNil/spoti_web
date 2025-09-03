@@ -2,7 +2,7 @@ import { PlaylistTitle } from '../ui/playlistTitle'
 import { TrackViewVender } from '../ui/trackView/trackView'
 
 import { fetchAlbumById } from '@/app/api/album/handler'
-import { fetchTrackesServer } from '@/entities/track'
+import { fetchMetaTrackesServer } from '@/app/api/track/handlerMeta'
 
 export default async function PlaylistPage({
 	params,
@@ -11,7 +11,7 @@ export default async function PlaylistPage({
 }) {
 	const { id } = await params
 	const album = await fetchAlbumById(id)
-	const trackes = await fetchTrackesServer(album.trackesId)
+	const trackes = await fetchMetaTrackesServer(album.trackesId)
 
 	return (
 		<>

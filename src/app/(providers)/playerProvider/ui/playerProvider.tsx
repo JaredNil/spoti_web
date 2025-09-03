@@ -89,7 +89,7 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({
 				<audio
 					onEnded={endedHandler}
 					ref={audioRef}
-					src={currentTrack}
+					src={`https://hb.ru-msk.vkcloud-storage.ru/track/${currentTrack}`}
 					onTimeUpdate={audioTimeUpdateHandler}
 					onDurationChange={audioChangeDurationHandler}
 					autoPlay

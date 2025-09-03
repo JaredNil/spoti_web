@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { FaHeart } from 'react-icons/fa'
 
-import { Track } from '@/shared/api'
+import { Track, TrackesId } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 import { getPlayerTarget } from '@/widgets/player'
@@ -15,7 +15,7 @@ export function TrackQueue({
 }: {
 	track: Track
 	target: number
-	trackesId: number[]
+	trackesId: TrackesId
 }) {
 	const currentTarget = useAppSelector(getPlayerTarget)
 	return (

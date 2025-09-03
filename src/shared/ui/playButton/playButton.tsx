@@ -3,7 +3,7 @@
 import { useMemo } from 'react'
 import { FaPause, FaPlay } from 'react-icons/fa'
 
-import { Track } from '@/shared/api'
+import { Track, TrackesId } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
 import {
 	getPlayerQueue,
@@ -17,7 +17,7 @@ import { getPlayerNativeQueue } from '@/widgets/player'
 // В БУДУЩЕМ ДОБАВИТЬ ВОЗМОЖНОСТЬ РАБОТЫ ПО АЙДИ ПЛЕЙЛИСТА
 interface PlayButtonProps {
 	type?: 'album' | 'track'
-	relayTrackesId: number[]
+	relayTrackesId: TrackesId
 	track?: Track
 	target?: number
 	classname?: string

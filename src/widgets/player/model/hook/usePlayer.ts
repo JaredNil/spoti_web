@@ -9,8 +9,8 @@ import { playerAction } from '../slice/playerSlice'
 
 import { useCurrentTrack } from '@/app/(providers)/playerProvider'
 import { useLazyFetchTrackQuery } from '@/entities/track'
+import { TrackesId, TrackId } from '@/shared/api'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
-import { cacheHandle } from '@/shared/lib/localstorage'
 
 export function usePlayer() {
 	const { playTrack, pauseTrack } = useCurrentTrack()
@@ -25,17 +25,16 @@ export function usePlayer() {
 
 	const dispatch = useAppDispatch()
 
-	async function loadTrack(trackId: number) {
+	async function loadTrack(trackId: TrackId) {
 		const { data: track } = await triggerFetchTrack(trackId)
 		if (track) {
 			dispatch(playerAction.setIsRun(true))
 			dispatch(playerAction.offLoadingTrack())
 			dispatch(playerAction.setTrack(track))
-			// cacheHandle.set('track', track)
 		}
 	}
 
-	function start(trackesId: number[], target: number = 0) {
+	function start(trackesId: TrackesId, target: number = 0) {
 		if (!isActivePlayer) dispatch(playerAction.onActivePlayer())
 		dispatch(playerAction.setQueue(trackesId))
 		dispatch(playerAction.setTarget(target))
@@ -44,7 +43,7 @@ export function usePlayer() {
 
 	function play() {
 		if (queue.length === 0) {
-			start([1, 2, 3, 4, 5, 6]) // as like Liked trackes, in future put in from backend
+			start(['1', '2', '3', '4', '5', '6']) // as like Liked trackes, in future put in from backend
 		} else {
 			if (playTrack) {
 				playTrack()
@@ -61,7 +60,7 @@ export function usePlayer() {
 	}
 
 	function next() {
-		if (queue.length - 1 === target) {
+		if (queue.length - 1 === Number(target)) {
 			// idk what doing
 		} else if (target !== undefined && queue.length - 1 > target) {
 			dispatch(playerAction.setIsRun(true))

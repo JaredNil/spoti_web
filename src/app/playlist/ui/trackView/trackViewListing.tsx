@@ -8,11 +8,11 @@ import { TrackViewButton } from './trackViewButton'
 import { TrackViewListingSearch } from './trackViewListingSearch'
 
 import { SearchEmpty } from '@/app/search/ui/piece/searchEmpty'
-import { Trackes } from '@/shared/api'
+import { Trackes, TrackesId } from '@/shared/api'
 
 interface TrackViewListingProps {
 	trackes?: Trackes
-	trackesId: number[]
+	trackesId: TrackesId
 	isCompact: boolean
 	onShowModal?: (id: number) => void
 }
@@ -77,7 +77,7 @@ export const TrackViewListing: React.FC<TrackViewListingProps> = ({
 							<div className="table-image h-full flex items-center justify-center">
 								<Image
 									className="lg:w-[100%] w-[60%] aspect-square select-none"
-									src={track.imageLink || ''}
+									src={'/content/cover/heavy_metal.webp'}
 									width={20}
 									height={20}
 									alt="track image"

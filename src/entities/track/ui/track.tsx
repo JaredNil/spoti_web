@@ -1,11 +1,11 @@
 import Image from 'next/image'
 
-import { fetchTrackServer } from '../model/fetchTrackesServer'
-
+import { fetchMetaTrackServer } from '@/app/api/track/handlerMeta'
+import { TrackId } from '@/shared/api'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
-export async function Track({ id }: { id: number }) {
-	const track = await fetchTrackServer(id)
+export async function Track({ id }: { id: TrackId }) {
+	const track = await fetchMetaTrackServer(id)
 
 	return (
 		<div
@@ -21,7 +21,7 @@ export async function Track({ id }: { id: number }) {
 			>
 				<div className="relative h-full aspect-square ">
 					<Image
-						src={track.imageLink || '/homepage/1235.png'}
+						src={'/homepage/1235.png'}
 						alt={track.title}
 						width={160}
 						height={160}
@@ -41,11 +41,7 @@ export async function Track({ id }: { id: number }) {
 				</div>
 			</div>
 			<div className="w-30 md:w-16 py-16 md:py-0">
-				<PlayButton
-					relayTrackesId={[track.id]}
-					track={track}
-					type="track"
-				/>
+				<PlayButton relayTrackesId={[id]} track={track} type="track" />
 			</div>
 		</div>
 	)

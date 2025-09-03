@@ -6,6 +6,4 @@ export { AlbumSceleton } from './ui/albumSceleton'
 
 export type { AlbumInterface } from '@/shared/api'
 
-export type { AlbumsSchema } from './model/types/albumsSchema'
-
 export { AlbumFlat } from './ui/albumFlat'

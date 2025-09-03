@@ -34,24 +34,6 @@ export const trackApi = rtkApi.injectEndpoints({
 						return { error: err as FetchBaseQueryError }
 					}
 				},
-
-				/*  serializeQueryArgs: ({ queryArgs }) => ({
-				fetchTrackesServer: queryArgs.sort().join(','),
-				}),
-
-				 providesTags: (result) => {
-					if (result) {
-						return [
-							...result.map(({ id }) => ({
-								type: 'Track' as const,
-								id,
-							})),
-							{ type: 'Track', id: 'LIST' },
-						]
-					}
-					// else return { [{ type: 'Track', id: 'LIST' }]}
-				},
-			*/
 			}),
 			searchTrackes: build.query<
 				{ trackes: Trackes; trackesId: TrackesId },
@@ -90,7 +72,6 @@ export const trackApi = rtkApi.injectEndpoints({
 								},
 							}
 						}
-
 						const trackesId = extractIds(searchedTrackes)
 						return {
 							data: {
@@ -114,3 +95,17 @@ export const {
 	useLazyFetchTrackesQuery,
 	useSearchTrackesQuery,
 } = trackApi
+
+export const trackBufferApi = rtkApi.injectEndpoints({
+	endpoints(build) {
+		return {
+			fetchTrackBlob: build.query<Buffer<ArrayBuffer>, string>({
+				query: (hash) => ({
+					url: `/track/${hash}.mp3`,
+				}),
+			}),
+		}
+	},
+})
+
+export const { useFetchTrackBlobQuery } = trackBufferApi

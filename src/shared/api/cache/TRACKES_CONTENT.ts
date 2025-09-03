@@ -1,179 +1,151 @@
 const atmImg = '/content/cover/atm.png'
 const heavyMetalImg = '/content/cover/heavy_metal.webp'
 const trapMetalImg = '/content/cover/trap_metal.webp'
-const burn = '/content/playlist/Architects burn down my house.mp3'
-const doomsday = '/content/playlist/Architects Doomsday.mp3'
-const animals = '/content/playlist/Architects_Animals.mp3'
-const spam =
-	'/content/playlist/blxdssed feat. Istasha the Scrub — Spam Folder.mp3'
-const bring =
-	'/content/playlist/Bring_Me_The_Horizon_Jeris_Johnson_-_Can_You_Feel_My_Heart.mp3'
-const really =
-	'/content/playlist/Cyberpunk I Really Want to Stay at Your House.mp3'
-const V = '/content/playlist/Cyberpunk — V.mp3'
-const CloseEyes = '/content/playlist/DVRST Close Eyes.mp3'
-const Endless = '/content/playlist/DVRST Endless Love.mp3'
-const elefant = '/content/playlist/istasha the scrub — elefant.mp3'
-const gothe =
-	'/content/playlist/Istasha The Scrub — gothicketchup. (www.lightaudio.ru).mp3'
-const canbeangel =
-	'/content/playlist/Istasha The Scrub — I can be your angle, or yuor devil (www.lightaudio.ru).mp3'
-const rouch =
-	'/content/playlist/Istasha The Scrub — Roach Latency (feat. Kamaara ).mp3'
-const runCover = '/content/playlist/Kito feat. Reija Lee — Run For Cover.mp3'
-const sweet = '/content/playlist/Kito ft. Reija Lee — Sweet Talk.mp3'
-const rebel = '/content/playlist/P.T. Adamczyk The Rebel Path.mp3'
-const nosave =
-	'/content/playlist/Run The Jewels, El-P, Killer Mike — No Save Point.mp3'
-const chippin = '/content/playlist/Chippin.mp3'
 
 import { Trackes } from '@/shared/api'
-
 export const TRACKES: Trackes = [
 	{
-		id: 0,
-		userId: 1,
+		id: '0',
+		userId: '1',
 		author: 'Architects',
 		title: 'Animals',
-		songLink: animals,
+		songLink: '8f14e45fce.mp3',
 		imageLink: heavyMetalImg,
 	},
 	{
-		id: 1,
-		userId: 1,
+		id: '1',
+		userId: '1',
 		author: 'Architects',
 		title: 'Burn down my house',
-		songLink: burn,
+		songLink: 'e3b0c44298.mp3',
 		imageLink: trapMetalImg,
 	},
 	{
-		id: 2,
-		userId: 1,
+		id: '2',
+		userId: '1',
 		author: 'Architects',
 		title: 'Doomsday',
-		songLink: doomsday,
+		songLink: '1cb3e5d7a9.mp3',
 		imageLink: atmImg,
 	},
 	{
-		id: 3,
-		userId: 0,
+		id: '3',
+		userId: '0',
 		author: 'Bring me horizon',
 		title: 'Can You Feel My Heart',
-		songLink: bring,
+		songLink: 'ea8f7b7c04.mp3',
 		imageLink: heavyMetalImg,
 	},
 	{
-		id: 4,
-		userId: 1,
+		id: '4',
+		userId: '1',
 		author: 'Cyberpunk',
 		title: 'V',
-		songLink: V,
+		songLink: '26ab0db90d.mp3',
 		imageLink: atmImg,
 	},
 	{
-		id: 5,
-		userId: 1,
+		id: '5',
+		userId: '1',
 		author: 'Cyberpunk',
 		title: 'I Really Want to Stay at Your House',
-		songLink: really,
+		songLink: 'b026324c69.mp3',
 		imageLink: atmImg,
 	},
 	{
-		id: 6,
-		userId: 1,
+		id: '6',
+		userId: '1',
 		author: 'Cyberpunk',
 		title: 'The rebel path',
-		songLink: rebel,
+		songLink: '8c9b0a1b2c.mp3',
 		imageLink: atmImg,
 	},
 	{
-		id: 7,
-		userId: 1,
+		id: '7',
+		userId: '1',
 		author: 'Run The Jewels',
 		title: 'No Save Point',
-		songLink: nosave,
+		songLink: '2a3b4c5d6e.mp3',
 		imageLink: atmImg,
 	},
 	{
-		id: 8,
-		userId: 1,
+		id: '8',
+		userId: '1',
 		author: 'SAMURAI',
 		title: 'Chippin In',
-		songLink: chippin,
+		songLink: '7b8c9d0e1f.mp3',
 		imageLink: atmImg,
 	},
-
 	{
-		id: 9,
-		userId: 0,
+		id: '9',
+		userId: '0',
 		author: 'DVRST',
 		title: 'Close Eyes',
-		songLink: CloseEyes,
+		songLink: '7d865e959b.mp3',
 		imageLink: trapMetalImg,
 	},
 	{
-		id: 10,
-		userId: 0,
+		id: '10',
+		userId: '0',
 		author: 'DVRST',
 		title: 'Endless Love',
-		songLink: Endless,
+		songLink: '5d41402abc.mp3',
 		imageLink: trapMetalImg,
 	},
-
 	{
-		id: 11,
-		userId: 1,
+		id: '11',
+		userId: '1',
 		author: 'Istasha The Scrub',
 		title: 'Spam Folder',
-		songLink: spam,
+		songLink: 'c20ad4d76f.mp3',
 		imageLink: trapMetalImg,
 	},
 	{
-		id: 12,
-		userId: 1,
+		id: '12',
+		userId: '1',
 		author: 'Istasha The Scrub',
 		title: 'elefant',
-		songLink: elefant,
+		songLink: '4b825dc642.mp3',
 		imageLink: trapMetalImg,
 	},
 	{
-		id: 13,
-		userId: 1,
+		id: '13',
+		userId: '1',
 		author: 'Istasha The Scrub',
 		title: 'gothicketchup.',
-		songLink: gothe,
+		songLink: '9e107d9d37.mp3',
 		imageLink: trapMetalImg,
 	},
 	{
-		id: 14,
-		userId: 1,
+		id: '14',
+		userId: '1',
 		author: 'Istasha The Scrub',
 		title: 'I can be your angle, or yuor devil',
-		songLink: canbeangel,
+		songLink: '2fd4e1c67a.mp3',
 		imageLink: trapMetalImg,
 	},
 	{
-		id: 15,
-		userId: 1,
+		id: '15',
+		userId: '1',
 		author: 'Istasha The Scrub',
 		title: 'Roach Latency',
-		songLink: rouch,
+		songLink: 'b6d767d2f8.mp3',
 		imageLink: trapMetalImg,
 	},
 	{
-		id: 16,
-		userId: 0,
+		id: '16',
+		userId: '0',
 		author: 'Kito ft. Reija Lee',
 		title: 'Run For Cover',
-		songLink: runCover,
+		songLink: '0cc175b9c0.mp3',
 		imageLink: heavyMetalImg,
 	},
 	{
-		id: 17,
-		userId: 0,
+		id: '17',
+		userId: '0',
 		author: 'Kito ft. Reija Lee',
 		title: 'Sweet Talk',
-		songLink: sweet,
+		songLink: 'a87ff679a2.mp3',
 		imageLink: heavyMetalImg,
 	},
 ]

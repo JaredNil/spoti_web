@@ -7,11 +7,11 @@ import { SearchLoading } from './piece/searchLoading'
 
 import { Dropdown } from '@/app/playlist/ui/dropdown'
 import { TrackViewListing } from '@/app/playlist/ui/trackView/trackViewListing'
-import { Trackes } from '@/shared/api'
+import { Trackes, TrackesId } from '@/shared/api'
 
 interface SearchViewProps {
 	trackes: Trackes
-	trackesId: number[]
+	trackesId: TrackesId
 	isLoading: boolean
 }
 

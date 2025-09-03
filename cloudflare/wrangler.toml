@@ -1,7 +1,8 @@
-name = "cf-kv-albums-api"
+name = "jarefy-kv-api"
 main = "index.ts"
 compatibility_date = "2025-01-01"
 
 kv_namespaces = [
-  { binding = "ALBUMS_KV", id = "13e1aa4d08ce4eee83cf5ebfb72d143c" }
+  { binding = "ALBUMS_KV", id = "13e1aa4d08ce4eee83cf5ebfb72d143c" },
+  { binding = "TRACKES_KV", id = "5f87f9e19a1e4f818cdef7a86e842caf" }
 ]

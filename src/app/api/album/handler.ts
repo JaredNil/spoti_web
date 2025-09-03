@@ -1,15 +1,19 @@
 import { AlbumInterface, AlbumsCollection } from '@/shared/api'
 
 export const fetchAlbumById = async (id: string): Promise<AlbumInterface> => {
-	const res = await fetch(`${process.env.KV_STORAGE}/albums/${id}`, {
+	const albumData = await fetch(`${process.env.KV_STORAGE}/albums/${id}`, {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' },
 		cache: 'force-cache',
 	})
-	if (!res.ok) {
+	if (!albumData.ok) {
 		throw new Error(`Album ${id} not found`)
 	}
-	return res.json()
+	const album = (await albumData.json()) as AlbumInterface
+	album.trackesId.forEach(
+		(trackId, i) => (album.trackesId[i] = trackId.toString())
+	)
+	return album
 }
 
 const users = [
@@ -21,7 +25,7 @@ const users = [
 	},
 ]
 
-export const fetchAlbumByUser = async (
+export const fetchAlbumsByUser = async (
 	id: string
 ): Promise<AlbumsCollection> => {
 	const { albumsId } = users[Number(id)] // REFACTOR REQ TO KV DATABASE CLOIDFLARE TO RESPONCE LIST OF HAVING ALBUM
@@ -37,6 +41,12 @@ export const fetchAlbumByUser = async (
 		})
 	)
 	const albums = (await Promise.all(promises)) as AlbumsCollection
+
+	albums.forEach((album) => {
+		album.trackesId.forEach(
+			(trackId, i) => (album.trackesId[i] = trackId.toString())
+		)
+	})
 
 	return albums
 }

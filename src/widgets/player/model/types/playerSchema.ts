@@ -1,4 +1,4 @@
-import { Track } from '@/shared/api'
+import { Track, Trackes, TrackesId } from '@/shared/api'
 
 export interface PlayerSchema {
 	isLoading: boolean
@@ -8,8 +8,8 @@ export interface PlayerSchema {
 	volume: number // 0-100 value
 
 	target: number | undefined // current position index of queue
-	queue: number[] // mutation order playlist
-	native: number[] // original order playlist
+	queue: TrackesId // mutation order playlist
+	native: TrackesId // original order playlist
 
 	hash: string // hash of last track in player
 	track?: Track // current TrackInfo

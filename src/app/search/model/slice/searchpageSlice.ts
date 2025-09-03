@@ -24,7 +24,7 @@ export const searchpageSlice = createSlice({
 		setSearchTrackes: (state, action: PayloadAction<Trackes>) => {
 			state.trackes = action.payload
 		},
-		setSearchTrackesId: (state, action: PayloadAction<number[]>) => {
+		setSearchTrackesId: (state, action: PayloadAction<TrackesId>) => {
 			state.trackesId = action.payload
 		},
 		setSearchedData: (
