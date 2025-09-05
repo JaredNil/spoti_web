@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/query'
 
 import { createReducerManager } from './reducerManager'
 
@@ -43,7 +44,6 @@ export function createStore() {
 			}).concat(rtkApi.middleware),
 		devTools: true,
 	})
-
 	;(store as any).reducerManager = reducerManager
 
 	return store

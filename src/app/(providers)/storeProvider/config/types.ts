@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 import { AnyAction, EnhancedStore, Middleware, Reducer } from '@reduxjs/toolkit'
 
+import { createStore } from '..'
+
 import { StateSchema } from '@/shared/lib/state'
 
 export type DeepPartial<T> = {
@@ -38,3 +40,4 @@ export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>
 export interface StoreConfig {
 	initialState?: StateSchema
 }
+export type AppStore = ReturnType<typeof createStore>

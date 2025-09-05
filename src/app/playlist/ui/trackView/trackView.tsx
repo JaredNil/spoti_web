@@ -3,78 +3,81 @@
 import { useState } from 'react'
 import { PiListBulletsThin, PiListLight } from 'react-icons/pi'
 
-import { Dropdown } from '../dropdown'
+import { TrackEdit } from './trackEdit'
+import { TrackViewHeader } from './trackViewHeader'
 import { TrackViewListing } from './trackViewListing'
 import { TrackViewSkeleton } from './trackViewSkeleton'
 
 import { AlbumInterface } from '@/entities/album'
-import { Trackes } from '@/shared/api'
+import { useLazyFetchAlbumQuery } from '@/entities/album/api/albumApi'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
 interface TrackViewProps {
-	trackes: Trackes
-	album: AlbumInterface
+	albumPreload: AlbumInterface
+	albumId: string
 }
 
-const isLoadingTrackes = false
-
 export const TrackViewVender: React.FC<TrackViewProps> = ({
-	trackes,
-	album,
+	albumPreload,
+	albumId,
 }: TrackViewProps) => {
 	const [isCompact, setIsList] = useState<boolean>(false)
-	const toggleList = () => setIsList(!isCompact)
+	const toggleList = () => setIsList((prev) => !prev)
+
+	const [getAlbum, { data: album }] = useLazyFetchAlbumQuery()
+
+	const updateAlbumPage = () => {
+		getAlbum(albumId)
+	}
 
 	return (
 		<div
-			className="my-4 flex w-full flex-col bg-[#121212] px-6 py-4
+			className="flex w-full flex-col
+			bg-[#121212]
+			my-4 px-6 py-4
 			tracklist__mainWrapper"
 		>
 			<div className="flex justify-between h-13">
-				<div className="flex items-center">
-					<div className="h-full aspect-square">
-						<PlayButton
-							relayTrackesId={album.trackesId}
-							type="album"
-						/>
-					</div>
-					<Dropdown />
-				</div>
+				<TrackViewHeader>
+					<PlayButton
+						relayTrackesId={
+							album?.trackesId || albumPreload.trackesId
+						}
+						type="album"
+					/>
+				</TrackViewHeader>
 
-				<div className="flex cursor-pointer" onClick={toggleList}>
+				<div
+					className="flex cursor-pointer items-center justify-center"
+					onClick={toggleList}
+				>
+					<span
+						onClick={updateAlbumPage}
+						className="mr-2 select-none text-neutral-400"
+					>
+						{!isCompact ? 'Cписок' : 'Компактный'}
+					</span>
 					{!isCompact ? (
-						<div className="flex items-center justify-center">
-							<span className="mr-2 select-none text-neutral-400">
-								Cписок
-							</span>
-							<PiListBulletsThin
-								size={22}
-								fill="rgba(163, 163, 163, 1)"
-							/>
-						</div>
+						<PiListBulletsThin
+							size={22}
+							fill="rgba(163, 163, 163, 1)"
+						/>
 					) : (
-						<div className="flex items-center justify-center">
-							<span className="mr-2 select-none text-neutral-400">
-								Компактный
-							</span>
-							<PiListLight
-								size={22}
-								fill="rgba(163, 163, 163, 1)"
-							/>
-						</div>
+						<PiListLight size={22} fill="rgba(163, 163, 163, 1)" />
 					)}
 				</div>
 			</div>
 
-			{isLoadingTrackes ? (
-				<TrackViewSkeleton isCompact={isCompact} />
-			) : (
-				<TrackViewListing
-					isCompact={isCompact}
-					trackesId={album.trackesId}
-					trackes={trackes}
-				/>
-			)}
+			<TrackViewListing
+				isCompact={isCompact}
+				trackesId={album?.trackesId || albumPreload.trackesId}
+			/>
+
+			<TrackEdit
+				isCompact={isCompact}
+				albumPageId={albumId}
+				updateAlbumPage={updateAlbumPage}
+			/>
 		</div>
 	)
 }

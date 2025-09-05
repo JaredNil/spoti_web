@@ -1,94 +1,76 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-import { AlbumInterface } from '@/entities/album'
+import { AlbumInterface } from '@/shared/api'
 
 interface PlaylistTitleProps {
-	album: AlbumInterface
+	albumId: string
+	albumPreload: AlbumInterface
 }
 
-const isLoadingData = false
-
 export const PlaylistTitle: React.FC<PlaylistTitleProps> = ({
-	album,
+	albumId,
+	albumPreload,
 }: PlaylistTitleProps) => {
-	const {
-		imagePath = '/content/cover/album-placeholder.webp',
-		title = 'Playlist',
-		description = '',
-		creationDate,
-	} = album
+	const { author, title, description, creationDate } = albumPreload
 
 	return (
 		<div className="title__wrapper ">
 			<div className="title__cover-left">
-				{isLoadingData ? (
+				{/* {isLoadingData ? (
 					<div
 						className="sceletonPlaylist relative aspect-square overflow-hidden
 						rounded-md "
 					/>
-				) : (
-					<Image
-						src={'/content/cover/album-placeholder.webp'}
-						width={300}
-						height={300}
-						loading="lazy"
-						alt="cover"
-					/>
-				)}
+				) : ( */}
+				<Image
+					src={'/content/cover/album-placeholder.webp'}
+					width={300}
+					height={300}
+					loading="lazy"
+					alt="cover"
+				/>
+				{/* )} */}
 			</div>
 			<div className="title__block">
 				<div className="title__upper">
 					<h1 className="title__upper-playlist">Плейлист</h1>
 					<h2 className="title__upper-naming">
-						{isLoadingData ? (
+						{/* {isLoadingData ? (
 							<div className="sceletonTitle">Playlist </div>
-						) : (
-							title
-						)}
+						) : ( */}
+						{title}
+						{/* )} */}
 					</h2>
 				</div>
 				<div className="title__cover-center ">
-					{isLoadingData ? (
+					{/* {isLoadingData ? (
 						<div className="sceletonPlaylist relative aspect-square overflow-hidden rounded-md " />
-					) : (
-						<img src={imagePath} alt="cover" />
-					)}
+					) : ( */}
+					<Image
+						src={'/content/cover/album-placeholder.webp'}
+						width={300}
+						height={300}
+						alt="cover"
+					/>
+					{/* )} */}
 				</div>
 				<div className="title__description">
-					{description ? (
+					{description && (
 						<div className="title__description-info">
-							<h3
-								className={twMerge(
-									isLoadingData && 'sceletonTitle'
-								)}
-							>
-								{description}
-							</h3>
+							<h3>{description}</h3>
 						</div>
-					) : (
-						''
 					)}
 					<div className={twMerge('title__description-author')}>
 						<span
 							className={twMerge(
-								'font-bold',
-								isLoadingData && 'sceletonTitle'
+								'font-bold'
+								// isLoadingData && 'sceletonTitle'
 							)}
 						>
-							{isLoadingData ? '' : album?.author}
+							{author}
 						</span>
-						{creationDate ? (
-							<span
-								className={twMerge(
-									isLoadingData && 'sceletonTitle'
-								)}
-							>
-								, {creationDate}
-							</span>
-						) : (
-							''
-						)}
+						{creationDate && <span>, {creationDate}</span>}
 					</div>
 				</div>
 			</div>

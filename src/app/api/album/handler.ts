@@ -97,3 +97,17 @@ export const fetchAlbumsCommunity = async (
 
 	return albums
 }
+
+export const updateAlbum = async (
+	albumId: string,
+	body: AlbumInterface
+): Promise<void> => {
+	fetch(`${process.env.KV_STORAGE}/albums/${albumId}`, {
+		method: 'PUT',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(body),
+	}).then((res) => {
+		if (!res.ok) return null // ДОБАВИТЬ ОБРАБОТКУ ОШИБОК, BACKLOG
+		return res.json()
+	})
+}

@@ -2,20 +2,13 @@
 
 import {
 	DropdownMenu,
-	DropdownMenuCheckboxItem,
-	DropdownMenuCheckboxItemProps,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuLabel,
-	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '@radix-ui/react-dropdown-menu'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { HiOutlineDotsHorizontal } from 'react-icons/hi'
-
-import { Button } from '@/shared/ui/kit/button'
-
-type Checked = DropdownMenuCheckboxItemProps['checked']
 
 const dropdownOptions = [
 	{
@@ -32,7 +25,7 @@ const dropdownOptions = [
 	},
 ]
 
-export const Dropdown: FC = () => {
+export const DropdownTitle: FC = () => {
 	return (
 		<div
 			className="flex h-[56px] w-[56px] items-center justify-center 

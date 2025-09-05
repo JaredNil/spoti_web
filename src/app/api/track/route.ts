@@ -15,7 +15,6 @@ export async function GET(request: NextRequest) {
 
 	const trackes = await fetchMetaTrackesServer(trackesId)
 
-	console.log(trackes)
 	return new Response(JSON.stringify(trackes), {
 		status: 200,
 		headers: { 'Content-Type': 'application/json' },

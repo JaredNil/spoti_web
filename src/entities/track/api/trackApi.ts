@@ -35,6 +35,11 @@ export const trackApi = rtkApi.injectEndpoints({
 					}
 				},
 			}),
+			fetchAllTrackes: build.query<Trackes, void>({
+				query: () => ({
+					url: `/track/all`,
+				}),
+			}),
 			searchTrackes: build.query<
 				{ trackes: Trackes; trackesId: TrackesId },
 				string
@@ -94,6 +99,8 @@ export const {
 	useFetchTrackesQuery,
 	useLazyFetchTrackesQuery,
 	useSearchTrackesQuery,
+	useFetchAllTrackesQuery,
+	useLazyFetchAllTrackesQuery,
 } = trackApi
 
 export const trackBufferApi = rtkApi.injectEndpoints({

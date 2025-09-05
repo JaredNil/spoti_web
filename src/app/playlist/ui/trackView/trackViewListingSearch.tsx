@@ -1,6 +1,5 @@
 'use client'
 
-import { Link } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { userAction } from '@/entities/user'
@@ -16,8 +15,11 @@ export const TrackViewListingSearch = ({ author }: { author: string }) => {
 	}
 
 	return (
-		<div onClick={routingSearch} className="table-data select-auto ">
-			<span className=" px-2 py-1 cursor-pointer">{author}</span>
+		<div
+			onClick={routingSearch}
+			className="table-data select-auto h-full flex items-center"
+		>
+			<span className="py-1 pr-5 cursor-pointer leading-0">{author}</span>
 		</div>
 	)
 }

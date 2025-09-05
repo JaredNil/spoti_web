@@ -58,11 +58,7 @@ export const Search: React.FC = () => {
 			<div className="w-full mt-3 flex flex-col">
 				<span className="text-2xl select-none">Результаты поиска:</span>
 				{trackes && trackesId && (
-					<SearchView
-						trackes={trackes}
-						trackesId={trackesId}
-						isLoading={isLoading}
-					/>
+					<SearchView trackesId={trackesId} isLoading={isLoading} />
 				)}
 			</div>
 			<div className="w-full mt-3 flex flex-col">
