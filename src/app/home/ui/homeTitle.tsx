@@ -2,9 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 
-const HomeHeader = () => {
-	// const [isLoading, setIsLoading] = useState(true)
-
+const HomeTitle = () => {
 	const { data, status } = useSession()
 
 	return (
@@ -23,4 +21,4 @@ const HomeHeader = () => {
 	)
 }
 
-export default HomeHeader
+export default HomeTitle

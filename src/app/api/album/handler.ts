@@ -1,4 +1,5 @@
 import { AlbumInterface, AlbumsCollection } from '@/shared/api'
+import { ze } from '@/shared/lib/log'
 
 export const fetchAlbumById = async (id: string): Promise<AlbumInterface> => {
 	const albumData = await fetch(`${process.env.KV_STORAGE}/albums/${id}`, {
@@ -28,27 +29,36 @@ const users = [
 export const fetchAlbumsByUser = async (
 	userId: string
 ): Promise<AlbumsCollection> => {
-	const { albumsId } = users[Number(userId)] // REFACTOR REQ TO KV DATABASE CLOIDFLARE TO RESPONCE LIST OF HAVING ALBUM
+	try {
+		const { albumsId } = users[Number(userId)] // REFACTOR REQ TO KV DATABASE CLOIDFLARE TO RESPONCE LIST OF HAVING ALBUM
 
-	const promises = albumsId.map((id) =>
-		fetch(`${process.env.KV_STORAGE}/albums/${id}`, {
-			method: 'GET',
-			headers: { 'Content-Type': 'application/json' },
-			cache: 'force-cache',
-		}).then((res) => {
-			if (!res.ok) return null // ДОБАВИТЬ ОБРАБОТКУ ОШИБОК, BACKLOG
-			return res.json()
-		})
-	)
-	const albums = (await Promise.all(promises)) as AlbumsCollection
+		if (!userId || userId.trim() === '') ze('Empty userId')
 
-	albums.forEach((album) => {
-		album.trackesId.forEach(
-			(trackId, i) => (album.trackesId[i] = trackId.toString())
+		const promises = albumsId.map((id) =>
+			fetch(`${process.env.KV_STORAGE}/albums/${id}`, {
+				method: 'GET',
+				headers: { 'Content-Type': 'application/json' },
+				cache: 'force-cache',
+			})
+				.then((res) => res.json())
+				.catch(() => {
+					ze(`[fetchAlbumsByUser] Album ${id} fetch is failed`)
+					return null
+				})
 		)
-	})
+		const albums = (await Promise.all(promises)) as AlbumsCollection
 
-	return albums
+		// number to string id-hash
+		const checkedAlbums = albums.filter(Boolean).map((album) => ({
+			...album,
+			trackesId: album.trackesId?.map((id) => String(id)) ?? [],
+		})) as AlbumsCollection
+
+		return checkedAlbums
+	} catch (err) {
+		ze(`fetchAlbumsByUser error: ${err}`)
+		return []
+	}
 }
 
 export const fetchAlbumsCommon = async (): Promise<AlbumsCollection> => {

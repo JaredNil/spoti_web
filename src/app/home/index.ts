@@ -4,7 +4,7 @@ export { BringAuth } from './ui/bringAuth'
 
 export { QuickBar } from './ui/quickBar'
 
-export { AlbumListProvider } from './ui/albumListProvider'
+export { AlbumsCollection } from './ui/albumsCollection'
 
 export {
 	getIsLoadingData,

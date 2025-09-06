@@ -14,8 +14,8 @@ const quickBarList = [
 				alt="Liked trackes"
 			/>
 		),
-		href: '/playlist/liked',
-		albumId: 1,
+		href: '/playlist/0',
+		albumId: '1',
 	},
 	{
 		name: 'Loaded trackes',
@@ -27,9 +27,9 @@ const quickBarList = [
 				alt="Loaded trackes"
 			/>
 		),
-		href: '/playlist/load',
+		href: '/playlist/1',
 		// REFACROR RETURN USER LOADED ID PLAYLIST IN DB
-		albumId: 2,
+		albumId: '2',
 	},
 ]
 

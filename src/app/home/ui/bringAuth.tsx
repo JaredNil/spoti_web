@@ -2,10 +2,7 @@
 
 import Link from 'next/link'
 import { useSession } from 'next-auth/react'
-import { FC, useEffect, useState } from 'react'
-import { twMerge } from 'tailwind-merge'
-
-import { BringAuthModal } from './bringAuthModal'
+import { FC } from 'react'
 
 export const BringAuth: FC = () => {
 	const { status } = useSession()

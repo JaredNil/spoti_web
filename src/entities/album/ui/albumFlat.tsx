@@ -10,7 +10,7 @@ interface ListItemProps {
 	image: JSX.Element
 	name: string
 	href: string
-	albumId: number
+	albumId: string
 }
 
 export const AlbumFlat: React.FC<ListItemProps> = ({

@@ -1,0 +1,60 @@
+import { getAlbumListTitle } from '../model/types/albumListType'
+import { AlbumListType } from '../model/types/albumListType'
+
+import {
+	fetchAlbumsByUser,
+	fetchAlbumsCommon,
+	fetchAlbumsCommunity,
+} from '@/app/api/album/handler'
+import { AlbumInterface, Album } from '@/entities/album'
+import { ze } from '@/shared/lib/log'
+
+interface AlbumsCollectionProps {
+	type: AlbumListType
+	classname?: string
+}
+
+export const AlbumsCollection: React.FC<AlbumsCollectionProps> = async ({
+	type,
+	classname,
+}: AlbumsCollectionProps) => {
+	const title = getAlbumListTitle(type)
+
+	let albums: AlbumInterface[] = []
+
+	if (type === 'USER') {
+		albums = await fetchAlbumsByUser('1') // REFACTOR TO REQ BY USERID FROM DB
+	} else if (type === 'COMMON') {
+		albums = await fetchAlbumsCommon()
+	} else if (type === 'COMMUNITY') {
+		albums = await fetchAlbumsCommunity('1')
+	} else {
+		ze('AlbumsCollection: type fetch albums not definition...')
+	}
+
+	return (
+		<>
+			<span
+				className="mb-3 mt-5 inline-block
+					select-none rounded-lg 
+					pr-4 text-2xl pointer-events-none"
+			>
+				{title}
+			</span>
+			{albums.length == 0 && (
+				<div className="flex items-center w-full justify-center">
+					Playlists does not exist.
+				</div>
+			)}
+			<div
+				className={`grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 
+				    lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8
+					${classname}`}
+			>
+				{albums.map((album) => (
+					<Album key={album.id} data={album} />
+				))}
+			</div>
+		</>
+	)
+}

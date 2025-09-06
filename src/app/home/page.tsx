@@ -1,6 +1,6 @@
-import HomeHeader from './ui/homeHeader'
+import HomeTitle from './ui/homeTitle'
 
-import { AlbumListProvider, QuickBar, BringAuth } from '@/app/home'
+import { AlbumsCollection, QuickBar, BringAuth } from '@/app/home'
 import { createMeta } from '@/shared/const/metadata'
 
 export const metadata = createMeta({ title: 'Home' })
@@ -8,13 +8,13 @@ export const metadata = createMeta({ title: 'Home' })
 const Home = async () => {
 	return (
 		<>
-			<HomeHeader />
+			<HomeTitle />
 			<QuickBar />
 
-			<AlbumListProvider type={'USER'} />
+			<AlbumsCollection type={'USER'} />
 			<BringAuth />
-			<AlbumListProvider type={'COMMON'} />
-			<AlbumListProvider type={'COMMUNITY'} classname="mt-10" />
+			<AlbumsCollection type={'COMMON'} />
+			<AlbumsCollection type={'COMMUNITY'} classname="mt-10" />
 		</>
 	)
 }
