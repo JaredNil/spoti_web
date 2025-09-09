@@ -1,5 +1,7 @@
 /// <reference types="@cloudflare/workers-types" />
 
+import { Track } from '@/shared/api'
+
 export interface Env {
 	ALBUMS_KV: KVNamespace
 	TRACKES_KV: KVNamespace
@@ -73,6 +75,24 @@ export default {
 					return new Response('Album not found', { status: 404 })
 				await env.ALBUMS_KV.delete(key)
 				return new Response('Album deleted', { status: 200 })
+			}
+
+			if (pathname === '/tracks' && method === 'POST') {
+				const body = (await request.json()) as Track
+
+				if (!body || typeof body.id !== 'string' || !body.id) {
+					return new Response('Missing or invalid track id', {
+						status: 400,
+					})
+				}
+
+				const key = `track:${body.id}`
+				const exists = await env.TRACKES_KV.get(key)
+				if (exists)
+					return new Response('Track already exists', { status: 409 })
+
+				await env.TRACKES_KV.put(key, JSON.stringify(body))
+				return json(body, 201)
 			}
 
 			if (pathname === '/tracks' && request.method === 'GET') {
