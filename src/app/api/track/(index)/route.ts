@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server'
 
-import { createMetaTrack } from './handler'
-import { fetchMetaTrackesServer } from './handlerMeta'
+import { createMetaTrack } from '../handlerMeta'
+import { fetchMetaTrackesServer } from '../handlerMeta'
 
 import { Track } from '@/shared/api'
 
@@ -15,7 +15,6 @@ export async function GET(request: NextRequest) {
 	if (trackesId.length === 0) {
 		return new Response('Empty track list ids', { status: 400 })
 	}
-	console.log(trackesId)
 	const trackes = await fetchMetaTrackesServer(trackesId)
 
 	return new Response(JSON.stringify(trackes), {

@@ -1,14 +1,13 @@
-interface LibraryCreationProps {
-	onShowModal?: () => void
-}
+'use client'
+import { useCreateAlbum } from '@/entities/album/hooks/useAlbum'
 
-export const LibraryCreation: React.FC<LibraryCreationProps> = ({
-	onShowModal,
-}: LibraryCreationProps) => {
+export const LibraryCreation: React.FC = () => {
+	const { createAlbum } = useCreateAlbum()
+
 	return (
 		<div
 			className="flex hover:bg-neutral-400/10 transition-all"
-			onClick={onShowModal}
+			onClick={() => createAlbum()}
 		>
 			<div
 				className="flex justify-center items-center

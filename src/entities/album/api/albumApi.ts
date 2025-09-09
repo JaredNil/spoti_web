@@ -20,6 +20,16 @@ export const albumApi = rtkApi.injectEndpoints({
 					{ type: 'Album', id },
 				],
 			}),
+			createAlbum: build.mutation<void, AlbumInterface>({
+				query: (body) => ({
+					url: `/album`,
+					method: 'POST',
+					body,
+				}),
+				invalidatesTags: (result, error, { id }) => [
+					{ type: 'Album', id },
+				],
+			}),
 		}
 	},
 })
@@ -28,4 +38,5 @@ export const {
 	useFetchAlbumQuery,
 	useLazyFetchAlbumQuery,
 	useUpdateAlbumMutation,
+	useCreateAlbumMutation,
 } = albumApi

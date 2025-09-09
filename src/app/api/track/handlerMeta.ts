@@ -1,4 +1,5 @@
 import { Track, Trackes, TrackesId, TrackId } from '@/shared/api'
+import { ze } from '@/shared/lib/log'
 
 export async function fetchMetaTrackesServer(
 	trackesHash: TrackesId
@@ -19,7 +20,6 @@ export async function fetchMetaTrackesServer(
 }
 
 export async function fetchMetaTrackServer(trackId: TrackId): Promise<Track> {
-	console.log('fetchTrackServer', trackId)
 	const trackMetadata = await fetch(
 		`${process.env.KV_STORAGE}/tracks/${trackId}`,
 		{
@@ -45,4 +45,18 @@ export async function fetchAllMetaTrackesServer(): Promise<Trackes> {
 	}
 	const trackes = (await trackesMetadata.json()) as Trackes
 	return trackes
+}
+
+export const createMetaTrack = async (body: Track): Promise<number> => {
+	return fetch(`${process.env.KV_STORAGE}/tracks`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(body),
+	}).then(async (res) => {
+		if (!res.ok) {
+			const text = await res.text()
+			ze(`createMetaTrack error ${res.status}: ${text}`)
+		}
+		return res.status
+	})
 }

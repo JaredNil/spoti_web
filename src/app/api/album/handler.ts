@@ -86,7 +86,7 @@ export const fetchAlbumsJarefy = async (): Promise<AlbumsCollection> => {
 }
 
 export const fetchAlbumsCommunity = async (): Promise<AlbumsCollection> => {
-	const albums = (await fetch(`${process.env.KV_STORAGE}/albums2`, {
+	const albums = (await fetch(`${process.env.KV_STORAGE}/albums`, {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' },
 	}).then((res) => {
@@ -111,5 +111,19 @@ export const updateAlbum = async (
 	}).then((res) => {
 		if (!res.ok) return null // ДОБАВИТЬ ОБРАБОТКУ ОШИБОК, BACKLOG
 		return res.json()
+	})
+}
+
+export const createAlbum = async (body: AlbumInterface): Promise<number> => {
+	return fetch(`${process.env.KV_STORAGE}/albums`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(body),
+	}).then(async (res) => {
+		if (!res.ok) {
+			const text = await res.text()
+			ze(`createAlbum error ${res.status}: ${text}`)
+		}
+		return res.status
 	})
 }
