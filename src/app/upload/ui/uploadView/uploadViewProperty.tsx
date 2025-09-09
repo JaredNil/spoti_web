@@ -12,11 +12,15 @@ export const UploadViewProperty = ({
 			<div className="relative my-4">
 				<label
 					className="absolute top-[-5px] left-1 tracking-wider text-neutral-400/50
-					text-xl font-medium select-none"
+					text-xl font-medium select-none pointer-events-none"
 				>
 					TITLE
 				</label>
 				<input
+					disabled={
+						track.status === 'uploading' ||
+						track.status === 'success'
+					}
 					type="text"
 					value={track.title}
 					onChange={(e) =>
@@ -31,7 +35,7 @@ export const UploadViewProperty = ({
 			<div className="relative my-4">
 				<label
 					className="absolute top-[-5px] left-1 tracking-wider text-neutral-400/50
-					text-xl font-medium select-none"
+					text-xl font-medium select-none pointer-events-none"
 				>
 					AUTHOR
 				</label>
@@ -42,6 +46,10 @@ export const UploadViewProperty = ({
 						updateTrack(track.id, {
 							author: e.target.value,
 						})
+					}
+					disabled={
+						track.status === 'uploading' ||
+						track.status === 'success'
 					}
 					className="w-full px-3 py-2 border-b border-l border-b-gray-300 "
 					required

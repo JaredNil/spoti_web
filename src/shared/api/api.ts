@@ -27,10 +27,10 @@ export const $api = axios.create({
 })
 
 export const s3 = new S3Client({
-	endpoint: process.env.VK_ENDPOINT!,
+	endpoint: process.env.NEXT_PUBLIC_VK_ENDPOINT!,
 	region: 'ru-1',
 	credentials: {
-		accessKeyId: process.env.VK_CLIENT!,
-		secretAccessKey: process.env.VK_SECRET!,
+		accessKeyId: process.env.NEXT_PUBLIC_VK_CLIENT!,
+		secretAccessKey: process.env.NEXT_PUBLIC_VK_SECRET!,
 	},
 })

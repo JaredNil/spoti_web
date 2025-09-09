@@ -99,7 +99,7 @@ export const trackApi = rtkApi.injectEndpoints({
 					{ type: 'Track', id },
 				],
 			}),
-			createTrack: build.mutation<void, Track>({
+			createTrack: build.mutation<number, Track>({
 				query: (body) => ({
 					url: `/track`,
 					method: 'POST',
@@ -123,17 +123,3 @@ export const {
 	useLazyFetchAllTrackesQuery,
 	useCreateTrackMutation,
 } = trackApi
-
-// export const trackBufferApi = rtkApi.injectEndpoints({
-// 	endpoints(build) {
-// 		return {
-// 			fetchTrackBlob: build.query<Buffer<ArrayBuffer>, string>({
-// 				query: (hash) => ({
-// 					url: `/track/${hash}.mp3`,
-// 				}),
-// 			}),
-// 		}
-// 	},
-// })
-
-// export const { useFetchTrackBlobQuery } = trackBufferApi

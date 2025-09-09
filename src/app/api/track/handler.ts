@@ -1,6 +1,4 @@
-import crypto from 'crypto'
-
-import { PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3'
+import { GetObjectCommand } from '@aws-sdk/client-s3'
 
 import { Track } from '@/shared/api'
 import { s3 } from '@/shared/api/api'
@@ -23,22 +21,7 @@ export const fetchTrackByHash = async (hash: string): Promise<any> => {
 	}
 }
 
-export async function uploadMP3(buffer: Buffer, key: string): Promise<string> {
-	await s3.send(
-		new PutObjectCommand({
-			Bucket: process.env.VK_BUCKET!,
-			Key: key,
-			Body: buffer,
-			ContentType: 'audio/mpeg',
-		})
-	)
-
-	return `https://hb.vkcs.cloud/${process.env.VK_BUCKET}/${key}`
-}
-
 export const createMetaTrack = async (body: Track): Promise<number> => {
-	console.log(body)
-	console.log(`${process.env.KV_STORAGE}/tracks/${body.id}`)
 	return fetch(`${process.env.KV_STORAGE}/tracks`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },

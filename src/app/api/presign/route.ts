@@ -17,6 +17,5 @@ export async function POST(req: Request) {
 	const uploadUrl = await getSignedUrl(s3, command, { expiresIn: 900 })
 	const publicUrl = `https://${process.env.S3_BUCKET}.hb.ru-1.vkcs.cloud/${key}`
 
-	console.log(uploadUrl, key, publicUrl)
 	return Response.json({ uploadUrl, key, publicUrl })
 }
