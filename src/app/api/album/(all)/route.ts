@@ -3,7 +3,6 @@ export async function GET() {
 		await fetch(`${process.env.KV_STORAGE}/albums`, {
 			method: 'GET',
 			headers: { 'Content-Type': 'application/json' },
-			cache: 'force-cache',
 		})
 	).json()
 

@@ -7,16 +7,16 @@ import { PlayButton } from '@/shared/ui/playButton/playButton'
 import { getTrack } from '@/widgets/player'
 
 interface TrackViewButtonProps {
-	trackesId: TrackesId
+	relayTrackesId: TrackesId
 	track: Track
 	index: number
 }
 
 export const TrackViewButton: React.FC<TrackViewButtonProps> = ({
-	trackesId,
+	relayTrackesId,
 	track,
 	index,
-}: TrackViewButtonProps) => {
+}) => {
 	const playerTrack = useAppSelector(getTrack)
 
 	return (
@@ -40,7 +40,7 @@ export const TrackViewButton: React.FC<TrackViewButtonProps> = ({
 					<PlayButton
 						key={track.id}
 						target={index}
-						relayTrackesId={trackesId}
+						relayTrackesId={relayTrackesId}
 						track={track}
 						type="track"
 					/>

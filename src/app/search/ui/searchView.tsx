@@ -5,8 +5,8 @@ import { PiListBulletsThin, PiListLight } from 'react-icons/pi'
 
 import { SearchLoading } from './piece/searchLoading'
 
-import { DropdownTitle } from '@/app/playlist/ui/dropdownTitle'
-import { TrackViewListing } from '@/app/playlist/ui/trackView/trackViewListing'
+import { DropdownHeader } from '@/app/playlist/ui/dropdownHeader'
+import { TrackesView } from '@/app/playlist/ui/trackesView'
 import { TrackesId } from '@/shared/api'
 
 interface SearchViewProps {
@@ -27,7 +27,7 @@ export const SearchView: React.FC<SearchViewProps> = ({
 		>
 			<div className="flex justify-between h-13">
 				<div className="flex items-center">
-					<DropdownTitle />
+					<DropdownHeader />
 				</div>
 
 				<div className="flex cursor-pointer" onClick={toggleList}>
@@ -58,7 +58,8 @@ export const SearchView: React.FC<SearchViewProps> = ({
 			{isLoading ? (
 				<SearchLoading />
 			) : (
-				<TrackViewListing isCompact={isCompact} trackesId={trackesId} />
+				<div></div>
+				// <TrackesView isCompact={isCompact} trackesId={trackesId} />
 			)}
 		</div>
 	)

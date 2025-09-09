@@ -1,3 +1,10 @@
+export {
+	useLazyFetchAlbumQuery,
+	useFetchAlbumQuery,
+	useUpdateAlbumMutation,
+	albumApi,
+} from './api/albumApi'
+
 export { Album } from './ui/album'
 
 export { AlbumSceletonFlat } from './ui/albumSceletonFlat'

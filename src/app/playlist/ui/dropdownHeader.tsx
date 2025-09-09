@@ -25,7 +25,7 @@ const dropdownOptions = [
 	},
 ]
 
-export const DropdownTitle: FC = () => {
+export const DropdownHeader: FC = () => {
 	return (
 		<div
 			className="flex h-[56px] w-[56px] items-center justify-center 

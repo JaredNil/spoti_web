@@ -15,7 +15,6 @@ export async function GET(
 	}
 
 	const album = await fetchAlbumById(albumId)
-
 	return new Response(JSON.stringify(album), {
 		status: 200,
 		headers: { 'Content-Type': 'application/json' },
@@ -27,6 +26,7 @@ export async function PATCH(
 	{ params }: { params: Promise<{ id: string }> }
 ) {
 	const { id: albumId } = await params
+
 	const body = (await req.json()) as AlbumInterface
 	if (albumId === undefined) {
 		return new Response('Missing fields album_id', { status: 400 })

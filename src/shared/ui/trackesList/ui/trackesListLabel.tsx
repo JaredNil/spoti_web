@@ -2,11 +2,7 @@ import { RectangleEllipsis } from 'lucide-react'
 import { FaRegHeart } from 'react-icons/fa'
 import { twMerge } from 'tailwind-merge'
 
-export const TrackViewListingLabel = ({
-	isCompact,
-}: {
-	isCompact: boolean
-}) => {
+export const TrackesListLabel = ({ isCompact }: { isCompact: boolean }) => {
 	return (
 		<div
 			className={twMerge(

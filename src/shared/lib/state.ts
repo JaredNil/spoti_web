@@ -1,6 +1,5 @@
 import { rtkApi } from '../api/api'
 
-import { HomepageSchema } from '@/app/home'
 import { QueuepageSchema } from '@/app/queue'
 import { SearchpageSchema } from '@/app/search'
 import { UploadpageSchema } from '@/app/upload'
@@ -13,7 +12,6 @@ export interface StateSchema {
 	player: PlayerSchema
 	auth: AuthSchema
 
-	homepage?: HomepageSchema
 	searchpage?: SearchpageSchema
 	uploadpage?: UploadpageSchema
 	queuepage?: QueuepageSchema

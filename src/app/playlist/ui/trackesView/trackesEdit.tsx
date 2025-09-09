@@ -1,25 +1,27 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 
-import { TrackViewListing } from './trackViewListing'
-import { TrackViewSkeleton } from './trackViewSkeleton'
+import { TrackesEditList } from './trackesEditList'
 
-import { useLazyFetchAllTrackesQuery } from '@/entities/track/api/trackApi'
+import { useLazyFetchAllTrackesQuery } from '@/entities/track'
 import { extractIds } from '@/shared/lib/extractIds'
+import { TrackesList } from '@/shared/ui/trackesList/trackesList'
 
-export const TrackEdit = ({
-	isCompact,
-	albumPageId,
-	updateAlbumPage,
-}: {
+interface TrackesEditProps {
 	isCompact: boolean
 	albumPageId: string
-	updateAlbumPage: () => void
+	classname: string
+}
+
+export const TrackesEdit: FC<TrackesEditProps> = ({
+	isCompact,
+	classname,
+	albumPageId,
 }) => {
 	const [isEdit, setIsEdit] = useState<boolean>(false)
 
 	const [
 		fetchAllTrackes,
-		{ data: trackes, isLoading: isLoadingTrackes, isUninitialized },
+		{ data: trackes, isLoading: isLoadingEditTrackes, isUninitialized },
 	] = useLazyFetchAllTrackesQuery()
 	const trackesId = extractIds(trackes ?? [])
 
@@ -41,18 +43,14 @@ export const TrackEdit = ({
 				</div>
 			</div>
 			{isEdit && (
-				<div>
-					{/* {isLoadingTrackes ? (
-						<TrackViewSkeleton isCompact={isCompact} />
-					) : (
-						<TrackEditListing
-							isCompact={isCompact}
-							trackesId={trackesId}
-							type="add"
-							albumPageId={albumPageId}
-						/>
-					)} */}
-				</div>
+				<TrackesEditList
+					isCompact={isCompact}
+					relayTrackesId={trackesId}
+					trackes={trackes ?? []}
+					isLoadingEditTrackes={isLoadingEditTrackes}
+					classname={classname}
+					albumPageId={albumPageId}
+				/>
 			)}
 		</div>
 	)

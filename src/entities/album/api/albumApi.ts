@@ -8,7 +8,7 @@ export const albumApi = rtkApi.injectEndpoints({
 				query: (id) => ({
 					url: `/album/${id}`,
 				}),
-				providesTags: (_, __, id) => [{ type: 'Album', id }],
+				providesTags: (result, error, id) => [{ type: 'Album', id }],
 			}),
 			updateAlbum: build.mutation<void, AlbumInterface>({
 				query: ({ id, ...body }) => ({
@@ -16,7 +16,9 @@ export const albumApi = rtkApi.injectEndpoints({
 					method: 'PATCH',
 					body,
 				}),
-				invalidatesTags: (_, __, { id }) => [{ type: 'Album', id }],
+				invalidatesTags: (result, error, { id }) => [
+					{ type: 'Album', id },
+				],
 			}),
 			// deleteAlbum: build.mutation<void, string>({
 			// 	query: (id) => ({

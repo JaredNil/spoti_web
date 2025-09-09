@@ -5,7 +5,6 @@ export const fetchAlbumById = async (id: string): Promise<AlbumInterface> => {
 	const albumData = await fetch(`${process.env.KV_STORAGE}/albums/${id}`, {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' },
-		cache: 'force-cache',
 	})
 	if (!albumData.ok) {
 		throw new Error(`Album ${id} not found`)
@@ -38,7 +37,6 @@ export const fetchAlbumsByUser = async (
 			fetch(`${process.env.KV_STORAGE}/albums/${id}`, {
 				method: 'GET',
 				headers: { 'Content-Type': 'application/json' },
-				cache: 'force-cache',
 			})
 				.then((res) => res.json())
 				.catch(() => {
@@ -61,49 +59,43 @@ export const fetchAlbumsByUser = async (
 	}
 }
 
-export const fetchAlbumsCommon = async (): Promise<AlbumsCollection> => {
-	const albumsId = [0, 1, 2, 3, 4, 5, 6]
+export const fetchAlbumsJarefy = async (): Promise<AlbumsCollection> => {
+	const albumsIdJarefy = [0, 1, 2, 3, 4, 5, 6]
 	// REFACTOR REQ TO KV DATABASE CLOIDFLARE TO RESPONCE LIST OF HAVING ALBUM
 
-	const promises = albumsId.map((id) =>
+	const promises = albumsIdJarefy.map((id) =>
 		fetch(`${process.env.KV_STORAGE}/albums/${id}`, {
 			method: 'GET',
 			headers: { 'Content-Type': 'application/json' },
-			cache: 'force-cache',
 		}).then((res) => {
-			if (!res.ok) return null // ДОБАВИТЬ ОБРАБОТКУ ОШИБОК, BACKLOG
+			if (!res.ok) {
+				ze(`[fetchAlbumsCommunity] ${res.status} ${res.statusText}`)
+				return []
+			}
 			return res.json()
 		})
 	)
 	const albums = (await Promise.all(promises)) as AlbumsCollection
 
-	// number to string id-hash
-	albums.forEach((album) => {
-		album.trackesId.forEach(
-			(trackId, i) => (album.trackesId[i] = trackId.toString())
-		)
-	})
-
-	return albums
-}
-
-export const fetchAlbumsCommunity = async (
-	userId: string
-): Promise<AlbumsCollection> => {
-	const albumsAll = (await fetch(`${process.env.KV_STORAGE}/albums`, {
-		method: 'GET',
-		headers: { 'Content-Type': 'application/json' },
-		cache: 'force-cache',
-	}).then((res) => {
-		if (!res.ok) return null // ДОБАВИТЬ ОБРАБОТКУ ОШИБОК, BACKLOG
-		return res.json()
+	const checkedAlbums = albums.filter(Boolean).map((album) => ({
+		...album,
+		trackesId: album.trackesId?.map((id) => String(id)) ?? [],
 	})) as AlbumsCollection
 
-	const albums = albumsAll.filter(
-		(album) =>
-			album.user_id.toString() != userId.toString() &&
-			album.user_id.toString() != '0'
-	)
+	return checkedAlbums
+}
+
+export const fetchAlbumsCommunity = async (): Promise<AlbumsCollection> => {
+	const albums = (await fetch(`${process.env.KV_STORAGE}/albums2`, {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' },
+	}).then((res) => {
+		if (!res.ok) {
+			ze(`[fetchAlbumsCommunity] ${res.status} ${res.statusText}  `)
+			return []
+		}
+		return res.json()
+	})) as AlbumsCollection
 
 	return albums
 }

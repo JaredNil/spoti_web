@@ -1,6 +1,6 @@
 import { FaHeart } from 'react-icons/fa'
 
-export const TrackViewListingLike = () => {
+export const TrackesListLike = () => {
 	const onLikeTrack = (event: React.MouseEvent<HTMLElement>) => {
 		event.stopPropagation()
 	}

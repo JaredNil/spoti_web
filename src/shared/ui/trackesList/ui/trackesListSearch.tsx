@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { userAction } from '@/entities/user'
 import { useAppDispatch } from '@/shared/hooks'
 
-export const TrackViewListingSearch = ({ author }: { author: string }) => {
+export const TrackesListSearch = ({ author }: { author: string }) => {
 	const router = useRouter()
 	const dispatch = useAppDispatch()
 

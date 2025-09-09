@@ -1,5 +1,5 @@
 'use client'
-import { use, useDeferredValue, useEffect, useState } from 'react'
+import { useDeferredValue, useEffect, useState } from 'react'
 
 import { SearchView } from './searchView'
 import {
@@ -7,13 +7,9 @@ import {
 	getSearchTrackes,
 	getSearchTrackesId,
 } from '../model/selector/searchpageSelector'
-import { setAsyncTrack } from '../model/service/testSpotify'
 import { searchpageAction } from '../model/slice/searchpageSlice'
 
-import {
-	useFetchTrackBlobQuery,
-	useSearchTrackesQuery,
-} from '@/entities/track/api/trackApi'
+import { useSearchTrackesQuery } from '@/entities/track/api/trackApi'
 import { getUserSearch } from '@/entities/user'
 import { userAction } from '@/entities/user/model/slice/userSlice'
 import { Track } from '@/shared/api'

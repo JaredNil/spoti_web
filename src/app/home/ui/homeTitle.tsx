@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 
-const HomeTitle = () => {
+export const HomeTitle = () => {
 	const { data, status } = useSession()
 
 	return (
@@ -20,5 +20,3 @@ const HomeTitle = () => {
 		</div>
 	)
 }
-
-export default HomeTitle

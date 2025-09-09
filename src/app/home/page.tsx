@@ -1,6 +1,8 @@
-import HomeTitle from './ui/homeTitle'
+import { AlbumsCollection } from './ui/albumsCollection'
+import { BringAuth } from './ui/bringAuth'
+import { HomeTitle } from './ui/homeTitle'
+import { QuickBar } from './ui/quickBar'
 
-import { AlbumsCollection, QuickBar, BringAuth } from '@/app/home'
 import { createMeta } from '@/shared/const/metadata'
 
 export const metadata = createMeta({ title: 'Home' })

@@ -1,13 +1,19 @@
-import { getAlbumListTitle } from '../model/types/albumListType'
-import { AlbumListType } from '../model/types/albumListType'
-
 import {
 	fetchAlbumsByUser,
-	fetchAlbumsCommon,
+	fetchAlbumsJarefy,
 	fetchAlbumsCommunity,
 } from '@/app/api/album/handler'
 import { AlbumInterface, Album } from '@/entities/album'
 import { ze } from '@/shared/lib/log'
+
+export type AlbumListType = 'COMMON' | 'USER' | 'COMMUNITY'
+
+const getAlbumListTitle = (type: AlbumListType): string => {
+	if (type === 'COMMON') return 'Common Jarefy playlist'
+	else if (type === 'USER') return 'My playlist'
+	else if (type === 'COMMUNITY') return 'Playlists other users'
+	return 'Какие-то плейлисты'
+}
 
 interface AlbumsCollectionProps {
 	type: AlbumListType
@@ -25,9 +31,9 @@ export const AlbumsCollection: React.FC<AlbumsCollectionProps> = async ({
 	if (type === 'USER') {
 		albums = await fetchAlbumsByUser('1') // REFACTOR TO REQ BY USERID FROM DB
 	} else if (type === 'COMMON') {
-		albums = await fetchAlbumsCommon()
+		albums = await fetchAlbumsJarefy()
 	} else if (type === 'COMMUNITY') {
-		albums = await fetchAlbumsCommunity('1')
+		albums = await fetchAlbumsCommunity()
 	} else {
 		ze('AlbumsCollection: type fetch albums not definition...')
 	}

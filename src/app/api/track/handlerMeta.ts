@@ -7,7 +7,6 @@ export async function fetchMetaTrackesServer(
 		fetch(`${process.env.KV_STORAGE}/tracks/${hash}`, {
 			method: 'GET',
 			headers: { 'Content-Type': 'application/json' },
-			cache: 'force-cache',
 		}).then(async (res) => {
 			if (!res.ok) return null // ДОБАВИТЬ ОБРАБОТКУ ОШИБОК, BACKLOG
 			const track = (await res.json()) as Track
@@ -26,7 +25,6 @@ export async function fetchMetaTrackServer(trackId: TrackId): Promise<Track> {
 		{
 			method: 'GET',
 			headers: { 'Content-Type': 'application/json' },
-			cache: 'force-cache',
 		}
 	)
 	if (!trackMetadata.ok) {
@@ -41,7 +39,6 @@ export async function fetchAllMetaTrackesServer(): Promise<Trackes> {
 	const trackesMetadata = await fetch(`${process.env.KV_STORAGE}/tracks`, {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' },
-		cache: 'force-cache',
 	})
 	if (!trackesMetadata.ok) {
 		throw new Error(`Trackes not found`)

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import SearchClient from './page'
+import SearchPage from './page'
 
 import { createMeta } from '@/shared/const/metadata'
 import { Title } from '@/shared/ui/pageTitle/pageTitle'
@@ -11,7 +11,7 @@ const SearchLayout: FC = () => {
 	return (
 		<>
 			<Title title="Search page" />
-			<SearchClient />
+			<SearchPage />
 		</>
 	)
 }
