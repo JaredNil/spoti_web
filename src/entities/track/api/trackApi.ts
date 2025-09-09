@@ -89,6 +89,26 @@ export const trackApi = rtkApi.injectEndpoints({
 					}
 				},
 			}),
+			updateTrack: build.mutation<void, Track>({
+				query: ({ id, ...body }) => ({
+					url: `/track/${id}`,
+					method: 'PATCH',
+					body,
+				}),
+				invalidatesTags: (result, error, { id }) => [
+					{ type: 'Track', id },
+				],
+			}),
+			createTrack: build.mutation<void, Track>({
+				query: (body) => ({
+					url: `/track`,
+					method: 'POST',
+					body,
+				}),
+				invalidatesTags: (result, error, { id }) => [
+					{ type: 'Track', id },
+				],
+			}),
 		}
 	},
 })
@@ -101,18 +121,19 @@ export const {
 	useSearchTrackesQuery,
 	useFetchAllTrackesQuery,
 	useLazyFetchAllTrackesQuery,
+	useCreateTrackMutation,
 } = trackApi
 
-export const trackBufferApi = rtkApi.injectEndpoints({
-	endpoints(build) {
-		return {
-			fetchTrackBlob: build.query<Buffer<ArrayBuffer>, string>({
-				query: (hash) => ({
-					url: `/track/${hash}.mp3`,
-				}),
-			}),
-		}
-	},
-})
+// export const trackBufferApi = rtkApi.injectEndpoints({
+// 	endpoints(build) {
+// 		return {
+// 			fetchTrackBlob: build.query<Buffer<ArrayBuffer>, string>({
+// 				query: (hash) => ({
+// 					url: `/track/${hash}.mp3`,
+// 				}),
+// 			}),
+// 		}
+// 	},
+// })
 
-export const { useFetchTrackBlobQuery } = trackBufferApi
+// export const { useFetchTrackBlobQuery } = trackBufferApi

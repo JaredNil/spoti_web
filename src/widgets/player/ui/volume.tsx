@@ -71,7 +71,7 @@ export const Volume: React.FC = () => {
 			<VolumeIcon />
 			<div
 				ref={volumeRef}
-				className={`ml-2 w-[${PLAYER_VOLUME_WIDTH}px] h-[3px] bg-neutral-400/40 
+				className={`ml-2 w-[${PLAYER_VOLUME_WIDTH}px] min-w-[60px] h-[3px] bg-neutral-400/40 
 				relative cursor-pointer group border-t-[10px] border-b-[10px] box-content border-black`}
 				onClick={volumeClickHandle}
 				onMouseDown={volumeMouseDownHandle}

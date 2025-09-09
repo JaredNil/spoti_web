@@ -1,6 +1,9 @@
 import { NextRequest } from 'next/server'
 
+import { createMetaTrack } from './handler'
 import { fetchMetaTrackesServer } from './handlerMeta'
+
+import { Track } from '@/shared/api'
 
 export async function GET(request: NextRequest) {
 	const searchParams = request.nextUrl.searchParams
@@ -12,10 +15,24 @@ export async function GET(request: NextRequest) {
 	if (trackesId.length === 0) {
 		return new Response('Empty track list ids', { status: 400 })
 	}
-
+	console.log(trackesId)
 	const trackes = await fetchMetaTrackesServer(trackesId)
 
 	return new Response(JSON.stringify(trackes), {
+		status: 200,
+		headers: { 'Content-Type': 'application/json' },
+	})
+}
+
+export async function POST(req: Request) {
+	const track = (await req.json()) as Track
+
+	const res = await createMetaTrack(track)
+	if (res !== 201) {
+		return new Response('Error create track', { status: 500 })
+	}
+
+	return new Response(JSON.stringify(res), {
 		status: 200,
 		headers: { 'Content-Type': 'application/json' },
 	})
