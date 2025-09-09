@@ -1,17 +1,23 @@
 import { PlaylistTitle } from '../ui/playlistTitle'
-import { TrackesView } from '../ui/trackesView'
+import { TrackesViewAll } from '../ui/trackesViewAll'
 
-import { fetchAlbumById } from '@/app/api/album/handler'
+import { AlbumInterface } from '@/shared/api'
 
 export default async function PlaylistPageLoaded() {
 	// REFACTOR LOGIC - NEED RETURN ID USER INSTEAD 1
-	const albumId = '2'
-	const album = await fetchAlbumById(albumId)
-
+	const album: AlbumInterface = {
+		author: 'all users',
+		title: 'all tracks',
+		description: 'all tracks',
+		creationDate: '2023-01-01',
+		id: '1',
+		trackesId: [],
+		user_id: '1',
+	}
 	return (
 		<>
 			<PlaylistTitle albumPreload={album} />
-			<TrackesView albumId={albumId} />
+			<TrackesViewAll />
 		</>
 	)
 }

@@ -4,7 +4,6 @@ import { TrackesEditList } from './trackesEditList'
 
 import { useLazyFetchAllTrackesQuery } from '@/entities/track'
 import { extractIds } from '@/shared/lib/extractIds'
-import { TrackesList } from '@/shared/ui/trackesList/trackesList'
 
 interface TrackesEditProps {
 	isCompact: boolean

@@ -4,27 +4,37 @@ import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
-	DropdownMenuLabel,
 	DropdownMenuTrigger,
 } from '@radix-ui/react-dropdown-menu'
 import { FC } from 'react'
 import { HiOutlineDotsHorizontal } from 'react-icons/hi'
 import { toast } from 'sonner'
 
-const dropdownOptions = [
-	{
-		name: 'Удалить трек',
-		callback: () => {},
-	},
-	{
-		name: 'Добавить в плейлист',
-		callback: () => {
-			toast.success('Фича еще не реализована')
-		},
-	},
-]
+import { Track } from '@/shared/api'
+import { useChangeAlbum } from '@/shared/hooks/useChangeAlbum'
 
-export const DropdownTrack: FC = () => {
+export interface DropdownTrackProps {
+	albumPageId: string
+	track: Track
+}
+
+export const DropdownTrack: FC<DropdownTrackProps> = ({
+	albumPageId,
+	track,
+}: DropdownTrackProps) => {
+	const { deleteTrack } = useChangeAlbum(albumPageId)
+
+	const dropdownOptions = [
+		{
+			name: 'Удалить трек',
+			callback: () => deleteTrack(track),
+		},
+		{
+			name: 'Добавить в плейлист',
+			callback: () => toast.success('Фича еще не реализована'),
+		},
+	]
+
 	return (
 		<div
 			className="flex h-[56px] w-[56px] items-center justify-center 

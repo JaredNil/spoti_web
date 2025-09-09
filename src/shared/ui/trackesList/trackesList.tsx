@@ -1,25 +1,34 @@
-import React from 'react'
-
 import { TrackesListItem } from './ui/trackesListItem'
 import { TrackesListLabel } from './ui/trackesListLabel'
 import { TrackesListSkeleton } from './ui/trackesListSkeleton'
 
-import { Trackes, TrackesId } from '@/shared/api'
+import { DropdownTrack } from '@/app/playlist/ui/dropdownTrack'
+import { Track, Trackes, TrackesId } from '@/shared/api'
+
+export type DropdownProps = {
+	deleteHandle: () => void
+	track: Track
+}
 
 interface TrackViewListingProps {
 	relayTrackesId?: TrackesId
 	isCompact: boolean
 	isLoadingTrackes: boolean
 	trackes?: Trackes
+	albumPageId?: string
 	classname: string
+
+	type?: 'playlist' | 'all'
 }
 
 export const TrackesList: React.FC<TrackViewListingProps> = ({
 	relayTrackesId,
 	isCompact,
 	isLoadingTrackes,
+	albumPageId,
 	trackes,
 	classname,
+	type = 'playlist',
 }) => {
 	if (isLoadingTrackes) return <TrackesListSkeleton isCompact={isCompact} />
 
@@ -40,6 +49,15 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 						isCompact={isCompact}
 						relayTrackesId={relayTrackesId}
 						track={track}
+						customButton={
+							type === 'playlist' &&
+							albumPageId && (
+								<DropdownTrack
+									albumPageId={albumPageId}
+									track={track}
+								/>
+							)
+						}
 					/>
 				))}
 			</div>

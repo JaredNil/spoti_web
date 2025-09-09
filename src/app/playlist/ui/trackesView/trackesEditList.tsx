@@ -1,11 +1,7 @@
 import React from 'react'
-import { toast } from 'sonner'
 
-import {
-	useLazyFetchAlbumQuery,
-	useUpdateAlbumMutation,
-} from '@/entities/album'
-import { AlbumInterface, Track, Trackes, TrackesId } from '@/shared/api'
+import { Trackes, TrackesId } from '@/shared/api'
+import { useChangeAlbum } from '@/shared/hooks/useChangeAlbum'
 import { Button } from '@/shared/ui/kit/button'
 import { TrackesListItem } from '@/shared/ui/trackesList/ui/trackesListItem'
 import { TrackesListLabel } from '@/shared/ui/trackesList/ui/trackesListLabel'
@@ -28,20 +24,7 @@ export const TrackesEditList: React.FC<TrackViewListingProps> = ({
 	classname,
 	albumPageId = undefined,
 }: TrackViewListingProps) => {
-	const [updateAlbum, { isLoading: isUpdating }] = useUpdateAlbumMutation()
-	const [fetchAlbum] = useLazyFetchAlbumQuery()
-
-	const onAddTrack = (track: Track) => {
-		if (!albumPageId) return
-		fetchAlbum(albumPageId).then((r) => {
-			const origin = r.data as AlbumInterface
-			const newAlbum = Object.assign({}, origin)
-			newAlbum.trackesId = [...origin.trackesId, track.id]
-			updateAlbum(newAlbum).then(() => {
-				toast.success('Track added')
-			})
-		})
-	}
+	const { addTrack, isUpdating } = useChangeAlbum(albumPageId as string)
 
 	if (isLoadingEditTrackes)
 		return <TrackesListSkeleton isCompact={isCompact} />
@@ -70,7 +53,7 @@ export const TrackesEditList: React.FC<TrackViewListingProps> = ({
 							>
 								<Button
 									disabled={isUpdating}
-									onClick={() => onAddTrack(track)}
+									onClick={() => addTrack(track)}
 									className="py-1 px-2 text-sm
 										 text-neutral-700 bg-green-500 rounded-lg
 										hover:bg-green-600/70 transition-colors

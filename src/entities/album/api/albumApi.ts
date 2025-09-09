@@ -20,13 +20,6 @@ export const albumApi = rtkApi.injectEndpoints({
 					{ type: 'Album', id },
 				],
 			}),
-			// deleteAlbum: build.mutation<void, string>({
-			// 	query: (id) => ({
-			// 		url: `/album/${id}`,
-			// 		method: 'DELETE',
-			// 	}),
-			// 	invalidatesTags: (_, __, id) => [{ type: 'Album', id }],
-			// }),
 		}
 	},
 })

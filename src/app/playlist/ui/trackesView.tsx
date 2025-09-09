@@ -7,15 +7,8 @@ import { TrackesContainer } from './trackesView/trackesContainer'
 import { TrackesEdit } from './trackesView/trackesEdit'
 import { TrackesHead } from './trackesView/trackesHead'
 
-import {
-	AlbumInterface,
-	useFetchAlbumQuery,
-	useLazyFetchAlbumQuery,
-} from '@/entities/album'
-import {
-	useFetchTrackesQuery,
-	useLazyFetchTrackesQuery,
-} from '@/entities/track'
+import { AlbumInterface, useFetchAlbumQuery } from '@/entities/album'
+import { useFetchTrackesQuery } from '@/entities/track'
 import { Trackes } from '@/shared/api'
 import { TrackesList } from '@/shared/ui/trackesList/trackesList'
 
@@ -38,6 +31,7 @@ export const TrackesView: React.FC<TrackesViewProps> = ({
 	const { data: trackes, isLoading: isLoadingTrackes } = useFetchTrackesQuery(
 		album?.trackesId || skipToken
 	)
+
 	return (
 		<TrackesContainer>
 			<TrackesHead
@@ -50,6 +44,7 @@ export const TrackesView: React.FC<TrackesViewProps> = ({
 				classname="pb-[30px]"
 				isCompact={isCompact}
 				relayTrackesId={album?.trackesId || albumPreload?.trackesId}
+				albumPageId={albumId}
 				trackes={trackes || trackesPreload}
 				isLoadingTrackes={isLoadingTrackes || isLoadingAlbum}
 			/>

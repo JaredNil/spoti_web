@@ -12,7 +12,7 @@ interface TrackViewButtonProps {
 	index: number
 }
 
-export const TrackViewButton: React.FC<TrackViewButtonProps> = ({
+export const TrackesListButton: React.FC<TrackViewButtonProps> = ({
 	relayTrackesId,
 	track,
 	index,
@@ -29,10 +29,10 @@ export const TrackViewButton: React.FC<TrackViewButtonProps> = ({
 				{index + 1}
 			</div>
 			<div
-				className={`absolute top-0 left-0 overflow-hidden h-full w-full 
+				className={`absolute top-0 left-0 overflow-hidden h-full w-full
 			flex items-center justify-center
 			transition-all duration-100
-			group-hover:opacity-100 
+			group-hover:opacity-100
 			${playerTrack?.id == track.id ? `opacity-100` : `opacity-0`}
 			`}
 			>

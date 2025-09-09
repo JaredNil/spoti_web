@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { FC } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+import { TrackesListButton } from './trackesListButton'
 import { TrackesListLike } from './trackesListLike'
 import { TrackesListSearch } from './trackesListSearch'
-import { TrackViewButton } from './trackViewButton'
 
 import { Track, TrackesId } from '@/shared/api'
 
@@ -40,7 +40,7 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 		>
 			<div className="relative w-full aspect-square">
 				{relayTrackesId && (
-					<TrackViewButton
+					<TrackesListButton
 						index={index}
 						relayTrackesId={relayTrackesId}
 						track={track}
