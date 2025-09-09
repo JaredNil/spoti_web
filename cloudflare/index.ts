@@ -1,6 +1,7 @@
 /// <reference types="@cloudflare/workers-types" />
 
-import { Track } from '@/shared/api'
+import { AlbumInterface, Track } from '@/shared/api'
+import { ze } from '@/shared/lib/log'
 
 export interface Env {
 	ALBUMS_KV: KVNamespace
@@ -28,7 +29,6 @@ export default {
 				const keys = await env.ALBUMS_KV.list({
 					prefix: 'album:',
 				})
-
 				const albums = await Promise.all(
 					keys.keys.map(async (key) => {
 						const value = await env.ALBUMS_KV.get(key.name)
@@ -43,8 +43,23 @@ export default {
 
 				return json(filtered)
 			}
+			if (pathname === '/albums' && method === 'POST') {
+				const body = (await request.json()) as AlbumInterface
+				if (!body || typeof body.id !== 'string' || !body.id) {
+					return new Response('Missing or invalid album id', {
+						status: 400,
+					})
+				}
 
-			const albumMatch = pathname.match(/^\/albums\/(\d+)$/)
+				const key = `album:${body.id}`
+				const exists = await env.ALBUMS_KV.get(key)
+				if (exists)
+					return new Response('Album already exists', { status: 409 })
+
+				await env.ALBUMS_KV.put(key, JSON.stringify(body))
+				return json(body, 201)
+			}
+			const albumMatch = pathname.match(/^\/albums\/([a-zA-Z0-9_-]+)$/)
 			const albumId = albumMatch ? albumMatch[1] : null
 
 			if (albumId && method === 'GET') {
@@ -109,7 +124,6 @@ export default {
 				).filter(Boolean)
 				return json(tracks)
 			}
-
 			const trackMatch = pathname.match(/^\/tracks\/([^/]+)$/)
 			const trackId = trackMatch ? trackMatch[1] : null
 
