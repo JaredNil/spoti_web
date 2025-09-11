@@ -15,8 +15,8 @@ export const TrackesListLabel = ({ isCompact }: { isCompact: boolean }) => {
 		>
 			<div className="text-center">#</div>
 			<div className="font-extralight">Naming</div>
-			<div />
-			<div className="hidden lg:block">Author</div>
+			<div className={isCompact ? 'hidden' : ''} />
+			<div className="hidden lg:block">Author </div>
 			<div
 				className="hidden lg:flex
 				items-center justify-center"

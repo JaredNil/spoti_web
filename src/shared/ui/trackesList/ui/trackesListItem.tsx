@@ -31,6 +31,7 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 			`group h-[50px] grid rounded-xl relative
 			transition-colors hover:bg-neutral-400/5`,
 			isCompact ? compactRow : baseRow,
+			isCompact ? 'h-[34px]' : 'h-[50px]',
 			`before:absolute before:left-1/2 before:top-0
        		before:h-[0.3px] before:w-full before:-translate-x-1/2
 			before:bg-neutral-400/10`
@@ -45,7 +46,11 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 				/>
 			)}
 		</div>
-		<div className=" flex items-center justify-center">
+		<div
+			className={
+				isCompact ? 'hidden' : 'flex items-center justify-center'
+			}
+		>
 			<Image
 				className="lg:w-[100%] w-10 aspect-square select-none"
 				src={'/content/cover/heavy_metal.webp'}
@@ -57,9 +62,9 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 		<div
 			className="truncate px-2
 			flex items-center
-			select-none cursor-pointer"
+			select-none"
 		>
-			<Link className="truncate" href={`/track/${track.id}`}>
+			<Link className="truncate py-3 pr-5" href={`/track/${track.id}`}>
 				{track.title}
 			</Link>
 		</div>
