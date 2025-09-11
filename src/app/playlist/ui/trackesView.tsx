@@ -41,7 +41,6 @@ export const TrackesView: React.FC<TrackesViewProps> = ({
 			/>
 
 			<TrackesList
-				classname="pb-[30px]"
 				isCompact={isCompact}
 				relayTrackesId={album?.trackesId || albumPreload?.trackesId}
 				albumPageId={albumId}

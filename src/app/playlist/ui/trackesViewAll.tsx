@@ -31,7 +31,6 @@ export const TrackesViewAll: React.FC = () => {
 			/>
 
 			<TrackesList
-				classname="pb-[30px]"
 				isCompact={isCompact}
 				relayTrackesId={trackesId}
 				albumPageId={'0'}
