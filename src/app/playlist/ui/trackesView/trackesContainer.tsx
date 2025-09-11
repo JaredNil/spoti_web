@@ -5,8 +5,7 @@ export const TrackesContainer: FC<{ children: ReactNode }> = ({ children }) => {
 		<div
 			className="flex w-full flex-col
 			bg-[#121212]
-			my-4 px-6 py-4
-			tracklist__mainWrapper"
+			my-4 px-2 sm:px-6 py-4"
 		>
 			{children}
 		</div>

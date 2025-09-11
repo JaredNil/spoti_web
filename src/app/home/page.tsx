@@ -16,7 +16,7 @@ const Home = async () => {
 			<AlbumsCollection type={'USER'} />
 			<BringAuth />
 			<AlbumsCollection type={'COMMON'} />
-			<AlbumsCollection type={'COMMUNITY'} classname="mt-10" />
+			<AlbumsCollection type={'COMMUNITY'} />
 		</>
 	)
 }

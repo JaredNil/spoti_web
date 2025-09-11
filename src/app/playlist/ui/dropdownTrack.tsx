@@ -37,16 +37,13 @@ export const DropdownTrack: FC<DropdownTrackProps> = ({
 
 	return (
 		<div
-			className="flex h-[56px] w-[56px] items-center justify-center 
+			className="flex h-full w-full items-center justify-center 
             	rounded-full drop-shadow-md
             	transition group-hover:opacity-100"
 		>
 			<DropdownMenu>
 				<DropdownMenuTrigger>
-					<HiOutlineDotsHorizontal
-						size={32}
-						className="text-neutral-400"
-					/>
+					<HiOutlineDotsHorizontal size={30} className="text-white" />
 				</DropdownMenuTrigger>
 				<DropdownMenuContent
 					side="right"

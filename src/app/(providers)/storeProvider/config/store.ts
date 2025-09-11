@@ -42,7 +42,9 @@ export function createStore() {
 					extraArgument: { api: $api },
 				},
 			}).concat(rtkApi.middleware),
-		devTools: true,
+		devTools: {
+			actionsDenylist: ['player/setProgress', 'player/setTimer'],
+		},
 	})
 	;(store as any).reducerManager = reducerManager
 

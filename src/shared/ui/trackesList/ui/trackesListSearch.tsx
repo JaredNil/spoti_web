@@ -5,7 +5,13 @@ import { useRouter } from 'next/navigation'
 import { userAction } from '@/entities/user'
 import { useAppDispatch } from '@/shared/hooks'
 
-export const TrackesListSearch = ({ author }: { author: string }) => {
+export const TrackesListSearch = ({
+	author,
+	classname,
+}: {
+	author: string
+	classname?: string
+}) => {
 	const router = useRouter()
 	const dispatch = useAppDispatch()
 
@@ -17,9 +23,9 @@ export const TrackesListSearch = ({ author }: { author: string }) => {
 	return (
 		<div
 			onClick={routingSearch}
-			className="table-data select-auto h-full flex items-center"
+			className={`h-full flex overflow-hidden items-center ${classname}`}
 		>
-			<span className="py-1 pr-5 cursor-pointer leading-0">{author}</span>
+			<div className="cursor-pointer text-start truncate ">{author}</div>
 		</div>
 	)
 }

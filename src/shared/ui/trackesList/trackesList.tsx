@@ -16,7 +16,6 @@ interface TrackViewListingProps {
 	isLoadingTrackes: boolean
 	trackes?: Trackes
 	albumPageId?: string
-	classname: string
 
 	type?: 'playlist' | 'all'
 }
@@ -27,7 +26,6 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 	isLoadingTrackes,
 	albumPageId,
 	trackes,
-	classname,
 	type = 'playlist',
 }) => {
 	if (isLoadingTrackes) return <TrackesListSkeleton isCompact={isCompact} />
@@ -40,8 +38,8 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 		)
 	else
 		return (
-			<div className={`playlist__wrapper ${classname}`}>
-				<TrackesListLabel isCompact />
+			<>
+				<TrackesListLabel isCompact={isCompact} />
 				{trackes?.map((track, i) => (
 					<TrackesListItem
 						index={i}
@@ -60,6 +58,6 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 						}
 					/>
 				))}
-			</div>
+			</>
 		)
 }

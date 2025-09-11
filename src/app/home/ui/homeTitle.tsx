@@ -7,16 +7,17 @@ export const HomeTitle = () => {
 
 	return (
 		<div
-			className="flex font-semibold text-white 
+			className="flex font-semibold text-white
+			flex-col sm:flex-row
 			select-none pointer-events-none pb-2
-			text-xl lg:text-3xl"
+			text-3xl"
 		>
-			<h1 className="mr-3">{`Welcome back,`}</h1>
+			<h1 className="mr-2">Welcome back,</h1>
 			{status === 'loading' && (
 				<div className="h-8 w-40 bg-neutral-200 animate-pulse"></div>
 			)}
-			{status === 'authenticated' && data.user?.name}
-			{status === 'unauthenticated' && 'user'}
+			{status === 'authenticated' && <span>{data.user?.name}</span>}
+			{status === 'unauthenticated' && 'guest'}
 		</div>
 	)
 }

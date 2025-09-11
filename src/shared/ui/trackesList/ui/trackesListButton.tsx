@@ -22,23 +22,19 @@ export const TrackesListButton: React.FC<TrackViewButtonProps> = ({
 	return (
 		<>
 			<div
-				className={`h-full w-full flex items-center justify-center relative
-			${playerTrack?.id == track.id ? `opacity-0` : `opacity-100`}
-			`}
+				className={`flex items-center justify-center 
+				${playerTrack?.id == track.id ? `opacity-0` : `opacity-100`}`}
 			>
 				{index + 1}
 			</div>
 			<div
-				className={`absolute top-0 left-0 overflow-hidden h-full w-full
-			flex items-center justify-center
-			transition-all duration-100
-			group-hover:opacity-100
-			${playerTrack?.id == track.id ? `opacity-100` : `opacity-0`}
-			`}
+				className={`absolute top-0 left-0 w-full h-full 
+				flex items-center justify-center
+				transition-opacity duration-100 group-hover:opacity-100
+				${playerTrack?.id == track.id ? `opacity-100` : `opacity-0`}`}
 			>
-				<div className="w-[80%] h-[80%] flex items-center justify-center">
+				<div className="w-[80%] aspect-square flex items-center justify-center">
 					<PlayButton
-						key={track.id}
 						target={index}
 						relayTrackesId={relayTrackesId}
 						track={track}
