@@ -1,9 +1,10 @@
 import { Library } from './library/library'
 import { RouteItem } from './routeItem'
 
+import { IconName } from '@/shared/icons'
 import { SidebarResizer } from '@/shared/ui/sidebarResizer'
 
-const sidebarRoutes = [
+const sidebarRoutes: { href: string; label: IconName }[] = [
 	{
 		href: '/home',
 		label: 'Home',

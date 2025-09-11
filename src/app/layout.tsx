@@ -1,5 +1,3 @@
-import { twMerge } from 'tailwind-merge'
-
 import { GeneralProviders } from './(providers)'
 
 import AppWrapper from '@/shared/ui/appwrapper'
@@ -18,7 +16,10 @@ export default function RootLayout({
 			<body className="select-none">
 				<AppWrapper>
 					<GeneralProviders>
-						<div className="flex overflow-x-auto h-full nth-last-of-type-1:pb-2 pt-2">
+						<div
+							className="flex overflow-x-auto h-full 
+							nth-last-of-type-1:pb-2 pt-2"
+						>
 							<Sidebar />
 
 							<main className="relative flex h-full w-full overflow-y-auto mx-1 rounded-lg">

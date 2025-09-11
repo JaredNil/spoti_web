@@ -5,11 +5,11 @@ import { usePathname } from 'next/navigation'
 import { memo } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { Icons } from '@/shared/icons'
+import { IconName, Icons } from '@/shared/icons'
 
 interface RouteItem {
 	routeInfo: {
-		label: string
+		label: IconName
 		href: string
 	}
 }
@@ -32,7 +32,7 @@ export const RouteItem: React.FC<RouteItem> = memo(
 					isActive && 'text-white'
 				)}
 			>
-				<Icons label={label} />
+				<Icons name={label} />
 				<p className="w-100 truncate">{label}</p>
 			</Link>
 		)

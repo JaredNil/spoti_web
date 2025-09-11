@@ -5,6 +5,7 @@ import { PlayerContext } from '../lib/playerContext'
 
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { getVolumePlayer, playerAction, usePlayer } from '@/widgets/player'
+import { useKeyActivator } from '@/widgets/player/model/hook/useKeyActivator'
 
 interface PlayerProvider {
 	children: React.ReactNode
@@ -15,7 +16,6 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({
 }: PlayerProvider) => {
 	const dispatch = useAppDispatch()
 
-	// const [currentTrack, setCurrentTrack] = useState<HTMLAudioElement| null>(null); // DEPRECATED. NOW THROUTH STRING
 	const [currentTrack, setCurrentTrack] = useState<string>('')
 
 	const audioRef = useRef<HTMLAudioElement>(null)
@@ -69,6 +69,7 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({
 	}
 
 	const { next } = usePlayer()
+
 	const endedHandler = (): void => next()
 
 	const defaultProps = useMemo(
