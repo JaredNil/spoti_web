@@ -11,11 +11,13 @@ import {
 } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { FaYandex } from 'react-icons/fa'
 import { toast } from 'sonner'
 
 import { PasswordFormData, passwordSchema } from '../model/validationSchemas'
 
 import { Button } from '@/shared/ui/kit/button'
+import { Label } from '@/shared/ui/kit/label'
 
 export const AuthTabs = () => {
 	const [isLoading, setIsLoading] = useState(false)
@@ -24,6 +26,7 @@ export const AuthTabs = () => {
 	const [emailVerified, setEmailVerified] = useState(true)
 	const [phoneVerified, setPhoneVerified] = useState(false)
 	const [googleLinked, setGoogleLinked] = useState(true)
+	const [yandexLinked, setYandexLinked] = useState(true)
 
 	const passwordForm = useForm<PasswordFormData>({
 		resolver: zodResolver(passwordSchema),
@@ -43,9 +46,34 @@ export const AuthTabs = () => {
 	}
 
 	const handleSendCode = () => {
-		toast.success('Код отправлен на телефон')
+		toast.success('Код не отправлен на телефон', {
+			description: 'Фича еще не реализована',
+		})
+	}
+	const handleDeletePhone = () => {
+		toast.success('Вы не можете удалить ТО чего НЕТ', {
+			description: 'Фича еще не реализована',
+		})
+	}
+	const deleteAccount = () => {
+		toast.success('Вы не можете удалить аккаунт', {
+			description: 'Я еще не реализовал его хранение, а вы уже удаляете',
+		})
 	}
 
+	const googleHandle = () => {
+		setGoogleLinked(!googleLinked)
+		toast.success(googleLinked ? 'Google отключён' : 'Google подключён', {
+			description: 'Но фичу я эту еще не реализовал, 😂🤣😂🤣',
+		})
+	}
+
+	const yandexHandle = () => {
+		setYandexLinked(!yandexLinked)
+		toast.success(yandexLinked ? 'Yandex отключён' : 'Yandex подключён', {
+			description: 'Но фичу я эту еще не реализовал, 😂🤣😂🤣',
+		})
+	}
 	return (
 		<div className="space-y-8 py-3">
 			<h3 className="text-lg font-semibold text-white mb-4 flex items-center">
@@ -56,17 +84,14 @@ export const AuthTabs = () => {
 				className="space-y-4"
 			>
 				<div>
-					<label className="block font-medium text-white text-base mb-1 select-none">
-						Текущий пароль
-					</label>
+					<Label variant="left">Текущий пароль</Label>
 					<div className="relative">
 						<input
 							type={showPassword ? 'text' : 'password'}
 							{...passwordForm.register('currentPassword')}
 							className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
 						/>
-						<button
-							type="button"
+						<Button
 							onClick={() => setShowPassword(!showPassword)}
 							className="absolute right-3 top-1/2 -translate-y-1/2"
 						>
@@ -75,14 +100,12 @@ export const AuthTabs = () => {
 							) : (
 								<Eye className="w-4 h-4 text-gray-500" />
 							)}
-						</button>
+						</Button>
 					</div>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 					<div>
-						<label className="block font-medium text-white text-base mb-1 select-none">
-							Новый пароль
-						</label>
+						<Label variant="left">Новый пароль</Label>
 						<input
 							type="password"
 							{...passwordForm.register('newPassword')}
@@ -90,9 +113,7 @@ export const AuthTabs = () => {
 						/>
 					</div>
 					<div>
-						<label className="block font-medium text-white text-base mb-1 select-none">
-							Подтвердите пароль
-						</label>
+						<Label variant="left">Подтвердите пароль</Label>
 						<input
 							type="password"
 							{...passwordForm.register('confirmPassword')}
@@ -105,27 +126,22 @@ export const AuthTabs = () => {
 						{passwordForm.formState.errors.confirmPassword.message}
 					</p>
 				)}
-				<Button
-					type="submit"
-					disabled={isLoading}
-					className="px-6 py-2 bg-emerald-800 text-white rounded-lg w-full
-					hover:bg-emerald-800/70 disabled:opacity-50 transition-colors"
-				>
+				<Button variant={'submit'} disabled={isLoading}>
 					{isLoading ? 'Обновление...' : 'Обновить пароль'}
 				</Button>
 			</form>
-			{/* Двухфакторная аутентификация */}
-			<div className="border-t pt-8">
-				<h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+			{/* Двухфакторка, когда-нибудь добавим */}
+			<div className="relative border-t pt-8 ">
+				<h3 className="text-lg font-semibold text-white mb-2 flex items-center">
 					<CheckCircle2 className="w-5 h-5 mr-2" />
 					Двухфакторная аутентификация
 				</h3>
-				<div className="bg-emerald-800 rounded-lg p-4 mb-4">
-					<p className="text-sm text-white text-center tracking-wide">
+				<Button variant={'submit'} className="p-2 mb-2">
+					<p className="text-wrap">
 						Добавьте дополнительный уровень безопасности к вашему
 						аккаунту
 					</p>
-				</div>
+				</Button>
 				<div className="flex items-center justify-between">
 					<div>
 						<p className="text-sm font-medium text-white">
@@ -137,10 +153,12 @@ export const AuthTabs = () => {
 					</div>
 					<button
 						onClick={() => setTwoFactorEnabled(!twoFactorEnabled)}
-						className={`relative inline-flex h-6 w-11 ring-emerald-800 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${twoFactorEnabled ? 'bg-emerald-800' : 'bg-gray-200'}`}
+						className={`relative inline-flex h-6 w-11 ring-green-500 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${twoFactorEnabled ? 'bg-green-500' : 'bg-gray-200'}`}
 					>
 						<span
-							className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${twoFactorEnabled ? 'translate-x-6' : 'translate-x-1'}`}
+							className={`inline-block h-4 w-4 transform rounded-full
+								 bg-white transition-transform 
+								 ${twoFactorEnabled ? 'translate-x-6' : 'translate-x-1'}`}
 						/>
 					</button>
 				</div>
@@ -153,9 +171,10 @@ export const AuthTabs = () => {
 					<div className="flex items-center">
 						<Mail className="w-5 h-5 text-gray-400 mr-3" />
 						<div>
-							<p className="font-medium text-white">Email</p>
+							<p>Email</p>
 							<p
-								className={`text-sm ${emailVerified ? 'text-green-600' : 'text-gray-500'}`}
+								className={`text-sm 
+									${emailVerified ? 'text-green-600' : 'text-gray-500'}`}
 							>
 								{emailVerified
 									? 'Подтверждено'
@@ -175,18 +194,22 @@ export const AuthTabs = () => {
 								Подтвердить
 							</button>
 						)}
-						<button className=" text-red-600 text-lg hover:text-red-700">
+						<Button variant="danger" onClick={handleDeletePhone}>
 							Удалить
-						</button>
+						</Button>
 					</div>
 				</div>
-				<div className="flex items-center justify-between p-4 border rounded-lg mb-3">
+				<div
+					className="flex flex-col sm:flex-row items-start sm:items-center justify-between
+					border rounded-lg 
+					p-4 gap-y-2 mb-3"
+				>
 					<div className="flex items-center">
 						<Phone className="w-5 h-5 text-gray-400 mr-3" />
 						<div>
 							<p className="font-medium text-white">Телефон</p>
 							<p
-								className={`text-sm ${phoneVerified ? 'text-green-600' : 'text-gray-500'}`}
+								className={`text-sm text-nowrap ${phoneVerified ? 'text-green-600' : 'text-gray-500'}`}
 							>
 								{phoneVerified
 									? 'Подтверждено'
@@ -194,46 +217,57 @@ export const AuthTabs = () => {
 							</p>
 						</div>
 					</div>
-					<div className="flex items-center space-x-2">
+					<div className="w-full flex justify-around sm:justify-end items-center">
 						{!phoneVerified && (
-							<button
-								onClick={handleSendCode}
-								className="text-sm text-white hover:text-white/80"
-							>
+							<Button variant="default" onClick={handleSendCode}>
 								Отправить код
-							</button>
+							</Button>
 						)}
-						<button className=" text-red-600 text-lg hover:text-red-700">
+						<Button variant="danger" onClick={handleDeletePhone}>
 							Удалить
-						</button>
+						</Button>
 					</div>
 				</div>
-				{/* Google */}
 				<div className="flex items-center justify-between p-4 border rounded-lg">
 					<div className="flex items-center">
 						<Chrome className="w-5 h-5 text-gray-400 mr-3" />
 						<div>
 							<p className="font-medium text-white">Google</p>
 							<p
-								className={`text-sm ${googleLinked ? 'text-green-600' : 'text-gray-500'}`}
+								className={`text-[10px] ${googleLinked ? 'text-green-600' : 'text-gray-500'}`}
 							>
 								{googleLinked ? 'Подключено' : 'Не подключено'}
 							</p>
 						</div>
 					</div>
-					<button
-						onClick={() => {
-							setGoogleLinked(!googleLinked)
-							toast.success(
-								googleLinked
-									? 'Google отключён'
-									: 'Google подключён'
-							)
-						}}
-						className={`text-lg ${googleLinked ? 'text-red-600 hover:text-red-700' : 'text-white hover:text-white/90'}`}
+					<Button
+						variant="danger"
+						className="text-[12px]"
+						onClick={() => googleHandle()}
 					>
 						{googleLinked ? 'Отключить' : 'Подключить'}
-					</button>
+					</Button>
+				</div>
+				<div className="flex items-center justify-between mt-4 p-4 border rounded-lg">
+					<div className="flex items-center">
+						<FaYandex className="w-5 h-5 text-gray-400 mr-3" />
+						<div>
+							<p className="font-medium text-white">Yandex</p>
+							<p
+								className={`text-[10px] 
+								${yandexLinked ? 'text-green-600' : 'text-gray-500'}`}
+							>
+								{yandexLinked ? 'Подключено' : 'Не подключено'}
+							</p>
+						</div>
+					</div>
+					<Button
+						variant="danger"
+						className="text-[12px]"
+						onClick={() => yandexHandle()}
+					>
+						{yandexLinked ? 'Отключить' : 'Подключить'}
+					</Button>
 				</div>
 			</div>
 			{/* Дополнительные действия */}
@@ -241,10 +275,14 @@ export const AuthTabs = () => {
 				<h3 className="text-lg font-semibold text-white mb-4">
 					Дополнительно
 				</h3>
-				<button className="flex items-center text-sm text-red-600 hover:text-red-700">
+				<Button
+					variant="danger"
+					className="w-full"
+					onClick={() => deleteAccount()}
+				>
 					<Trash2 className="w-4 h-4 mr-2" />
 					Удалить аккаунт навсегда
-				</button>
+				</Button>
 			</div>
 		</div>
 	)

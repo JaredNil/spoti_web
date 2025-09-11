@@ -8,8 +8,9 @@ export const Tabs = ({
 	setActiveTab: (tab: string) => void
 }) => {
 	return (
-		<div className="flex items-center justify-around pt-6">
-			<nav className="flex justify-around w-1/2">
+		<div className="flex flex-col sm:flex-row-reverse items-center justify-around pt-6 gap-y-2">
+			<h2 className="text-white text-xl select-none">Acc setting</h2>
+			<nav className="flex items-start  gap-x-5">
 				<div
 					onClick={() => setActiveTab('profile')}
 					className={`py-4 px-2 grow rounded-t-lg
@@ -31,9 +32,6 @@ export const Tabs = ({
 					Безопасность
 				</div>
 			</nav>
-			<h2 className="text-white text-xl select-none">
-				tabs account setting
-			</h2>
 		</div>
 	)
 }

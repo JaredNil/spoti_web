@@ -12,6 +12,9 @@ import {
 	profileSchema,
 } from '../model/validationSchemas'
 
+import { Button } from '@/shared/ui/kit/button'
+import { Label } from '@/shared/ui/kit/label'
+
 export const ProfileTabs = () => {
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -84,7 +87,7 @@ export const ProfileTabs = () => {
 					/>
 					<label
 						htmlFor="avatar-input"
-						className="absolute bottom-0 right-0 bg-emerald-800 text-white p-2 rounded-full cursor-pointer hover:bg-indigo-700 transition-colors"
+						className="absolute bottom-0 right-0 bg-green-500 text-white p-2 rounded-full cursor-pointer hover:bg-indigo-700 transition-colors"
 					>
 						<Camera className="w-4 h-4" />
 						<input
@@ -99,12 +102,10 @@ export const ProfileTabs = () => {
 			</div>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 				<div>
-					<label className="block font-medium text-white text-base mb-1 select-none">
-						Имя
-					</label>
+					<Label variant="left">Имя</Label>
 					<input
 						{...profileForm.register('firstName')}
-						className="w-full px-3 py-2 border border-emerald-800 rounded-lg   focus:border-emerald-800"
+						className="w-full px-3 py-2 border border-green-500 rounded-lg   focus:border-green-500"
 					/>
 					{profileForm.formState.errors.firstName && (
 						<p className="mt-1 text-sm text-red-600">
@@ -113,12 +114,10 @@ export const ProfileTabs = () => {
 					)}
 				</div>
 				<div>
-					<label className="block font-medium text-white text-base mb-1 select-none">
-						Фамилия
-					</label>
+					<Label variant="left">Фамилия</Label>
 					<input
 						{...profileForm.register('lastName')}
-						className="w-full px-3 py-2 border border-emerald-800 rounded-lg   focus:border-emerald-800"
+						className="w-full px-3 py-2 border border-green-500 rounded-lg   focus:border-green-500"
 					/>
 					{profileForm.formState.errors.lastName && (
 						<p className="mt-1 text-sm text-red-600">
@@ -127,13 +126,11 @@ export const ProfileTabs = () => {
 					)}
 				</div>
 				<div>
-					<label className="block font-medium text-white text-base mb-1 select-none">
-						Email
-					</label>
+					<Label variant="left">Email</Label>
 					<input
 						type="email"
 						{...profileForm.register('email')}
-						className="w-full px-3 py-2 border border-emerald-800 rounded-lg   focus:border-emerald-800"
+						className="w-full px-3 py-2 border border-green-500 rounded-lg   focus:border-green-500"
 					/>
 					{profileForm.formState.errors.email && (
 						<p className="mt-1 text-sm text-red-600">
@@ -142,13 +139,11 @@ export const ProfileTabs = () => {
 					)}
 				</div>
 				<div>
-					<label className="block font-medium text-white text-base mb-1 select-none">
-						Телефон
-					</label>
+					<Label variant="left">Телефон</Label>
 					<input
 						type="tel"
 						{...profileForm.register('phone')}
-						className="w-full px-3 py-2 border border-emerald-800 rounded-lg   focus:border-emerald-800"
+						className="w-full px-3 py-2 border border-green-500 rounded-lg   focus:border-green-500"
 					/>
 					{profileForm.formState.errors.phone && (
 						<p className="mt-1 text-sm text-red-600">
@@ -158,13 +153,11 @@ export const ProfileTabs = () => {
 				</div>
 			</div>
 			<div>
-				<label className="block font-medium text-white text-base mb-1 select-none">
-					О себе
-				</label>
+				<Label variant="left">О себе</Label>
 				<textarea
 					{...profileForm.register('bio')}
 					rows={3}
-					className="w-full px-3 py-2 border border-emerald-800 rounded-lg   focus:border-emerald-800"
+					className="w-full px-3 py-2 border border-green-500 rounded-lg   focus:border-green-500"
 				/>
 				{profileForm.formState.errors.bio && (
 					<p className="mt-1 text-sm text-red-600">
@@ -172,15 +165,9 @@ export const ProfileTabs = () => {
 					</p>
 				)}
 			</div>
-			<div className="pt-4">
-				<button
-					type="submit"
-					disabled={isLoading}
-					className="w-full  px-6 py-2 bg-emerald-800 text-white rounded-lg hover:bg-emerald-900 disabled:opacity-50 transition-colors"
-				>
-					{isLoading ? 'Сохранение...' : 'Сохранить изменения'}
-				</button>
-			</div>
+			<Button variant="submit" disabled={isLoading} className="mt-4">
+				{isLoading ? 'Сохранение...' : 'Сохранить изменения'}
+			</Button>
 		</form>
 	)
 }
