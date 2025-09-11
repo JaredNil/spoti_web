@@ -1,6 +1,6 @@
 export const Title = ({
 	title,
-	classname,
+	classname = '',
 }: {
 	title: string
 	classname?: string

@@ -13,7 +13,10 @@ export default async function PlaylistPageLayout({
 	return (
 		<>
 			<Title title="Authentication account" />
-			<div className="flex w-full h-[90%] flex-col justify-center items-center">
+			<div
+				className="flex w-full flex-col justify-center items-center
+				mb-10"
+			>
 				{children}
 			</div>
 		</>
