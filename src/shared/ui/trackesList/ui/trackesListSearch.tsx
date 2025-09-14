@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 
-import { userAction } from '@/entities/user'
+import { metaAction } from '@/entities/meta'
 import { useAppDispatch } from '@/shared/hooks'
 
 export const TrackesListSearch = ({
@@ -16,7 +16,7 @@ export const TrackesListSearch = ({
 	const dispatch = useAppDispatch()
 
 	const routingSearch = () => {
-		dispatch(userAction.setSearched(author))
+		dispatch(metaAction.setSearched(author))
 		router.push(`/search`)
 	}
 

@@ -2,11 +2,11 @@
 
 import { useEffect, useRef } from 'react'
 
-import { userAction } from '@/entities/user'
+import { metaAction } from '@/entities/meta'
 import {
 	getIsSidebarVisible,
 	getSidebarWidth,
-} from '@/entities/user/model/selectors/getSidebar'
+} from '@/entities/meta/model/selectors/selectors'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 
 export const SidebarResizer = () => {
@@ -27,7 +27,7 @@ export const SidebarResizer = () => {
 	useEffect(() => {
 		if (asideRef.current) {
 			if (Number(sidebarWidth) < 70) {
-				dispatch(userAction.setIsSidebarVisible(false))
+				dispatch(metaAction.setIsSidebarVisible(false))
 			}
 
 			asideRef.current.style.width = `${sidebarWidth}px`
@@ -53,7 +53,7 @@ export const SidebarResizer = () => {
 			const deltaX = moveEvent.clientX - startX
 			const newWidth = startWidth + deltaX
 			console.log('Δpx:', deltaX, 'new width:', startWidth)
-			dispatch(userAction.setSidebarWidth(newWidth.toString()))
+			dispatch(metaAction.setSidebarWidth(newWidth.toString()))
 		}
 
 		const onMouseUp = () => {

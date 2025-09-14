@@ -9,9 +9,8 @@ import {
 } from '../model/selector/searchpageSelector'
 import { searchpageAction } from '../model/slice/searchpageSlice'
 
+import { getUserSearch, metaAction } from '@/entities/meta'
 import { useSearchTrackesQuery } from '@/entities/track/api/trackApi'
-import { getUserSearch } from '@/entities/user'
-import { userAction } from '@/entities/user/model/slice/userSlice'
 import { Track } from '@/shared/api'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Input } from '@/shared/ui/kit/input'
@@ -46,7 +45,7 @@ export const Search: React.FC = () => {
 				type="text"
 				value={searchInput}
 				onChange={(e) =>
-					dispatch(userAction.setSearched(e.target.value))
+					dispatch(metaAction.setSearched(e.target.value))
 				}
 				className="sceleton xl:w-[50%]"
 				placeholder="Scarlxrd...  architect...   genre..."
