@@ -1,6 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Camera } from 'lucide-react'
 import Image from 'next/image'
+import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -17,6 +18,9 @@ import { Label } from '@/shared/ui/kit/label'
 
 export const ProfileTabs = () => {
 	const [isLoading, setIsLoading] = useState(false)
+
+	const { data } = useSession()
+	console.log(data)
 
 	const profileForm = useForm<ProfileFormData>({
 		resolver: zodResolver(profileSchema),
@@ -46,18 +50,7 @@ export const ProfileTabs = () => {
 		resolver: zodResolver(passwordSchema),
 	})
 
-	const onPasswordSubmit = async (data: PasswordFormData) => {
-		setIsLoading(true)
-		try {
-			await new Promise((resolve) => setTimeout(resolve, 1500))
-			toast.success('Пароль успешно изменен')
-			passwordForm.reset()
-		} catch {
-			toast.error('Ошибка изменения пароля')
-		} finally {
-			setIsLoading(false)
-		}
-	}
+	const onPasswordSubmit = async (data: PasswordFormData) => {}
 
 	const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0]
@@ -157,7 +150,8 @@ export const ProfileTabs = () => {
 				<textarea
 					{...profileForm.register('bio')}
 					rows={3}
-					className="w-full px-3 py-2 border border-green-500 rounded-lg   focus:border-green-500"
+					className="w-full px-3 py-2 border rounded-lg
+					border-green-500 focus:border-green-500"
 				/>
 				{profileForm.formState.errors.bio && (
 					<p className="mt-1 text-sm text-red-600">

@@ -24,3 +24,15 @@ export interface Track {
 }
 
 export type Trackes = Track[]
+
+export interface User {
+	email: string
+	trackesId: TrackesId
+	createdAt: string
+	imageHash: string
+	firstname: string
+	lastname: string
+	phone: string
+	password: string // in future put in db
+	'2fa': boolean
+}

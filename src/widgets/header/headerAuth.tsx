@@ -5,7 +5,7 @@ import { signOut, useSession } from 'next-auth/react'
 import { FaUserAlt } from 'react-icons/fa'
 import { toast } from 'sonner'
 
-import { getIsVisibleModal } from '@/entities/user/model/selectors/getIsVisibleModal'
+import { getIsVisibleModal } from '@/entities/meta'
 import { AuthModal } from '@/features/authModal'
 import { useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui/kit/button'

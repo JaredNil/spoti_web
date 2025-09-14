@@ -3,7 +3,7 @@ import { ReactNode, useEffect } from 'react'
 
 import { AppDispatch } from '../storeProvider/ui/storeProvider'
 
-import { userSlice } from '@/entities/user/model/slice/userSlice'
+import { metaSlice } from '@/entities/meta/model/slice/metaSlice'
 import { useAppDispatch } from '@/shared/hooks'
 import { cacheHandle, cacheKey, cacheKeys } from '@/shared/lib/localstorage'
 import { playerSlice } from '@/widgets/player'
@@ -59,7 +59,7 @@ const cacheManager = (
 			dispatch(setAsyncTrack(cacheData))
 			break
 		case 'search':
-			if (cacheData) dispatch(userSlice.actions.setSearched(cacheData))
+			if (cacheData) dispatch(metaSlice.actions.setSearched(cacheData))
 			break
 	}
 }

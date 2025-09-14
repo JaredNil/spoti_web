@@ -17,7 +17,6 @@ import {
 } from '@/app/(providers)/storeProvider'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui/kit/button'
-import { Input } from '@/shared/ui/kit/input'
 
 export interface AuthFormProps {
 	className?: string

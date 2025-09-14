@@ -4,8 +4,8 @@ import { useCallback } from 'react'
 
 import AuthForm from './authForm'
 
-import { userAction } from '@/entities/user'
-import { getIsVisibleModal } from '@/entities/user/model/selectors/getIsVisibleModal'
+import { getIsVisibleModal } from '@/entities/meta'
+import { metaAction } from '@/entities/meta'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import Modal from '@/shared/ui/modal/modal'
 
@@ -16,7 +16,7 @@ export const AuthModal = ({ type = 'auth' }: { type?: ModalKeys }) => {
 	const isVisibleModal = useAppSelector(getIsVisibleModal)
 
 	const onCloseAuthModal = useCallback(() => {
-		dispatch(userAction.offVisibleModal())
+		dispatch(metaAction.offVisibleModal())
 	}, [dispatch])
 
 	if (isVisibleModal)
@@ -24,7 +24,7 @@ export const AuthModal = ({ type = 'auth' }: { type?: ModalKeys }) => {
 			<Modal
 				className={'w-full'}
 				isOpen={isVisibleModal}
-				onClose={() => dispatch(userAction.offVisibleModal())}
+				onClose={() => dispatch(metaAction.offVisibleModal())}
 			>
 				{type === 'auth' && <AuthForm onSuccess={onCloseAuthModal} />}
 			</Modal>

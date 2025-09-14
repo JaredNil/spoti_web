@@ -7,7 +7,7 @@ export const rtkApi = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: '/api',
 	}),
-	tagTypes: ['Album', 'Track'],
+	tagTypes: ['Album', 'Track', 'User'],
 	endpoints: (builder) => ({
 		uploadAudio: builder.mutation<void, FormData>({
 			query: (formData) => ({

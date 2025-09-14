@@ -3,6 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 
 import { createReducerManager } from './reducerManager'
 
+import { metaReducer } from '@/entities/meta'
 import { userReducer } from '@/entities/user'
 import { authReducer } from '@/features/authModal'
 import { $api, rtkApi } from '@/shared/api/api'
@@ -28,6 +29,7 @@ export function createStore() {
 		user: userReducer,
 		player: playerReducer,
 		auth: authReducer,
+		meta: metaReducer,
 
 		[rtkApi.reducerPath]: rtkApi.reducer,
 	})
@@ -43,7 +45,11 @@ export function createStore() {
 				},
 			}).concat(rtkApi.middleware),
 		devTools: {
-			actionsDenylist: ['player/setProgress', 'player/setTimer'],
+			actionsDenylist: [
+				'player/setProgress',
+				'player/setVolume',
+				'player/setTimer',
+			],
 		},
 	})
 	;(store as any).reducerManager = reducerManager
