@@ -2,19 +2,27 @@
 
 import { useRouter } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
+import { useEffect } from 'react'
 import { FaUserAlt } from 'react-icons/fa'
 import { toast } from 'sonner'
 
 import { getIsVisibleModal } from '@/entities/meta'
+import {
+	useCreateUserMutation,
+	useFetchUserQuery,
+} from '@/entities/user/api/userApi'
 import { AuthModal } from '@/features/authModal'
+import { User } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
+import { ze, zw } from '@/shared/lib/log'
 import { Button } from '@/shared/ui/kit/button'
 
 export const HeaderAuthButton = () => {
 	const isVisibleModal = useAppSelector(getIsVisibleModal)
 	const routing = useRouter()
 
-	const { status } = useSession()
+	const { status, data: session } = useSession()
+	const email = session?.user?.email
 
 	const profileClick = () => {
 		if (status === 'unauthenticated') {
@@ -32,6 +40,47 @@ export const HeaderAuthButton = () => {
 			signOut({ redirect: true, redirectTo: '/auth/login' })
 		}
 	}
+
+	const {
+		data: user,
+		isLoading,
+		error,
+		refetch,
+	} = useFetchUserQuery(email!, {
+		skip: !email,
+	})
+	const [createUser, { isLoading: isCreating }] = useCreateUserMutation()
+
+	useEffect(() => {
+		if (!email || user || error === undefined) return // error === undefined → ещё не проверяли
+		if ('status' in error && error.status === 404) {
+			;(async () => {
+				try {
+					const newUser: User = {
+						email,
+						firstname:
+							session.user?.name?.split(' ')[0].trim() ?? '',
+						lastname:
+							session.user?.name?.split(' ')[1].trim() ?? '',
+						imageHash: '',
+						phone: '',
+						'2fa': false,
+						trackesId: [],
+						createdAt: new Date().toISOString(),
+						password: '',
+					}
+					console.log(newUser)
+					zw('создание пользователя')
+					await createUser(newUser).unwrap()
+					toast.success('Профиль успешно создан')
+					refetch() // обновляем кэш
+				} catch (e: any) {
+					toast.error('Не удалось создать профиль')
+					ze(`Не удалось создать профиль ${error}`)
+				}
+			})()
+		}
+	}, [email, user, error, createUser, refetch, session])
 
 	return (
 		<div className="relative flex items-center justify-between transition-all duration-300">

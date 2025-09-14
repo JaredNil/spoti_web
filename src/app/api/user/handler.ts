@@ -3,14 +3,24 @@ import { ze } from '@/shared/lib/log'
 
 const KV_URL = process.env.KV_STORAGE!
 
-export const fetchUserByEmail = async (email: string): Promise<User> => {
+export class NotFoundError extends Error {
+	constructor(message: string) {
+		super(message)
+		this.name = 'NotFoundError'
+	}
+}
+
+export const fetchUserByEmail = async (email: string): Promise<User | null> => {
 	const res = await fetch(`${KV_URL}/user/${email}`, {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' },
 	})
-	if (res.status === 404) ze('User not found')
+	if (res.status === 404) {
+		ze(`User ${email} not found`)
+		return null
+	}
 
-	if (!res.ok) throw new Error(`User ${email} not found`)
+	if (!res.ok) ze(`User ${email} not found`)
 	return res.json()
 }
 
