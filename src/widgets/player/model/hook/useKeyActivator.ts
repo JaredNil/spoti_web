@@ -30,5 +30,5 @@ export const useKeyActivator = () => {
 
 		window.addEventListener('keydown', handleKeyDown)
 		return () => window.removeEventListener('keydown', handleKeyDown)
-	}, [play, pause])
+	}, [])
 }

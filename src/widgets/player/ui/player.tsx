@@ -13,6 +13,8 @@ import { getIsRunPlayer, getTrack } from '../model/selector/playerSelector'
 import { useCurrentTrack } from '@/app/(providers)/playerProvider'
 import { useAppSelector } from '@/shared/hooks'
 
+export const PLAYER_VOLUME_WIDTH = 60 // px
+
 export const Player: React.FC = () => {
 	const router = useRouter()
 	useKeyActivator()
@@ -83,7 +85,7 @@ export const Player: React.FC = () => {
 				<div className="flex-1 pr-3 hidden sm:block">
 					<PlayerLine />
 				</div>
-				<Volume />
+				<Volume classname="mr-4" />
 			</div>
 		</div>
 	)
