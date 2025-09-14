@@ -4,5 +4,6 @@ compatibility_date = "2025-01-01"
 
 kv_namespaces = [
   { binding = "ALBUMS_KV", id = "13e1aa4d08ce4eee83cf5ebfb72d143c" },
-  { binding = "TRACKES_KV", id = "5f87f9e19a1e4f818cdef7a86e842caf" }
+  { binding = "TRACKES_KV", id = "5f87f9e19a1e4f818cdef7a86e842caf" },
+  { binding = "USERS_KV", id = "a1d0ed01342e4f3781285d2deed3b3e2" }
 ]

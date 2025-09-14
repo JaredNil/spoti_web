@@ -1,4 +1,0 @@
-Success! It may take a few minutes for DNS records to update.
-Deployed cf-kv-albums-api triggers (49.55 sec)
-  https://cf-kv-albums-api.jarefy.workers.dev
-Current Version ID: aa082098-e136-499f-bc11-7f9003293d5b
