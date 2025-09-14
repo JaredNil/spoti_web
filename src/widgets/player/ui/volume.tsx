@@ -2,9 +2,9 @@
 
 import { useRef } from 'react'
 
+import { VolumeIcon } from './piece/volumeIcon'
 import { VolumeLine } from './piece/volumeLine'
 import { PLAYER_VOLUME_WIDTH } from './player'
-import { VolumeIcon } from './volumeIcon'
 import { useDragVolume } from '../model/hook/useDragVolume'
 import { pxToVolume } from '../model/lib/pxToVolume'
 import { getVolumePlayer } from '../model/selector/playerSelector'

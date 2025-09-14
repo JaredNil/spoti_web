@@ -5,10 +5,11 @@ import { IoIosVolumeHigh } from 'react-icons/io'
 import { IoIosVolumeLow } from 'react-icons/io'
 import { IoIosVolumeMute } from 'react-icons/io'
 
-import { getVolumePlayer } from '../model/selector/playerSelector'
-import { playerAction } from '../model/slice/playerSlice'
+import { getVolumePlayer } from '../../model/selector/playerSelector'
+import { playerAction } from '../../model/slice/playerSlice'
 
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { Icons } from '@/shared/icons'
 
 export const VolumeIcon: React.FC = () => {
 	const volume = useAppSelector(getVolumePlayer)
@@ -45,9 +46,9 @@ export const VolumeIcon: React.FC = () => {
 			className="flex justify-center items-center cursor-pointer"
 			onClick={muteClickHandle}
 		>
-			{isHigh && <IoIosVolumeHigh />}
-			{isLow && <IoIosVolumeLow />}
-			{isMute && <IoIosVolumeMute />}
+			{isHigh && <Icons name="HighVolume" />}
+			{isLow && <Icons name="LowVolume" />}
+			{isMute && <Icons name="MuteVolume" />}
 		</div>
 	)
 }

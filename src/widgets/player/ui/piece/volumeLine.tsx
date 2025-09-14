@@ -13,11 +13,15 @@ export const VolumeLine = forwardRef<HTMLDivElement, VolumeLineProps>(
 		return (
 			<div
 				ref={ref}
-				className={`ml-2 w-[${PLAYER_VOLUME_WIDTH}px] min-w-[${PLAYER_VOLUME_WIDTH}px] 
-				h-[3px] bg-neutral-400/40 
-				relative cursor-pointer group 
+				className={`ml-2 h-[3px] relative
+				bg-neutral-400/40 cursor-pointer
+				group box-content
 				border-t-[10px] border-b-[10px] 
-				box-content border-black`}
+				border-black`}
+				style={{
+					width: `${PLAYER_VOLUME_WIDTH}px`,
+					minWidth: `${PLAYER_VOLUME_WIDTH}px`,
+				}}
 				onClick={handleClick}
 				onMouseDown={onMouseDown}
 			>
@@ -27,11 +31,10 @@ export const VolumeLine = forwardRef<HTMLDivElement, VolumeLineProps>(
 				>
 					<div
 						className="w-2 h-2 bg-neutral-400
-					absolute translate-x-[-3px] top-[50%] translate-y-[-50%]
-					aspect-square border rounded-xl border-neutral-600
-					opacity-0 transition-opacity duration-100
-					group-hover:opacity-100
-				"
+						absolute translate-x-[-3px] top-[50%] translate-y-[-50%]
+						aspect-square border rounded-xl border-neutral-600
+						opacity-0 transition-opacity duration-100
+						group-hover:opacity-100"
 						style={{ left: volumeWidth }}
 					></div>
 				</div>

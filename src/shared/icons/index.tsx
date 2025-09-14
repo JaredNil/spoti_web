@@ -2,7 +2,14 @@ import { Home, Pause, Search, Upload } from 'lucide-react'
 import { createElement, ReactElement, ReactNode } from 'react'
 
 import { Queue } from './headerIcon'
-import { Left, Play, Right } from './playerIcon'
+import {
+	HighVolume,
+	Left,
+	LowVolume,
+	MuteVolume,
+	Play,
+	Right,
+} from './playerIcon'
 
 const iconsStorage = {
 	Home,
@@ -12,6 +19,9 @@ const iconsStorage = {
 	Left,
 	Right,
 	Play,
+	HighVolume,
+	LowVolume,
+	MuteVolume,
 } as const
 
 export type IconName = keyof typeof iconsStorage

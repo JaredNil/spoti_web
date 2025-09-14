@@ -1,11 +1,12 @@
 'use client'
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react'
 
+import { cachedOrRemote } from '../lib/cachedOrRemote'
 import { PlayerContext } from '../lib/playerContext'
 
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { ze } from '@/shared/lib/log'
 import { getVolumePlayer, playerAction, usePlayer } from '@/widgets/player'
-import { useKeyActivator } from '@/widgets/player/model/hook/useKeyActivator'
 
 interface PlayerProvider {
 	children: React.ReactNode
@@ -29,17 +30,13 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({
 	}, [volume])
 
 	const audioTimeUpdateHandler = (event: ChangeEvent<HTMLAudioElement>) => {
-		dispatch(playerAction.setTimer(event.target.currentTime))
+		const { currentTime, duration } = event.target
+		dispatch(playerAction.setTimer(currentTime))
 
-		if (event.target.currentTime / event.target.duration <= 100) {
+		if (currentTime / duration <= 100) {
 			dispatch(
 				playerAction.setProgress(
-					Number(
-						(
-							(event.target.currentTime / event.target.duration) *
-							100
-						).toFixed(2)
-					)
+					Number(((currentTime / duration) * 100).toFixed(2))
 				)
 			)
 		}
@@ -84,13 +81,15 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({
 		[currentTrack]
 	)
 
+	const path = useMemo(() => cachedOrRemote(currentTrack), [currentTrack])
+
 	return (
 		<PlayerContext.Provider value={defaultProps}>
 			{currentTrack && (
 				<audio
 					onEnded={endedHandler}
 					ref={audioRef}
-					src={`https://hb.ru-msk.vkcloud-storage.ru/track/${currentTrack}`}
+					src={path}
 					onTimeUpdate={audioTimeUpdateHandler}
 					onDurationChange={audioChangeDurationHandler}
 					autoPlay

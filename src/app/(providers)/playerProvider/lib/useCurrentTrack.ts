@@ -20,25 +20,9 @@ export function useCurrentTrack(): CurrentTrackHook {
 		pauseTrack,
 	} = useContext(PlayerContext)
 
-	// DEPRECATED toggleTrack THROUGH TRACK INTERFACE
-	// const toggleTrack = (newTrack: Track): void => {
-
-	// 	if (setCurrentTrack && newTrack === null) setCurrentTrack(null)
-	//     else if (setCurrentTrack && newTrack !== null) {
-	//			const audio = new Audio(newTrack.songLink)
-	// 			audio.play()
-	//			audio.addEventListener('loadeddata', () => {
-	//			console.log('load track')
-	// audio.play()
-	//		})
-	// 		setCurrentTrack(newTrack)
-	// 	 }
-	// }
-
 	const toggleTrack = (newTrack: string): void => {
 		if (setCurrentTrack && newTrack === '') setCurrentTrack('')
 		else if (setCurrentTrack && newTrack !== null) {
-			// setCurrentTrack('')
 			setCurrentTrack(newTrack)
 		} else new Error('Ошибка инициализации музыки.')
 	}
