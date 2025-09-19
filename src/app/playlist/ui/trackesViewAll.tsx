@@ -1,15 +1,11 @@
 'use client'
 
-import { skipToken } from '@reduxjs/toolkit/query'
 import { useState } from 'react'
 
 import { TrackesContainer } from './trackesView/trackesContainer'
-import { TrackesEdit } from './trackesView/trackesEdit'
 import { TrackesHead } from './trackesView/trackesHead'
 
-import { AlbumInterface, useFetchAlbumQuery } from '@/entities/album'
 import { useFetchAllTrackesQuery, useFetchTrackesQuery } from '@/entities/track'
-import { Trackes } from '@/shared/api'
 import { extractIds } from '@/shared/lib/extractIds'
 import { TrackesList } from '@/shared/ui/trackesList/trackesList'
 

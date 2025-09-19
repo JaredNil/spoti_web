@@ -1,4 +1,9 @@
 export {
+	usePrefetchTrackes,
+	prefetchTrackChunk,
+} from './hooks/usePrefetchTrackes'
+
+export {
 	useFetchTrackQuery,
 	useLazyFetchTrackQuery,
 	useFetchTrackesQuery,

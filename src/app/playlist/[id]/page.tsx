@@ -11,7 +11,6 @@ export default async function PlaylistPage({
 }) {
 	const { id } = await params
 	const album = await fetchAlbumById(id)
-	// const trackes = await fetchMetaTrackesServer(album.trackesId)
 
 	return (
 		<>

@@ -10,10 +10,10 @@ export async function Track({ id }: { id: TrackId }) {
 	return (
 		<div
 			className="relative flex items-center justify-between overflow-hidden
-				h-auto
-				cursor-pointer  gap-x-4  rounded-md
-				bg-neutral-100/10  transition hover:bg-neutral-100/20
-				md:flex-row flex-col md:h-40 md:pr-4 pt-6 md:pt-0"
+			h-auto
+			cursor-pointer  gap-x-4  rounded-md
+			bg-neutral-100/10  transition hover:bg-neutral-100/20
+			md:flex-row flex-col md:h-40 md:pr-4 pt-6 md:pt-0"
 		>
 			<div
 				className="flex h-full  pointer-events-none select-none

@@ -87,12 +87,13 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({
 		<PlayerContext.Provider value={defaultProps}>
 			{currentTrack && (
 				<audio
-					onEnded={endedHandler}
-					ref={audioRef}
 					src={path}
+					ref={audioRef}
+					onEnded={endedHandler}
 					onTimeUpdate={audioTimeUpdateHandler}
 					onDurationChange={audioChangeDurationHandler}
 					autoPlay
+					crossOrigin="anonymous"
 				></audio>
 			)}
 			{children}
