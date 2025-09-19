@@ -31,7 +31,6 @@ export const TrackesView: React.FC<TrackesViewProps> = ({
 	const { data: trackes, isLoading: isLoadingTrackes } = useFetchTrackesQuery(
 		album?.trackesId || skipToken
 	)
-
 	return (
 		<TrackesContainer>
 			<TrackesHead

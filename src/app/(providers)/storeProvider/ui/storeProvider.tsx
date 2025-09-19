@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 
 import { createStore } from '../config/store'
 
-const store = createStore()
+export const store = createStore()
 export type AppDispatch = typeof store.dispatch
 
 export const StoreProvider = ({ children }: { children: ReactNode }) => {

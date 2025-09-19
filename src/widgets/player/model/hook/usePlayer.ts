@@ -8,9 +8,12 @@ import {
 import { playerAction } from '../slice/playerSlice'
 
 import { useCurrentTrack } from '@/app/(providers)/playerProvider'
-import { useLazyFetchTrackQuery } from '@/entities/track'
-import { TrackesId, TrackId } from '@/shared/api'
+import { store } from '@/app/(providers)/storeProvider/ui/storeProvider'
+import { useFetchTrackQuery, useLazyFetchTrackQuery } from '@/entities/track'
+import { trackApi } from '@/entities/track/api/trackApi'
+import { Track, Trackes, TrackesId, TrackId } from '@/shared/api'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { ze } from '@/shared/lib/log'
 
 export function usePlayer() {
 	const { playTrack, pauseTrack } = useCurrentTrack()
@@ -26,12 +29,20 @@ export function usePlayer() {
 	const dispatch = useAppDispatch()
 
 	async function loadTrack(trackId: TrackId) {
-		const { data: track } = await triggerFetchTrack(trackId)
-		if (track) {
-			dispatch(playerAction.setIsRun(true))
-			dispatch(playerAction.offLoadingTrack())
-			dispatch(playerAction.setTrack(track))
-		}
+		const state = store.getState()
+		const { data: cachedTrack } =
+			trackApi.endpoints.fetchTrack.select(trackId)(state)
+
+		let loadTrack: Trackes | null = null
+
+		if (!cachedTrack)
+			loadTrack = (await triggerFetchTrack(trackId).unwrap()) as Trackes
+
+		const track = cachedTrack?.[0] ?? loadTrack?.[0] ?? null
+
+		dispatch(playerAction.setIsRun(true))
+		dispatch(playerAction.offLoadingTrack())
+		dispatch(playerAction.setTrack(track))
 	}
 
 	function start(trackesId: TrackesId, target: number = 0) {
@@ -42,9 +53,8 @@ export function usePlayer() {
 	}
 
 	function play() {
-		if (queue.length === 0) {
-			start(['1', '2', '3', '4', '5', '6']) // as like Liked trackes, in future put in from backend
-		} else {
+		if (queue.length === 0) ze('play error, queue empty')
+		else {
 			if (playTrack) {
 				playTrack()
 				dispatch(playerAction.setIsRun(true))

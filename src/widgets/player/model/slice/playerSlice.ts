@@ -83,9 +83,11 @@ export const playerSlice = createSlice({
 		setIsRun: (state, action: PayloadAction<boolean>) => {
 			state.isRun = action.payload
 		},
-		setTrack: (state, action: PayloadAction<Track>) => {
-			state.track = action.payload
-			cacheHandle.set('track', action.payload)
+		setTrack: (state, action: PayloadAction<Track | null>) => {
+			if (action.payload) {
+				state.track = action.payload
+				cacheHandle.set('track', action.payload)
+			}
 		},
 		setTrackPause: (state, action: PayloadAction<Track>) => {
 			state.track = action.payload

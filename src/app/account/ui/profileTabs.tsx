@@ -19,7 +19,6 @@ export const ProfileTabs = () => {
 	const { status, data: session } = useSession()
 	const email = session?.user?.email
 
-	/* ------------ RTK: получаем / создаём ------------ */
 	const {
 		data: user,
 		isLoading: isLoadingUser,
@@ -29,7 +28,6 @@ export const ProfileTabs = () => {
 
 	const [createUser, { isLoading: isCreating }] = useCreateUserMutation()
 
-	/* ------------ react-hook-form + Zod ------------ */
 	const form = useForm<ProfileFormData>({
 		resolver: zodResolver(profileSchema),
 		defaultValues: {
@@ -42,7 +40,6 @@ export const ProfileTabs = () => {
 		},
 	})
 
-	/* ------------ Подмена defaultValues после загрузки ------------ */
 	useEffect(() => {
 		if (!user) return
 		form.reset({
@@ -79,12 +76,11 @@ export const ProfileTabs = () => {
 	// 	}
 	// }, [email, user, error, createUser, refetch, session])
 
-	/* ------------ Отправка обновления ------------ */
 	const onProfileSubmit = async (data: ProfileFormData) => {
 		if (!email) return
 		setIsLoading(true)
 		try {
-			// await updateUser({ email, ...data }) // ваша мутация PATCH /user/:email
+			// await updateUser({ email, ...data }) // мутация PATCH /user/:email
 			toast.success('Профиль обновлён')
 		} catch {
 			toast.error('Ошибка обновления профиля')
@@ -93,7 +89,6 @@ export const ProfileTabs = () => {
 		}
 	}
 
-	/* ------------ Загрузка аватара ------------ */
 	const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0]
 		if (!file) return
@@ -104,12 +99,10 @@ export const ProfileTabs = () => {
 		toast.success('Аватар загружен')
 	}
 
-	/* ------------ Скелетон / заглушка ------------ */
 	if (isLoadingUser || isCreating)
 		return <p className="p-4">Загрузка профиля...</p>
 	if (!user) return <p className="p-4">Профиль не найден</p>
 
-	/* ------------ Форма ------------ */
 	return (
 		<form
 			onSubmit={form.handleSubmit(onProfileSubmit)}
@@ -144,7 +137,6 @@ export const ProfileTabs = () => {
 				</div>
 			</div>
 
-			{/* Поля */}
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 				<div>
 					<Label variant="left">Имя</Label>

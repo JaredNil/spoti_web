@@ -8,18 +8,8 @@ export const rtkApi = createApi({
 		baseUrl: '/api',
 	}),
 	tagTypes: ['Album', 'Track', 'User'],
-	endpoints: (builder) => ({
-		uploadAudio: builder.mutation<void, FormData>({
-			query: (formData) => ({
-				url: '/audio/upload',
-				method: 'POST',
-				body: formData,
-			}),
-		}),
-	}),
+	endpoints: (builder) => ({}),
 })
-
-export const { useUploadAudioMutation } = rtkApi
 
 export const $api = axios.create({
 	baseURL: 'http://localhost:3000/api/',
