@@ -1,13 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { PiListBulletsThin, PiListLight } from 'react-icons/pi'
 
 import { SearchLoading } from './piece/searchLoading'
 
 import { DropdownHeader } from '@/app/playlist/ui/dropdownHeader'
-import { TrackesView } from '@/app/playlist/ui/trackesView'
 import { TrackesId } from '@/shared/api'
+import { Icons } from '@/shared/icons'
 
 interface SearchViewProps {
 	trackesId: TrackesId
@@ -36,9 +35,10 @@ export const SearchView: React.FC<SearchViewProps> = ({
 							<span className="mr-2 select-none text-neutral-400">
 								Cписок
 							</span>
-							<PiListBulletsThin
+							<Icons
+								name="ListBullets"
 								size={22}
-								fill="rgba(163, 163, 163, 1)"
+								classname="text-neutral-100"
 							/>
 						</div>
 					) : (
@@ -46,9 +46,10 @@ export const SearchView: React.FC<SearchViewProps> = ({
 							<span className="mr-2 select-none text-neutral-400">
 								Компактный
 							</span>
-							<PiListLight
+							<Icons
+								name="ListLight"
 								size={22}
-								fill="rgba(163, 163, 163, 1)"
+								classname="text-neutral-100"
 							/>
 						</div>
 					)}

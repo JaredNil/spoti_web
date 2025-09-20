@@ -26,14 +26,14 @@ export const RouteItem: React.FC<RouteItem> = memo(
 			<Link
 				href={href}
 				className={twMerge(
-					`transition, flex h-auto w-full cursor-pointer flex-row
-				items-center gap-x-4 py-1  font-medium text-neutral-400
-				hover:text-white`,
+					`transition flex h-auto w-full cursor-pointer flex-row
+					items-center gap-x-4 py-1  font-medium text-neutral-400
+					hover:text-white`,
 					isActive && 'text-white'
 				)}
 			>
-				<Icons name={label} />
-				<p className="w-100 truncate">{label}</p>
+				<Icons name={label} size={26} />
+				<p className="truncate">{label}</p>
 			</Link>
 		)
 	}

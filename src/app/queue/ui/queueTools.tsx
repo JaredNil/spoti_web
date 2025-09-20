@@ -1,9 +1,7 @@
-import { HiMiniArrowsUpDown } from 'react-icons/hi2'
-import { ImShuffle } from 'react-icons/im'
-import { WiMoonAltWaningGibbous3 } from 'react-icons/wi'
 import { toast } from 'sonner'
 
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { Icons } from '@/shared/icons'
 import { shuffle } from '@/shared/lib/shuffle'
 import {
 	getPlayerQueue,
@@ -21,14 +19,14 @@ export const QueueTools = () => {
 
 	const tools = () => [
 		{
-			icon: <WiMoonAltWaningGibbous3 />,
+			icon: <Icons name="Moon" />,
 			label: 'zapas',
 			handle: () => {
 				toast.success('Пока не придумал функциональность.', {})
 			},
 		},
 		{
-			icon: <HiMiniArrowsUpDown />,
+			icon: <Icons name="Reverse" />,
 			label: 'reverse',
 			handle: () => {
 				toast.success('Очередь развёрнута.', {})
@@ -38,7 +36,7 @@ export const QueueTools = () => {
 			},
 		},
 		{
-			icon: <ImShuffle />,
+			icon: <Icons name="Shuffle" />,
 			label: 'shuffle',
 			handle: () => {
 				toast.success('Очередь расшуршана.', {})

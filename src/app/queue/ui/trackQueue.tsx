@@ -1,10 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { FaHeart } from 'react-icons/fa'
 
 import { Track, TrackesId } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
+import { Icons } from '@/shared/icons'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 import { getPlayerTarget } from '@/widgets/player'
 
@@ -57,8 +57,7 @@ export function TrackQueue({
 			<div className="flex justify-center items-center gap-x min-w-24 absolute right-2">
 				{/* REFACTOR LIKE FEATURE IN FUTURE */}
 				<div className="cursor-pointer items-center justify-center mr-2">
-					{/* <FaRegHeart fill="rgba(255, 0, 0, 1)" /> */}
-					<FaHeart fill="rgba(255, 0, 0, 1)" />
+					<Icons name="Heart" />
 				</div>
 				<div className="w-16">
 					<PlayButton

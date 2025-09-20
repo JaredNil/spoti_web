@@ -1,4 +1,4 @@
-import { FaHeart } from 'react-icons/fa'
+import { Icons } from '@/shared/icons'
 
 export const TrackesListLike = ({ classname }: { classname?: string }) => {
 	const onLikeTrack = (event: React.MouseEvent<HTMLElement>) => {
@@ -11,8 +11,7 @@ export const TrackesListLike = ({ classname }: { classname?: string }) => {
 			cursor-pointer ${classname}`}
 			onClick={onLikeTrack}
 		>
-			{/* <FaRegHeart fill="rgba(255, 0, 0, 1)" /> */}
-			<FaHeart fill="rgba(255, 0, 0, 1)" />
+			<Icons name="Heart" />
 		</div>
 	)
 }

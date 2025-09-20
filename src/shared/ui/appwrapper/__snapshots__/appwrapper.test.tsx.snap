@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`AppWrapper snapshot 1`] = `
+<div
+  class="fixed top-0 left-0 right-0 bottom-0 w-dvw h-vh
+            flex flex-col
+            bg-black scheme-dark text-white
+            font-main className"
+>
+  snap
+</div>
+`;

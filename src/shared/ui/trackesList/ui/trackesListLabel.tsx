@@ -1,8 +1,8 @@
-import { RectangleEllipsis } from 'lucide-react'
-import { FaRegHeart } from 'react-icons/fa'
 import { twMerge } from 'tailwind-merge'
 
 import { baseRow, compactRow } from './grid'
+
+import { Icons } from '@/shared/icons'
 
 export const TrackesListLabel = ({ isCompact }: { isCompact: boolean }) => {
 	return (
@@ -21,10 +21,10 @@ export const TrackesListLabel = ({ isCompact }: { isCompact: boolean }) => {
 				className="hidden lg:flex
 				items-center justify-center"
 			>
-				<FaRegHeart fill="rgba(255, 0, 0, 1)" />
+				<Icons name="Heart" />
 			</div>
 			<div className="flex items-center justify-center">
-				<RectangleEllipsis />
+				<Icons name="Rectangle" />
 			</div>
 		</div>
 	)

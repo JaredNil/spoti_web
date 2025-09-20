@@ -7,8 +7,8 @@ export const Pause = ({ isRun }: { isRun: boolean }) => (
 				`translate-x-[2.5px] scale-x-[3] transition-transform`,
 				`${!isRun ? 'scale-y-0' : 'scale-y-[2.1]'}`
 			)}
-			fill="#48bb78"
-			stroke="#48bb78"
+			fill="oklch(72.3% 0.219 149.579)"
+			stroke="oklch(72.3% 0.219 149.579)"
 			strokeWidth="2"
 			viewBox="0 0 24 24"
 			strokeLinecap="round"
@@ -24,8 +24,8 @@ export const Pause = ({ isRun }: { isRun: boolean }) => (
 				`translate-x-[-2px] scale-x-[3] transition-transform`,
 				`${!isRun ? 'scale-y-0' : 'scale-y-[2.1]'}`
 			)}
-			fill="#48bb78"
-			stroke="#48bb78"
+			fill="oklch(72.3% 0.219 149.579)"
+			stroke="oklch(72.3% 0.219 149.579)"
 			strokeWidth="2"
 			viewBox="0 0 24 24"
 			strokeLinecap="round"

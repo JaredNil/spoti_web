@@ -1,16 +1,11 @@
 'use client'
 
 import { useMemo } from 'react'
-import { FaPause, FaPlay } from 'react-icons/fa'
 
 import { Track, TrackesId } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
-import {
-	getPlayerQueue,
-	getPlayerTarget,
-	getTrack,
-	usePlayer,
-} from '@/widgets/player'
+import { Icons } from '@/shared/icons'
+import { getTrack, usePlayer } from '@/widgets/player'
 import { getPlayerNativeQueue } from '@/widgets/player'
 
 // RELAY(TED) TRACKES ID - В КОМПОНЕНТ ЗАМЫКАЕТСЯ ПЕРЕДАННЫЙ К ЭТОЙ КНОПКЕ МАССИВ ID ТРЕКОВ,
@@ -23,8 +18,8 @@ interface PlayButtonProps {
 	classname?: string
 }
 
-const pauseIcon = <FaPause className="text-black" />
-const playIcon = <FaPlay className="text-black" />
+const pauseIcon = <Icons name="Pause" size={22} />
+const playIcon = <Icons name="Play" size={18} classname=" left-[1px]" />
 
 export const PlayButton: React.FC<PlayButtonProps> = ({
 	type = 'track',
@@ -75,13 +70,14 @@ export const PlayButton: React.FC<PlayButtonProps> = ({
 			onClick={playHandler}
 			className={`flex h-full w-full aspect-square items-center justify-center 
 			rounded-full bg-green-500 drop-shadow-md
-			transition hover:scale-110 group-hover:opacity-100 pointer-events-auto 
+			transition hover:scale-110 group-hover:opacity-100 pointer-events-auto
+			[&_svg]:fill-black
 			${classname} 
 			${
 				isRun &&
 				track?.id == playerTrack?.id &&
 				type == 'track' &&
-				'bg-transparent *:fill-green-500'
+				'bg-transparent [&_svg]:fill-green-500'
 			}`}
 		>
 			{activeIcon}

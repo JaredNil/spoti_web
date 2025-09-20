@@ -1,9 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { IoIosVolumeHigh } from 'react-icons/io'
-import { IoIosVolumeLow } from 'react-icons/io'
-import { IoIosVolumeMute } from 'react-icons/io'
 
 import { getVolumePlayer } from '../../model/selector/playerSelector'
 import { playerAction } from '../../model/slice/playerSlice'

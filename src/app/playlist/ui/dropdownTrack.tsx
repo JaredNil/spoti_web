@@ -12,6 +12,7 @@ import { toast } from 'sonner'
 
 import { Track } from '@/shared/api'
 import { useChangeAlbum } from '@/shared/hooks/useChangeAlbum'
+import { Icons } from '@/shared/icons'
 
 export interface DropdownTrackProps {
 	albumPageId: string
@@ -43,7 +44,7 @@ export const DropdownTrack: FC<DropdownTrackProps> = ({
 		>
 			<DropdownMenu>
 				<DropdownMenuTrigger>
-					<HiOutlineDotsHorizontal size={30} className="text-white" />
+					<Icons name="Dots" size={30} classname="text-white" />
 				</DropdownMenuTrigger>
 				<DropdownMenuContent
 					side="right"

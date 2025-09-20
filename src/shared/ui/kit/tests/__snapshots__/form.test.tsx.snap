@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Form components snapshot полной формы 1`] = `
+<form>
+  <div
+    class="grid gap-2"
+    data-slot="form-item"
+  >
+    <label
+      class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 data-[error=true]:text-destructive"
+      data-error="false"
+      data-slot="form-label"
+      for="«r3»-form-item"
+    >
+      Name
+    </label>
+    <input
+      aria-describedby="«r3»-form-item-description"
+      aria-invalid="false"
+      data-slot="form-control"
+      data-testid="input"
+      id="«r3»-form-item"
+      name="name"
+      value=""
+    />
+    <p
+      class="text-muted-foreground text-sm"
+      data-slot="form-description"
+      id="«r3»-form-item-description"
+    >
+      Your full name
+    </p>
+  </div>
+  <button
+    type="submit"
+  >
+    submit
+  </button>
+</form>
+`;

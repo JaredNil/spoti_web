@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
 import { useEffect } from 'react'
-import { FaUserAlt } from 'react-icons/fa'
 import { toast } from 'sonner'
 
 import { getIsVisibleModal } from '@/entities/meta'
@@ -14,6 +13,7 @@ import {
 import { AuthModal } from '@/features/authModal'
 import { User } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
+import { Icons } from '@/shared/icons'
 import { ze, zw } from '@/shared/lib/log'
 import { Button } from '@/shared/ui/kit/button'
 
@@ -83,13 +83,21 @@ export const HeaderAuthButton = () => {
 	}, [email, user, error, createUser, refetch, session])
 
 	return (
-		<div className="relative flex items-center justify-between transition-all duration-300">
+		<div
+			className="relative flex items-center justify-between 
+			transition-all duration-300"
+		>
 			<Button
 				onClick={profileClick}
-				className="transition-all duration-150 bg-white cursor-pointer rounded-full"
+				className="transition-all aspect-square duration-150 
+				bg-white cursor-pointer rounded-full"
 				disabled={status === 'loading'}
 			>
-				<FaUserAlt fill="#000000" />
+				<Icons
+					name="Profile"
+					size={12}
+					classname="[&>svg]:fill-black"
+				/>
 			</Button>
 			<Button
 				onClick={authClick}

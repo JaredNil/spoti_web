@@ -1,5 +1,3 @@
-import { FaPlay } from 'react-icons/fa'
-
 import { Pause } from './pause'
 import { usePlayer } from '../../model/hook/usePlayer'
 import { getIsRunPlayer } from '../../model/selector/playerSelector'
@@ -31,12 +29,12 @@ export const PlayerPlay = () => {
 				className="h-10 w-10 flex justify-center items-center
 				border-[1px] border-green-500 rounded-full border-opacity-70 cursor-pointer"
 			>
-				<FaPlay
-					size={25}
-					fill="#48bb78"
-					className={`pointer-events-none translate-x-[2px] origin-[5px]
-					transition-transform
-					${!isRun ? '' : 'scale-x-[0.1]'}`}
+				<Icons
+					name="Play"
+					size={22}
+					classname={`pointer-events-none translate-x-[2px] origin-[5px]
+					transition-transform [&>svg]:fill-green-500
+					${!isRun ? '' : 'scale-x-[0.05]'}`}
 				/>
 				<Pause isRun={isRun} />
 			</div>

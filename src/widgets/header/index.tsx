@@ -2,34 +2,31 @@
 
 import { useRouter } from 'next/navigation'
 import { FC } from 'react'
-import { IconType } from 'react-icons'
-import { BiSearch } from 'react-icons/bi'
-import { HiHome } from 'react-icons/hi'
-import { HiOutlineChevronLeft, HiOutlineChevronRight } from 'react-icons/hi2'
-import { TbFileUpload } from 'react-icons/tb'
 
 import { HeaderAuthButton } from './headerAuth'
+
+import { IconName, Icons } from '@/shared/icons'
 
 interface HeaderSetting {
 	desktop: {
 		href: string
-		icon: IconType
+		icon: IconName
 	}[]
 	arrow: {
 		href: 'back' | 'forward'
-		icon: IconType
+		icon: IconName
 	}[]
 }
 
 const headerSetting: HeaderSetting = {
 	desktop: [
-		{ href: '/home', icon: HiHome },
-		{ href: '/search', icon: BiSearch },
-		{ href: '/upload', icon: TbFileUpload },
+		{ href: '/home', icon: 'Home' },
+		{ href: '/search', icon: 'Search' },
+		{ href: '/upload', icon: 'Upload' },
 	],
 	arrow: [
-		{ href: 'back', icon: HiOutlineChevronLeft },
-		{ href: 'forward', icon: HiOutlineChevronRight },
+		{ href: 'back', icon: 'LeftArrow' },
+		{ href: 'forward', icon: 'RightArrow' },
 	],
 }
 
@@ -55,11 +52,11 @@ export const Header: FC = () => {
 							className=" flex h-[35px] w-[35px] 
 							cursor-pointer items-center justify-center 
 							rounded-full  bg-black 
-							transition hover:opacity-75
-                        	"
+							transition hover:opacity-75"
 						>
-							<btn.icon
-								className={`${btn.href == 'forward' ? `ml-[3px]` : `mr-[3px]`} text-white`}
+							<Icons
+								name={btn.icon}
+								classname={`${btn.href == 'forward' ? `ml-[2px]` : `mr-[2px]`} text-white`}
 								size={23}
 							/>
 						</div>
@@ -74,7 +71,11 @@ export const Header: FC = () => {
 							rounded-full bg-white p-2 transition 
 							hover:opacity-75"
 						>
-							<btn.icon className="text-black" size={20} />
+							<Icons
+								name={btn.icon}
+								size={20}
+								classname="text-black"
+							/>
 						</div>
 					))}
 				</div>

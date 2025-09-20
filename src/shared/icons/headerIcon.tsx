@@ -57,3 +57,61 @@ export const Queue = () => (
 		<path d="M28,64A12,12,0,0,1,40,52H216a12,12,0,0,1,0,24H40A12,12,0,0,1,28,64Zm104,52H40a12,12,0,0,0,0,24h92a12,12,0,0,0,0-24Zm0,64H40a12,12,0,0,0,0,24h92a12,12,0,0,0,0-24Zm120-20a12,12,0,0,1-5.64,10.18l-64,40A12,12,0,0,1,164,200V120a12,12,0,0,1,18.36-10.18l64,40A12,12,0,0,1,252,160Zm-34.64,0L188,141.65v36.7Z"></path>
 	</svg>
 )
+export const Overview = () => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		className="lucide lucide-telescope-icon lucide-telescope"
+	>
+		<path d="m10.065 12.493-6.18 1.318a.934.934 0 0 1-1.108-.702l-.537-2.15a1.07 1.07 0 0 1 .691-1.265l13.504-4.44" />
+		<path d="m13.56 11.747 4.332-.924" />
+		<path d="m16 21-3.105-6.21" />
+		<path d="M16.485 5.94a2 2 0 0 1 1.455-2.425l1.09-.272a1 1 0 0 1 1.212.727l1.515 6.06a1 1 0 0 1-.727 1.213l-1.09.272a2 2 0 0 1-2.425-1.455z" />
+		<path d="m6.158 8.633 1.114 4.456" />
+		<path d="m8 21 3.105-6.21" />
+		<circle cx="12" cy="13" r="2" />
+	</svg>
+)
+export const LeftArrow = () => (
+	<svg
+		stroke="currentColor"
+		fill="none"
+		stroke-width="1.5"
+		viewBox="0 0 24 24"
+		aria-hidden="true"
+		height="1em"
+		width="1em"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M15.75 19.5 8.25 12l7.5-7.5"
+		></path>
+	</svg>
+)
+export const RightArrow = () => (
+	<svg
+		stroke="currentColor"
+		fill="none"
+		stroke-width="1.5"
+		viewBox="0 0 24 24"
+		aria-hidden="true"
+		height="1em"
+		width="1em"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="m8.25 4.5 7.5 7.5-7.5 7.5"
+		></path>
+	</svg>
+)

@@ -8,7 +8,8 @@ import {
 	DropdownMenuTrigger,
 } from '@radix-ui/react-dropdown-menu'
 import { FC } from 'react'
-import { HiOutlineDotsHorizontal } from 'react-icons/hi'
+
+import { Icons } from '@/shared/icons'
 
 const dropdownOptions = [
 	{
@@ -34,10 +35,7 @@ export const DropdownHeader: FC = () => {
 		>
 			<DropdownMenu>
 				<DropdownMenuTrigger>
-					<HiOutlineDotsHorizontal
-						size={32}
-						className="text-neutral-400"
-					/>
+					<Icons name="Dots" size={33} />
 				</DropdownMenuTrigger>
 				<DropdownMenuContent
 					side="right"
