@@ -7,50 +7,50 @@ import { TrackesContainer } from './trackesView/trackesContainer'
 import { TrackesEdit } from './trackesView/trackesEdit'
 import { TrackesHead } from './trackesView/trackesHead'
 
-import { AlbumInterface, useFetchAlbumQuery } from '@/entities/album'
+import { Album, useFetchAlbumQuery } from '@/entities/album'
 import { useFetchTrackesQuery } from '@/entities/track'
 import { Trackes } from '@/shared/api'
 import { TrackesList } from '@/shared/ui/trackesList/trackesList'
 
 interface TrackesViewProps {
-	albumPreload?: AlbumInterface
+	albumPreload?: Album
 	trackesPreload?: Trackes
-	albumId: string
+	albumHash: string
 }
 
 export const TrackesView: React.FC<TrackesViewProps> = ({
 	albumPreload,
 	trackesPreload,
-	albumId,
+	albumHash,
 }) => {
 	const [isCompact, setIsList] = useState<boolean>(false)
 	const toggleList = () => setIsList((prev) => !prev)
 
 	const { data: album, isLoading: isLoadingAlbum } =
-		useFetchAlbumQuery(albumId)
+		useFetchAlbumQuery(albumHash)
 	const { data: trackes, isLoading: isLoadingTrackes } = useFetchTrackesQuery(
-		album?.trackesId || skipToken
+		album?.trackesHash || skipToken
 	)
-	// usePrefetchTrackes(trackes) // refactor in future
+	// usePrefetchTrackes(trackes) // Больше не нужно, перефакторить
 
 	return (
 		<TrackesContainer>
 			<TrackesHead
-				trackesId={album?.trackesId}
+				trackesHash={album?.trackesHash}
 				toggleList={toggleList}
 				isCompact={isCompact}
 			/>
 
 			<TrackesList
 				isCompact={isCompact}
-				relayTrackesId={album?.trackesId || albumPreload?.trackesId}
-				albumPageId={albumId}
+				relayTrackesId={album?.trackesHash || albumPreload?.trackesHash}
+				albumPageId={albumHash}
 				trackes={trackes || trackesPreload}
 				isLoadingTrackes={isLoadingTrackes || isLoadingAlbum}
 			/>
 			<TrackesEdit
 				isCompact={isCompact}
-				albumPageId={albumId}
+				albumPageId={albumHash}
 				classname="pb-[30px]"
 			/>
 		</TrackesContainer>

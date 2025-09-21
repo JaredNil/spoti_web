@@ -3,7 +3,7 @@ import {
 	fetchAlbumsJarefy,
 	fetchAlbumsCommunity,
 } from '@/app/api/album/handler'
-import { AlbumInterface, Album } from '@/entities/album'
+import { AlbumCard, Album } from '@/entities/album'
 import { ze } from '@/shared/lib/log'
 
 export type AlbumListType = 'COMMON' | 'USER' | 'COMMUNITY'
@@ -26,7 +26,7 @@ export const AlbumsCollection: React.FC<AlbumsCollectionProps> = async ({
 }: AlbumsCollectionProps) => {
 	const title = getAlbumListTitle(type)
 
-	let albums: AlbumInterface[] = []
+	let albums: Album[] = []
 
 	if (type === 'USER') {
 		albums = await fetchAlbumsByUser('1') // REFACTOR TO REQ BY USERID FROM DB
@@ -57,8 +57,11 @@ export const AlbumsCollection: React.FC<AlbumsCollectionProps> = async ({
 				    lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8
 					${classname}`}
 			>
-				{albums.map((album) => (
-					<Album key={album.id} data={album} />
+				{albums.map((album, index) => (
+					<AlbumCard
+						key={album.hash + index.toString()}
+						data={album}
+					/>
 				))}
 			</div>
 		</>

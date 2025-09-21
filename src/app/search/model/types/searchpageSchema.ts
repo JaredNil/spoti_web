@@ -1,8 +1,8 @@
-import { Trackes, TrackesId } from '@/shared/api'
+import { Trackes, TrackesHash } from '@/shared/api'
 
 export interface SearchpageSchema {
 	isLoading?: boolean
 	trackes: Trackes
-	trackesId: TrackesId
+	trackesHash: TrackesHash
 	error?: string
 }

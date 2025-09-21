@@ -1,4 +1,5 @@
 import { PutObjectCommand } from '@aws-sdk/client-s3'
+import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 import { toast } from 'sonner'
 
@@ -12,6 +13,7 @@ import { shortHash } from '@/shared/lib/hash'
 import { z, ze, zw } from '@/shared/lib/log'
 
 export const useUploadTrack = () => {
+	const { data } = useSession()
 	const [createTrack, { isLoading: isCreating }] = useCreateTrackMutation()
 
 	const [tracks, setTracks] = useState<TrackForm[]>([])
@@ -30,11 +32,10 @@ export const useUploadTrack = () => {
 
 		const hash = shortHash()
 		const newTrack: Track = {
-			id: hash,
-			userId: '1',
+			hash: hash,
+			user: data!.user!.email ?? 'Empty email',
 			author: trackRaw.author,
 			title: trackRaw.title,
-			hash: hash,
 			songLink: `${hash}.mp3`,
 		}
 		const key = `${hash}.mp3`

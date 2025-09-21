@@ -5,16 +5,16 @@ import { useState } from 'react'
 import { SearchLoading } from './piece/searchLoading'
 
 import { DropdownHeader } from '@/app/playlist/ui/dropdownHeader'
-import { TrackesId } from '@/shared/api'
+import { TrackesHash } from '@/shared/api'
 import { Icons } from '@/shared/icons'
 
 interface SearchViewProps {
-	trackesId: TrackesId
+	trackesHash: TrackesHash
 	isLoading: boolean
 }
 
 export const SearchView: React.FC<SearchViewProps> = ({
-	trackesId,
+	trackesHash,
 	isLoading,
 }: SearchViewProps) => {
 	const [isCompact, setIsList] = useState<boolean>(false)

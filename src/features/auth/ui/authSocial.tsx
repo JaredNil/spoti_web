@@ -6,17 +6,7 @@ import { FaGoogle, FaYandex } from 'react-icons/fa'
 
 import { Button } from '@/shared/ui/kit/button'
 
-// import { authService } from '../services'
-
 export function AuthSocial() {
-	const router = useRouter()
-
-	// const { mutateAsync } = useMutation({
-	// 	mutationKey: ['oauth by provider'],
-	// 	mutationFn: async (provider: 'google' | 'yandex') =>
-	// 		await authService.oauthByProvider(provider),
-	// })
-
 	const onClick = async (provider: 'google' | 'yandex') => {
 		await signIn(provider)
 	}

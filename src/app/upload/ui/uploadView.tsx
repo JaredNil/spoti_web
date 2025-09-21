@@ -1,11 +1,10 @@
-import { Dispatch } from '@reduxjs/toolkit'
 import { FormEvent, SetStateAction } from 'react'
 
 import { UploadViewControllers } from './uploadView/uploadViewControllers'
 import { UploadViewProperty } from './uploadView/uploadViewProperty'
 import { UploadViewStatus } from './uploadView/uploadViewStatus'
 import { UploadViewTitle } from './uploadView/uploadViewTitle'
-import { TrackForm, TrackMeta } from '../model/types'
+import { TrackForm } from '../model/types'
 
 export const UploadView = ({
 	tracks,

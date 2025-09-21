@@ -18,12 +18,12 @@ export const setAsyncTrack = createAsyncThunk<Track, void, ThunkConfig>(
 		const track = (await res.json()) as SpotifyApi.TrackObjectFull
 		console.log(track)
 		const newTrack: Track = {
-			id: track.id,
+			hash: track.id,
+			user: 'spotify',
 			title: track.name,
 			author: track.artists[0].name,
 			imageLink: track.album.images[0].url,
 			songLink: track.uri,
-			userId: '0',
 		}
 		return newTrack
 	}

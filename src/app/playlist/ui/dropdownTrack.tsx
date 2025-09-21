@@ -7,7 +7,6 @@ import {
 	DropdownMenuTrigger,
 } from '@radix-ui/react-dropdown-menu'
 import { FC } from 'react'
-import { HiOutlineDotsHorizontal } from 'react-icons/hi'
 import { toast } from 'sonner'
 
 import { Track } from '@/shared/api'

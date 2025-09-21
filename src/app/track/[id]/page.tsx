@@ -23,7 +23,7 @@ export default async function PlaylistPage({
 	return (
 		<>
 			<Title title={'Track page'} />
-			<Track id={id} />
+			<Track hash={id} />
 		</>
 	)
 }

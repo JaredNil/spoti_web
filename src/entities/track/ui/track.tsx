@@ -1,11 +1,11 @@
 import Image from 'next/image'
 
 import { fetchMetaTrackServer } from '@/app/api/track/handlerMeta'
-import { TrackId } from '@/shared/api'
+import { TrackHash } from '@/shared/api'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
-export async function Track({ id }: { id: TrackId }) {
-	const track = await fetchMetaTrackServer(id)
+export async function Track({ hash }: { hash: TrackHash }) {
+	const track = await fetchMetaTrackServer(hash)
 
 	return (
 		<div
@@ -41,7 +41,11 @@ export async function Track({ id }: { id: TrackId }) {
 				</div>
 			</div>
 			<div className="w-30 md:w-16 py-16 md:py-0">
-				<PlayButton relayTrackesId={[id]} track={track} type="track" />
+				<PlayButton
+					relayTrackesId={[hash]}
+					track={track}
+					type="track"
+				/>
 			</div>
 		</div>
 	)

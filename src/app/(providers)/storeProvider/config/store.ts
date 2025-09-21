@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { setupListeners } from '@reduxjs/toolkit/query'
 
 import { createReducerManager } from './reducerManager'
 
@@ -8,7 +7,7 @@ import { userReducer } from '@/entities/user'
 import { authReducer } from '@/features/authModal'
 import { $api, rtkApi } from '@/shared/api/api'
 import { StateSchema } from '@/shared/lib/state'
-import { playerReducer, usePlayer } from '@/widgets/player'
+import { playerReducer } from '@/widgets/player'
 
 export interface ThunkExtraArg {
 	api: typeof $api

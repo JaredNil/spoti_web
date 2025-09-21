@@ -9,11 +9,6 @@ const initialState: AuthSchema = {
 	isLoading: true,
 	isValid: false,
 	error: undefined,
-
-	// DEPRECATED
-	// isOpen: false,
-	// onClose: ()=>{},
-	// onOpen: ()=>{},
 }
 
 export const authSlice = createSlice({

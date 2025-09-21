@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 
-import { Track, TrackesId } from '@/shared/api'
+import { Track, TrackesHash } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
 import { Icons } from '@/shared/icons'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
@@ -11,11 +11,11 @@ import { getPlayerTarget } from '@/widgets/player'
 export function TrackQueue({
 	track,
 	target,
-	trackesId,
+	trackesHash,
 }: {
 	track: Track
 	target: number
-	trackesId: TrackesId
+	trackesHash: TrackesHash
 }) {
 	const currentTarget = useAppSelector(getPlayerTarget)
 	return (
@@ -62,7 +62,7 @@ export function TrackQueue({
 				<div className="w-16">
 					<PlayButton
 						type="track"
-						relayTrackesId={trackesId}
+						relayTrackesId={trackesHash}
 						target={target}
 						track={track}
 					/>

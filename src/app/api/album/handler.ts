@@ -1,7 +1,7 @@
-import { AlbumInterface, AlbumsCollection } from '@/shared/api'
+import { Album, AlbumsCollection } from '@/shared/api'
 import { ze } from '@/shared/lib/log'
 
-export const fetchAlbumById = async (id: string): Promise<AlbumInterface> => {
+export const fetchAlbumById = async (id: string): Promise<Album> => {
 	const albumData = await fetch(`${process.env.KV_STORAGE}/albums/${id}`, {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' },
@@ -9,9 +9,9 @@ export const fetchAlbumById = async (id: string): Promise<AlbumInterface> => {
 	if (!albumData.ok) {
 		throw new Error(`Album ${id} not found`)
 	}
-	const album = (await albumData.json()) as AlbumInterface
-	album.trackesId.forEach(
-		(trackId, i) => (album.trackesId[i] = trackId.toString())
+	const album = (await albumData.json()) as Album
+	album.trackesHash.forEach(
+		(trackHash, i) => (album.trackesHash[i] = trackHash.toString())
 	)
 	return album
 }
@@ -49,7 +49,7 @@ export const fetchAlbumsByUser = async (
 		// number to string id-hash
 		const checkedAlbums = albums.filter(Boolean).map((album) => ({
 			...album,
-			trackesId: album.trackesId?.map((id) => String(id)) ?? [],
+			TrackesHash: album.trackesHash?.map((id) => String(id)) ?? [],
 		})) as AlbumsCollection
 
 		return checkedAlbums
@@ -79,7 +79,7 @@ export const fetchAlbumsJarefy = async (): Promise<AlbumsCollection> => {
 
 	const checkedAlbums = albums.filter(Boolean).map((album) => ({
 		...album,
-		trackesId: album.trackesId?.map((id) => String(id)) ?? [],
+		TrackesHash: album.trackesHash?.map((id) => String(id)) ?? [],
 	})) as AlbumsCollection
 
 	return checkedAlbums
@@ -102,7 +102,7 @@ export const fetchAlbumsCommunity = async (): Promise<AlbumsCollection> => {
 
 export const updateAlbum = async (
 	albumId: string,
-	body: AlbumInterface
+	body: Album
 ): Promise<void> => {
 	fetch(`${process.env.KV_STORAGE}/albums/${albumId}`, {
 		method: 'PUT',
@@ -114,7 +114,7 @@ export const updateAlbum = async (
 	})
 }
 
-export const createAlbum = async (body: AlbumInterface): Promise<number> => {
+export const createAlbum = async (body: Album): Promise<number> => {
 	return fetch(`${process.env.KV_STORAGE}/albums`, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },

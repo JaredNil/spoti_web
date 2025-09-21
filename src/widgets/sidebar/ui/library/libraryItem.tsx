@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { AlbumInterface } from '@/entities/album'
+import { Album } from '@/entities/album'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
 interface LibraryItemProps {
-	album: AlbumInterface
+	album: Album
 }
 
 export const LibraryItem: React.FC<LibraryItemProps> = ({
@@ -34,17 +34,17 @@ export const LibraryItem: React.FC<LibraryItemProps> = ({
 				className="select-none text-neutral-300 text-ellipsis text-sm
 					whitespace-nowrap tracking-wide w-full overflow-hidden"
 			>
-				{album && album?.id === '0' ? '' : ' '}
+				{album && album?.hash === '0' ? '' : ' '}
 				<span className="font-medium">{album?.author}</span>
-				{album && album?.id === '0' ? '' : ` - `}
+				{album && album?.hash === '0' ? '' : ` - `}
 				<span>{album?.title}</span>
 			</div>
 			<Link
-				href={`/playlist/${album.id}`}
+				href={`/playlist/${album.hash}`}
 				className="absolute w-full h-full top-0 left-0 "
 			/>
 			<div className="relative h-3/4 opacity-0 group-hover:opacity-100 right-1">
-				<PlayButton relayTrackesId={album.trackesId} type="album" />
+				<PlayButton relayTrackesId={album.trackesHash} type="album" />
 			</div>
 		</div>
 	</div>

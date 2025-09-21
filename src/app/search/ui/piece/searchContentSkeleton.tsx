@@ -1,7 +1,4 @@
 'use client'
-import { useState } from 'react'
-
-// import { Trackes } from '@/entities/track';
 import { Input } from '@/shared/ui/kit/input'
 
 export const SearchContentSkeleton: React.FC = () => {

@@ -6,5 +6,5 @@ export const getIsLoadingPage = (state: StateSchema) =>
 export const getSearchTrackes = (state: StateSchema) =>
 	state.searchpage?.trackes
 
-export const getSearchTrackesId = (state: StateSchema) =>
-	state.searchpage?.trackesId
+export const getSearchTrackesHash = (state: StateSchema) =>
+	state.searchpage?.trackesHash

@@ -2,7 +2,7 @@ export const Dots = () => (
 	<svg
 		stroke="currentColor"
 		fill="none"
-		stroke-width="2"
+		strokeWidth="2"
 		viewBox="0 0 24 24"
 		aria-hidden="true"
 		height="1em"
@@ -10,8 +10,8 @@ export const Dots = () => (
 		xmlns="http://www.w3.org/2000/svg"
 	>
 		<path
-			stroke-linecap="round"
-			stroke-linejoin="round"
+			strokeLinecap="round"
+			strokeLinejoin="round"
 			d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
 		></path>
 	</svg>
@@ -20,7 +20,7 @@ export const Moon = () => (
 	<svg
 		stroke="currentColor"
 		fill="currentColor"
-		stroke-width="0"
+		strokeWidth="0"
 		version="1.1"
 		id="Layer_1"
 		x="0px"
@@ -32,12 +32,12 @@ export const Moon = () => (
 	>
 		<path
 			d="M3.74,14.44c0-1.52,0.3-2.98,0.89-4.37s1.4-2.58,2.4-3.59s2.2-1.81,3.59-2.4s2.84-0.89,4.37-0.89s2.98,0.3,4.37,0.89
-	s2.59,1.4,3.6,2.4s1.81,2.2,2.4,3.59s0.89,2.84,0.89,4.37s-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.6s-2.2,1.81-3.6,2.4
-	s-2.85,0.89-4.37,0.89s-2.98-0.3-4.37-0.89s-2.58-1.4-3.59-2.4s-1.81-2.2-2.4-3.6S3.74,15.97,3.74,14.44z M4.94,14.44
-	c0,1.37,0.27,2.67,0.8,3.91s1.25,2.31,2.15,3.21s1.97,1.61,3.21,2.15s2.54,0.8,3.9,0.8c0.33,0,0.58,0,0.73-0.01
-	c0.78-0.61,1.44-1.31,1.96-2.11s0.92-1.66,1.18-2.57s0.44-1.79,0.54-2.63s0.15-1.75,0.15-2.74c0-1.91-0.32-3.76-0.97-5.54
-	s-1.65-3.28-3.02-4.49c-0.13-0.01-0.32-0.01-0.59-0.01c-1.36,0-2.66,0.27-3.9,0.8S8.79,6.44,7.89,7.34s-1.61,1.97-2.15,3.21
-	S4.94,13.09,4.94,14.44z"
+			s2.59,1.4,3.6,2.4s1.81,2.2,2.4,3.59s0.89,2.84,0.89,4.37s-0.3,2.98-0.89,4.37s-1.4,2.59-2.4,3.6s-2.2,1.81-3.6,2.4
+			s-2.85,0.89-4.37,0.89s-2.98-0.3-4.37-0.89s-2.58-1.4-3.59-2.4s-1.81-2.2-2.4-3.6S3.74,15.97,3.74,14.44z M4.94,14.44
+			c0,1.37,0.27,2.67,0.8,3.91s1.25,2.31,2.15,3.21s1.97,1.61,3.21,2.15s2.54,0.8,3.9,0.8c0.33,0,0.58,0,0.73-0.01
+			c0.78-0.61,1.44-1.31,1.96-2.11s0.92-1.66,1.18-2.57s0.44-1.79,0.54-2.63s0.15-1.75,0.15-2.74c0-1.91-0.32-3.76-0.97-5.54
+			s-1.65-3.28-3.02-4.49c-0.13-0.01-0.32-0.01-0.59-0.01c-1.36,0-2.66,0.27-3.9,0.8S8.79,6.44,7.89,7.34s-1.61,1.97-2.15,3.21
+			S4.94,13.09,4.94,14.44z"
 		></path>
 	</svg>
 )
@@ -45,7 +45,7 @@ export const Reverse = () => (
 	<svg
 		stroke="currentColor"
 		fill="currentColor"
-		stroke-width="0"
+		strokeWidth="0"
 		viewBox="0 0 20 20"
 		aria-hidden="true"
 		height="1em"
@@ -53,9 +53,9 @@ export const Reverse = () => (
 		xmlns="http://www.w3.org/2000/svg"
 	>
 		<path
-			fill-rule="evenodd"
+			fillRule="evenodd"
 			d="M2.24 6.8a.75.75 0 0 0 1.06-.04l1.95-2.1v8.59a.75.75 0 0 0 1.5 0V4.66l1.95 2.1a.75.75 0 1 0 1.1-1.02l-3.25-3.5a.75.75 0 0 0-1.1 0L2.2 5.74a.75.75 0 0 0 .04 1.06Zm8 6.4a.75.75 0 0 0-.04 1.06l3.25 3.5a.75.75 0 0 0 1.1 0l3.25-3.5a.75.75 0 1 0-1.1-1.02l-1.95 2.1V6.75a.75.75 0 0 0-1.5 0v8.59l-1.95-2.1a.75.75 0 0 0-1.06-.04Z"
-			clip-rule="evenodd"
+			clipRule="evenodd"
 		></path>
 	</svg>
 )
@@ -63,7 +63,7 @@ export const Shuffle = () => (
 	<svg
 		stroke="currentColor"
 		fill="currentColor"
-		stroke-width="0"
+		strokeWidth="0"
 		version="1.1"
 		viewBox="0 0 16 16"
 		height="1em"
@@ -77,7 +77,7 @@ export const ListBullets = () => (
 	<svg
 		stroke="currentColor"
 		fill="currentColor"
-		stroke-width="0"
+		strokeWidth="0"
 		viewBox="0 0 256 256"
 		height="1em"
 		width="1em"
@@ -90,7 +90,7 @@ export const ListLight = () => (
 	<svg
 		stroke="currentColor"
 		fill="currentColor"
-		stroke-width="0"
+		strokeWidth="0"
 		viewBox="0 0 256 256"
 		height="1em"
 		width="1em"
@@ -103,7 +103,7 @@ export const Heart = () => (
 	<svg
 		stroke="rgba(255, 0, 0, 1)"
 		fill="rgba(255, 0, 0, 1)"
-		stroke-width="0"
+		strokeWidth="0"
 		viewBox="0 0 512 512"
 		height="1em"
 		width="1em"
@@ -117,7 +117,7 @@ export const HeartEmpty = () => (
 	<svg
 		stroke="rgba(255, 0, 0, 1)"
 		fill="rgba(255, 0, 0, 1)"
-		stroke-width="0"
+		strokeWidth="0"
 		viewBox="0 0 256 256"
 		height="1em"
 		width="1em"
@@ -130,7 +130,7 @@ export const Profile = () => (
 	<svg
 		stroke="currentColor"
 		fill="currentColor"
-		stroke-width="0"
+		strokeWidth="0"
 		viewBox="0 0 512 512"
 		height="1em"
 		width="1em"
@@ -147,9 +147,9 @@ export const Rectangle = () => (
 		viewBox="0 0 24 24"
 		fill="none"
 		stroke="currentColor"
-		stroke-width="2"
-		stroke-linecap="round"
-		stroke-linejoin="round"
+		strokeWidth="2"
+		strokeLinecap="round"
+		strokeLinejoin="round"
 		className="lucide lucide-rectangle-ellipsis-icon lucide-rectangle-ellipsis"
 	>
 		<rect width="20" height="12" x="2" y="6" rx="2" />

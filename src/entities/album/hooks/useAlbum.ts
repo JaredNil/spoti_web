@@ -4,25 +4,23 @@ import { toast } from 'sonner'
 
 import { useCreateAlbumMutation } from '../api/albumApi'
 
-import { AlbumInterface } from '@/shared/api'
+import { Album } from '@/shared/api'
 import { shortHash } from '@/shared/lib/hash'
 
 export const useCreateAlbum = () => {
 	const { data: session } = useSession()
 
-	const [createAlbumQuery, { isLoading: isCreating }] =
-		useCreateAlbumMutation()
+	const [createAlbumQuery] = useCreateAlbumMutation()
 
 	const createAlbum = () => {
 		const hash = shortHash()
-		const newAlbum: AlbumInterface = {
-			author: session?.user?.name || 'Spotify user #2392',
-			id: hash,
-			user_id: session?.user?.id || '1',
+		const newAlbum: Album = {
+			author: session?.user?.name || 'Unknowing album',
+			hash: hash,
 			title: `${hash} album`,
-			trackesId: [],
+			trackesHash: [],
 			creationDate: new Date().toDateString(),
-			description: 'New album description',
+			description: 'Unknowing album description',
 			imagePath: '',
 		}
 		createAlbumQuery(newAlbum).then(() => toast.success('Album created'))

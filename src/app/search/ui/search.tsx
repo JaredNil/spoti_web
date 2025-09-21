@@ -5,7 +5,7 @@ import { SearchView } from './searchView'
 import {
 	getIsLoadingPage,
 	getSearchTrackes,
-	getSearchTrackesId,
+	getSearchTrackesHash,
 } from '../model/selector/searchpageSelector'
 import { searchpageAction } from '../model/slice/searchpageSlice'
 
@@ -20,7 +20,7 @@ export const Search: React.FC = () => {
 	const dispatch = useAppDispatch()
 
 	const trackes = useAppSelector(getSearchTrackes)
-	const trackesId = useAppSelector(getSearchTrackesId)
+	const trackesHash = useAppSelector(getSearchTrackesHash)
 	const searchInput = useAppSelector(getUserSearch)
 	const isLoading = useAppSelector(getIsLoadingPage)
 
@@ -52,8 +52,11 @@ export const Search: React.FC = () => {
 			/>
 			<div className="w-full mt-3 flex flex-col">
 				<span className="text-2xl select-none">Результаты поиска:</span>
-				{trackes && trackesId && (
-					<SearchView trackesId={trackesId} isLoading={isLoading} />
+				{trackes && trackesHash && (
+					<SearchView
+						trackesHash={trackesHash}
+						isLoading={isLoading}
+					/>
 				)}
 			</div>
 			<div className="w-full mt-3 flex flex-col">
@@ -92,7 +95,7 @@ const TestTrack = ({ track }: { track: Track }) => {
 			</div>
 			<div className="w-30 md:w-16 py-16 md:py-0">
 				<PlayButton
-					relayTrackesId={[track.id]}
+					relayTrackesId={[track.hash]}
 					track={track}
 					type="track"
 				/>

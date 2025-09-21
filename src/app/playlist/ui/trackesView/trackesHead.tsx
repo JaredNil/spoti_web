@@ -3,17 +3,17 @@ import { FC } from 'react'
 
 import { DropdownHeader } from '../dropdownHeader'
 
-import { TrackesId } from '@/shared/api'
+import { TrackesHash } from '@/shared/api'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
 interface TrackesHeadProps {
-	trackesId?: TrackesId
+	trackesHash?: TrackesHash
 	toggleList: () => void
 	isCompact: boolean
 }
 
 export const TrackesHead: FC<TrackesHeadProps> = ({
-	trackesId,
+	trackesHash,
 	toggleList,
 	isCompact,
 }) => {
@@ -21,8 +21,8 @@ export const TrackesHead: FC<TrackesHeadProps> = ({
 		<div className="flex justify-between h-13">
 			<div className="flex items-center">
 				<div className="h-full aspect-square">
-					{trackesId && (
-						<PlayButton relayTrackesId={trackesId} type="album" />
+					{trackesHash && (
+						<PlayButton relayTrackesId={trackesHash} type="album" />
 					)}
 				</div>
 				<DropdownHeader />

@@ -45,7 +45,7 @@ export const AlbumFlat: React.FC<ListItemProps> = ({
 				{!isFetching && album && (
 					<PlayButton
 						classname="h-full"
-						relayTrackesId={album?.trackesId}
+						relayTrackesId={album?.trackesHash}
 						type="album"
 					/>
 				)}

@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { TrackesContainer } from './trackesView/trackesContainer'
 import { TrackesHead } from './trackesView/trackesHead'
 
-import { useFetchAllTrackesQuery, useFetchTrackesQuery } from '@/entities/track'
+import { useFetchAllTrackesQuery } from '@/entities/track'
 import { extractIds } from '@/shared/lib/extractIds'
 import { TrackesList } from '@/shared/ui/trackesList/trackesList'
 
@@ -15,20 +15,20 @@ export const TrackesViewAll: React.FC = () => {
 
 	const { data: trackes, isLoading: isLoadingTrackes } =
 		useFetchAllTrackesQuery()
-	let trackesId
-	if (trackes) trackesId = extractIds(trackes)
+	let trackesHash
+	if (trackes) trackesHash = extractIds(trackes)
 
 	return (
 		<TrackesContainer>
 			<TrackesHead
-				trackesId={trackesId}
+				trackesHash={trackesHash}
 				toggleList={toggleList}
 				isCompact={isCompact}
 			/>
 
 			<TrackesList
 				isCompact={isCompact}
-				relayTrackesId={trackesId}
+				relayTrackesId={trackesHash}
 				albumPageId={'0'}
 				trackes={trackes}
 				isLoadingTrackes={isLoadingTrackes}

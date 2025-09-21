@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server'
 
 import { fetchAlbumById, updateAlbum } from '../handler'
 
-import { AlbumInterface } from '@/shared/api'
+import { Album } from '@/shared/api'
 
 export async function GET(
 	_request: NextRequest,
@@ -27,7 +27,7 @@ export async function PATCH(
 ) {
 	const { id: albumId } = await params
 
-	const body = (await req.json()) as AlbumInterface
+	const body = (await req.json()) as Album
 	if (albumId === undefined) {
 		return new Response('Missing fields album_id', { status: 400 })
 	}

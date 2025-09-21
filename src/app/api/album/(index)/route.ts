@@ -1,6 +1,6 @@
 import { createAlbum } from '../handler'
 
-import { AlbumInterface } from '@/shared/api'
+import { Album } from '@/shared/api'
 
 export async function GET() {
 	const albums = await (
@@ -17,7 +17,7 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-	const album = (await req.json()) as AlbumInterface
+	const album = (await req.json()) as Album
 	console.log(album)
 
 	const res = await createAlbum(album)

@@ -3,21 +3,21 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { AlbumInterface } from '../index'
+import { Album } from '../index'
 
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
 interface AlbumProps {
-	data: AlbumInterface
+	data: Album
 }
 
-export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
+export const AlbumCard: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 	const {
-		id,
 		author,
 		imagePath = '/content/cover/album-placeholder.webp',
 		title,
-		trackesId,
+		hash,
+		trackesHash,
 	} = data
 
 	return (
@@ -49,7 +49,7 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 				</p>
 			</div>
 			<Link
-				href={`/playlist/${id}`}
+				href={`/playlist/${hash}`}
 				className="absolute  w-full h-full"
 			/>
 			<div
@@ -58,7 +58,7 @@ export const Album: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 				opacity-0 group-hover:opacity-100
 				transition hover:scale-105"
 			>
-				<PlayButton relayTrackesId={trackesId} type="album" />
+				<PlayButton relayTrackesId={trackesHash} type="album" />
 			</div>
 		</div>
 	)

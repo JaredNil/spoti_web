@@ -11,7 +11,7 @@ import { useCurrentTrack } from '@/app/(providers)/playerProvider'
 import { store } from '@/app/(providers)/storeProvider/ui/storeProvider'
 import { useFetchTrackQuery, useLazyFetchTrackQuery } from '@/entities/track'
 import { trackApi } from '@/entities/track/api/trackApi'
-import { Track, Trackes, TrackesId, TrackId } from '@/shared/api'
+import { Track, Trackes, TrackesHash, TrackHash } from '@/shared/api'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { ze } from '@/shared/lib/log'
 
@@ -28,15 +28,15 @@ export function usePlayer() {
 
 	const dispatch = useAppDispatch()
 
-	async function loadTrack(trackId: TrackId) {
+	async function loadTrack(trackHash: TrackHash) {
 		const state = store.getState()
 		const { data: cachedTrack } =
-			trackApi.endpoints.fetchTrack.select(trackId)(state)
+			trackApi.endpoints.fetchTrack.select(trackHash)(state)
 
 		let loadTrack: Trackes | null = null
 
 		if (!cachedTrack)
-			loadTrack = (await triggerFetchTrack(trackId).unwrap()) as Trackes
+			loadTrack = (await triggerFetchTrack(trackHash).unwrap()) as Trackes
 
 		const track = cachedTrack?.[0] ?? loadTrack?.[0] ?? null
 
@@ -45,11 +45,11 @@ export function usePlayer() {
 		dispatch(playerAction.setTrack(track))
 	}
 
-	function start(trackesId: TrackesId, target: number = 0) {
+	function start(trackesHash: TrackesHash, target: number = 0) {
 		if (!isActivePlayer) dispatch(playerAction.onActivePlayer())
-		dispatch(playerAction.setQueue(trackesId))
+		dispatch(playerAction.setQueue(trackesHash))
 		dispatch(playerAction.setTarget(target))
-		loadTrack(trackesId[target])
+		loadTrack(trackesHash[target])
 	}
 
 	function play() {

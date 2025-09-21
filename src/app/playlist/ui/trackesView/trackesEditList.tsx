@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Trackes, TrackesId } from '@/shared/api'
+import { Trackes, TrackesHash } from '@/shared/api'
 import { useChangeAlbum } from '@/shared/hooks/useChangeAlbum'
 import { Button } from '@/shared/ui/kit/button'
 import { TrackesListItem } from '@/shared/ui/trackesList/ui/trackesListItem'
@@ -8,7 +8,7 @@ import { TrackesListLabel } from '@/shared/ui/trackesList/ui/trackesListLabel'
 import { TrackesListSkeleton } from '@/shared/ui/trackesList/ui/trackesListSkeleton'
 
 interface TrackViewListingProps {
-	relayTrackesId: TrackesId
+	relayTrackesId: TrackesHash
 	isCompact: boolean
 	isLoadingEditTrackes: boolean
 	trackes: Trackes
@@ -42,7 +42,7 @@ export const TrackesEditList: React.FC<TrackViewListingProps> = ({
 				{trackes?.map((track, i) => (
 					<TrackesListItem
 						index={i}
-						key={track.id + i.toString()}
+						key={track.hash}
 						isCompact={isCompact}
 						relayTrackesId={relayTrackesId}
 						track={track}

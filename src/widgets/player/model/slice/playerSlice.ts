@@ -3,7 +3,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { PlayerSchema } from '../types/playerSchema'
 
 import { ThunkConfig } from '@/app/(providers)/storeProvider/config/store'
-import { Track, TrackesId } from '@/shared/api'
+import { Track, TrackesHash } from '@/shared/api'
 import { cacheHandle } from '@/shared/lib/localstorage'
 
 const initialState: PlayerSchema = {
@@ -57,11 +57,11 @@ export const playerSlice = createSlice({
 			state.volume = action.payload
 			if (action.payload) cacheHandle.set('volume', action.payload)
 		},
-		setNative: (state, action: PayloadAction<TrackesId>) => {
+		setNative: (state, action: PayloadAction<TrackesHash>) => {
 			state.native = action.payload
 			if (action.payload) cacheHandle.set('native', action.payload)
 		},
-		setQueue: (state, action: PayloadAction<TrackesId>) => {
+		setQueue: (state, action: PayloadAction<TrackesHash>) => {
 			state.native = action.payload
 			state.queue = state.native
 			if (action.payload) cacheHandle.set('native', action.payload)

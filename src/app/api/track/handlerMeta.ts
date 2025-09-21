@@ -1,8 +1,8 @@
-import { Track, Trackes, TrackesId, TrackId } from '@/shared/api'
+import { Track, Trackes, TrackesHash, TrackHash } from '@/shared/api'
 import { ze } from '@/shared/lib/log'
 
 export async function fetchMetaTrackesServer(
-	trackesHash: TrackesId
+	trackesHash: TrackesHash
 ): Promise<Trackes> {
 	const promises = trackesHash.map((hash) =>
 		fetch(`${process.env.KV_STORAGE}/tracks/${hash}`, {
@@ -11,7 +11,7 @@ export async function fetchMetaTrackesServer(
 		}).then(async (res) => {
 			if (!res.ok) return null // ДОБАВИТЬ ОБРАБОТКУ ОШИБОК, BACKLOG
 			const track = (await res.json()) as Track
-			track.id = hash
+			// track.hash = hash
 			return track
 		})
 	)
@@ -19,19 +19,21 @@ export async function fetchMetaTrackesServer(
 	return trackes
 }
 
-export async function fetchMetaTrackServer(trackId: TrackId): Promise<Track> {
+export async function fetchMetaTrackServer(
+	trackHash: TrackHash
+): Promise<Track> {
 	const trackMetadata = await fetch(
-		`${process.env.KV_STORAGE}/tracks/${trackId}`,
+		`${process.env.KV_STORAGE}/tracks/${trackHash}`,
 		{
 			method: 'GET',
 			headers: { 'Content-Type': 'application/json' },
 		}
 	)
 	if (!trackMetadata.ok) {
-		throw new Error(`Track ${trackId} not found`)
+		throw new Error(`Track ${trackHash} not found`)
 	}
 	const track = (await trackMetadata.json()) as Track
-	track.id = trackId // REFACTOR IN FUTURE FOR HASH_TRACK
+	// track.hash = trackHash // REFACTOR IN FUTURE FOR HASH_TRACK
 	return track
 }
 

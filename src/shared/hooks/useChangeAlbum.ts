@@ -4,7 +4,7 @@ import {
 	useLazyFetchAlbumQuery,
 	useUpdateAlbumMutation,
 } from '@/entities/album'
-import { AlbumInterface, Track } from '@/shared/api'
+import { Album, Track } from '@/shared/api'
 
 export const useChangeAlbum = (albumId: string) => {
 	const [updateAlbum, { isLoading: isUpdating }] = useUpdateAlbumMutation()
@@ -13,10 +13,10 @@ export const useChangeAlbum = (albumId: string) => {
 	const deleteTrack = (track: Track) => {
 		try {
 			fetchAlbum(albumId).then((r) => {
-				const origin = r.data as AlbumInterface
+				const origin = r.data as Album
 				const newAlbum = Object.assign({}, origin)
-				newAlbum.trackesId = newAlbum.trackesId.filter(
-					(id) => id !== track.id
+				newAlbum.trackesHash = newAlbum.trackesHash.filter(
+					(hash) => hash !== track.hash
 				)
 				updateAlbum(newAlbum).then(() => {
 					toast.success('Track delete')
@@ -30,9 +30,9 @@ export const useChangeAlbum = (albumId: string) => {
 	const addTrack = (track: Track) => {
 		try {
 			fetchAlbum(albumId).then((r) => {
-				const origin = r.data as AlbumInterface
+				const origin = r.data as Album
 				const newAlbum = Object.assign({}, origin)
-				newAlbum.trackesId = [...origin.trackesId, track.id]
+				newAlbum.trackesHash = [...origin.trackesHash, track.hash]
 				updateAlbum(newAlbum).then(() => {
 					toast.success('Track added')
 				})

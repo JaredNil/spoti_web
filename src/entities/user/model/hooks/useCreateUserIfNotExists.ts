@@ -8,7 +8,7 @@ import {
 	useFetchUserQuery,
 } from '@/entities/user/api/userApi'
 import { User } from '@/shared/api'
-import { ze, zw } from '@/shared/lib/log'
+import { z, ze, zw } from '@/shared/lib/log'
 
 type Params = {
 	email?: string
@@ -22,16 +22,28 @@ export function useCreateUserIfNotExists({
 	lastname = '',
 }: Params) {
 	const {
-		data: user,
 		error,
 		refetch,
+		isSuccess: isSuccessLoadingUser,
+		isFetching,
+		isUninitialized,
+		isLoading,
 	} = useFetchUserQuery(email!, { skip: !email })
 
 	const [createUser, { isLoading: isCreating }] = useCreateUserMutation()
 
 	useEffect(() => {
-		if (!email || user || error === undefined) {
+		// Выход из функции,если данные
+		// загружены успешно или еще начали запрос или он в процессе
+		if (isSuccessLoadingUser || isUninitialized || isFetching || isLoading)
+			return
+
+		if (!email || email === '') {
 			ze(`Для создание профиля в базе данных отсутствуют данные`)
+			return
+		}
+		if (error === undefined) {
+			z(`Ошибок при получении метаданных пользователя нет.`)
 			return
 		}
 
@@ -45,8 +57,9 @@ export function useCreateUserIfNotExists({
 						imageHash: '',
 						phone: '',
 						'2fa': false,
-						trackesId: [],
-						albumsId: [],
+						trackesHash: [],
+						likedHash: [],
+						albumsHash: [],
 						createdAt: new Date().toISOString(),
 						password: '',
 					}
@@ -61,7 +74,7 @@ export function useCreateUserIfNotExists({
 				}
 			})()
 		}
-	}, [email, user, error, createUser, refetch, firstname, lastname])
+	}, [email, error, createUser])
 
 	return { isCreating }
 }

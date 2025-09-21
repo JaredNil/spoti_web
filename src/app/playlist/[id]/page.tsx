@@ -2,7 +2,6 @@ import { PlaylistTitle } from '../ui/playlistTitle'
 import { TrackesView } from '../ui/trackesView'
 
 import { fetchAlbumById } from '@/app/api/album/handler'
-// import { fetchMetaTrackesServer } from '@/app/api/track/handlerMeta'
 
 export default async function PlaylistPage({
 	params,
@@ -15,7 +14,7 @@ export default async function PlaylistPage({
 	return (
 		<>
 			<PlaylistTitle albumPreload={album} />
-			<TrackesView albumId={id} />
+			<TrackesView albumHash={id} />
 		</>
 	)
 }

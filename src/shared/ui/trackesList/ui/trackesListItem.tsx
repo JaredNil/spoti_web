@@ -8,10 +8,10 @@ import { TrackesListButton } from './trackesListButton'
 import { TrackesListLike } from './trackesListLike'
 import { TrackesListSearch } from './trackesListSearch'
 
-import { Track, TrackesId } from '@/shared/api'
+import { Track, TrackesHash } from '@/shared/api'
 
 interface TrackesListItemProps {
-	relayTrackesId?: TrackesId
+	relayTrackesId?: TrackesHash
 	track: Track
 	isCompact: boolean
 	customButton?: React.ReactNode
@@ -64,7 +64,7 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 			flex items-center
 			select-none"
 		>
-			<Link className="truncate py-3 pr-5" href={`/track/${track.id}`}>
+			<Link className="truncate py-3 pr-5" href={`/track/${track.hash}`}>
 				{track.title}
 			</Link>
 		</div>

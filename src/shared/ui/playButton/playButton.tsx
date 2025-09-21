@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 
-import { Track, TrackesId } from '@/shared/api'
+import { Track, TrackesHash } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
 import { Icons } from '@/shared/icons'
 import { getTrack, usePlayer } from '@/widgets/player'
@@ -12,7 +12,7 @@ import { getPlayerNativeQueue } from '@/widgets/player'
 // В БУДУЩЕМ ДОБАВИТЬ ВОЗМОЖНОСТЬ РАБОТЫ ПО АЙДИ ПЛЕЙЛИСТА
 interface PlayButtonProps {
 	type?: 'album' | 'track'
-	relayTrackesId: TrackesId
+	relayTrackesId: TrackesHash
 	track?: Track
 	target?: number
 	classname?: string
@@ -40,12 +40,12 @@ export const PlayButton: React.FC<PlayButtonProps> = ({
 			if (isRun && isActivePlayerAlbum) return pauseIcon
 			else return playIcon
 		} else if (type == 'track') {
-			if (isRun && track?.id == playerTrack?.id) return pauseIcon
+			if (isRun && track?.hash == playerTrack?.hash) return pauseIcon
 			else return playIcon
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isRun, playerTrack?.id])
+	}, [isRun, playerTrack?.hash])
 
 	const playHandler = () => {
 		if (type == 'album') {
@@ -56,11 +56,11 @@ export const PlayButton: React.FC<PlayButtonProps> = ({
 			else if (!isRun && !isActivePlayerAlbum)
 				start(relayTrackesId, target)
 		} else {
-			if (isRun && track?.id == playerTrack?.id) pause()
-			else if (isRun && track?.id != playerTrack?.id)
+			if (isRun && track?.hash == playerTrack?.hash) pause()
+			else if (isRun && track?.hash != playerTrack?.hash)
 				start(relayTrackesId, target)
-			else if (!isRun && track?.id == playerTrack?.id) play()
-			else if (!isRun && track?.id != playerTrack?.id)
+			else if (!isRun && track?.hash == playerTrack?.hash) play()
+			else if (!isRun && track?.hash != playerTrack?.hash)
 				start(relayTrackesId, target)
 		}
 	}
@@ -75,7 +75,7 @@ export const PlayButton: React.FC<PlayButtonProps> = ({
 			${classname} 
 			${
 				isRun &&
-				track?.id == playerTrack?.id &&
+				track?.hash == playerTrack?.hash &&
 				type == 'track' &&
 				'bg-transparent [&_svg]:fill-green-500'
 			}`}

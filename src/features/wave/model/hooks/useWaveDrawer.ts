@@ -31,7 +31,6 @@ export const useWaveDrawer = (
 				ctx.fillRect(x * w, (h - hh) / 2, barW, hh)
 			})
 
-			// прослушанная часть
 			const playedX =
 				mode === 'window60'
 					? ((current % 30) / 60) * w
@@ -48,7 +47,6 @@ export const useWaveDrawer = (
 			})
 			ctx.restore()
 
-			// бегунок
 			ctx.strokeStyle = '#fff'
 			ctx.lineWidth = 2
 			ctx.beginPath()
@@ -60,7 +58,6 @@ export const useWaveDrawer = (
 	)
 }
 
-// helpers
 const buildMicroWave = (peaks: number[], duration: number, current: number) => {
 	const total = peaks.length
 	const pos = Math.floor((current / duration) * total)

@@ -14,12 +14,12 @@ const reducers: ReducerList = {
 }
 
 export default function QueuePage() {
-	const trackesId = useAppSelector(getPlayerQueue)
+	const trackesHash = useAppSelector(getPlayerQueue)
 	const currentTarget = useAppSelector(getPlayerTarget)
 
 	const { useFetchTrackesQuery } = trackApi
 
-	const { data: trackes } = useFetchTrackesQuery(trackesId)
+	const { data: trackes } = useFetchTrackesQuery(trackesHash)
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>
@@ -31,7 +31,7 @@ export default function QueuePage() {
 					</div>
 				)}
 				{trackes?.map((track, index) => (
-					<div key={track.id} className="relative w-full">
+					<div key={track.hash} className="relative w-full">
 						<div
 							className={`text-2xl  text-white select-none
 							opacity-0 transition-all duration-400 absolute pb-2
@@ -42,7 +42,7 @@ export default function QueuePage() {
 						<TrackQueue
 							target={index}
 							track={track}
-							trackesId={trackesId}
+							trackesHash={trackesHash}
 						/>
 						<div
 							className={`text-2xl  text-white select-none

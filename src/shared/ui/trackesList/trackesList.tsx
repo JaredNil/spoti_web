@@ -3,7 +3,7 @@ import { TrackesListLabel } from './ui/trackesListLabel'
 import { TrackesListSkeleton } from './ui/trackesListSkeleton'
 
 import { DropdownTrack } from '@/app/playlist/ui/dropdownTrack'
-import { Track, Trackes, TrackesId } from '@/shared/api'
+import { Track, Trackes, TrackesHash } from '@/shared/api'
 
 export type DropdownProps = {
 	deleteHandle: () => void
@@ -11,7 +11,7 @@ export type DropdownProps = {
 }
 
 interface TrackViewListingProps {
-	relayTrackesId?: TrackesId
+	relayTrackesId?: TrackesHash
 	isCompact: boolean
 	isLoadingTrackes: boolean
 	trackes?: Trackes
@@ -43,7 +43,7 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 				{trackes?.map((track, i) => (
 					<TrackesListItem
 						index={i}
-						key={track.id + i.toString()}
+						key={track.hash}
 						isCompact={isCompact}
 						relayTrackesId={relayTrackesId}
 						track={track}

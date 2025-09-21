@@ -1,37 +1,36 @@
-export type TrackId = string
-export type TrackesId = TrackId[]
+export type TrackHash = string
+export type TrackesHash = TrackHash[]
 
 export type AlbumHash = string
 export type AlbumsHash = AlbumHash[]
 
-export interface AlbumInterface {
-	id: string
-	user_id: string
+export interface Album {
+	hash: string
 	author: string
 	title: string
 	description?: string
 	imagePath?: string
-	trackesId: TrackesId
+	trackesHash: TrackesHash
 	creationDate?: string
 }
-export type AlbumsCollection = AlbumInterface[]
+export type AlbumsCollection = Album[]
 
 export interface Track {
-	id: string
-	userId: string
+	hash: string
+	user: string
 	author: string
 	title: string
 	songLink?: string
 	imageLink?: string
-	hash?: string // empty, for demo. Include in interface
 }
 
 export type Trackes = Track[]
 
 export interface User {
 	email: string
-	trackesId: TrackesId
-	albumsId: AlbumsHash
+	trackesHash: TrackesHash
+	likedHash: TrackesHash
+	albumsHash: AlbumsHash
 	createdAt: string
 	imageHash: string
 	firstname: string

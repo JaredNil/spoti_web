@@ -2,13 +2,13 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 import { SearchpageSchema } from '../types/searchpageSchema'
 
-import { Trackes, TrackesId } from '@/shared/api'
+import { Trackes, TrackesHash } from '@/shared/api'
 
 const initialState: SearchpageSchema = {
 	isLoading: false,
 	error: undefined,
 	trackes: [],
-	trackesId: [],
+	trackesHash: [],
 }
 
 export const searchpageSlice = createSlice({
@@ -24,15 +24,18 @@ export const searchpageSlice = createSlice({
 		setSearchTrackes: (state, action: PayloadAction<Trackes>) => {
 			state.trackes = action.payload
 		},
-		setSearchTrackesId: (state, action: PayloadAction<TrackesId>) => {
-			state.trackesId = action.payload
+		setSearchTrackesId: (state, action: PayloadAction<TrackesHash>) => {
+			state.trackesHash = action.payload
 		},
 		setSearchedData: (
 			state,
-			action: PayloadAction<{ trackes: Trackes; trackesId: TrackesId }>
+			action: PayloadAction<{
+				trackes: Trackes
+				trackesHash: TrackesHash
+			}>
 		) => {
 			state.trackes = action.payload.trackes
-			state.trackesId = action.payload.trackesId
+			state.trackesHash = action.payload.trackesHash
 		},
 	},
 })

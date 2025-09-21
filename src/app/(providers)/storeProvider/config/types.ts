@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
-import { AnyAction, EnhancedStore, Middleware, Reducer } from '@reduxjs/toolkit'
+import { AnyAction, EnhancedStore, Reducer } from '@reduxjs/toolkit'
 
 import { createStore } from '..'
 
@@ -19,7 +19,6 @@ export interface ReducerManager {
 	reduce: (state: any, action: AnyAction) => any
 	add: (key: string, reducer: DynamicReducer) => void
 	remove: (key: string) => void
-	// has: (key: string) => boolean;
 }
 
 export interface StaticReducers {

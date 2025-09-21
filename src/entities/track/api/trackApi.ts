@@ -1,6 +1,6 @@
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
-import { Track, Trackes, TrackesId, TrackId } from '@/shared/api'
+import { Track, Trackes, TrackesHash, TrackHash } from '@/shared/api'
 import { rtkApi } from '@/shared/api/api'
 import { extractIds } from '@/shared/lib/extractIds'
 import { ze } from '@/shared/lib/log'
@@ -10,30 +10,30 @@ export const trackApi = rtkApi.injectEndpoints({
 		/*
 		  Один id запрос -> Кэшируем коллекцию из одного трека
 		*/
-		fetchTrack: build.query<Trackes, TrackId>({
-			query: (id) => ({
-				url: `/track?query=${id}`,
+		fetchTrack: build.query<Trackes, TrackHash>({
+			query: (hash) => ({
+				url: `/track?query=${hash}`,
 			}),
 			keepUnusedDataFor: Number.MAX_SAFE_INTEGER,
-			providesTags: (_, __, id) => [{ type: 'Track', id }],
+			providesTags: (_, __, hash) => [{ type: 'Track', hash }],
 		}),
 		/*
 		  Коллекция id запросов -> Кэшируем коллекцию из треков
 		*/
-		fetchTrackes: build.query<Trackes, TrackesId>({
+		fetchTrackes: build.query<Trackes, TrackesHash>({
 			query: (ids) => ({
 				url: `/track?query=${ids.join(',')}`,
 			}),
 			providesTags: (result) =>
 				result
 					? [
-							...result.map(({ id }) => ({
+							...result.map(({ hash }) => ({
 								type: 'Track' as const,
-								id,
+								hash,
 							})),
-							{ type: 'Track', id: 'LIST' },
+							{ type: 'Track', hash: 'LIST' },
 						]
-					: [{ type: 'Track', id: 'LIST' }],
+					: [{ type: 'Track', hash: 'LIST' }],
 			async onQueryStarted(_, { dispatch, queryFulfilled }) {
 				try {
 					const { data } = await queryFulfilled
@@ -41,7 +41,7 @@ export const trackApi = rtkApi.injectEndpoints({
 						dispatch(
 							trackApi.util.upsertQueryData(
 								'fetchTrack',
-								track.id,
+								track.hash,
 								[track]
 							)
 						)
@@ -63,7 +63,7 @@ export const trackApi = rtkApi.injectEndpoints({
 		  Передача и кэширование поиска
 		*/
 		searchTrackes: build.query<
-			{ trackes: Trackes; trackesId: TrackesId },
+			{ trackes: Trackes; trackesHash: TrackesHash },
 			string
 		>({
 			queryFn: async (searching, _, __, baseQuery) => {
@@ -71,7 +71,7 @@ export const trackApi = rtkApi.injectEndpoints({
 					return {
 						data: {
 							trackes: [], // empty searching
-							trackesId: [],
+							trackesHash: [],
 						},
 					}
 				try {
@@ -84,7 +84,7 @@ export const trackApi = rtkApi.injectEndpoints({
 						return {
 							data: {
 								trackes: [],
-								trackesId: [],
+								trackesHash: [],
 							},
 						}
 					}
@@ -94,15 +94,15 @@ export const trackApi = rtkApi.injectEndpoints({
 						return {
 							data: {
 								trackes: [],
-								trackesId: [],
+								trackesHash: [],
 							},
 						}
 					}
-					const trackesId = extractIds(searchedTrackes)
+					const trackesHash = extractIds(searchedTrackes)
 					return {
 						data: {
 							trackes: searchedTrackes,
-							trackesId,
+							trackesHash,
 						},
 					}
 				} catch (err) {
@@ -114,12 +114,12 @@ export const trackApi = rtkApi.injectEndpoints({
 		  Обновление 1 трека
 		*/
 		updateTrack: build.mutation<void, Track>({
-			query: ({ id, ...body }) => ({
-				url: `/track/${id}`,
+			query: ({ hash, ...body }) => ({
+				url: `/track/${hash}`,
 				method: 'PATCH',
 				body,
 			}),
-			invalidatesTags: (_, __, { id }) => [{ type: 'Track', id }],
+			invalidatesTags: (_, __, { hash }) => [{ type: 'Track', hash }],
 		}),
 		/*
 		  Создание 1 трека
@@ -130,7 +130,7 @@ export const trackApi = rtkApi.injectEndpoints({
 				method: 'POST',
 				body,
 			}),
-			invalidatesTags: (_, __, { id }) => [{ type: 'Track', id }],
+			invalidatesTags: (_, __, { hash }) => [{ type: 'Track', hash }],
 		}),
 	}),
 })

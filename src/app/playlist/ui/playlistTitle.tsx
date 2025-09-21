@@ -1,9 +1,9 @@
 import Image from 'next/image'
 
-import { AlbumInterface } from '@/shared/api'
+import { Album } from '@/shared/api'
 
 interface PlaylistTitleProps {
-	albumPreload: AlbumInterface
+	albumPreload: Album
 }
 
 export const PlaylistTitle: React.FC<PlaylistTitleProps> = ({

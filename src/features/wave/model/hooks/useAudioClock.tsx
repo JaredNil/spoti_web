@@ -1,5 +1,4 @@
 'use client'
-import { useEffect, useState } from 'react'
 
 import { useAppSelector } from '@/shared/hooks'
 import { getPlayerLineData } from '@/widgets/player'
