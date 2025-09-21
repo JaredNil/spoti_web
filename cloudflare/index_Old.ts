@@ -1,6 +1,6 @@
 // /// <reference types="@cloudflare/workers-types" />
 
-// import { AlbumInterface, Track } from '@/shared/api'
+// import { Album, Track } from '@/shared/api'
 // import { json } from './model/utils'
 
 // export type Handler = (
@@ -52,7 +52,7 @@
 // 				return json(filtered)
 // 			}
 // 			if (pathname === '/albums' && method === 'POST') {
-// 				const body = (await request.json()) as AlbumInterface
+// 				const body = (await request.json()) as Album
 // 				if (!body || typeof body.id !== 'string' || !body.id) {
 // 					return new Response('Missing or invalid album id', {
 // 						status: 400,

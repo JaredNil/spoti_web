@@ -15,28 +15,28 @@ export const getTrack: Handler = async (_req, env, _ctx, { id }) => {
 
 export const createTrack: Handler = async (req, env) => {
 	const body = await req.json<Track>()
-	if (!body?.id) return httpError('Missing track id', 400)
+	if (!body?.hash) return httpError('Missing track id', 400)
 
-	const key = `track:${body.id}`
+	const key = `track:${body.hash}`
 	if (await get(env.TRACKES_KV, key)) return httpError('Track exists', 409)
 
 	await put(env.TRACKES_KV, key, body)
 	return json(body, 201)
 }
 
-export const updateTrack: Handler = async (req, env, _ctx, { id }) => {
+export const updateTrack: Handler = async (req, env, _ctx, { hash }) => {
 	const patch = await req.json<Partial<Track>>()
-	const key = `track:${id}`
+	const key = `track:${hash}`
 	const old = await get<Track>(env.TRACKES_KV, key)
 	if (!old) return httpError('Track not found', 404)
 
-	const updated: Track = { ...old, ...patch, id }
+	const updated: Track = { ...old, ...patch, hash }
 	await put(env.TRACKES_KV, key, updated)
 	return json(updated)
 }
 
-export const deleteTrack: Handler = async (_req, env, _ctx, { id }) => {
-	const key = `track:${id}`
+export const deleteTrack: Handler = async (_req, env, _ctx, { hash }) => {
+	const key = `track:${hash}`
 	if (!(await get(env.TRACKES_KV, key)))
 		return httpError('Track not found', 404)
 	await del(env.TRACKES_KV, key)
