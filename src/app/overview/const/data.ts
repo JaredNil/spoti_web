@@ -1,3 +1,4 @@
+import { FcIdea } from 'react-icons/fc'
 import {
 	FiMusic,
 	FiSmartphone,
@@ -30,7 +31,12 @@ export const features = [
 	{
 		icon: FiMusic,
 		title: 'Музыкальный плеер',
-		desc: 'Полный набор функций управления',
+		desc: 'Кастомный плеер для быстрой работы с музыкой',
+	},
+	{
+		icon: FcIdea,
+		title: 'CDN',
+		desc: 'Приложение использует прямой CDN для быстрого доступа к данным',
 	},
 	{
 		icon: FiSmartphone,
@@ -40,7 +46,7 @@ export const features = [
 	{
 		icon: FiSearch,
 		title: 'Поиск треков и альбомов',
-		desc: 'Быстрый и удобный',
+		desc: 'Быстрый и удобный даже для треков с внешних ресурсов',
 	},
 	{
 		icon: FiFolder,
@@ -51,73 +57,75 @@ export const features = [
 	{
 		icon: FiShield,
 		title: 'Авторизация и безопасность',
-		desc: 'JWT, JOSE, защита маршрутов',
+		desc: 'JWT, JOSE, защита маршрутов, OAuth 2.0 - google, yandex, github',
 	},
 	{ icon: FiZap, title: 'Современный UI', desc: 'Tailwind CSS + shadcn/ui' },
 	{
 		icon: FiZap,
 		title: 'Высокая производительность',
-		desc: 'Next.js, Turbopack, PPR',
+		desc: 'Next.js, Turbopack',
 	},
 	{
 		icon: FiGlobe,
 		title: 'SEO и PWA',
-		desc: 'SSR, мета-теги, Service-Worker',
+		desc: 'SSR, мета-теги, Service-Worker in available',
 	},
-	{
-		icon: FiRss,
-		title: 'WebSockets / WSS',
-		desc: 'Real-time уведомления и чаты',
-	},
+
 	{
 		icon: FiLayout,
 		title: 'Анимации и переходы',
-		desc: 'GSAP, react-spring',
+		desc: 'three.js, GSAP для сложных анимаций',
 	},
 ]
 
 export const techStack = [
 	{
 		icon: FiCode,
-		title: 'Next.js 15.4.4',
-		desc: 'App Router, Server Components, fetch-cache, Server Actions, PPR',
+		desc: 'Next.js 15.4.4 - App Router, Server Components, fetch-cache',
 	},
 	{ icon: FiCode, desc: 'React 19.1.0' },
-	{ desc: 'TypeScript 5' },
-	{ desc: 'Node.js 20' },
-	{ icon: FiDatabase, desc: 'PostgreSQL + SQL' },
-	{ icon: FiCode, desc: 'GraphQL + REST API' },
+	{ icon: FiCode, desc: 'TypeScript 5' },
+	{ icon: FiCode, desc: 'three.js' },
 	{ icon: FiCode, desc: 'Redux Toolkit 2.8.2 + RTK Query' },
-	{ icon: FiCode, desc: 'TanStack Query' },
-	{ icon: FiCode, desc: 'Zustand / RxJS / MobX' },
 	{ icon: FiCode, desc: 'React-Hook-Form + Zod' },
+	{ icon: FiCode, desc: 'RxJS(потоковых данных)' },
 ]
 
-/* ---------- UI / СТИЛИЗАЦИЯ ---------- */
 export const uiStack = [
-	{ icon: FiShield, title: 'Tailwind CSS 4', desc: 'utility-first' },
+	{ icon: FiShield, desc: 'Tailwind CSS 4 utility-first' },
 	{ icon: FiShield, desc: 'shadcn/ui + Radix UI' },
 	{ icon: FiMusic, desc: 'React Icons / Lucide' },
 	{ icon: FiLayers, desc: 'Sass / SCSS' },
 	{ icon: FiLayout, desc: 'Адаптивная верстка + Figma' },
-	{ icon: FiSun, desc: 'Тёмная / светлая тема' },
+	{
+		icon: FiSun,
+		desc: 'Тёмная / светлая тема (светлую тему в будущем добавим)',
+	},
 ]
 
 export const devTools = [
-	{ icon: FiTool, desc: 'ESLint + Prettier' },
+	{ icon: FiTool, desc: 'FSD Architech' },
+	{ icon: FiTool, desc: 'ESLint + Prettier + TSC' },
+	{ icon: FiTool, desc: 'CI/CD pipeline with pyramid testing' },
 	{ icon: FiZap, desc: 'Turbopack + Vite' },
 	{ icon: FiGitBranch, desc: 'Git + GitHub + GitLab' },
-	{ icon: FiPackage, desc: 'npm / yarn / pnpm' },
-	{ icon: FiCloud, desc: 'Docker + CI/CD' },
+	{ icon: FiPackage, desc: 'npm' },
 	{ icon: FiAperture, desc: 'Storybook' },
 	{ icon: FiChrome, desc: 'Lighthouse + PWA' },
 ]
 
 export const testing = [
-	{ icon: FiFeather, title: 'Unit', desc: 'Jest + React-Testing-Library' },
-	{ icon: FiShield, title: 'e2e', desc: 'Playwright / Cypress / Puppeteer' },
-	{ icon: FiBox, title: 'Regression', desc: 'Chromatic / Loki' },
-	{ icon: FiKey, title: 'Mock', desc: 'MSW (mock-service-worker)' },
+	{
+		icon: FiFeather,
+		title: 'Unit',
+		desc: 'Unit: Jest + React-Testing-Library',
+	},
+	{
+		icon: FiBox,
+		title: 'Regression',
+		desc: 'Regression: Storybook + Loki(в будущем)',
+	},
+	{ icon: FiKey, title: 'Mock', desc: 'Mock: MSW (для будущих фич)' },
 ]
 
 export const architecture = [
@@ -150,27 +158,19 @@ export const architecture = [
 ]
 
 export const sections = [
+	{
+		title: 'Технологический стек приложения',
+		type: 'tech',
+		items: [
+			{ cardTitle: 'Stack app', list: techStack },
+			{ cardTitle: 'UI dx', list: uiStack },
+			{ cardTitle: 'DevTools', list: devTools },
+			{ cardTitle: 'Testing', list: testing },
+			{ cardTitle: 'Next logic block', list: [] },
+			{ cardTitle: 'Next logic block 2', list: [] },
+		],
+	},
 	{ title: 'Основные возможности', type: 'feature', items: features },
-	{
-		title: 'Технологический стек',
-		type: 'tech',
-		items: [{ cardTitle: 'Stack', list: techStack }],
-	},
-	{
-		title: 'UI и стилизация',
-		type: 'tech',
-		items: [{ cardTitle: 'UI', list: uiStack }],
-	},
-	{
-		title: 'Инструменты разработки',
-		type: 'tech',
-		items: [{ cardTitle: 'DevTools', list: devTools }],
-	},
-	{
-		title: 'Тестирование',
-		type: 'tech',
-		items: [{ cardTitle: 'Testing', list: testing }],
-	},
 	{
 		title: 'Архитектурные преимущества',
 		type: 'feature',

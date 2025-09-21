@@ -1,6 +1,9 @@
 export type TrackId = string
 export type TrackesId = TrackId[]
 
+export type AlbumHash = string
+export type AlbumsHash = AlbumHash[]
+
 export interface AlbumInterface {
 	id: string
 	user_id: string
@@ -28,6 +31,7 @@ export type Trackes = Track[]
 export interface User {
 	email: string
 	trackesId: TrackesId
+	albumsId: AlbumsHash
 	createdAt: string
 	imageHash: string
 	firstname: string

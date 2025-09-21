@@ -6,7 +6,4 @@ export const cachedOrRemote = (hash: string) => {
 	if (!hash) return
 
 	return `${S3_STORAGE}/${S3_BUCKET}/${hash}`
-
-	// const range = 'bytes=0-63999'
-	// return `/api/s3/${hash}?range=${encodeURIComponent(range)}`
 }

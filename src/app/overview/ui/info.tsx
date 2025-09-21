@@ -17,7 +17,7 @@ export function Info() {
 							{sec.items.map((it: any) => (
 								<Card
 									key={it.title}
-									className="bg-neutral-400/5 border-neutral-800 flex justify-center"
+									className="bg-neutral-400/5 border-neutral-800 flex justify-center py-3"
 								>
 									<CardContent className="flex items-center gap-4 ">
 										<it.icon
@@ -40,14 +40,14 @@ export function Info() {
 
 					{sec.type === 'tech' && (
 						<div
-							className={`grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`}
+							className={`grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`}
 						>
 							{sec.items.map((card: any) => (
 								<Card
 									key={card.cardTitle}
-									className="border-neutral-800 bg-neutral-400/5"
+									className="border-neutral-800 bg-neutral-400/5 py-4"
 								>
-									<CardHeader>
+									<CardHeader className="">
 										<CardTitle className="text-base">
 											{card.cardTitle}
 										</CardTitle>

@@ -10,6 +10,7 @@ import {
 	useCreateUserMutation,
 	useFetchUserQuery,
 } from '@/entities/user/api/userApi'
+import { useCreateUserIfNotExists } from '@/entities/user/model/hooks/useCreateUserIfNotExists'
 import { AuthModal } from '@/features/authModal'
 import { User } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
@@ -24,6 +25,13 @@ export const HeaderAuthButton = () => {
 	const { status, data: session } = useSession()
 	const email = session?.user?.email
 
+	// хук который проверяет есть ли у данного вхождения в приложение метаданные аккаунта
+	// если нет, то создает
+	const { isCreating } = useCreateUserIfNotExists({
+		email: email ?? '',
+		firstname: session?.user?.name?.split(' ')[0].trim() ?? '',
+		lastname: session?.user?.name?.split(' ')[1].trim() ?? '',
+	})
 	const profileClick = () => {
 		if (status === 'unauthenticated') {
 			toast.warning('Войдите в ваш аккаунт')
@@ -41,47 +49,6 @@ export const HeaderAuthButton = () => {
 		}
 	}
 
-	const {
-		data: user,
-		isLoading,
-		error,
-		refetch,
-	} = useFetchUserQuery(email!, {
-		skip: !email,
-	})
-	const [createUser, { isLoading: isCreating }] = useCreateUserMutation()
-
-	useEffect(() => {
-		if (!email || user || error === undefined) return // error === undefined → ещё не проверяли
-		if ('status' in error && error.status === 404) {
-			;(async () => {
-				try {
-					const newUser: User = {
-						email,
-						firstname:
-							session.user?.name?.split(' ')[0].trim() ?? '',
-						lastname:
-							session.user?.name?.split(' ')[1].trim() ?? '',
-						imageHash: '',
-						phone: '',
-						'2fa': false,
-						trackesId: [],
-						createdAt: new Date().toISOString(),
-						password: '',
-					}
-					console.log(newUser)
-					zw('создание пользователя')
-					await createUser(newUser).unwrap()
-					toast.success('Профиль успешно создан')
-					refetch() // обновляем кэш
-				} catch (e: any) {
-					toast.error('Не удалось создать профиль')
-					ze(`Не удалось создать профиль ${error}`)
-				}
-			})()
-		}
-	}, [email, user, error, createUser, refetch, session])
-
 	return (
 		<div
 			className="relative flex items-center justify-between 
@@ -91,7 +58,7 @@ export const HeaderAuthButton = () => {
 				onClick={profileClick}
 				className="transition-all aspect-square duration-150 
 				bg-white cursor-pointer rounded-full"
-				disabled={status === 'loading'}
+				disabled={status === 'loading' || isCreating}
 			>
 				<Icons
 					name="Profile"
@@ -101,7 +68,7 @@ export const HeaderAuthButton = () => {
 			</Button>
 			<Button
 				onClick={authClick}
-				disabled={status === 'loading'}
+				disabled={status === 'loading' || isCreating}
 				className="ml-3 flex w-24 items-center justify-center px-6 py-2
 				bg-white cursor-pointer rounded-full text-black"
 			>
