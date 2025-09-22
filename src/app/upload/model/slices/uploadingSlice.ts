@@ -30,7 +30,6 @@ export const uploadSlice = createSlice({
 			state,
 			action: PayloadAction<TrackBlobUpdate>
 		) => {
-			console.log(action.payload.progress)
 			if (action.payload.progress === 100) {
 				// toastr.success(
 				// 	'Успешно загружен',

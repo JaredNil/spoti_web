@@ -11,7 +11,6 @@ export async function fetchMetaTrackesServer(
 		}).then(async (res) => {
 			if (!res.ok) return null // ДОБАВИТЬ ОБРАБОТКУ ОШИБОК, BACKLOG
 			const track = (await res.json()) as Track
-			// track.hash = hash
 			return track
 		})
 	)
@@ -33,7 +32,6 @@ export async function fetchMetaTrackServer(
 		throw new Error(`Track ${trackHash} not found`)
 	}
 	const track = (await trackMetadata.json()) as Track
-	// track.hash = trackHash // REFACTOR IN FUTURE FOR HASH_TRACK
 	return track
 }
 

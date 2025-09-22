@@ -1,70 +1,34 @@
+import { fetchUserByEmail } from '../user/handler'
+
 import { Album, AlbumsCollection } from '@/shared/api'
 import { ze } from '@/shared/lib/log'
 
-export const fetchAlbumById = async (id: string): Promise<Album> => {
+export const fetchAlbumById = async (id: string): Promise<Album | null> => {
 	const albumData = await fetch(`${process.env.KV_STORAGE}/albums/${id}`, {
 		method: 'GET',
 		headers: { 'Content-Type': 'application/json' },
 	})
 	if (!albumData.ok) {
-		throw new Error(`Album ${id} not found`)
+		ze(`Album ${id} not found`)
+		return null
 	}
 	const album = (await albumData.json()) as Album
+
 	album.trackesHash.forEach(
 		(trackHash, i) => (album.trackesHash[i] = trackHash.toString())
 	)
 	return album
 }
 
-const users = [
-	{
-		albumsId: [0, 1, 2, 3, 4, 5, 6],
-	},
-	{
-		albumsId: [2, 5],
-	},
-]
-
-export const fetchAlbumsByUser = async (
-	userId: string
-): Promise<AlbumsCollection> => {
-	try {
-		const { albumsId } = users[Number(userId)] // REFACTOR REQ TO KV DATABASE CLOIDFLARE TO RESPONCE LIST OF HAVING ALBUM
-
-		if (!userId || userId.trim() === '') ze('Empty userId')
-
-		const promises = albumsId.map((id) =>
-			fetch(`${process.env.KV_STORAGE}/albums/${id}`, {
-				method: 'GET',
-				headers: { 'Content-Type': 'application/json' },
-			})
-				.then((res) => res.json())
-				.catch(() => {
-					ze(`[fetchAlbumsByUser] Album ${id} fetch is failed`)
-					return null
-				})
-		)
-		const albums = (await Promise.all(promises)) as AlbumsCollection
-
-		// number to string id-hash
-		const checkedAlbums = albums.filter(Boolean).map((album) => ({
-			...album,
-			TrackesHash: album.trackesHash?.map((id) => String(id)) ?? [],
-		})) as AlbumsCollection
-
-		return checkedAlbums
-	} catch (err) {
-		ze(`fetchAlbumsByUser error: ${err}`)
+export const fetchAlbumsJarefy = async (): Promise<AlbumsCollection> => {
+	const userdata = await fetchUserByEmail('Jarefy')
+	if (!userdata) {
+		ze('Данные пользователя не найдены')
 		return []
 	}
-}
-
-export const fetchAlbumsJarefy = async (): Promise<AlbumsCollection> => {
-	const albumsIdJarefy = [0, 1, 2, 3, 4, 5, 6]
-	// REFACTOR REQ TO KV DATABASE CLOIDFLARE TO RESPONCE LIST OF HAVING ALBUM
-
-	const promises = albumsIdJarefy.map((id) =>
-		fetch(`${process.env.KV_STORAGE}/albums/${id}`, {
+	const { albumsHash } = userdata
+	const promises = albumsHash.map((hash) =>
+		fetch(`${process.env.KV_STORAGE}/albums/${hash}`, {
 			method: 'GET',
 			headers: { 'Content-Type': 'application/json' },
 		}).then((res) => {
@@ -79,7 +43,7 @@ export const fetchAlbumsJarefy = async (): Promise<AlbumsCollection> => {
 
 	const checkedAlbums = albums.filter(Boolean).map((album) => ({
 		...album,
-		TrackesHash: album.trackesHash?.map((id) => String(id)) ?? [],
+		TrackesHash: album.trackesHash?.map((hash) => String(hash)) ?? [],
 	})) as AlbumsCollection
 
 	return checkedAlbums
@@ -125,5 +89,13 @@ export const createAlbum = async (body: Album): Promise<number> => {
 			ze(`createAlbum error ${res.status}: ${text}`)
 		}
 		return res.status
+	})
+}
+export const deleteAlbum = async (albumHash: string): Promise<void> => {
+	fetch(`${process.env.KV_STORAGE}/albums/${albumHash}`, {
+		method: 'DELETE',
+	}).then((res) => {
+		if (!res.ok) return null // ДОБАВИТЬ ОБРАБОТКУ ОШИБОК, BACKLOG
+		return res.json()
 	})
 }

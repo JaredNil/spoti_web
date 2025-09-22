@@ -1,3 +1,5 @@
+export { useAlbumActions } from './hooks/useAlbumActions'
+
 export {
 	useLazyFetchAlbumQuery,
 	useFetchAlbumQuery,

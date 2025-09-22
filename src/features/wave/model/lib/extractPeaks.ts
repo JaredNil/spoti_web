@@ -5,7 +5,6 @@ export const extractPeaks = async (
 	const res = await fetch(url)
 
 	const buf = await res.arrayBuffer()
-	console.log('buf', buf)
 	const audioCtx = new (window.AudioContext ||
 		(window as any).webkitAudioContext)()
 	const audioBuffer = await audioCtx.decodeAudioData(buf.slice(0))

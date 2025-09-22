@@ -15,61 +15,69 @@ interface TrackesListItemProps {
 	track: Track
 	isCompact: boolean
 	customButton?: React.ReactNode
-	index: number
+	position: number
 }
 
 export const TrackesListItem: FC<TrackesListItemProps> = ({
 	track,
 	relayTrackesId,
 	isCompact,
-	index,
+	position,
 	customButton,
-}) => (
-	<div
-		key={index}
-		className={twMerge(
-			`group h-[50px] grid rounded-xl relative
+}) => {
+	console.log(position)
+	return (
+		<div
+			className={twMerge(
+				`group h-[50px] grid rounded-xl relative
 			transition-colors hover:bg-neutral-400/5`,
-			isCompact ? compactRow : baseRow,
-			isCompact ? 'h-[34px]' : 'h-[50px]',
-			`before:absolute before:left-1/2 before:top-0
+				isCompact ? compactRow : baseRow,
+				isCompact ? 'h-[34px]' : 'h-[50px]',
+				`before:absolute before:left-1/2 before:top-0
        		before:h-[0.3px] before:w-full before:-translate-x-1/2
 			before:bg-neutral-400/10`
-		)}
-	>
-		<div className="relative flex items-center justify-center">
-			{relayTrackesId && (
-				<TrackesListButton
-					index={index}
-					relayTrackesId={relayTrackesId}
-					track={track}
-				/>
 			)}
-		</div>
-		<div
-			className={
-				isCompact ? 'hidden' : 'flex items-center justify-center'
-			}
 		>
-			<Image
-				className="lg:w-[100%] w-10 aspect-square select-none"
-				src={'/content/cover/heavy_metal.webp'}
-				width={20}
-				height={20}
-				alt="track image"
-			/>
-		</div>
-		<div
-			className="truncate px-2
+			<div className="relative flex items-center justify-center">
+				{relayTrackesId && (
+					<TrackesListButton
+						index={position}
+						relayTrackesId={relayTrackesId}
+						track={track}
+					/>
+				)}
+			</div>
+			<div
+				className={
+					isCompact ? 'hidden' : 'flex items-center justify-center'
+				}
+			>
+				<Image
+					className="lg:w-[100%] w-10 aspect-square select-none"
+					src={'/content/cover/heavy_metal.webp'}
+					width={20}
+					height={20}
+					alt="track image"
+				/>
+			</div>
+			<div
+				className="truncate px-2
 			flex items-center
 			select-none"
-		>
-			<Link className="truncate py-3 pr-5" href={`/track/${track.hash}`}>
-				{track.title}
-			</Link>
+			>
+				<Link
+					className="truncate py-3 pr-5"
+					href={`/track/${track.hash}`}
+				>
+					{track.title}
+				</Link>
+			</div>
+			<TrackesListSearch
+				author={track.author}
+				classname="hidden lg:flex"
+			/>
+			<TrackesListLike classname="hidden lg:flex" />
+			{customButton}
 		</div>
-		<TrackesListSearch author={track.author} classname="hidden lg:flex" />
-		<TrackesListLike classname="hidden lg:flex" />
-		{customButton}
-	</div>
-)
+	)
+}

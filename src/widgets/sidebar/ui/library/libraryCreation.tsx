@@ -1,21 +1,30 @@
 'use client'
-import { useCreateAlbum } from '@/entities/album/hooks/useAlbum'
+import { toast } from 'sonner'
+
+import { useAlbumActions } from '@/entities/album'
 
 export const LibraryCreation: React.FC = () => {
-	const { createAlbum } = useCreateAlbum()
+	const { createAlbum, isUpdating } = useAlbumActions()
+
+	const onCreatingAlbum = () => {
+		if (!isUpdating) createAlbum()
+		else {
+			toast.warning('Подождите создания')
+		}
+	}
 
 	return (
 		<div
 			className="flex hover:bg-neutral-400/10 transition-all"
-			onClick={() => createAlbum()}
+			onClick={onCreatingAlbum}
 		>
 			<div
 				className="flex justify-center items-center
-			aspect-square h-[34px] bg-gray-400"
+				aspect-square h-[34px] bg-gray-400"
 			>
 				<div
 					className="text-white text-3xl 
-				ml-[1px] mb-[6px] pointer-events-none select-none"
+					ml-[1px] mb-[6px] pointer-events-none select-none"
 				>
 					+
 				</div>
@@ -23,9 +32,9 @@ export const LibraryCreation: React.FC = () => {
 			<div className="flex justify-start items-center pl-2 w-full overflow-hidden">
 				<div
 					className="select-none text-neutral-300 text-ellipsis text-sm
-				whitespace-nowrap tracking-wide w-full overflow-hidden"
+					whitespace-nowrap tracking-wide w-full overflow-hidden"
 				>
-					Создать плейлист
+					{isUpdating ? 'Создание...' : 'Создать плейлист'}
 				</div>
 			</div>
 		</div>

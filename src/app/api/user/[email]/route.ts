@@ -12,13 +12,15 @@ export async function GET(
 	if (!email) return new Response('Missing email', { status: 400 })
 
 	const user = await fetchUserByEmail(email)
-
+	console.log('fetch user hashes')
+	console.log(user?.albumsHash)
 	if (user === null) {
 		return new Response(JSON.stringify(user), {
 			status: 404,
 			headers: { 'Content-Type': 'application/json' },
 		})
 	}
+	console.log(user)
 	return new Response(JSON.stringify(user), {
 		status: 200,
 		headers: { 'Content-Type': 'application/json' },
@@ -34,6 +36,7 @@ export async function PATCH(
 
 	const patch = (await req.json()) as User
 	const updated = await updateUser(email, patch)
+	await new Promise((res) => setTimeout(res, 1000))
 	return new Response(JSON.stringify(updated), {
 		status: 200,
 		headers: { 'Content-Type': 'application/json' },

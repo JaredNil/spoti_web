@@ -29,8 +29,11 @@ export const TrackesView: React.FC<TrackesViewProps> = ({
 	const { data: album, isLoading: isLoadingAlbum } =
 		useFetchAlbumQuery(albumHash)
 	const { data: trackes, isLoading: isLoadingTrackes } = useFetchTrackesQuery(
-		album?.trackesHash || skipToken
+		(album?.trackesHash?.length ?? 0) > 0
+			? (album?.trackesHash ?? [])
+			: skipToken
 	)
+
 	// usePrefetchTrackes(trackes) // Больше не нужно, перефакторить
 
 	return (

@@ -15,8 +15,9 @@ export default async function PlaylistPageLoaded() {
 	}
 	return (
 		<>
-			<PlaylistTitle albumPreload={album} />
-			<TrackesViewAll />
+			<div>not working</div>
+			{/* <PlaylistTitle albumPreload={album} />
+			<TrackesViewAll /> */}
 		</>
 	)
 }

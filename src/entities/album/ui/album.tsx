@@ -37,8 +37,8 @@ export const AlbumCard: React.FC<AlbumProps> = ({ data }: AlbumProps) => {
 					alt={title}
 					loading="lazy"
 					className="pointer-events-none w-full select-none object-cover"
-					width={200}
-					height={200}
+					width={140}
+					height={140}
 					priority={false}
 				/>
 			</div>

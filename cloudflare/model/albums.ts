@@ -42,5 +42,5 @@ export const deleteAlbum: Handler = async (_req, env, _ctx, { id }) => {
 	if (!(await get(env.ALBUMS_KV, key)))
 		return httpError('Album not found', 404)
 	await del(env.ALBUMS_KV, key)
-	return json('Album deleted')
+	return json('АЛЬБОМ УДАЛИТЬ')
 }

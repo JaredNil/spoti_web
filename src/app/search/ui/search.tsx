@@ -48,7 +48,7 @@ export const Search: React.FC = () => {
 					dispatch(metaAction.setSearched(e.target.value))
 				}
 				className="sceleton xl:w-[50%]"
-				placeholder="Scarlxrd...  architect...   genre..."
+				placeholder="architect..."
 			/>
 			<div className="w-full mt-3 flex flex-col">
 				<span className="text-2xl select-none">Результаты поиска:</span>

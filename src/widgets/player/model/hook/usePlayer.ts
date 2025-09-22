@@ -1,3 +1,5 @@
+import { toast } from 'sonner'
+
 import {
 	getIsActivePlayer,
 	getIsLoadingTrack,
@@ -53,8 +55,10 @@ export function usePlayer() {
 	}
 
 	function play() {
-		if (queue.length === 0) ze('play error, queue empty')
-		else {
+		if (queue.length === 0) {
+			ze('play error, queue empty')
+			toast.error('Нет треков в очереди плейлиста')
+		} else {
 			if (playTrack) {
 				playTrack()
 				dispatch(playerAction.setIsRun(true))

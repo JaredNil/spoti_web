@@ -8,14 +8,14 @@ import { Track } from '@/shared/api'
 export async function GET(request: NextRequest) {
 	const searchParams = request.nextUrl.searchParams
 	const query = searchParams.get('query')
-	const TrackesHash = query?.split(',')
-	if (TrackesHash === undefined) {
+	const trackesHash = query?.split(',')
+	if (trackesHash === undefined) {
 		return new Response('Missing fields user_id', { status: 400 })
 	}
-	if (TrackesHash.length === 0) {
+	if (trackesHash.length === 0) {
 		return new Response('Empty track list ids', { status: 400 })
 	}
-	const trackes = await fetchMetaTrackesServer(TrackesHash)
+	const trackes = await fetchMetaTrackesServer(trackesHash)
 
 	return new Response(JSON.stringify(trackes), {
 		status: 200,

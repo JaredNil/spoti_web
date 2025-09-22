@@ -18,6 +18,7 @@ export const userApi = rtkApi.injectEndpoints({
 				}),
 				invalidatesTags: (_, __, { email }) => [
 					{ type: 'User', email },
+					{ type: 'Album', hash: 'LIST' },
 				],
 			}),
 			createUser: build.mutation<void, User>({

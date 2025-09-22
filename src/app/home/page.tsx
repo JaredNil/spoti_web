@@ -1,4 +1,4 @@
-import { AlbumsCollection } from './ui/albumsCollection'
+import { AlbumsVendor } from './ui/albumsVendor'
 import { BringAuth } from './ui/bringAuth'
 import { HomeTitle } from './ui/homeTitle'
 import { QuickBar } from './ui/quickBar'
@@ -13,10 +13,10 @@ const Home = async () => {
 			<HomeTitle />
 			<QuickBar />
 
-			<AlbumsCollection type={'USER'} />
+			<AlbumsVendor type={'USER'} />
 			<BringAuth />
-			<AlbumsCollection type={'COMMON'} />
-			<AlbumsCollection type={'COMMUNITY'} />
+			<AlbumsVendor type={'COMMON'} />
+			<AlbumsVendor type={'COMMUNITY'} />
 		</>
 	)
 }

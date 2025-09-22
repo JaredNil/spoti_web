@@ -42,8 +42,8 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 				<TrackesListLabel isCompact={isCompact} />
 				{trackes?.map((track, i) => (
 					<TrackesListItem
-						index={i}
-						key={track.hash}
+						key={track.hash ?? track.title}
+						position={i}
 						isCompact={isCompact}
 						relayTrackesId={relayTrackesId}
 						track={track}

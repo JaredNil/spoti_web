@@ -1,0 +1,14 @@
+{
+	"CORSRules": [
+		{
+			"AllowedHeaders": ["*"],
+			"AllowedMethods": ["GET", "POST", "PUT", "DELETE", "HEAD"],
+			"AllowedOrigins": [
+				"https://spoti-web.vercel.app",
+				"http://localhost:3000"
+			],
+			"ExposeHeaders": ["ETag"],
+			"MaxAgeSeconds": 3000
+		}
+	]
+}

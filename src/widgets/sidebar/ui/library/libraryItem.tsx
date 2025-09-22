@@ -34,9 +34,6 @@ export const LibraryItem: React.FC<LibraryItemProps> = ({
 				className="select-none text-neutral-300 text-ellipsis text-sm
 					whitespace-nowrap tracking-wide w-full overflow-hidden"
 			>
-				{album && album?.hash === '0' ? '' : ' '}
-				<span className="font-medium">{album?.author}</span>
-				{album && album?.hash === '0' ? '' : ` - `}
 				<span>{album?.title}</span>
 			</div>
 			<Link

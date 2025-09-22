@@ -1,4 +1,3 @@
-// const S3_STORAGE = process.env.NEXT_PUBLIC_VK_CDN
 const S3_STORAGE = process.env.NEXT_PUBLIC_VK_ENDPOINT
 const S3_BUCKET = process.env.NEXT_PUBLIC_VK_BUCKET
 

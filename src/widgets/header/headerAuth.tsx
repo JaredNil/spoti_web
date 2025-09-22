@@ -2,20 +2,13 @@
 
 import { useRouter } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
-import { useEffect } from 'react'
 import { toast } from 'sonner'
 
 import { getIsVisibleModal } from '@/entities/meta'
-import {
-	useCreateUserMutation,
-	useFetchUserQuery,
-} from '@/entities/user/api/userApi'
-import { useCreateUserIfNotExists } from '@/entities/user/model/hooks/useCreateUserIfNotExists'
+import { useCreateUserIfNotExists } from '@/entities/user/hooks/useCreateUserIfNotExists'
 import { AuthModal } from '@/features/authModal'
-import { User } from '@/shared/api'
 import { useAppSelector } from '@/shared/hooks'
 import { Icons } from '@/shared/icons'
-import { ze, zw } from '@/shared/lib/log'
 import { Button } from '@/shared/ui/kit/button'
 
 export const HeaderAuthButton = () => {
