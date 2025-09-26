@@ -15,8 +15,9 @@ export async function GET(request: NextRequest) {
 	}
 
 	const trackes = await fetchAllMetaTrackesServer()
-
-	return new Response(JSON.stringify(findByReq(trackes, searching)), {
+	const searchResult = findByReq(trackes, searching)
+	console.log(searchResult)
+	return new Response(JSON.stringify(searchResult), {
 		status: 200,
 		headers: { 'Content-Type': 'application/json' },
 	})

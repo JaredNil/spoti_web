@@ -12,15 +12,12 @@ export async function GET(
 	if (!email) return new Response('Missing email', { status: 400 })
 
 	const user = await fetchUserByEmail(email)
-	console.log('fetch user hashes')
-	console.log(user?.albumsHash)
 	if (user === null) {
 		return new Response(JSON.stringify(user), {
 			status: 404,
 			headers: { 'Content-Type': 'application/json' },
 		})
 	}
-	console.log(user)
 	return new Response(JSON.stringify(user), {
 		status: 200,
 		headers: { 'Content-Type': 'application/json' },

@@ -54,6 +54,7 @@ export const Search: React.FC = () => {
 				<span className="text-2xl select-none">Результаты поиска:</span>
 				{trackes && trackesHash && (
 					<SearchView
+						trackes={trackes}
 						trackesHash={trackesHash}
 						isLoading={isLoading}
 					/>

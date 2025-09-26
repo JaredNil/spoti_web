@@ -5,17 +5,20 @@ import { useState } from 'react'
 import { SearchLoading } from './piece/searchLoading'
 
 import { DropdownHeader } from '@/app/playlist/ui/piece/dropdownHeader'
-import { TrackesHash } from '@/shared/api'
+import { Trackes, TrackesHash } from '@/shared/api'
 import { Icons } from '@/shared/icons'
+import { TrackesList } from '@/shared/ui/trackesList/trackesList'
 
 interface SearchViewProps {
 	trackesHash: TrackesHash
 	isLoading: boolean
+	trackes: Trackes
 }
 
 export const SearchView: React.FC<SearchViewProps> = ({
 	trackesHash,
 	isLoading,
+	trackes,
 }: SearchViewProps) => {
 	const [isCompact, setIsList] = useState<boolean>(false)
 	const toggleList = () => setIsList(!isCompact)
@@ -59,8 +62,12 @@ export const SearchView: React.FC<SearchViewProps> = ({
 			{isLoading ? (
 				<SearchLoading />
 			) : (
-				<div></div>
-				// <TrackesView isCompact={isCompact} trackesId={trackesId} />
+				<TrackesList
+					trackes={trackes}
+					isCompact={isCompact}
+					relayTrackesId={trackesHash}
+					isLoadingTrackes={isLoading}
+				/>
 			)}
 		</div>
 	)

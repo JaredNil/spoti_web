@@ -2,24 +2,25 @@
 import Link from 'next/link'
 import { JSX } from 'react'
 
-import { useFetchAlbumQuery } from '../api/albumApi'
-
+import { TrackesHash } from '@/shared/api'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
 interface ListItemProps {
 	image: JSX.Element
 	name: string
 	href: string
-	albumId: string
+	trackesHash?: TrackesHash
+	isLoading: boolean
 }
 
 export const AlbumFlat: React.FC<ListItemProps> = ({
 	image,
 	name,
 	href,
-	albumId,
+	trackesHash,
+	isLoading,
 }: ListItemProps) => {
-	const { data: album, isFetching } = useFetchAlbumQuery(albumId)
+	// const { data: album, isFetching } = useFetchAlbumQuery(albumId)
 
 	return (
 		<div
@@ -42,10 +43,10 @@ export const AlbumFlat: React.FC<ListItemProps> = ({
 				transition hover:scale-110 group-hover:opacity-100
 				"
 			>
-				{!isFetching && album && (
+				{!isLoading && trackesHash && (
 					<PlayButton
 						classname="h-full"
-						relayTrackesId={album?.trackesHash}
+						relayTrackesId={trackesHash}
 						type="album"
 					/>
 				)}
