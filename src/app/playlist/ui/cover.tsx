@@ -36,52 +36,48 @@ export const Cover: React.FC<PlaylistTitleProps> = ({
 		return <CoverError code={400} />
 
 	return (
-		<>
-			{/* common block */}
-			<div
-				className="flex flex-col items-center justify-start
+		<div
+			className="flex flex-col items-center justify-start
 				relative 
 				sm:min-h-[220px]"
-			>
-				<CoverImageDesktop
-					classname="hidden absolute top-0 left-0 
+		>
+			<CoverImageDesktop
+				classname="hidden absolute top-0 left-0 
 					aspect-square w-[220px] h-[220px]
 					sm:block"
-					isLoadingAlbum={isLoadingAlbum}
-				/>
-				<CoverInformation
-					classname="flex flex-col w-full 
-					sm:pl-[220px] sm:h-[220px] sm:ml-4  sm:justify-between"
-					isLoadingAlbum={isLoadingAlbum}
-					album={album}
-					imageRender={
-						<CoverImageMobile
-							classname="relative flex items-center justify-center 
+				isLoadingAlbum={isLoadingAlbum}
+			/>
+			<CoverInformation
+				classname="relative flex flex-col w-full 
+					sm:pl-[220px] sm:h-[220px]  sm:justify-between"
+				isLoadingAlbum={isLoadingAlbum}
+				album={album}
+				imageRender={
+					<CoverImageMobile
+						classname="relative flex items-center justify-center 
 							sm:hidden"
-							isLoadingAlbum={isLoadingAlbum}
-							album={album}
-						/>
-					}
-				/>
-				<CoverEditButton
-					classname="absolute top-1 right-0
-					cursor-pointer pointer-events-auto"
-					setShowEdit={setShowEdit}
-					showEdit={showEdit}
-				/>
-				{showEdit && album && (
-					<CoverEdit
+						isLoadingAlbum={isLoadingAlbum}
 						album={album}
-						initial={{
-							title: album.title,
-							description: album.description ?? '',
-							imagePath: album.imagePath ?? '',
-						}}
-						onClose={() => setShowEdit(false)}
 					/>
-				)}
-			</div>
-			{/* edit block */}
-		</>
+				}
+			/>
+			<CoverEditButton
+				classname="absolute top-1 right-0
+					cursor-pointer pointer-events-auto"
+				setShowEdit={setShowEdit}
+				showEdit={showEdit}
+			/>
+			{showEdit && album && (
+				<CoverEdit
+					album={album}
+					initial={{
+						title: album.title,
+						description: album.description ?? '',
+						imagePath: album.imagePath ?? '',
+					}}
+					onClose={() => setShowEdit(false)}
+				/>
+			)}
+		</div>
 	)
 }

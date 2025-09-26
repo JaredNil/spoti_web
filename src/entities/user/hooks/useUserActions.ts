@@ -5,12 +5,16 @@ import { useSession } from 'next-auth/react'
 
 import {
 	useFetchUserQuery,
+	useToggleLikedTrackMutation,
 	useUpdateUserMutation,
 } from '@/entities/user/api/userApi'
-import { User } from '@/shared/api'
+import { Track, TrackHash, User } from '@/shared/api'
 import { ze } from '@/shared/lib/log'
 
 export const useUserActions = () => {
+	const { data } = useSession()
+	const email = data?.user?.email
+
 	const [updateUserMutation] = useUpdateUserMutation()
 
 	const addUserAlbumsHash = async (hash: string, userData: User) => {
@@ -50,8 +54,16 @@ export const useUserActions = () => {
 		await updateUserMutation(newUserData).unwrap()
 	}
 
+	const [toggle] = useToggleLikedTrackMutation()
+
+	const likeTrack = (trackHash: TrackHash, like: boolean) => {
+		if (!email) return
+		toggle({ email, trackHash: trackHash, like })
+	}
+
 	return {
 		addUserAlbumsHash,
 		deleteUserAlbumsHash,
+		likeTrack,
 	}
 }

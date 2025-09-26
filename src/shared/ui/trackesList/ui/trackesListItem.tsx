@@ -25,17 +25,16 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 	position,
 	customButton,
 }) => {
-	console.log(position)
 	return (
 		<div
 			className={twMerge(
 				`group h-[50px] grid rounded-xl relative
-			transition-colors hover:bg-neutral-400/5`,
+				transition-colors hover:bg-neutral-400/5`,
 				isCompact ? compactRow : baseRow,
 				isCompact ? 'h-[34px]' : 'h-[50px]',
 				`before:absolute before:left-1/2 before:top-0
-       		before:h-[0.3px] before:w-full before:-translate-x-1/2
-			before:bg-neutral-400/10`
+				before:h-[0.3px] before:w-full before:-translate-x-1/2
+				before:bg-neutral-400/10`
 			)}
 		>
 			<div className="relative flex items-center justify-center">
@@ -62,8 +61,8 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 			</div>
 			<div
 				className="truncate px-2
-			flex items-center
-			select-none"
+				flex items-center
+				select-none"
 			>
 				<Link
 					className="truncate py-3 pr-5"
@@ -76,7 +75,10 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 				author={track.author}
 				classname="hidden lg:flex"
 			/>
-			<TrackesListLike classname="hidden lg:flex" />
+			<TrackesListLike
+				trackHash={track.hash}
+				classname="hidden lg:flex"
+			/>
 			{customButton}
 		</div>
 	)

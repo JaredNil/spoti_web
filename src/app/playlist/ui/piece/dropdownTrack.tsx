@@ -9,8 +9,8 @@ import {
 import { FC } from 'react'
 import { toast } from 'sonner'
 
+import { useAlbumActions } from '@/entities/album'
 import { Track } from '@/shared/api'
-import { useChangeAlbum } from '@/shared/hooks/useChangeAlbum'
 import { Icons } from '@/shared/icons'
 
 export interface DropdownTrackProps {
@@ -22,12 +22,12 @@ export const DropdownTrack: FC<DropdownTrackProps> = ({
 	albumPageId,
 	track,
 }: DropdownTrackProps) => {
-	const { deleteTrack } = useChangeAlbum(albumPageId)
+	const { deleteTrack } = useAlbumActions()
 
 	const dropdownOptions = [
 		{
 			name: 'Удалить трек',
-			callback: () => deleteTrack(track),
+			callback: () => deleteTrack(track, albumPageId),
 		},
 		{
 			name: 'Добавить в плейлист',

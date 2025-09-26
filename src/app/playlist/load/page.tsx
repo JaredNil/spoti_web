@@ -1,10 +1,11 @@
-import { PlaylistTitleLoad } from './playlistTitleLoad'
+'use client'
+import { CoverLoad } from './coverLoad'
 import { TrackesViewLoad } from './trackesViewLoad'
 
-export default async function PlaylistPageLoaded() {
+export default function PlaylistPageLoad() {
 	return (
 		<>
-			<PlaylistTitleLoad />
+			<CoverLoad />
 			<TrackesViewLoad />
 		</>
 	)

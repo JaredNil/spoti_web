@@ -11,7 +11,7 @@ import { useFetchTrackesQuery } from '@/entities/track'
 import { useFetchUserQuery } from '@/entities/user/api/userApi'
 import { TrackesList } from '@/shared/ui/trackesList/trackesList'
 
-export const TrackesViewLoad = () => {
+export const TrackesViewLike = () => {
 	const { data } = useSession()
 	const email = data?.user?.email
 	const { data: userData, isLoading: isLoadingAlbum } = useFetchUserQuery(
@@ -19,8 +19,8 @@ export const TrackesViewLoad = () => {
 	)
 
 	const { data: trackes, isLoading: isLoadingTrackes } = useFetchTrackesQuery(
-		(userData?.trackesHash?.length ?? 0) > 0
-			? (userData?.trackesHash ?? [])
+		(userData?.likedHash?.length ?? 0) > 0
+			? (userData?.likedHash ?? [])
 			: skipToken
 	)
 
@@ -30,14 +30,14 @@ export const TrackesViewLoad = () => {
 	return (
 		<TrackesContainer>
 			<TrackesHead
-				trackesHash={userData?.trackesHash}
+				trackesHash={userData?.likedHash}
 				toggleList={toggleList}
 				isCompact={isCompact}
 			/>
 
 			<TrackesList
 				isCompact={isCompact}
-				relayTrackesId={userData?.trackesHash}
+				relayTrackesId={userData?.likedHash}
 				albumPageId={'load'}
 				trackes={trackes}
 				type="all"

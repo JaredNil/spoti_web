@@ -1,12 +1,11 @@
-export default async function PlaylistPageLiked() {
-	const albumId = '1'
-	// const album = await fetchAlbumById(albumId)
+import { CoverLike } from './coverLike'
+import { TrackesViewLike } from './trackesViewLike'
 
+export default function PlaylistPageLiked() {
 	return (
 		<>
-			<div>Like</div>
-			{/* <PlaylistTitle albumPreload={album} /> */}
-			{/* <TrackesView albumHash={albumId} /> */}
+			<CoverLike />
+			<TrackesViewLike />
 		</>
 	)
 }

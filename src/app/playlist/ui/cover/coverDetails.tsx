@@ -21,7 +21,11 @@ export const CoverImageDesktop = (props: {
 		{props.isLoadingAlbum && <CoverSkeletonImage />}
 		{!props.isLoadingAlbum && (
 			<Image
-				src="/content/cover/album-placeholder.webp"
+				src={
+					props.imageHash
+						? props.imageHash
+						: `/content/cover/album-placeholder.webp`
+				}
 				width={300}
 				height={300}
 				loading="lazy"
@@ -46,7 +50,11 @@ export const CoverImageMobile = (props: {
 			{props.isLoadingAlbum && <CoverSkeletonImageMobile />}
 			{props.album && !props.isLoadingAlbum && (
 				<Image
-					src="/content/cover/album-placeholder.webp"
+					src={
+						props.imageHash
+							? props.imageHash
+							: `/content/cover/album-placeholder.webp`
+					}
 					width={300}
 					height={300}
 					className="p-1 pointer-events-none select-none w-full"

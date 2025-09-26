@@ -147,4 +147,6 @@ export const {
 	useUpdateAlbumMutation,
 	useCreateAlbumMutation,
 	useFetchAlbumsByUserQuery,
+	useAddTrackMutation,
+	useRemoveTrackMutation,
 } = albumApi

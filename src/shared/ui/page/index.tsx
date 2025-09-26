@@ -13,7 +13,8 @@ const Page: React.FC<PageProps> = memo(
 				className={twMerge(
 					`h-full w-full overflow-hidden
             		overflow-y-auto rounded-lg bg-neutral-900 
-            		px-3 sm:px-6 pt-[80px] pb-[20px]`,
+            		px-3 sm:px-6 pt-[80px] pb-[20px]
+				`,
 					className
 				)}
 				{...otherProps}
