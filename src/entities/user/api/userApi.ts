@@ -33,6 +33,40 @@ export const userApi = rtkApi.injectEndpoints({
 					{ type: 'User', email },
 				],
 			}),
+			addTrackToUser: build.mutation<
+				User,
+				{ email: string; trackHash: TrackHash }
+			>({
+				query: ({ email, trackHash }) => ({
+					url: `/user/${email}/trackes`,
+					method: 'PUT',
+					body: { trackHash },
+				}),
+				async onQueryStarted(
+					{ email, trackHash },
+					{ dispatch, queryFulfilled }
+				) {
+					const patch = dispatch(
+						userApi.util.updateQueryData(
+							'fetchUser',
+							email,
+							(draft) => {
+								if (!draft.trackesHash) draft.trackesHash = []
+								if (!draft.trackesHash.includes(trackHash))
+									draft.trackesHash.push(trackHash)
+							}
+						)
+					)
+
+					try {
+						await queryFulfilled
+						toast.success('Track added to your library')
+					} catch {
+						patch.undo()
+						toast.error('Failed to add track to library – reverted')
+					}
+				},
+			}),
 			toggleLikedTrack: build.mutation<
 				User,
 				{ email: string; trackHash: TrackHash; like: boolean }
@@ -84,4 +118,5 @@ export const {
 	useFetchUserQuery,
 	useToggleLikedTrackMutation,
 	useUpdateUserMutation,
+	useAddTrackToUserMutation,
 } = userApi

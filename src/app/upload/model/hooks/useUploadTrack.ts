@@ -6,15 +6,19 @@ import { toast } from 'sonner'
 import { TrackForm } from '../types'
 
 import { useCreateTrackMutation } from '@/entities/track/api/trackApi'
+import { useAddTrackToUserMutation } from '@/entities/user/api/userApi'
 import { Track } from '@/shared/api'
 import { s3 } from '@/shared/api/api'
 import { fileToBuffer } from '@/shared/lib/fileToBuffer'
 import { shortHash } from '@/shared/lib/hash'
-import { z, ze, zw } from '@/shared/lib/log'
+import { z, ze } from '@/shared/lib/log'
 
 export const useUploadTrack = () => {
 	const { data } = useSession()
+	const email = data?.user?.email ?? ''
+
 	const [createTrack, { isLoading: isCreating }] = useCreateTrackMutation()
+	const [addToUser] = useAddTrackToUserMutation()
 
 	const [tracks, setTracks] = useState<TrackForm[]>([])
 
@@ -33,7 +37,7 @@ export const useUploadTrack = () => {
 		const hash = shortHash()
 		const newTrack: Track = {
 			hash: hash,
-			user: data!.user!.email ?? 'Empty email',
+			user: email ?? 'Empty email',
 			author: trackRaw.author,
 			title: trackRaw.title,
 			songLink: `${hash}.mp3`,
@@ -51,8 +55,9 @@ export const useUploadTrack = () => {
 				})
 			)
 			z(`${s3Res.$metadata.httpStatusCode}`)
-			const { data: metaTrackResponce } = await createTrack(newTrack)
-
+			await createTrack(newTrack).unwrap()
+			if (email) await addToUser({ email: email, trackHash: hash })
+			else ze('email не определен для добавления трека с пользователю')
 			toast.success('Трек успешно загружен')
 			updateTrack(id, { status: 'success' })
 		} catch (error) {
