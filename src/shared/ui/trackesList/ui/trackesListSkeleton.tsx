@@ -1,50 +1,67 @@
-import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { TrackesListLabel } from './trackesListLabel'
+import { baseRow, compactRow } from './grid'
 
-interface TrackesListSkeletonProps {
+interface Props {
 	isCompact: boolean
+	count?: number
 }
-const arr = new Array(8).fill('').map((_, i) => String(i))
-export const TrackesListSkeleton: React.FC<TrackesListSkeletonProps> = ({
-	isCompact,
-}) => (
-	<div className="playlist__wrapper">
-		<TrackesListLabel isCompact={isCompact} />
-		{arr.map((track, i) => (
+
+export const TrackesListSkeleton = ({ isCompact, count = 4 }: Props) => (
+	<>
+		{Array.from({ length: count }).map((_, i) => (
 			<div
-				key={track}
+				key={i}
 				className={twMerge(
-					`playlist__table grid w-full flex-col items-center 
-					h-[50px] overflow-hidden
-					rounded-xl transition hover:bg-neutral-400/5`,
-					isCompact && 'playlist__compact'
+					`grid rounded-xl relative
+					transition-colors bg-transparent
+					before:absolute before:left-1/2 before:top-0
+					before:h-px before:w-full before:-translate-x-1/2
+					before:bg-neutral-400/10`,
+
+					isCompact ? compactRow : baseRow,
+					isCompact ? 'h-[34px]' : 'h-[50px]'
 				)}
 			>
-				<div
-					className="table-id pointer-events-none 
-					select-none text-center"
-				>
-					{i + 1}
+				<div className="flex items-center justify-center">
+					<span className="h-4 w-6 rounded bg-neutral-700 animate-pulse" />
 				</div>
-				<div className="w-full h-3/5 " />
+
 				<div
-					className="w-[150px] h-3/5 
-					rounded-lg
-					bg-neutral-700 animate-pulse"
-				/>
+					className={twMerge(
+						'flex items-center justify-center',
+						isCompact && 'hidden'
+					)}
+				>
+					<div className="w-10 aspect-square rounded bg-neutral-700 animate-pulse" />
+				</div>
+
+				<div className="flex items-center truncate px-2">
+					<div className="h-4 w-3/5 rounded bg-neutral-700 animate-pulse" />
+				</div>
+
 				<div
-					className="w-[150px] h-3/5 
-						rounded-lg
-						bg-neutral-700 animate-pulse"
-				/>
+					className={twMerge(
+						'hidden lg:flex items-center',
+						isCompact && 'hidden'
+					)}
+				>
+					<div className="h-4 w-2/5 rounded bg-neutral-700 animate-pulse" />
+				</div>
+
 				<div
-					className="w-[50px] h-3/5 
-					rounded-lg
-					bg-neutral-700 animate-pulse"
-				/>
+					className={twMerge(
+						'hidden lg:flex items-center',
+						isCompact && 'hidden'
+					)}
+				>
+					<div className="h-5 w-5 rounded bg-neutral-700 animate-pulse" />
+				</div>
+
+				<div className="flex items-center justify-end pr-2">
+					<div className="h-6 w-6 rounded bg-neutral-700 animate-pulse" />
+				</div>
 			</div>
 		))}
-	</div>
+	</>
 )

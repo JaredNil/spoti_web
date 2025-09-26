@@ -7,7 +7,7 @@ import {
 	CoverSkeletonImage,
 	CoverSkeletonImageMobile,
 	CoverSkeletonLabel,
-} from '../piece/coverSkeleton'
+} from './coverSkeleton'
 
 import { Album } from '@/shared/api'
 import { Button } from '@/shared/ui/kit/button'

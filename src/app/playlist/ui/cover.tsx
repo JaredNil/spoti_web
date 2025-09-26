@@ -9,7 +9,7 @@ import {
 	CoverInformation,
 } from './cover/coverDetails'
 import { CoverEdit } from './cover/coverEdit'
-import { CoverError } from './piece/coverError'
+import { CoverError } from './cover/coverError'
 
 import { useFetchAlbumQuery } from '@/entities/album'
 interface PlaylistTitleProps {

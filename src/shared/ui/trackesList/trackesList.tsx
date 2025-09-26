@@ -28,7 +28,13 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 	trackes,
 	type = 'playlist',
 }) => {
-	if (isLoadingTrackes) return <TrackesListSkeleton isCompact={isCompact} />
+	if (isLoadingTrackes)
+		return (
+			<TrackesListSkeleton
+				count={relayTrackesId?.length}
+				isCompact={isCompact}
+			/>
+		)
 
 	if (!trackes || trackes.length === 0)
 		return (
@@ -36,28 +42,27 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 				В плейлисте отсутствуют треки.
 			</div>
 		)
-	else
-		return (
-			<>
-				<TrackesListLabel isCompact={isCompact} />
-				{trackes?.map((track, i) => (
-					<TrackesListItem
-						key={track.hash ?? track.title}
-						position={i}
-						isCompact={isCompact}
-						relayTrackesId={relayTrackesId}
-						track={track}
-						customButton={
-							type === 'playlist' &&
-							albumPageId && (
-								<DropdownTrack
-									albumPageId={albumPageId}
-									track={track}
-								/>
-							)
-						}
-					/>
-				))}
-			</>
-		)
+	return (
+		<>
+			<TrackesListLabel isCompact={isCompact} />
+			{trackes?.map((track, i) => (
+				<TrackesListItem
+					key={track.hash ?? track.title}
+					position={i}
+					isCompact={isCompact}
+					relayTrackesId={relayTrackesId}
+					track={track}
+					customButton={
+						type === 'playlist' &&
+						albumPageId && (
+							<DropdownTrack
+								albumPageId={albumPageId}
+								track={track}
+							/>
+						)
+					}
+				/>
+			))}
+		</>
+	)
 }

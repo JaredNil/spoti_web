@@ -40,7 +40,7 @@ export const TrackesView: React.FC<TrackesViewProps> = ({
 
 	// usePrefetchTrackes(trackes) // Больше не нужно, перефакторить
 
-	// При любой ошибке с сервера - не рисуем компонент
+	// При любой ошибке с сервера - не рисуем компонент, метаинфа в page.tsx
 	if (error && (error as FetchBaseQueryError).status) {
 		return
 	}
@@ -48,15 +48,15 @@ export const TrackesView: React.FC<TrackesViewProps> = ({
 	return (
 		<TrackesContainer>
 			<TrackesHead
+				isCompact={isCompact}
 				trackesHash={album?.trackesHash}
 				toggleList={toggleList}
-				isCompact={isCompact}
 			/>
 
 			<TrackesList
 				isCompact={isCompact}
-				relayTrackesId={album?.trackesHash || albumPreload?.trackesHash}
 				albumPageId={albumHash}
+				relayTrackesId={album?.trackesHash || albumPreload?.trackesHash}
 				trackes={trackes || trackesPreload}
 				isLoadingTrackes={isLoadingTrackes || isLoadingAlbum}
 			/>
