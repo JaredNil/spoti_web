@@ -13,8 +13,7 @@ export async function GET(
 	}
 
 	const albums = await fetchAlbumsByUser(email)
-	console.log('albums hashes')
-	console.log(albums)
+
 	return new Response(JSON.stringify(albums), {
 		status: 200,
 		headers: { 'Content-Type': 'application/json' },

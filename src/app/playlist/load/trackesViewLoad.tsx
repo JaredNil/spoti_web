@@ -4,9 +4,9 @@ import { skipToken } from '@reduxjs/toolkit/query'
 import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 
-import { TrackesContainer } from './trackesView/trackesContainer'
-import { TrackesEdit } from './trackesView/trackesEdit'
-import { TrackesHead } from './trackesView/trackesHead'
+import { TrackesContainer } from '../ui/trackesView/trackesContainer'
+import { TrackesEdit } from '../ui/trackesView/trackesEdit'
+import { TrackesHead } from '../ui/trackesView/trackesHead'
 
 import { useFetchTrackesQuery } from '@/entities/track'
 import { useFetchUserQuery } from '@/entities/user/api/userApi'

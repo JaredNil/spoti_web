@@ -1,5 +1,5 @@
-import { PlaylistTitleLoad } from '../ui/playlistTitleLoad'
-import { TrackesViewLoad } from '../ui/trackesViewLoad'
+import { PlaylistTitleLoad } from './playlistTitleLoad'
+import { TrackesViewLoad } from './trackesViewLoad'
 
 export default async function PlaylistPageLoaded() {
 	return (

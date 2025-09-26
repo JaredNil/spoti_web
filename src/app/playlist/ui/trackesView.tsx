@@ -1,6 +1,7 @@
 'use client'
 
 import { skipToken } from '@reduxjs/toolkit/query'
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { useState } from 'react'
 
 import { TrackesContainer } from './trackesView/trackesContainer'
@@ -26,8 +27,11 @@ export const TrackesView: React.FC<TrackesViewProps> = ({
 	const [isCompact, setIsList] = useState<boolean>(false)
 	const toggleList = () => setIsList((prev) => !prev)
 
-	const { data: album, isLoading: isLoadingAlbum } =
-		useFetchAlbumQuery(albumHash)
+	const {
+		data: album,
+		isLoading: isLoadingAlbum,
+		error,
+	} = useFetchAlbumQuery(albumHash)
 	const { data: trackes, isLoading: isLoadingTrackes } = useFetchTrackesQuery(
 		(album?.trackesHash?.length ?? 0) > 0
 			? (album?.trackesHash ?? [])
@@ -35,6 +39,11 @@ export const TrackesView: React.FC<TrackesViewProps> = ({
 	)
 
 	// usePrefetchTrackes(trackes) // Больше не нужно, перефакторить
+
+	// При любой ошибке с сервера - не рисуем компонент
+	if (error && (error as FetchBaseQueryError).status) {
+		return
+	}
 
 	return (
 		<TrackesContainer>

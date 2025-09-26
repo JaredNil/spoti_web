@@ -36,7 +36,7 @@ export async function PATCH(
 	}
 
 	await updateAlbum(albumId, body)
-
+	await new Promise((res) => setTimeout(res, 1000))
 	return new Response('', {
 		status: 200,
 		headers: { 'Content-Type': 'application/json' },
@@ -51,7 +51,7 @@ export async function DELETE(
 		return new Response('Missing fields albumHash', { status: 400 })
 	}
 	const res = await deleteAlbum(albumHash)
-
+	await new Promise((res) => setTimeout(res, 1000))
 	return new Response(JSON.stringify(res), {
 		status: 200,
 		headers: { 'Content-Type': 'application/json' },

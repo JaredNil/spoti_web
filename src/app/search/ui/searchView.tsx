@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { SearchLoading } from './piece/searchLoading'
 
-import { DropdownHeader } from '@/app/playlist/ui/dropdownHeader'
+import { DropdownHeader } from '@/app/playlist/ui/piece/dropdownHeader'
 import { TrackesHash } from '@/shared/api'
 import { Icons } from '@/shared/icons'
 

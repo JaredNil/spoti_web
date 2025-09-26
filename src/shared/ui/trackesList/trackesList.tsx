@@ -2,7 +2,7 @@ import { TrackesListItem } from './ui/trackesListItem'
 import { TrackesListLabel } from './ui/trackesListLabel'
 import { TrackesListSkeleton } from './ui/trackesListSkeleton'
 
-import { DropdownTrack } from '@/app/playlist/ui/dropdownTrack'
+import { DropdownTrack } from '@/app/playlist/ui/piece/dropdownTrack'
 import { Track, Trackes, TrackesHash } from '@/shared/api'
 
 export type DropdownProps = {

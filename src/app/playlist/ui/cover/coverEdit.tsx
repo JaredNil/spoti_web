@@ -1,10 +1,9 @@
 'use client'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ReactEventHandler } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
-import { albumFormSchema, AlbumFormValues } from './schemas'
+import { albumFormSchema, AlbumFormValues } from '../../model/schemas'
 
 import {
 	Album,
@@ -25,11 +24,7 @@ interface Props {
 	onClose: () => void
 }
 
-export const PlaylistTitleEdit: React.FC<Props> = ({
-	album,
-	initial,
-	onClose,
-}) => {
+export const CoverEdit: React.FC<Props> = ({ album, initial, onClose }) => {
 	const [updateAlbum, { isLoading }] = useUpdateAlbumMutation()
 
 	const {
@@ -62,7 +57,7 @@ export const PlaylistTitleEdit: React.FC<Props> = ({
 		<>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="mt-2 p-4 border border-green-500 rounded"
+				className="w-full mt-2 p-4 border border-green-500 rounded"
 			>
 				<div className="w-full flex justify-between mb-3">
 					<span className="text-2xl text-neutral-400 font-bold">

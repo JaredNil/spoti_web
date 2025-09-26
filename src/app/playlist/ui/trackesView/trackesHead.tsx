@@ -1,7 +1,7 @@
 'use client'
 import { FC } from 'react'
 
-import { DropdownHeader } from '../dropdownHeader'
+import { DropdownHeader } from '../piece/dropdownHeader'
 
 import { TrackesHash } from '@/shared/api'
 import { PlayButton } from '@/shared/ui/playButton/playButton'

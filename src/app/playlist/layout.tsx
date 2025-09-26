@@ -9,5 +9,5 @@ export default async function PlaylistPageLayout({
 }: {
 	children: ReactNode
 }) {
-	return <div className="flex w-full flex-col">{children}</div>
+	return <div className="relative flex w-full flex-col">{children}</div>
 }

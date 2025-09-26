@@ -1,4 +1,4 @@
-import { PlaylistTitle } from '../ui/playlistTitle'
+import { Cover } from '../ui/cover'
 import { TrackesView } from '../ui/trackesView'
 
 export default async function PlaylistPage({
@@ -10,7 +10,7 @@ export default async function PlaylistPage({
 
 	return (
 		<>
-			<PlaylistTitle albumHash={hash} />
+			<Cover albumHash={hash} />
 			<TrackesView albumHash={hash} />
 		</>
 	)
