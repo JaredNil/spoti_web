@@ -24,7 +24,7 @@ export const TrackesEditList: React.FC<TrackViewListingProps> = ({
 	classname,
 	albumPageId = undefined,
 }: TrackViewListingProps) => {
-	const { addTrack, isUpdating } = useChangeAlbum(albumPageId as string)
+	const { addTrack, isUpdatingTrack } = useChangeAlbum(albumPageId as string)
 
 	if (isLoadingEditTrackes)
 		return <TrackesListSkeleton isCompact={isCompact} />
@@ -52,7 +52,7 @@ export const TrackesEditList: React.FC<TrackViewListingProps> = ({
 								items-center justify-center"
 							>
 								<Button
-									disabled={isUpdating}
+									disabled={isUpdatingTrack}
 									onClick={() => addTrack(track)}
 									className="py-1 px-2 text-sm
 										 text-neutral-700 bg-green-500 rounded-lg

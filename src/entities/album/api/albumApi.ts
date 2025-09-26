@@ -1,4 +1,6 @@
-import { Album, AlbumsCollection } from '@/shared/api'
+import { toast } from 'sonner'
+
+import { Album, AlbumsCollection, TrackesHash, TrackHash } from '@/shared/api'
 import { rtkApi } from '@/shared/api/api'
 import { ze } from '@/shared/lib/log'
 
@@ -55,10 +57,6 @@ export const albumApi = rtkApi.injectEndpoints({
 					url: `/album/${hash}`,
 					method: 'DELETE',
 				}),
-				// invalidatesTags: (_, __, hash) => [
-				// 	{ type: 'Album', hash },
-				// 	{ type: 'Album', hash: 'LIST' },
-				// ],
 			}),
 			createAlbum: build.mutation<void, Album>({
 				query: (body) => ({
@@ -66,10 +64,77 @@ export const albumApi = rtkApi.injectEndpoints({
 					method: 'POST',
 					body,
 				}),
-				// invalidatesTags: (_, __, hash) => [
-				// 	{ type: 'Album', hash },
-				// 	{ type: 'Album', hash: 'LIST' },
-				// ],
+			}),
+			addTrack: build.mutation<
+				void,
+				{ albumHash: string; trackHash: TrackHash }
+			>({
+				query: ({ albumHash, trackHash }) => ({
+					url: `/album/${albumHash}/track/${trackHash}`,
+					method: 'PUT',
+				}),
+
+				async onQueryStarted(
+					{ albumHash, trackHash },
+					{ dispatch, queryFulfilled }
+				) {
+					const patchResult = dispatch(
+						albumApi.util.updateQueryData(
+							'fetchAlbum',
+							albumHash,
+							(draft) => {
+								if (!draft.trackesHash) draft.trackesHash = []
+								if (!draft.trackesHash.includes(trackHash))
+									draft.trackesHash.push(trackHash)
+							}
+						)
+					)
+
+					try {
+						await queryFulfilled
+						toast.success('Track added')
+					} catch {
+						patchResult.undo()
+						toast.error('Adding failed – reverted')
+					}
+				},
+			}),
+
+			removeTrack: build.mutation<
+				void,
+				{ albumHash: string; trackHash: TrackHash }
+			>({
+				query: ({ albumHash, trackHash }) => ({
+					url: `/album/${albumHash}/track/${trackHash}`,
+					method: 'DELETE',
+				}),
+
+				async onQueryStarted(
+					{ albumHash, trackHash },
+					{ dispatch, queryFulfilled }
+				) {
+					const patchResult = dispatch(
+						albumApi.util.updateQueryData(
+							'fetchAlbum',
+							albumHash,
+							(draft) => {
+								if (draft.trackesHash)
+									draft.trackesHash =
+										draft.trackesHash.filter(
+											(h) => h !== trackHash
+										)
+							}
+						)
+					)
+
+					try {
+						await queryFulfilled
+						toast.success('Track deleted')
+					} catch {
+						patchResult.undo()
+						toast.error('Delete failed – reverted')
+					}
+				},
 			}),
 		}
 	},
