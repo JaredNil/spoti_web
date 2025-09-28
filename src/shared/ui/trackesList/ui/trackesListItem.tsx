@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { baseRow, compactRow } from './grid'
@@ -16,6 +16,7 @@ interface TrackesListItemProps {
 	isCompact: boolean
 	customButton?: React.ReactNode
 	position: number
+	onDragStart?: (e: any) => void
 }
 
 export const TrackesListItem: FC<TrackesListItemProps> = ({
@@ -24,11 +25,13 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 	isCompact,
 	position,
 	customButton,
+	onDragStart,
 }) => {
 	return (
 		<div
+			data-item
 			className={twMerge(
-				`group h-[50px] grid rounded-xl relative
+				`group grid rounded-xl relative
 				transition-colors hover:bg-neutral-400/5`,
 				isCompact ? compactRow : baseRow,
 				isCompact ? 'h-[34px]' : 'h-[50px]',
@@ -52,11 +55,14 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 				}
 			>
 				<Image
-					className="lg:w-[100%] w-10 aspect-square select-none"
+					className="lg:w-[100%] w-10 aspect-square select-none 
+					cursor-grab active:cursor-grabbing"
+					draggable={false}
 					src={'/content/cover/heavy_metal.webp'}
 					width={20}
 					height={20}
 					alt="track image"
+					onMouseDown={onDragStart}
 				/>
 			</div>
 			<div
