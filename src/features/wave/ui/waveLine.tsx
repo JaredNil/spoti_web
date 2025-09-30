@@ -23,5 +23,5 @@ export const WaveLine = ({
 	const draw = useWaveDrawer(peaks, duration, current, progress, mode)
 	const canvasRef = useCanvas(draw)
 
-	return <canvas ref={canvasRef} className={`w-full h-full ${className}`} />
+	return <canvas ref={canvasRef} className={`w-full  ${className}`} />
 }

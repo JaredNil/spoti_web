@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 import { useDebounce } from '../model/hook/useDebounce'
 import { useElementWidth } from '../model/hook/useElementWidth'
@@ -30,16 +31,15 @@ export const PlayerLine = () => {
 
 	const track = useAppSelector(getTrack)
 
-	// const [peaks, setPeaks] = useState<number[]>([])
+	const [peaks, setPeaks] = useState<number[]>([])
 
 	// EXPERIMENTAL
-	// useEffect(() => {
-	// 	console.log('render lineWidth')
-	// 	if (!track?.songLink) return
-	// 	const peakCount = Math.floor(lineWidth / (PIXEL_PER_PEAK + GAP))
-
-	// 	buildWaveform(cachedOrRemote(track.songLink), peakCount).then(setPeaks)
-	// }, [track?.songLink, lineWidth])
+	useEffect(() => {
+		console.log('render lineWidth')
+		if (!track?.songLink) return
+		const peakCount = Math.floor(lineWidth / (PIXEL_PER_PEAK + GAP))
+		buildWaveform(cachedOrRemote(track.songLink)!, peakCount).then(setPeaks)
+	}, [track?.songLink, lineWidth])
 
 	const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
 		if (!track || !lineWidth) return
@@ -73,38 +73,65 @@ export const PlayerLine = () => {
 	return (
 		<div
 			ref={lineRef}
-			className={`h-[3px] bg-neutral-400/40
-				relative cursor-pointer group border-t-[10px] border-b-[10px] box-content border-black`}
+			className={twMerge(
+				`h-[3px] 
+				relative cursor-pointer group border-t-[10px] border-b-[10px] 
+				box-content border-black`,
+				peaks.length > 0 ? 'bg-transparent' : 'bg-neutral-400/30'
+			)}
 			onPointerDown={track ? handlePointerDown : undefined}
 		>
-			{/* {peaks.length > 0 && (
+			<div
+				className={twMerge(
+					`absolute left-0 bottom-[-26px] text-[12px] text-neutral-400/40
+					select-none pointer-events-none`,
+					peaks.length > 0
+						? 'bottom-[-30px] sm:bottom-[-25px]'
+						: 'bottom-[-20px]'
+				)}
+			>
+				{formatDuration(timer)}
+			</div>
+			<div
+				className={twMerge(
+					`absolute right-0 bottom-[-26px] text-[12px] text-neutral-400/40
+					select-none pointer-events-none`,
+					peaks.length > 0
+						? 'bottom-[-30px] sm:bottom-[-25px]'
+						: 'bottom-[-20px]'
+				)}
+			>
+				{formatDuration(duration)}
+			</div>
+			<div
+				style={{ width: `${completedWidth}px` }}
+				className={twMerge(
+					`h-full left-0 top-0 bg-neutral-400 relative`,
+					peaks.length > 0 ? 'bg-transparent' : 'bg-neutral-400'
+				)}
+			>
+				{!(peaks.length > 0) && (
+					<div
+						className={`w-2 h-2 bg-neutral-400
+						absolute translate-x-[-3px] top-[50%] translate-y-[-50%]
+						aspect-square border rounded-xl border-neutral-600
+						opacity-0 transition-opacity duration-100
+						group-hover:opacity-100`}
+						style={{
+							transform: `translateX(${completedWidth - 4}px)`,
+						}}
+					/>
+				)}
+			</div>
+			{peaks.length > 0 && (
 				<WaveLine
 					peaks={peaks}
 					duration={duration}
 					progress={progress}
 					mode="full"
+					className="absolute top-[-3px] sm:top-[-10px] left-0 w-full h-[20px]"
 				/>
-			)} */}
-
-			<div className="absolute left-0 bottom-[-20px] text-[12px] text-neutral-400/40 select-none pointer-events-none">
-				{formatDuration(timer)}
-			</div>
-			<div className="absolute right-0 bottom-[-20px] text-[12px] text-neutral-400/40 select-none pointer-events-none">
-				{formatDuration(duration)}
-			</div>
-			<div
-				style={{ width: `${completedWidth}px` }}
-				className="h-full left-0 top-0 bg-neutral-400 relative"
-			>
-				<div
-					className={`w-2 h-2 bg-neutral-400
-						absolute translate-x-[-3px] top-[50%] translate-y-[-50%]
-						aspect-square border rounded-xl border-neutral-600
-						opacity-0 transition-opacity duration-100
-						group-hover:opacity-100`}
-					style={{ transform: `translateX(${completedWidth - 4}px)` }}
-				></div>
-			</div>
+			)}
 		</div>
 	)
 }

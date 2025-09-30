@@ -9,7 +9,7 @@ export const useWaveDrawer = (
 	current: number,
 	progress: number,
 	mode: WaveMode,
-	color = 'rgba(163,163,163,.4)',
+	color = 'rgba(163,163,163,.7)',
 	playedColor = '#22c55e'
 ) => {
 	return useCallback(
@@ -24,7 +24,6 @@ export const useWaveDrawer = (
 					: peaks.map((y, i) => ({ x: i / peaks.length, y }))
 			const barW = w / bars.length
 
-			// фон
 			ctx.fillStyle = color
 			bars.forEach(({ x, y }) => {
 				const hh = y * h * 0.8

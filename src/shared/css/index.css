@@ -21,3 +21,6 @@
 		--foreground: #ededed;
 	}
 }
+canvas {
+	background: transparent;
+}
