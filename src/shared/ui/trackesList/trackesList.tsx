@@ -49,27 +49,31 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 		},
 		[type, albumPageId]
 	)
-	// REFACTOR - Добавить предикат drug для null обработчиков, экономия памяти
-	const [localTrackes, setLocalTrackes] = useState(trackes)
-	useEffect(() => setLocalTrackes(trackes), [trackes])
+	/* локальный порядок треков */
 
-	// REFACTOR - Добавить предикат drug для null обработчиков, экономия памяти
-	const {
-		containerRef,
-		draggedIdx,
-		isReturning,
-		pos,
-		handleDragStart,
-		handleMouseMove,
-		handleMouseUp,
-		handleMouseLeave,
-		handleTransitionEnd,
-		measureItemHeight,
-	} = useDragTrackes(trackes, setLocalTrackes)
+	const [order, setOrder] = useState(() =>
+		trackes ? trackes.map((_, i) => i) : []
+	)
+	useEffect(() => {
+		if (trackes) setOrder(trackes.map((_, i) => i))
+	}, [trackes])
 
-	// REFACTOR - Добавить предикат drug для null обработчиков, экономия памяти
-	useEffect(() => measureItemHeight(), [localTrackes, measureItemHeight])
+	const moveItem = useCallback((dragIndex: number, dropIndex: number) => {
+		setOrder((prev) => {
+			const next = [...prev]
+			const [removed] = next.splice(dragIndex, 1)
+			next.splice(dropIndex, 0, removed)
+			return next
+		})
+	}, [])
 
+	/* ... */
+	/* ... */
+	/* ... */
+	/* ... */
+	/* ... */
+	/* ... */
+	/* ... */
 	if (isLoadingTrackes)
 		return (
 			<TrackesListSkeleton
@@ -85,13 +89,7 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 			</div>
 		)
 	return (
-		<div
-			ref={containerRef}
-			className="relative select-none"
-			onMouseMove={handleMouseMove}
-			onMouseUp={handleMouseUp}
-			onMouseLeave={handleMouseLeave}
-		>
+		<div className="relative select-none">
 			<TrackesListLabel isCompact={isCompact} />
 			{!isDrag &&
 				trackes?.map((track, i) => (
@@ -104,53 +102,20 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 						customButton={getCustomButton(track)}
 					/>
 				))}
-			{isDrag &&
-				localTrackes?.map((track, i) => (
-					<DraggableTrackesListItem
-						key={track.hash ?? track.title}
-						isDragged={false}
-						style={{}}
-					>
+			{/* {!isDrag &&
+				order.map((originalIndex, visualIndex) => {
+					const track = trackes[originalIndex]
+					return (
 						<TrackesListItem
 							key={track.hash ?? track.title}
-							position={i}
+							position={visualIndex}
 							isCompact={isCompact}
 							relayTrackesId={relayTrackesId}
 							track={track}
 							customButton={getCustomButton(track)}
-							onDragStart={(e) => handleDragStart(e, i)}
 						/>
-					</DraggableTrackesListItem>
-				))}
-			{/* goust for drug events */}
-			{isDrag &&
-				draggedIdx !== null &&
-				localTrackes &&
-				localTrackes[draggedIdx] && (
-					<div
-						className="fixed left-0 top-0 w-full
-						will-change-transform  bg-[#121212]
-						pointer-events-none"
-						style={{
-							transform: `translate(${pos.x}px, ${pos.y}px)`,
-							transition: isReturning
-								? 'transform 180ms ease-out'
-								: undefined,
-							zIndex: 999,
-						}}
-						onTransitionEnd={handleTransitionEnd}
-					>
-						<TrackesListItem
-							position={draggedIdx}
-							isCompact={isCompact}
-							relayTrackesId={relayTrackesId}
-							track={localTrackes[draggedIdx]}
-							customButton={getCustomButton(
-								localTrackes[draggedIdx]
-							)}
-						/>
-					</div>
-				)}
+					)
+				})} */}
 		</div>
 	)
 }

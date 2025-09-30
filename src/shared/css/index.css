@@ -21,25 +21,3 @@
 		--foreground: #ededed;
 	}
 }
-
-/* @layer components {
-	.proximity-border {
-		--x: 0.5;
-		--y: 0.5;
-		--d: 0px;
-		--w: 0px;
-		position: relative;
-	}
-	.proximity-border::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		border-radius: inherit;
-		border: calc(var(--w) + var(--d) * 2px) solid
-			rgba(255, 255, 255, calc(1 - var(--d) * 0.8));
-		pointer-events: none;
-		transition:
-			border-color 0.15s,
-			border-width 0.15s;
-	}
-} */

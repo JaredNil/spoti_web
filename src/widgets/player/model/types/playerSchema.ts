@@ -13,6 +13,7 @@ export interface PlayerSchema {
 
 	hash: string // hash of last track in player
 	track?: Track // current TrackInfo
+	nextTrack?: Track // current TrackInfo
 	isLoadingTrack: boolean
 	isRun: boolean // running music in player right now predicate
 

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { FC, useRef, useState } from 'react'
+import { FC, useLayoutEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { baseRow, compactRow } from './grid'
@@ -16,7 +16,6 @@ interface TrackesListItemProps {
 	isCompact: boolean
 	customButton?: React.ReactNode
 	position: number
-	onDragStart?: (e: any) => void
 }
 
 export const TrackesListItem: FC<TrackesListItemProps> = ({
@@ -25,7 +24,6 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 	isCompact,
 	position,
 	customButton,
-	onDragStart,
 }) => {
 	return (
 		<div
@@ -62,13 +60,11 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 					width={20}
 					height={20}
 					alt="track image"
-					onMouseDown={onDragStart}
 				/>
 			</div>
 			<div
 				className="truncate px-2
-				flex items-center
-				select-none"
+				flex items-center select-none"
 			>
 				<Link
 					className="truncate py-3 pr-5"

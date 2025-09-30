@@ -8,7 +8,11 @@ import { PlayerDescription } from './playerDescription'
 import { PlayerLine } from './playerLine'
 import { Volume } from './volume'
 import { useKeyActivator } from '../model/hook/useKeyActivator'
-import { getIsRunPlayer, getTrack } from '../model/selector/playerSelector'
+import {
+	getIsRunPlayer,
+	getNextTrack,
+	getTrack,
+} from '../model/selector/playerSelector'
 
 import { useCurrentTrack } from '@/app/(providers)/playerProvider'
 import { useAppSelector } from '@/shared/hooks'
@@ -21,12 +25,16 @@ export const Player: React.FC = () => {
 	const isRun = useAppSelector(getIsRunPlayer)
 
 	const track = useAppSelector(getTrack)
-
+	const nextTrack = useAppSelector(getNextTrack)
 	const { toggleTrack, pauseTrack } = useCurrentTrack()
 
 	useEffect(() => {
-		if (track) toggleTrack(track?.songLink as string)
-	}, [track, toggleTrack])
+		if (track)
+			toggleTrack(
+				track?.songLink as string,
+				(nextTrack?.songLink as string) ?? ''
+			)
+	}, [track, toggleTrack, nextTrack])
 
 	useEffect(() => {
 		if (!isRun && pauseTrack) pauseTrack()

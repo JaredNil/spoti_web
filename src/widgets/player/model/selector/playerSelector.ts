@@ -12,6 +12,7 @@ export const getIsLoadingTrack = (state: StateSchema) =>
 	state.player.isLoadingTrack
 
 export const getTrack = (state: StateSchema) => state.player.track
+export const getNextTrack = (state: StateSchema) => state.player.nextTrack
 
 export const getPlayerLineData = createSelector(
 	(state: StateSchema) => state.player.duration,

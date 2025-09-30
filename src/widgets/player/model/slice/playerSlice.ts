@@ -19,6 +19,7 @@ const initialState: PlayerSchema = {
 
 	hash: '',
 	track: undefined,
+	nextTrack: undefined,
 	isRun: false,
 	isLoadingTrack: true,
 
@@ -87,6 +88,11 @@ export const playerSlice = createSlice({
 			if (action.payload) {
 				state.track = action.payload
 				cacheHandle.set('track', action.payload)
+			}
+		},
+		setNextTrack: (state, action: PayloadAction<Track | null>) => {
+			if (action.payload) {
+				state.nextTrack = action.payload
 			}
 		},
 		setTrackPause: (state, action: PayloadAction<Track>) => {

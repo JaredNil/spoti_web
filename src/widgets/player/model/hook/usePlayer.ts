@@ -1,3 +1,4 @@
+import { skipToken } from '@reduxjs/toolkit/query'
 import { toast } from 'sonner'
 
 import {
@@ -30,28 +31,45 @@ export function usePlayer() {
 
 	const dispatch = useAppDispatch()
 
-	async function loadTrack(trackHash: TrackHash) {
+	async function loadTrack(trackHash: TrackHash, nextTrackHash?: TrackHash) {
 		const state = store.getState()
+		console.log(trackHash, nextTrackHash)
+		// Проверяем кэш
 		const { data: cachedTrack } =
 			trackApi.endpoints.fetchTrack.select(trackHash)(state)
+		const { data: cachedNextTrack } = trackApi.endpoints.fetchTrack.select(
+			nextTrackHash ?? skipToken
+		)(state)
 
+		// Резервируем контейнеры для возможных запросов
 		let loadTrack: Trackes | null = null
+		let loadNextTrack: Trackes | null = null
 
-		if (!cachedTrack)
+		// Проверяем есть ли данные в кэше - если нет - запрашиваем
+		if (!cachedTrack) {
 			loadTrack = (await triggerFetchTrack(trackHash).unwrap()) as Trackes
+		}
+		if (!cachedNextTrack && nextTrackHash) {
+			loadNextTrack = (await triggerFetchTrack(
+				nextTrackHash
+			).unwrap()) as Trackes
+		}
 
+		// Итоговое значение
 		const track = cachedTrack?.[0] ?? loadTrack?.[0] ?? null
+		const nextTrack = cachedNextTrack?.[0] ?? loadNextTrack?.[0] ?? null
 
 		dispatch(playerAction.setIsRun(true))
 		dispatch(playerAction.offLoadingTrack())
 		dispatch(playerAction.setTrack(track))
+		dispatch(playerAction.setNextTrack(nextTrack))
 	}
 
 	function start(trackesHash: TrackesHash, target: number = 0) {
 		if (!isActivePlayer) dispatch(playerAction.onActivePlayer())
 		dispatch(playerAction.setQueue(trackesHash))
 		dispatch(playerAction.setTarget(target))
-		loadTrack(trackesHash[target])
+		loadTrack(trackesHash[target], trackesHash[target + 1])
 	}
 
 	function play() {
@@ -81,7 +99,7 @@ export function usePlayer() {
 
 			const nextTarget = target + 1
 			dispatch(playerAction.setTarget(nextTarget))
-			loadTrack(queue[nextTarget])
+			loadTrack(queue[nextTarget], queue[nextTarget + 1])
 		}
 	}
 
