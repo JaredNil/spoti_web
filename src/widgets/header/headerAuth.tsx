@@ -22,8 +22,8 @@ export const HeaderAuthButton = () => {
 	// если нет, то создает
 	const { isCreating } = useCreateUserIfNotExists({
 		email: email ?? '',
-		firstname: session?.user?.name?.split(' ')[0].trim() ?? '',
-		lastname: session?.user?.name?.split(' ')[1].trim() ?? '',
+		firstname: (session?.user?.name?.split(' ')[0] ?? '').trim(),
+		lastname: (session?.user?.name?.split(' ')[1] ?? '').trim(),
 	})
 	const profileClick = () => {
 		if (status === 'unauthenticated') {
