@@ -13,12 +13,12 @@ export const LibraryItem: React.FC<LibraryItemProps> = ({
 }: LibraryItemProps) => (
 	<div
 		className="flex relative
-			hover:bg-neutral-400/10 transition-all
+			hover:bg-primary transition-all
 			group"
 	>
 		<div
 			className="flex justify-center items-center
-				aspect-square h-[34px] bg-gray-400"
+				aspect-square h-[34px] bg-secondary"
 		>
 			<Image
 				src={'/content/cover/album-placeholder.webp'}
@@ -31,7 +31,7 @@ export const LibraryItem: React.FC<LibraryItemProps> = ({
 
 		<div className="flex justify-start items-center pl-2 w-full overflow-hidden relative">
 			<div
-				className="select-none text-neutral-300 text-ellipsis text-sm
+				className="select-none text-common text-ellipsis text-sm
 					whitespace-nowrap tracking-wide w-full overflow-hidden"
 			>
 				<span>{album?.title}</span>

@@ -6,7 +6,7 @@ export const LibraryItemSkeleton = () => (
 	>
 		<div
 			className="flex justify-center items-center
-				aspect-square h-[34px] bg-gray-400"
+				aspect-square h-[34px] bg-primary"
 		/>
 	</div>
 )

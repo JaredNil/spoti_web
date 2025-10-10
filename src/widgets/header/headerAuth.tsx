@@ -30,7 +30,7 @@ export const HeaderAuthButton = () => {
 			toast.warning('Войдите в ваш аккаунт')
 			routing.push('/auth/login')
 		} else if (status === 'authenticated') {
-			routing.push('/account')
+			routing.push('/setting')
 		}
 	}
 
@@ -54,7 +54,7 @@ export const HeaderAuthButton = () => {
 				disabled={status === 'loading' || isCreating}
 			>
 				<Icons
-					name="Profile"
+					name="Setting"
 					size={12}
 					classname="[&>svg]:fill-black"
 				/>

@@ -15,15 +15,15 @@ export const LibraryCreation: React.FC = () => {
 
 	return (
 		<div
-			className="flex hover:bg-neutral-400/10 transition-all"
+			className="flex hover:bg-primary transition-all"
 			onClick={onCreatingAlbum}
 		>
 			<div
 				className="flex justify-center items-center
-				aspect-square h-[34px] bg-gray-400"
+				aspect-square h-[34px] bg-secondary"
 			>
 				<div
-					className="text-white text-3xl 
+					className="text-common  text-3xl 
 					ml-[1px] mb-[6px] pointer-events-none select-none"
 				>
 					+
@@ -31,7 +31,7 @@ export const LibraryCreation: React.FC = () => {
 			</div>
 			<div className="flex justify-start items-center pl-2 w-full overflow-hidden">
 				<div
-					className="select-none text-neutral-300 text-ellipsis text-sm
+					className="select-none text-common text-ellipsis text-sm
 					whitespace-nowrap tracking-wide w-full overflow-hidden"
 				>
 					{isUpdating ? 'Создание...' : 'Создать плейлист'}

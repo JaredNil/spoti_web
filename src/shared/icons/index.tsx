@@ -9,6 +9,7 @@ import {
 	Upload,
 	LeftArrow,
 	RightArrow,
+	Setting,
 } from './headerIcon'
 import {
 	HighVolume,
@@ -57,6 +58,7 @@ const iconsStorage = {
 	RightArrow,
 	Profile,
 	Rectangle,
+	Setting,
 } as const
 
 export type IconName = keyof typeof iconsStorage

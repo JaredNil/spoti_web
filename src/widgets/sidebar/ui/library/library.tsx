@@ -32,7 +32,7 @@ export const Library: React.FC = () => {
 			<LibraryCreation />
 			{isSuccess && albums.length === 0 ? (
 				<div className="h-[300px] flex items-center justify-center">
-					<span className="text-sm text-neutral-400">
+					<span className="text-sm text-common">
 						U does't have albums
 					</span>
 				</div>

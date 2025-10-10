@@ -35,7 +35,6 @@ export const PlayerLine = () => {
 
 	// EXPERIMENTAL
 	useEffect(() => {
-		console.log('render lineWidth')
 		if (!track?.songLink) return
 		const peakCount = Math.floor(lineWidth / (PIXEL_PER_PEAK + GAP))
 		buildWaveform(cachedOrRemote(track.songLink)!, peakCount).then(setPeaks)

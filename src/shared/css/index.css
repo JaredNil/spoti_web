@@ -1,26 +1,53 @@
 @import url('./playlistTitle.css');
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import 'tailwindcss';
 
-:root {
-	--background: #ffffff;
-	--foreground: #171717;
-}
-
-@theme inline {
-	--font-main: 'Lato', sans-serif;
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--font-sans: var(--font-geist-sans);
-	--font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
-	}
-}
 canvas {
 	background: transparent;
+}
+
+@theme {
+	/* Стандартная схема */
+	--color-commonbg: #000;
+	--color-section: lab(7.78201 -0.0000149012 0); /* neutral-900 */
+	--color-primary: oklab(
+		0.707998 -0.00000712276 0.0000166297 / 0.05
+	); /* bg-neutral-400/5 */
+	--color-secondary: oklab(
+		0.707998 -0.00000712276 0.0000166297 / 0.1
+	); /* bg-neutral-400/10 */
+
+	/* Стандартные цвета теста */
+	--color-common: #ffffff;
+	--color-detach: #b3b3b3; /* Цвет второстепенный */
+
+	/* Утилитарные переменные */
+	--color-header-gradient: linear-gradient(
+		to bottom,
+		#065f46,
+		transparent
+	); /* emerald-800 → прозрачный */
+	--color-button-gradient: #000;
+}
+
+[data-theme='gradient'] {
+	--color-commonbg: linear-gradient(to right, #ef4444, #f59e0b);
+	--color-section: rgba(0, 0, 0, 0.8);
+	--color-primary: oklab(
+		0.707998 -0.00000712276 0.0000166297 / 0.05
+	); /* bg-neutral-400/5 */
+	--color-secondary: oklab(
+		0.707998 -0.00000712276 0.0000166297 / 0.1
+	); /* bg-neutral-400/10 */
+
+	/* Градиентные цвета теста */
+	--color-common: #f59e0b;
+	--color-detach: #fde68a;
+
+	/* Утилитарные переменные */
+	--color-header-gradient: linear-gradient(
+		to bottom,
+		rgb(0 0 0 / 0),
+		transparent
+	);
+	--color-button-gradient: var(--color-commonbg);
 }

@@ -16,6 +16,10 @@ interface TrackesListItemProps {
 	isCompact: boolean
 	customButton?: React.ReactNode
 	position: number
+
+	/* для gsap */
+	'data-draggable'?: true
+	'data-index'?: number
 }
 
 export const TrackesListItem: FC<TrackesListItemProps> = ({
@@ -24,10 +28,11 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 	isCompact,
 	position,
 	customButton,
+	...rest
 }) => {
 	return (
 		<div
-			data-item
+			{...rest}
 			className={twMerge(
 				`group grid rounded-xl relative
 				transition-colors hover:bg-neutral-400/5`,

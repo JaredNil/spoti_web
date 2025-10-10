@@ -1,14 +1,7 @@
-import {
-	ReactNode,
-	useCallback,
-	useEffect,
-	useLayoutEffect,
-	useRef,
-	useState,
-} from 'react'
+import { gsap } from 'gsap'
+import { Draggable } from 'gsap/Draggable'
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 
-import { useDragTrackes } from './hooks/useDrugTrackes'
-import { DraggableTrackesListItem } from './ui/draggableTrackesListItem'
 import { TrackesListItem } from './ui/trackesListItem'
 import { TrackesListLabel } from './ui/trackesListLabel'
 import { TrackesListSkeleton } from './ui/trackesListSkeleton'
@@ -28,8 +21,10 @@ interface TrackViewListingProps {
 	trackes?: Trackes
 	albumPageId?: string
 	type?: 'playlist' | 'all'
-	isDrag?: true | false
+	isDraggable?: true | false
 }
+
+gsap.registerPlugin(Draggable)
 
 export const TrackesList: React.FC<TrackViewListingProps> = ({
 	relayTrackesId,
@@ -38,7 +33,7 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 	albumPageId,
 	trackes,
 	type = 'playlist',
-	isDrag = false,
+	isDraggable = true,
 }) => {
 	const getCustomButton = useCallback(
 		(track: Track): ReactNode => {
@@ -49,31 +44,101 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 		},
 		[type, albumPageId]
 	)
-	/* локальный порядок треков */
 
-	const [order, setOrder] = useState(() =>
+	/* локальный порядок треков */
+	const [order, setOrder] = useState<number[]>(() =>
 		trackes ? trackes.map((_, i) => i) : []
 	)
+
 	useEffect(() => {
 		if (trackes) setOrder(trackes.map((_, i) => i))
 	}, [trackes])
 
-	const moveItem = useCallback((dragIndex: number, dropIndex: number) => {
-		setOrder((prev) => {
-			const next = [...prev]
-			const [removed] = next.splice(dragIndex, 1)
-			next.splice(dropIndex, 0, removed)
-			return next
-		})
-	}, [])
+	const listRef = useRef<HTMLDivElement | null>(null)
+	const rowHeight = isCompact ? 34 : 50
 
-	/* ... */
-	/* ... */
-	/* ... */
-	/* ... */
-	/* ... */
-	/* ... */
-	/* ... */
+	useEffect(() => {
+		console.log('gsap effect')
+		console.log(listRef.current)
+		if (!listRef.current || !isDraggable) return
+		console.log('gsap effect')
+		const rows = Array.from(
+			listRef.current.querySelectorAll<HTMLDivElement>('[data-draggable]')
+		)
+		console.log(rows)
+		if (!rows.length) return
+
+		rows.forEach((row) => {
+			const drag = Draggable.create(row, {
+				type: 'y',
+				bounds: listRef.current!,
+				onDragStart() {
+					console.log('start')
+					gsap.set(row, { zIndex: 10, scale: 1.05 })
+				},
+				onDrag() {
+					const y = this.y
+					const currentIndex = Number(row.dataset.index)
+					const newIndex = Math.round(
+						(y + currentIndex * rowHeight) / rowHeight
+					)
+
+					/* визуально сдвигаем соседей */
+					rows.forEach((r) => {
+						const idx = Number(r.dataset.index)
+						if (idx === currentIndex) return
+						const shift =
+							idx > currentIndex &&
+							newIndex > currentIndex &&
+							idx <= newIndex
+								? -rowHeight
+								: idx < currentIndex &&
+									  newIndex < currentIndex &&
+									  idx >= newIndex
+									? rowHeight
+									: 0
+						gsap.to(r, {
+							y: shift,
+							duration: 0.25,
+							ease: 'power2.out',
+						})
+					})
+				},
+				onDragEnd() {
+					const y = this.y
+					const currentIndex = Number(row.dataset.index)
+					let newIndex = Math.round(
+						(y + currentIndex * rowHeight) / rowHeight
+					)
+					newIndex = Math.max(0, Math.min(rows.length - 1, newIndex))
+
+					/* возвращаем визуально на место */
+					gsap.to(row, {
+						y: 0,
+						scale: 1,
+						zIndex: 1,
+						duration: 0.3,
+						ease: 'power2.out',
+					})
+					rows.forEach((r) => gsap.to(r, { y: 0, duration: 0.3 }))
+
+					/* обновляем порядок */
+					if (newIndex !== currentIndex) {
+						setOrder((prev) => {
+							const copy = [...prev]
+							const [moved] = copy.splice(currentIndex, 1)
+							copy.splice(newIndex, 0, moved)
+							return copy
+						})
+					}
+				},
+			})[0]
+
+			/* чистим */
+			return () => drag.kill()
+		})
+	}, [listRef.current, isCompact])
+
 	if (isLoadingTrackes)
 		return (
 			<TrackesListSkeleton
@@ -89,9 +154,9 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 			</div>
 		)
 	return (
-		<div className="relative select-none">
+		<div className="relative select-none" ref={listRef}>
 			<TrackesListLabel isCompact={isCompact} />
-			{!isDrag &&
+			{/* {!isDraggable &&
 				trackes?.map((track, i) => (
 					<TrackesListItem
 						key={track.hash ?? track.title}
@@ -101,21 +166,22 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 						track={track}
 						customButton={getCustomButton(track)}
 					/>
-				))}
-			{/* {!isDrag &&
-				order.map((originalIndex, visualIndex) => {
-					const track = trackes[originalIndex]
-					return (
-						<TrackesListItem
-							key={track.hash ?? track.title}
-							position={visualIndex}
-							isCompact={isCompact}
-							relayTrackesId={relayTrackesId}
-							track={track}
-							customButton={getCustomButton(track)}
-						/>
-					)
-				})} */}
+				))} */}
+			{order.map((originalIndex, visualIndex) => (
+				<TrackesListItem
+					key={
+						trackes[originalIndex].hash ??
+						trackes[originalIndex].title
+					}
+					data-draggable={isDraggable || undefined}
+					data-index={originalIndex}
+					position={visualIndex}
+					isCompact={isCompact}
+					track={trackes[originalIndex]}
+					relayTrackesId={relayTrackesId}
+					customButton={getCustomButton(trackes[originalIndex])}
+				/>
+			))}
 		</div>
 	)
 }

@@ -35,13 +35,13 @@ export function Sidebar() {
 			md:flex"
 		>
 			<div className="sidebar_container flex flex-col relative w-full">
-				<div className="flex flex-col gap-y-4 px-5 py-4 bg-neutral-900 rounded-lg w-full">
+				<div className="flex flex-col gap-y-4 px-5 py-4 bg-section rounded-lg w-full">
 					{sidebarRoutes.map((item, key) => (
 						<RouteItem routeInfo={item} key={key} />
 					))}
 				</div>
-				<div className="h-full overflow-y-auto mt-2 bg-neutral-900 rounded-lg w-full">
-					<div className="px-5 pt-4 text-neutral-400 select-none font-semibold">
+				<div className="h-full overflow-y-auto mt-2 bg-section rounded-lg w-full">
+					<div className="px-5 pt-4 text-common select-none font-semibold">
 						ПЛЕЙЛИСТЫ
 					</div>
 					<Library />
