@@ -6,10 +6,12 @@ const authRoutes = ['/auth/login', '/auth/register', '/auth']
 
 export default auth((req) => {
 	if (req.auth && authRoutes.includes(req.nextUrl.pathname)) {
-		return NextResponse.redirect(new URL('/home', req.url))
+		return NextResponse.redirect(new URL('/overview', req.url))
+		// return NextResponse.redirect(new URL('/home', req.url))
 	}
 	if (!req.auth && !authRoutes.includes(req.nextUrl.pathname)) {
-		return NextResponse.redirect(new URL('/auth/login', req.url))
+		return NextResponse.redirect(new URL('/overview', req.url))
+		// return NextResponse.redirect(new URL('/auth/login', req.url))
 	}
 })
 
