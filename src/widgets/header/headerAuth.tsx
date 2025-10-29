@@ -20,6 +20,7 @@ export const HeaderAuthButton = () => {
 
 	// хук который проверяет есть ли у данного вхождения в приложение метаданные аккаунта
 	// если нет, то создает
+	// ОТРЕФАКТОРИТЬ ИМЯ/ФАМИЛИЮ
 	const { isCreating } = useCreateUserIfNotExists({
 		email: email ?? '',
 		firstname: (session?.user?.name?.split(' ')[0] ?? '').trim(),
@@ -50,7 +51,7 @@ export const HeaderAuthButton = () => {
 			<Button
 				onClick={profileClick}
 				className="transition-all aspect-square duration-150 
-				bg-white cursor-pointer rounded-full"
+				bg-white hover:bg-white/75 cursor-pointer rounded-full"
 				disabled={status === 'loading' || isCreating}
 			>
 				<Icons
@@ -63,7 +64,7 @@ export const HeaderAuthButton = () => {
 				onClick={authClick}
 				disabled={status === 'loading' || isCreating}
 				className="ml-3 flex w-24 items-center justify-center px-6 py-2
-				bg-white cursor-pointer rounded-full text-black"
+				bg-white hover:bg-white/75 cursor-pointer rounded-full text-black"
 			>
 				{status === 'authenticated' ? 'Выйти' : 'Войти'}
 			</Button>

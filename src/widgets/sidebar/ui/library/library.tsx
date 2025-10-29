@@ -9,16 +9,22 @@ import { LibraryItemSkeleton } from './libraryItemSkeleton'
 import { useFetchAlbumsByUserQuery } from '@/entities/album/api/albumApi'
 
 export const Library: React.FC = () => {
-	const { data } = useSession()
+	const { data, status } = useSession()
 	const email = data?.user?.email
 	const { data: albums, isSuccess } = useFetchAlbumsByUserQuery(
 		email ?? skipToken
 	)
 
-	if (!isSuccess || !albums) {
+	if (status === 'unauthenticated') {
+		return (
+			<div className="h-[300px] flex items-center justify-center">
+				<span className="text-sm text-common">U not auth</span>
+			</div>
+		)
+	}
+	if (!isSuccess || !albums || status === 'loading') {
 		return (
 			<div className="flex flex-col gap-y-1 px-5 py-4">
-				<LibraryCreation />
 				{!isSuccess &&
 					[0, 1, 2, 3].map((_, index) => (
 						<LibraryItemSkeleton key={index} />
@@ -30,6 +36,7 @@ export const Library: React.FC = () => {
 	return (
 		<div className="flex flex-col gap-y-1 px-5 py-4">
 			<LibraryCreation />
+
 			{isSuccess && albums.length === 0 ? (
 				<div className="h-[300px] flex items-center justify-center">
 					<span className="text-sm text-common">

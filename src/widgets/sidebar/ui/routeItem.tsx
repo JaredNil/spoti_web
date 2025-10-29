@@ -28,8 +28,8 @@ export const RouteItem: React.FC<RouteItem> = memo(
 				className={twMerge(
 					`transition flex h-auto w-full cursor-pointer flex-row
 					items-center gap-x-4 py-1  font-medium text-common
-					hover:text-detach`,
-					isActive && 'text-detach'
+					hover:opacity-45`,
+					isActive && 'opacity-45'
 				)}
 			>
 				<Icons name={label} size={26} />

@@ -56,27 +56,6 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({
 		navigator.mediaSession.setActionHandler('previoustrack', () => prev())
 	}, [next, prev])
 
-	// Recovery data after фоновой работы для надежности
-	useEffect(() => {
-		const handleVisibilityChange = () => {
-			const audio = audioRef.current
-			if (!audio) return
-
-			if (!document.hidden && audio.paused && audio.currentTime > 0) {
-				audio.play().catch(() => {
-					ze('player error - check logs')
-				})
-			}
-		}
-
-		document.addEventListener('visibilitychange', handleVisibilityChange)
-		return () =>
-			document.removeEventListener(
-				'visibilitychange',
-				handleVisibilityChange
-			)
-	}, [])
-
 	// HANDLERS
 	// HANDLERS
 	// HANDLERS

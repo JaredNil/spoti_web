@@ -10,6 +10,7 @@ import {
 	LeftArrow,
 	RightArrow,
 	Setting,
+	CV,
 } from './headerIcon'
 import {
 	HighVolume,
@@ -51,6 +52,7 @@ const iconsStorage = {
 	Reverse,
 	Shuffle,
 	ListBullets,
+	CV,
 	ListLight,
 	Heart,
 	HeartEmpty,

@@ -53,16 +53,13 @@ export const Header: FC = () => {
 									? routing.forward()
 									: routing.back()
 							}
-							style={{
-								background: `(var(--color-button-gradient))`,
-							}}
-							className=" flex h-[35px] w-[35px] 
+							className=" flex h-[35px] w-[35px] bg-white
 							cursor-pointer items-center justify-center 
-							rounded-full	transition hover:opacity-75"
+							rounded-full  transition hover:opacity-75"
 						>
 							<Icons
 								name={btn.icon}
-								classname={`${btn.href == 'forward' ? `ml-[2px]` : `mr-[2px]`} text-white`}
+								classname={`${btn.href == 'forward' ? `ml-[2px]` : `mr-[2px]`} text-[#09271e]`}
 								size={23}
 							/>
 						</div>
