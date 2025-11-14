@@ -19,7 +19,7 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({
 
 	const [currentTrack, setCurrentTrack] = useState<string>('')
 	// new - preload track in cache browser
-	const [nextPreloadTrack, setNextTrack] = useState<string>('')
+	// const [nextPreloadTrack, setNextTrack] = useState<string>('')
 	const { next, prev } = usePlayer()
 
 	const audioRef = useRef<HTMLAudioElement>(null)
@@ -113,7 +113,7 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({
 		() => ({
 			currentTrack,
 			setCurrentTrack,
-			setNextTrack,
+			// setNextTrack, deprecated - refactor
 			setProgress,
 			setVolume,
 			playTrack,
@@ -123,10 +123,12 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({
 	)
 
 	const path = useMemo(() => cachedOrRemote(currentTrack), [currentTrack])
-	const pathPreload = useMemo(
-		() => cachedOrRemote(nextPreloadTrack),
-		[nextPreloadTrack]
-	)
+
+	// deprecated, refactor - preload next track feat
+	// const pathPreload = useMemo(
+	// 	() => cachedOrRemote(nextPreloadTrack),
+	// 	[nextPreloadTrack]
+	// )
 
 	return (
 		<PlayerContext.Provider value={defaultProps}>
@@ -145,14 +147,15 @@ export const PlayerProvider: React.FC<PlayerProvider> = ({
 					crossOrigin="anonymous"
 				></audio>
 			)}
-			{nextPreloadTrack && (
+			{/* deprecated */}
+			{/* {nextPreloadTrack && (
 				<audio
 					src={pathPreload}
 					preload="auto"
 					playsInline
 					crossOrigin="anonymous"
 				></audio>
-			)}
+			)} */}
 			{children}
 		</PlayerContext.Provider>
 	)

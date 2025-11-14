@@ -17,7 +17,6 @@ export const TrackesViewLoad = () => {
 	const { data: userData, isLoading: isLoadingAlbum } = useFetchUserQuery(
 		email ?? skipToken
 	)
-
 	const { data: trackes, isLoading: isLoadingTrackes } = useFetchTrackesQuery(
 		(userData?.trackesHash?.length ?? 0) > 0
 			? (userData?.trackesHash ?? [])

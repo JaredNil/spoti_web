@@ -17,23 +17,24 @@ export function useCurrentTrack(): CurrentTrackHook {
 	const {
 		currentTrack,
 		setCurrentTrack,
-		setNextTrack,
+		// setNextTrack, - deprecated -> refactor
 		setProgress,
 		playTrack,
 		pauseTrack,
 	} = useContext(PlayerContext)
 
-	const toggleTrack = (newTrack: string, nextTrack?: string): void => {
-		if (setCurrentTrack && setNextTrack) {
+	const toggleTrack = (newTrack: string): void => {
+		if (setCurrentTrack) {
 			// handle current track
 			if (newTrack === '') setCurrentTrack('')
 			else if (newTrack !== null) {
 				setCurrentTrack(newTrack)
 			}
+			// DEPRECATED
 			// handle next track preload
-			if (nextTrack !== '' && nextTrack != undefined) {
-				setNextTrack(nextTrack)
-			}
+			// if (nextTrack !== '' && nextTrack != undefined) {
+			// 	setNextTrack(nextTrack)
+			// }
 		} else ze('Ошибка инициализации музыки.')
 	}
 

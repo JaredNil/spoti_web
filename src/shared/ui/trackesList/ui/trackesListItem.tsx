@@ -59,7 +59,7 @@ export const TrackesListItem: FC<TrackesListItemProps> = ({
 			>
 				<Image
 					className="lg:w-[100%] w-10 aspect-square select-none 
-					cursor-grab active:cursor-grabbing"
+                    cursor-grab active:cursor-grabbing drag-handle"
 					draggable={false}
 					src={'/content/cover/heavy_metal.webp'}
 					width={20}

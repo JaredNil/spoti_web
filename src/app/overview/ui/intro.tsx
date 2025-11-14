@@ -10,6 +10,7 @@ export function IntroOverview() {
 					<span className="font-bold">Jarefy</span> - современное
 					музыкальное web-приложение
 				</h2>
+
 				<div className="relative my-5 text-balance">
 					построенное на базе Next.js 15 и React 19, которое
 					предоставляет пользователям возможность прослушивания
