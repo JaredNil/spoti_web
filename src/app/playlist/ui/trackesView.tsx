@@ -32,11 +32,22 @@ export const TrackesView: React.FC<TrackesViewProps> = ({
 		isLoading: isLoadingAlbum,
 		error,
 	} = useFetchAlbumQuery(albumHash)
-	const { data: trackes, isLoading: isLoadingTrackes } = useFetchTrackesQuery(
-		(album?.trackesHash?.length ?? 0) > 0
-			? (album?.trackesHash ?? [])
-			: skipToken
-	)
+	const { data: rawTrackes, isLoading: isLoadingTrackes } =
+		useFetchTrackesQuery(
+			(album?.trackesHash?.length ?? 0) > 0
+				? (album?.trackesHash ?? [])
+				: skipToken
+		)
+
+	// Переупорядочиваем треки согласно trackesHash из альбома
+	const trackes =
+		rawTrackes && album?.trackesHash
+			? (album.trackesHash
+					.map((hash) =>
+						rawTrackes.find((track) => track.hash === hash)
+					)
+					.filter(Boolean) as Trackes)
+			: rawTrackes
 
 	// usePrefetchTrackes(trackes) // Больше не нужно, перефакторить
 
@@ -59,6 +70,7 @@ export const TrackesView: React.FC<TrackesViewProps> = ({
 				relayTrackesId={album?.trackesHash || albumPreload?.trackesHash}
 				trackes={trackes || trackesPreload}
 				isLoadingTrackes={isLoadingTrackes || isLoadingAlbum}
+				albumData={album || albumPreload}
 			/>
 			<TrackesEdit
 				isCompact={isCompact}

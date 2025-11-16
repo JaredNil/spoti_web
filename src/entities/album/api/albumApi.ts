@@ -1,6 +1,12 @@
 import { toast } from 'sonner'
 
-import { Album, AlbumsCollection, TrackesHash, TrackHash } from '@/shared/api'
+import {
+	Album,
+	AlbumsCollection,
+	Track,
+	TrackHash,
+	TrackesHash,
+} from '@/shared/api'
 import { rtkApi } from '@/shared/api/api'
 import { ze } from '@/shared/lib/log'
 
@@ -51,6 +57,62 @@ export const albumApi = rtkApi.injectEndpoints({
 					body,
 				}),
 				invalidatesTags: (_, __, { hash }) => [{ type: 'Album', hash }],
+			}),
+			// updateAlbumHidden: build.mutation<void, Album>({
+			// 	query: ({ hash, ...body }) => ({
+			// 		url: `/album/${hash}`,
+			// 		method: 'PATCH',
+			// 		body,
+			// 	}),
+			// 	async onQueryStarted(albumData, { dispatch, queryFulfilled }) {
+			// 		const patchResult = dispatch(
+			// 			albumApi.util.updateQueryData(
+			// 				'fetchAlbum',
+			// 				albumData.hash,
+			// 				(draft) => {
+			// 					Object.assign(draft, albumData)
+			// 				}
+			// 			)
+			// 		)
+
+			// 		try {
+			// 			await queryFulfilled
+			// 		} catch {
+			// 			patchResult.undo()
+			// 			throw new Error('Failed to update album')
+			// 		}
+			// 	},
+			// }),
+			updateTrackOrder: build.mutation<
+				void,
+				{ albumHash: string; trackesHash: TrackesHash }
+			>({
+				query: ({ albumHash, trackesHash }) => ({
+					url: `/album/${albumHash}`,
+					method: 'PATCH',
+					body: { trackesHash },
+				}),
+				async onQueryStarted(
+					{ albumHash, trackesHash },
+					{ dispatch, queryFulfilled }
+				) {
+					const patchResult = dispatch(
+						albumApi.util.updateQueryData(
+							'fetchAlbum',
+							albumHash,
+							(draft) => {
+								draft.trackesHash = trackesHash
+							}
+						)
+					)
+
+					try {
+						await queryFulfilled
+					} catch {
+						patchResult.undo()
+						throw new Error('Failed to update track order')
+					}
+				},
 			}),
 			deleteAlbum: build.mutation<void, string>({
 				query: (hash) => ({
@@ -145,6 +207,8 @@ export const {
 	useDeleteAlbumMutation,
 	useLazyFetchAlbumQuery,
 	useUpdateAlbumMutation,
+	// useUpdateAlbumHiddenMutation,
+	useUpdateTrackOrderMutation,
 	useCreateAlbumMutation,
 	useFetchAlbumsByUserQuery,
 	useAddTrackMutation,

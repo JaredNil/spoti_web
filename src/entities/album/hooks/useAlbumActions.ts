@@ -2,34 +2,26 @@
 import { skipToken } from '@reduxjs/toolkit/query'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { toast } from 'sonner'
 
 import {
-	albumApi,
 	useAddTrackMutation,
 	useCreateAlbumMutation,
 	useDeleteAlbumMutation,
 	useFetchAlbumsByUserQuery,
 	useRemoveTrackMutation,
+	useUpdateTrackOrderMutation,
 } from '../api/albumApi'
 
-import { RootState } from '@/app/(providers)/storeProvider/config/store'
 import { useUserActions } from '@/entities/user'
 import { useFetchUserQuery } from '@/entities/user/api/userApi'
 import { Album, Track, TrackesHash } from '@/shared/api'
-import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { shortHash } from '@/shared/lib/hash'
 import { ze } from '@/shared/lib/log'
-import {
-	getPlayerNativeQueue,
-	getPlayerQueue,
-	playerAction,
-} from '@/widgets/player'
 
 export const useAlbumActions = () => {
 	const router = useRouter()
-	const dispatch = useAppDispatch()
 
 	const [isUpdating, setIsUpdating] = useState(false)
 
@@ -100,6 +92,7 @@ export const useAlbumActions = () => {
 
 	const [add, { isLoading: isUpdatingAdd }] = useAddTrackMutation()
 	const [remove, { isLoading: isUpdatingDel }] = useRemoveTrackMutation()
+	const [updateTrackOrderMutation] = useUpdateTrackOrderMutation()
 
 	const addTrack = (track: Track, albumId: string) => {
 		add({ albumHash: albumId, trackHash: track.hash as string })
@@ -109,50 +102,35 @@ export const useAlbumActions = () => {
 		remove({ albumHash: albumId, trackHash: track.hash as string })
 	}
 
-	const reorderTrackes = useCallback(
-		async (albumHash: string, sourceIdx: number, destIdx: number) => {
-			if (sourceIdx === destIdx) return
+	const updateTrackOrder = useCallback(
+		async (
+			newOrder: number[],
+			albumData: {
+				hash: string
+			},
+			tracks: Track[]
+		) => {
+			if (!albumData || !tracks) {
+				return
+			}
 
-			// dispatch(
-			// 	albumApi.util.updateQueryData(
-			// 		'fetchAlbum',
-			// 		albumHash,
-			// 		(draft) => {
-			// 			const [moved] = draft.trackesHash.splice(sourceIdx, 1)
-			// 			draft.trackesHash.splice(destIdx, 0, moved)
-			// 		}
-			// 	)
-			// )
+			try {
+				const newTrackesHash: TrackesHash = newOrder.map(
+					(index) => tracks[index].hash
+				)
 
-			// const queueNative: TrackesHash = dispatch((_, getState) =>
-			// 	getPlayerNativeQueue(getState())
-			// )
-			// const isCurrentAlbum =
-			// 	queueNative.length > 0 &&
-			// 	dispatch((_, getState) =>
-			// 		albumApi.endpoints.fetchAlbum.select(albumHash)(getState())
-			// 	).data?.trackesHash === queueNative
+				await updateTrackOrderMutation({
+					albumHash: albumData.hash,
+					trackesHash: newTrackesHash,
+				}).unwrap()
 
-			// if (isCurrentAlbum) {
-			// 	const newNativeQueue = [...queueNative]
-			// 	const [moved] = newNativeQueue.splice(sourceIdx, 1)
-			// 	newNativeQueue.splice(destIdx, 0, moved)
-
-			// 	dispatch(playerAction.setNative(newNativeQueue))
-			// }
-
-			// await dispatch(
-			// 	albumApi.endpoints.updateTrackOrder.initiate({
-			// 		albumHash,
-			// 		trackesHash: dispatch((_, getState) =>
-			// 			albumApi.endpoints.fetchAlbum.select(albumHash)(
-			// 				getState()
-			// 			)
-			// 		).data!.trackesHash,
-			// 	})
-			// )
+				toast.success('Плейлист обновлён')
+			} catch (error) {
+				toast.error('Ошибка при сохранении')
+				throw error
+			}
 		},
-		[dispatch]
+		[updateTrackOrderMutation]
 	)
 
 	return {
@@ -161,8 +139,7 @@ export const useAlbumActions = () => {
 		isUpdating,
 		addTrack,
 		deleteTrack,
+		updateTrackOrder,
 		isUpdatingTrack: isUpdatingAdd || isUpdatingDel,
-		// Перемещение треков в оригинальном массиве очереди
-		reorderTrackes,
 	}
 }

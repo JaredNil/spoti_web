@@ -6,7 +6,8 @@ import { TrackesListLabel } from './ui/trackesListLabel'
 import { TrackesListSkeleton } from './ui/trackesListSkeleton'
 
 import { DropdownTrack } from '@/app/playlist/ui/piece/dropdownTrack'
-import { Track, Trackes, TrackesHash } from '@/shared/api'
+import { useAlbumActions } from '@/entities/album'
+import { Album, Track, Trackes, TrackesHash } from '@/shared/api'
 
 export type DropdownProps = {
 	deleteHandle: () => void
@@ -20,6 +21,7 @@ interface TrackViewListingProps {
 	trackes?: Trackes
 	albumPageId?: string
 	type?: 'playlist' | 'all'
+	albumData?: Album
 }
 
 export const TrackesList: React.FC<TrackViewListingProps> = ({
@@ -29,9 +31,12 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 	albumPageId,
 	trackes,
 	type = 'playlist',
+	albumData,
 }) => {
 	const rowHeight = isCompact ? 34 : 50
 	const isDraggable = type === 'playlist'
+
+	const { updateTrackOrder } = useAlbumActions()
 
 	const getCustomButton = useCallback(
 		(track: Track): ReactNode => {
@@ -43,13 +48,23 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 		[type, albumPageId]
 	)
 
-	const { reorderedItems, containerRef } = useDraggable({
-		initialItems: trackes,
+	const handleOrderChange = useCallback(
+		(newOrder: number[]) => {
+			if (albumData && trackes) {
+				updateTrackOrder(newOrder, albumData, trackes)
+			}
+		},
+		[updateTrackOrder, albumData, trackes]
+	)
+
+	const { containerRef } = useDraggable({
+		items: trackes,
 		isDraggable,
 		rowHeight,
+		onOrderChange: isDraggable ? handleOrderChange : undefined,
 	})
 
-	if (isLoadingTrackes || (trackes && !reorderedItems)) {
+	if (isLoadingTrackes) {
 		return (
 			<TrackesListSkeleton
 				count={relayTrackesId?.length}
@@ -69,7 +84,7 @@ export const TrackesList: React.FC<TrackViewListingProps> = ({
 	return (
 		<div className="relative select-none" ref={containerRef}>
 			<TrackesListLabel isCompact={isCompact} />
-			{reorderedItems?.map((track, visualIndex) => (
+			{trackes.map((track, visualIndex) => (
 				<TrackesListItem
 					key={track.hash ?? track.title}
 					data-draggable={isDraggable || undefined}

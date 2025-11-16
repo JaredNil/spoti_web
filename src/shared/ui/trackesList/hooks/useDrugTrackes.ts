@@ -1,7 +1,7 @@
 // hooks/useDraggable.ts
 import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 import type { Track } from '@/shared/api'
 
@@ -9,33 +9,23 @@ gsap.registerPlugin(Draggable)
 
 // Определяем интерфейс для опций хука
 interface UseDraggableOptions {
-	initialItems: Track[] | undefined
+	items: Track[] | undefined
 	isDraggable: boolean
 	rowHeight: number
+	onOrderChange?: (newOrder: number[]) => void
 }
 
 export function useDraggable({
-	initialItems,
+	items,
 	isDraggable,
 	rowHeight,
+	onOrderChange,
 }: UseDraggableOptions) {
-	const [order, setOrder] = useState<number[] | undefined>(() =>
-		initialItems ? initialItems.map((_, i) => i) : undefined
-	)
-
 	const containerRef = useRef<HTMLDivElement | null>(null)
 	const dragInstances = useRef<any[]>([])
 
-	useEffect(() => {
-		if (initialItems) {
-			setOrder(initialItems.map((_, i) => i))
-		} else {
-			setOrder(undefined)
-		}
-	}, [initialItems])
-
 	const createDraggables = useCallback(() => {
-		if (!containerRef.current || !isDraggable || !order) return
+		if (!containerRef.current || !isDraggable || !items) return
 
 		dragInstances.current.forEach((instance) => instance.kill())
 		dragInstances.current = []
@@ -104,23 +94,18 @@ export function useDraggable({
 					})
 					rows.forEach((r) => gsap.to(r, { y: 0, duration: 0.3 }))
 
-					if (newIndex !== currentIndex) {
-						setOrder((prev) => {
-							if (prev) {
-								const copy = [...prev]
-								const [moved] = copy.splice(currentIndex, 1)
-								copy.splice(newIndex, 0, moved)
-								return copy
-							}
-							return prev
-						})
+					if (newIndex !== currentIndex && onOrderChange) {
+						const newOrder = [...Array(items.length).keys()]
+						const [moved] = newOrder.splice(currentIndex, 1)
+						newOrder.splice(newIndex, 0, moved)
+						onOrderChange(newOrder)
 					}
 				},
 			})[0]
 
 			dragInstances.current.push(drag)
 		})
-	}, [isDraggable, order, rowHeight])
+	}, [isDraggable, items, rowHeight, onOrderChange])
 
 	useEffect(() => {
 		createDraggables()
@@ -130,12 +115,7 @@ export function useDraggable({
 		}
 	}, [createDraggables])
 
-	const reorderedItems = order?.map(
-		(originalIndex) => initialItems![originalIndex]
-	)
-
 	return {
-		reorderedItems,
 		containerRef,
 	}
 }

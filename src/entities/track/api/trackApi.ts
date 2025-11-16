@@ -24,6 +24,10 @@ export const trackApi = rtkApi.injectEndpoints({
 			query: (ids) => ({
 				url: `/track?query=${ids.join(',')}`,
 			}),
+			serializeQueryArgs: ({ queryArgs }) => {
+				const sortedIds = [...queryArgs].sort()
+				return sortedIds.join(',')
+			},
 			providesTags: (result) =>
 				result
 					? [
