@@ -99,6 +99,10 @@ export const playerSlice = createSlice({
 			state.track = action.payload
 			state.isRun = false
 		},
+		updateQueueOrder: (state, action: PayloadAction<TrackesHash>) => {
+			state.queue = action.payload
+			if (action.payload) cacheHandle.set('queue', action.payload)
+		},
 	},
 })
 
