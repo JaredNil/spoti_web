@@ -1,14 +1,20 @@
 'use client'
 import { permanentRedirect } from 'next/navigation'
+import { useTranslation } from '@/shared/i18n'
+
 export default function NotFoundApplication() {
+	const { t } = useTranslation()
+
 	setTimeout(() => {
 		permanentRedirect('/home')
 	}, 5000)
 	return (
 		<div className="flex flex-col items-center justify-center h-full text-2xl select-none">
 			<div className="flex items-center justify-center ">
-				<span className="font-extrabold mr-6 text-3xl">ERROR</span>
-				<div className="tracking-tighter">Page not found</div>
+				<span className="font-extrabold mr-6 text-3xl">
+					{t('error')}
+				</span>
+				<div className="tracking-tighter">{t('pageNotFound')}</div>
 			</div>
 			<div>
 				<button
@@ -17,7 +23,7 @@ export default function NotFoundApplication() {
 					"
 					onClick={() => permanentRedirect('/home')}
 				>
-					<span className="tracking-tighter">back to /home</span>
+					<span className="tracking-tighter">{t('backToHome')}</span>
 				</button>
 			</div>
 		</div>

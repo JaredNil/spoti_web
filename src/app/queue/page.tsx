@@ -11,6 +11,7 @@ import { QueueTools } from './ui/queueTools'
 
 import { trackApi } from '@/entities/track/api/trackApi'
 import { useAppSelector } from '@/shared/hooks'
+import { useTranslation } from '@/shared/i18n'
 import {
 	getPlayerQueue,
 	getPlayerTarget,
@@ -22,6 +23,7 @@ const reducers: ReducerList = {
 }
 
 export default function QueuePage() {
+	const { t } = useTranslation()
 	const queueHash = useAppSelector(getPlayerQueue)
 	const nativeQueueHash = useAppSelector(getPlayerNativeQueue)
 	const currentTarget = useAppSelector(getPlayerTarget)
@@ -70,7 +72,7 @@ export default function QueuePage() {
 			>
 				{trackes && trackes.length === 0 && (
 					<div className="h-80 flex items-center justify-center select-none">
-						Очередь пуста
+						{t('queueEmpty')}
 					</div>
 				)}
 				{trackes?.map((track, index) => (
@@ -80,7 +82,7 @@ export default function QueuePage() {
 							opacity-0 transition-all duration-400 absolute pb-2
 							${currentTarget === index && 'opacity-100 relative pb-0'}`}
 						>
-							{currentTarget === index && 'Текущий трек'}
+							{currentTarget === index && t('currentTrack')}
 						</div>
 						<TrackQueue
 							target={index}
@@ -95,7 +97,7 @@ export default function QueuePage() {
 						>
 							{currentTarget === index &&
 								trackes.length - 1 != currentTarget &&
-								'Очередь'}
+								t('queue')}
 						</div>
 					</div>
 				))}

@@ -1,6 +1,9 @@
 import { TrackForm } from '../../model/types'
+import { useTranslation } from '@/shared/i18n'
 
 export const UploadViewStatus = ({ track }: { track: TrackForm }) => {
+	const { t } = useTranslation()
+
 	return (
 		<div
 			className="flex items-center gap-3 
@@ -9,7 +12,7 @@ export const UploadViewStatus = ({ track }: { track: TrackForm }) => {
 			{track.status === 'uploading' && (
 				<div className="flex items-center gap-2">
 					<div className="animate-spin rounded-full h-5 w-5 border-b-2 border-neutral-100"></div>
-					<span className="text-sm ">Загрузка...</span>
+					<span className="text-sm ">{t('uploading')}</span>
 				</div>
 			)}
 			{track.status === 'success' && (
@@ -25,7 +28,9 @@ export const UploadViewStatus = ({ track }: { track: TrackForm }) => {
 							clipRule="evenodd"
 						/>
 					</svg>
-					<span className="text-sm text-green-600">Загружено</span>
+					<span className="text-sm text-green-600">
+						{t('uploaded')}
+					</span>
 				</div>
 			)}
 			{track.status === 'error' && (
@@ -41,7 +46,7 @@ export const UploadViewStatus = ({ track }: { track: TrackForm }) => {
 							clipRule="evenodd"
 						/>
 					</svg>
-					<span className="text-sm text-red-600">Ошибка</span>
+					<span className="text-sm text-red-600">{t('error')}</span>
 				</div>
 			)}
 		</div>

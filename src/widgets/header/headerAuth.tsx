@@ -10,8 +10,10 @@ import { AuthModal } from '@/features/authModal'
 import { useAppSelector } from '@/shared/hooks'
 import { Icons } from '@/shared/icons'
 import { Button } from '@/shared/ui/kit/button'
+import { useTranslation } from '@/shared/i18n'
 
 export const HeaderAuthButton = () => {
+	const { t } = useTranslation()
 	const isVisibleModal = useAppSelector(getIsVisibleModal)
 	const routing = useRouter()
 
@@ -28,7 +30,7 @@ export const HeaderAuthButton = () => {
 	})
 	const profileClick = () => {
 		if (status === 'unauthenticated') {
-			toast.warning('Войдите в ваш аккаунт')
+			toast.warning(t('loginPrompt'))
 			routing.push('/auth/login')
 		} else if (status === 'authenticated') {
 			routing.push('/setting')
@@ -66,7 +68,7 @@ export const HeaderAuthButton = () => {
 				className="ml-3 flex w-24 items-center justify-center px-6 py-2
 				bg-white hover:bg-white/75 cursor-pointer rounded-full text-black"
 			>
-				{status === 'authenticated' ? 'Выйти' : 'Войти'}
+				{status === 'authenticated' ? t('logout') : t('login')}
 			</Button>
 			{isVisibleModal && <AuthModal type="auth" />}
 		</div>

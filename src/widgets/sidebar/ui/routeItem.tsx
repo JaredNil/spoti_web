@@ -9,14 +9,15 @@ import { IconName, Icons } from '@/shared/icons'
 
 interface RouteItem {
 	routeInfo: {
-		label: IconName
+		label: string
 		href: string
+		icon: IconName
 	}
 }
 
 export const RouteItem: React.FC<RouteItem> = memo(
 	({ routeInfo }: RouteItem) => {
-		const { href, label } = routeInfo
+		const { href, label, icon } = routeInfo
 
 		const pathname = usePathname()
 
@@ -32,7 +33,7 @@ export const RouteItem: React.FC<RouteItem> = memo(
 					isActive && 'opacity-45'
 				)}
 			>
-				<Icons name={label} size={26} />
+				<Icons name={icon} size={26} />
 				<p className="truncate">{label}</p>
 			</Link>
 		)

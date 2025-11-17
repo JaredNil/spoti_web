@@ -13,11 +13,13 @@ import { getUserSearch, metaAction } from '@/entities/meta'
 import { useSearchTrackesQuery } from '@/entities/track/api/trackApi'
 import { Track } from '@/shared/api'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { useTranslation } from '@/shared/i18n'
 import { Input } from '@/shared/ui/kit/input'
 import { PlayButton } from '@/shared/ui/playButton/playButton'
 
 export const Search: React.FC = () => {
 	const dispatch = useAppDispatch()
+	const { t } = useTranslation()
 
 	const trackes = useAppSelector(getSearchTrackes)
 	const trackesHash = useAppSelector(getSearchTrackesHash)
@@ -48,10 +50,12 @@ export const Search: React.FC = () => {
 					dispatch(metaAction.setSearched(e.target.value))
 				}
 				className="sceleton xl:w-[50%]"
-				placeholder="architect..."
+				placeholder={t('searchPlaceholder')}
 			/>
 			<div className="w-full mt-3 flex flex-col">
-				<span className="text-2xl select-none">Результаты поиска:</span>
+				<span className="text-2xl select-none">
+					{t('searchResults')}
+				</span>
 				{trackes && trackesHash && (
 					<SearchView
 						trackes={trackes}

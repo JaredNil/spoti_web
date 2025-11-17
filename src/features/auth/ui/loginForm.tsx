@@ -19,8 +19,10 @@ import {
 	FormMessage,
 } from '@/shared/ui/kit/form'
 import { Input } from '@/shared/ui/kit/input'
+import { useTranslation } from '@/shared/i18n'
 
 export function LoginForm() {
+	const { t } = useTranslation()
 	const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
 	const [isShowTwoFactor, setIsShowFactor] = useState(false)
 
@@ -40,13 +42,13 @@ export function LoginForm() {
 			toast.success('Handle вход в аккаунт')
 			// login({ values, recaptcha: recaptchaValue })
 		} else {
-			toast.error('Пожалуйста, завершите reCAPTCHA')
+			toast.error(t('completeRecaptcha'))
 		}
 	}
 
 	const errorMessage = () => {
-		toast.error('Входи через Google / Yandex', {
-			description: 'Фича еще в разработке',
+		toast.error(t('loginViaGoogleYandex'), {
+			description: t('featureInDevelopment'),
 		})
 	}
 	return (
@@ -81,7 +83,7 @@ export function LoginForm() {
 							name="email"
 							render={({ field }) => (
 								<FormItem onClick={errorMessage}>
-									<FormLabel>Почта</FormLabel>
+									<FormLabel>{t('email')}</FormLabel>
 									<FormControl>
 										<Input
 											autoComplete="address-level2 webauthn"
@@ -102,7 +104,7 @@ export function LoginForm() {
 							render={({ field }) => (
 								<FormItem onClick={errorMessage}>
 									<div className="flex items-center justify-between">
-										<FormLabel>Пароль</FormLabel>
+										<FormLabel>{t('password')}</FormLabel>
 										<Link
 											href="/auth/reset"
 											className="ml-auto inline-block text-sm underline"
@@ -140,7 +142,7 @@ export function LoginForm() {
 					// disabled={isLoadingLogin}
 					disabled={true}
 				>
-					Войти в аккаунт
+					{t('loginToAccount')}
 				</Button>
 			</form>
 		</Form>

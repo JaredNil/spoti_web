@@ -16,9 +16,11 @@ import { useFetchTrackQuery, useLazyFetchTrackQuery } from '@/entities/track'
 import { trackApi } from '@/entities/track/api/trackApi'
 import { Track, Trackes, TrackesHash, TrackHash } from '@/shared/api'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { useTranslation } from '@/shared/i18n'
 import { ze } from '@/shared/lib/log'
 
 export function usePlayer() {
+	const { t } = useTranslation()
 	const { playTrack, pauseTrack } = useCurrentTrack()
 
 	const [triggerFetchTrack] = useLazyFetchTrackQuery()
@@ -75,7 +77,7 @@ export function usePlayer() {
 	function play() {
 		if (queue.length === 0) {
 			ze('play error, queue empty')
-			toast.error('Нет треков в очереди плейлиста')
+			toast.error(t('noTracksInQueue'))
 		} else {
 			if (playTrack) {
 				playTrack()

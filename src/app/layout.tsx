@@ -1,5 +1,7 @@
 import { GeneralProviders } from './(providers)'
 
+import { getServerLanguage } from '@/features/language/lib/serverLanguage'
+import { ServerLanguageInitializer } from '@/features/language/ui/serverLanguageInitializer'
 import AppWrapper from '@/shared/ui/appwrapper'
 import Page from '@/shared/ui/page'
 import { Header } from '@/widgets/header'
@@ -8,19 +10,20 @@ import { Sidebar } from '@/widgets/sidebar'
 
 import '@/shared/css/index.css'
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
+	const language = await getServerLanguage()
+
 	return (
-		<html lang="ru">
+		<html lang={language}>
+			<head>
+				<ServerLanguageInitializer />
+			</head>
 			<AppWrapper>
 				<GeneralProviders>
-					<div
-						className="flex overflow-x-auto h-full 
-						nth-last-of-type-1:pb-2 pt-2"
-					>
+					<div className="flex overflow-x-auto h-full nth-last-of-type-1:pb-2 pt-2">
 						<Sidebar />
-
 						<main className="relative flex h-full w-full overflow-y-auto mx-1 rounded-lg">
 							<Header />
 							<Page>{children}</Page>

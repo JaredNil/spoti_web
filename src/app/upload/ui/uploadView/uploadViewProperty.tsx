@@ -1,4 +1,5 @@
 import { TrackForm } from '../../model/types'
+import { useTranslation } from '@/shared/i18n'
 
 export const UploadViewProperty = ({
 	track,
@@ -7,6 +8,8 @@ export const UploadViewProperty = ({
 	track: TrackForm
 	updateTrack: (id: string, updates: Partial<TrackForm>) => void
 }) => {
+	const { t } = useTranslation()
+
 	return (
 		<div className="flex flex-col font-medium">
 			<div className="relative my-4">
@@ -14,7 +17,7 @@ export const UploadViewProperty = ({
 					className="absolute top-[-5px] left-1 tracking-wider text-neutral-400/50
 					text-xl font-medium select-none pointer-events-none"
 				>
-					TITLE
+					{t('title')}
 				</label>
 				<input
 					disabled={
@@ -37,7 +40,7 @@ export const UploadViewProperty = ({
 					className="absolute top-[-5px] left-1 tracking-wider text-neutral-400/50
 					text-xl font-medium select-none pointer-events-none"
 				>
-					AUTHOR
+					{t('author')}
 				</label>
 				<input
 					type="text"

@@ -1,16 +1,16 @@
+'use client'
 import { AuthWrapper } from '@/features/auth/ui/authWrapper'
 import { RegisterForm } from '@/features/auth/ui/registerForm'
-import { createMeta } from '@/shared/const/metadata'
-import { Title } from '@/shared/ui/pageTitle/pageTitle'
-
-export const metadata = createMeta({ title: 'Create account' })
+import { useTranslation } from '@/shared/i18n'
 
 export default function RegisterPage() {
+	const { t } = useTranslation()
+
 	return (
 		<AuthWrapper
-			heading="Регистрация"
-			description="Чтобы войти на сайт введите ваш email и пароль"
-			backButtonLabel="Уже есть аккаунт? Войти"
+			heading={t('register')}
+			description={t('registerDescription')}
+			backButtonLabel={t('alreadyHaveAccount')}
 			backButtonHref="/auth/login"
 		>
 			<RegisterForm />

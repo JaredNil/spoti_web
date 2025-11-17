@@ -17,6 +17,7 @@ import {
 } from '@/app/(providers)/storeProvider'
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
 import { Button } from '@/shared/ui/kit/button'
+import { useTranslation } from '@/shared/i18n'
 
 export interface AuthFormProps {
 	className?: string
@@ -29,6 +30,7 @@ const initialReducers: ReducerList = {
 
 const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 	const { className, onSuccess } = props
+	const { t } = useTranslation()
 	const dispatch = useAppDispatch()
 
 	const authUsername = useAppSelector(getAuthUsername)
@@ -97,7 +99,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 					className=" mb-5 mt-2 select-none text-center 
 					text-3xl font-semibold text-white"
 				>
-					Авторизация
+					{t('authorization')}
 				</h2>
 				<div className="flex pb-3">
 					<Button
@@ -111,7 +113,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 					>
 						<FaGithub size={20} />
 
-						<span className="mx-2">{'Войти по Github'}</span>
+						<span className="mx-2">{t('loginWithGithub')}</span>
 					</Button>
 					<Button
 						className={twMerge(
@@ -123,7 +125,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 					>
 						<FcGoogle size={20} />
 
-						<span className="mx-2">{'Войти по Google'}</span>
+						<span className="mx-2">{t('loginWithGoogle')}</span>
 					</Button>
 				</div>
 				{/* <div className="select-none font-extralight">
@@ -157,7 +159,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 					// onClick={onAuthFromServer}
 					disabled={isLoading || isValid}
 				>
-					Войти
+					{t('login')}
 				</Button>
 
 				<Button
@@ -167,7 +169,7 @@ const AuthForm: React.FC<AuthFormProps> = memo((props: AuthFormProps) => {
 					)}
 					// onClick={onAuthDemoFromServer}
 				>
-					'Войти в общий аккаунт [ADMIN]
+					{t('loginWithAdmin')}
 				</Button>
 				<h3
 					className=" flex cursor-pointer select-none

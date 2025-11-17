@@ -1,6 +1,7 @@
 import { DragEvent, SetStateAction, useCallback, useState } from 'react'
 
 import { TrackForm, UploadState } from '../model/types'
+import { useTranslation } from '@/shared/i18n'
 
 export const DragArea = ({
 	setTracks,
@@ -13,6 +14,7 @@ export const DragArea = ({
 	setIsDragging: (value: boolean) => void
 	classname: string
 }) => {
+	const { t } = useTranslation()
 	const handleDrag = useCallback((e: DragEvent) => {
 		e.preventDefault()
 		e.stopPropagation()
@@ -70,10 +72,10 @@ export const DragArea = ({
 				>
 					<div className="text-white text-6xl mb-4">📁</div>
 					<h2 className="text-white text-4xl font-bold mb-2">
-						Отпустите файлы
+						{t('dropFiles')}
 					</h2>
 					<p className="text-white/70 text-xl">
-						Аудиофайлы будут добавлены для загрузки
+						{t('audioFilesWillBeAdded')}
 					</p>
 				</div>
 			</div>
@@ -92,10 +94,10 @@ export const DragArea = ({
 			>
 				<div className="text-6xl mb-4 select-none">𝅙</div>
 				<h3 className="text-xl mb-2 select-none">
-					Перетащите аудиофайлы сюда
+					{t('dragAudioFiles')}
 				</h3>
 				<p className="text-white/70 text-base select-none">
-					Поддерживаются треки MP3, WAV, FLAC
+					{t('supportedFormats')}
 				</p>
 			</div>
 		)

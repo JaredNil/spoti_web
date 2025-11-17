@@ -6,6 +6,7 @@ import { SearchLoading } from './piece/searchLoading'
 
 import { DropdownHeader } from '@/app/playlist/ui/piece/dropdownHeader'
 import { Trackes, TrackesHash } from '@/shared/api'
+import { useTranslation } from '@/shared/i18n'
 import { Icons } from '@/shared/icons'
 import { TrackesList } from '@/shared/ui/trackesList/trackesList'
 
@@ -21,6 +22,7 @@ export const SearchView: React.FC<SearchViewProps> = ({
 	trackes,
 }: SearchViewProps) => {
 	const [isCompact, setIsList] = useState<boolean>(false)
+	const { t } = useTranslation()
 	const toggleList = () => setIsList(!isCompact)
 	return (
 		<div
@@ -36,7 +38,7 @@ export const SearchView: React.FC<SearchViewProps> = ({
 					{!isCompact ? (
 						<div className="flex items-center justify-center">
 							<span className="mr-2 select-none text-neutral-400">
-								Cписок
+								{t('listView')}
 							</span>
 							<Icons
 								name="ListBullets"
@@ -47,7 +49,7 @@ export const SearchView: React.FC<SearchViewProps> = ({
 					) : (
 						<div className="flex items-center justify-center">
 							<span className="mr-2 select-none text-neutral-400">
-								Компактный
+								{t('compactView')}
 							</span>
 							<Icons
 								name="ListLight"

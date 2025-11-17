@@ -1,10 +1,10 @@
 import { Track } from '@/entities/track'
-import { Title } from '@/shared/ui/pageTitle/pageTitle'
+import { TrackPageTitle } from './trackPageTitle'
 
 // export async function generateMetadata({
 // 	params,
 // }: {
-// 	params: { id: string }
+// 	params: Promise<{ id: string }>
 // }): Promise<Metadata> {
 // 	const { id } = await params
 
@@ -22,7 +22,7 @@ export default async function PlaylistPage({
 
 	return (
 		<>
-			<Title title={'Track page'} />
+			<TrackPageTitle />
 			<Track hash={id} />
 		</>
 	)

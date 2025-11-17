@@ -5,6 +5,7 @@ import { UploadViewProperty } from './uploadView/uploadViewProperty'
 import { UploadViewStatus } from './uploadView/uploadViewStatus'
 import { UploadViewTitle } from './uploadView/uploadViewTitle'
 import { TrackForm } from '../model/types'
+import { useTranslation } from '@/shared/i18n'
 
 export const UploadView = ({
 	tracks,
@@ -19,6 +20,8 @@ export const UploadView = ({
 	updateTrack: (id: string, updates: Partial<TrackForm>) => void
 	classname?: string
 }) => {
+	const { t } = useTranslation()
+
 	const removeTrack = (id: string) => {
 		setTracks((prev) => prev.filter((t) => t.id !== id))
 	}
@@ -27,14 +30,14 @@ export const UploadView = ({
 		return (
 			<div className={`text-center ${classname}`}>
 				<h3 className="text-xl font-medium select-none">
-					Not uploading data ;c
+					{t('notUploadingData')}
 				</h3>
 			</div>
 		)
 	} else {
 		return (
 			<div className={`text-xl font-semibold text-white ${classname}`}>
-				<div className="">Uploading trackes:</div>
+				<div className="">{t('uploadingTracks')}</div>
 				{tracks.map((track, index) => (
 					<form
 						key={track.id}

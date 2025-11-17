@@ -22,15 +22,18 @@ import { toast } from 'sonner'
 import { profile } from '../const/portfolio-data'
 import { Contacts } from './portfolio/contacts'
 
+import { useTranslation } from '@/shared/i18n'
 import { Badge } from '@/shared/ui/kit/badge'
 import { Button } from '@/shared/ui/kit/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/kit/card'
 import { Separator } from '@/shared/ui/kit/separator'
 
 export function Portfolio() {
+	const { t } = useTranslation()
+
 	const copyToClipboard = (text: string, type: string) => {
 		navigator.clipboard.writeText(text)
-		toast.success(`${type} скопировано в буфер`)
+		toast.success(`${type} ${t('copiedToClipboard')}`)
 	}
 
 	return (
@@ -53,18 +56,18 @@ export function Portfolio() {
 					<div className="flex flex-wrap flex-row gap-3">
 						<Contacts
 							icon={<Mail className="w-4 h-4" />}
-							label="Email"
+							label={t('email')}
 							value={profile.email}
 							onClick={() =>
-								copyToClipboard(profile.email, 'Почта')
+								copyToClipboard(profile.email, t('email'))
 							}
 						/>
 						<Contacts
 							icon={<Phone className="w-4 h-4" />}
-							label="Телефон"
+							label={t('phone')}
 							value={profile.phone}
 							onClick={() =>
-								copyToClipboard(profile.phone, 'Телефон')
+								copyToClipboard(profile.phone, t('phone'))
 							}
 						/>
 						<Contacts
@@ -109,7 +112,8 @@ export function Portfolio() {
 
 			<section className="mb-5 ">
 				<h4 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
-					<User className="w-6 h-6 text-blue-400" />О себе
+					<User className="w-6 h-6 text-blue-400" />
+					{t('aboutMe')}
 				</h4>
 				<Card className="overflow-hidden bg-white/10 backdrop-blur-md border-white/20">
 					<CardContent className="">
@@ -123,7 +127,7 @@ export function Portfolio() {
 			<section className="mb-5 ">
 				<h4 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
 					<Briefcase className="w-6 h-6 text-indigo-400" />
-					Опыт работы
+					{t('workExperience')}
 				</h4>
 				<div className="space-y-4 md:space-y-6">
 					{profile.experience.map((exp, idx) => (
@@ -151,7 +155,7 @@ export function Portfolio() {
 								<div className="mb-4">
 									<h3 className="font-semibold mb-2 flex items-center gap-1 text-white">
 										<Award className="w-4 h-4 text-amber-400" />
-										Ключевые достижения
+										{t('keyAchievements')}
 									</h3>
 									<ul className="space-y-2">
 										{exp.achievements.map((a, i) => (
@@ -170,7 +174,7 @@ export function Portfolio() {
 								<div>
 									<h3 className="font-semibold mb-2 flex items-center gap-1 text-white">
 										<Code className="w-4 h-4 text-blue-400" />
-										Используемый стек
+										{t('techStack')}
 									</h3>
 									<div className="flex flex-wrap gap-2">
 										{exp.stack.map((tech) => (
@@ -193,7 +197,7 @@ export function Portfolio() {
 			<section className="mb-5 ">
 				<h4 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
 					<Code className="w-6 h-6 text-indigo-400" />
-					Используемые технологии
+					{t('technologies')}
 				</h4>
 				<Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-colors">
 					<CardContent>
@@ -217,7 +221,7 @@ export function Portfolio() {
 			<section className="mb-5">
 				<h4 className="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
 					<Phone className="w-6 h-6 text-indigo-400" />
-					Контакты
+					{t('contacts')}
 				</h4>
 				<Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-colors">
 					<CardContent>
@@ -226,14 +230,14 @@ export function Portfolio() {
 								<Mail className="w-5 h-5 text-blue-400" />
 								<div>
 									<div className="text-sm text-slate-400">
-										Email
+										{t('email')}
 									</div>
 									<div
 										className="text-white cursor-pointer hover:text-blue-300 flex items-center gap-1"
 										onClick={() =>
 											copyToClipboard(
 												profile.email,
-												'Почта'
+												t('email')
 											)
 										}
 									>
@@ -246,14 +250,14 @@ export function Portfolio() {
 								<Phone className="w-5 h-5 text-green-400" />
 								<div>
 									<div className="text-sm text-slate-400">
-										Телефон
+										{t('phone')}
 									</div>
 									<div
 										className="text-white cursor-pointer hover:text-green-300 flex items-center gap-1"
 										onClick={() =>
 											copyToClipboard(
 												profile.phone,
-												'Телефон'
+												t('phone')
 											)
 										}
 									>
@@ -326,7 +330,7 @@ export function Portfolio() {
 								<Globe className="w-5 h-5 text-purple-400" />
 								<div>
 									<div className="text-sm text-slate-400">
-										Сайт
+										{t('website')}
 									</div>
 									<div
 										className="text-white cursor-pointer hover:text-purple-300 flex items-center gap-1"

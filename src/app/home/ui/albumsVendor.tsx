@@ -1,6 +1,7 @@
 import { JSX } from 'react'
 
 import { AlbumsByUserClient } from './piece/albumsByUserClient'
+import { AlbumListTitle } from './piece/albumListTitle'
 
 import {
 	fetchAlbumsJarefy,
@@ -12,13 +13,6 @@ import { ze } from '@/shared/lib/log'
 
 export type AlbumListType = 'COMMON' | 'USER' | 'COMMUNITY'
 
-const getAlbumListTitle = (type: AlbumListType): string => {
-	if (type === 'COMMON') return 'Common Jarefy playlist'
-	else if (type === 'USER') return 'My playlist'
-	else if (type === 'COMMUNITY') return 'Playlists other users'
-	return 'Какие-то плейлисты'
-}
-
 interface AlbumsVendorProps {
 	type: AlbumListType
 	classname?: string
@@ -28,20 +22,12 @@ export const AlbumsVendor: React.FC<AlbumsVendorProps> = async ({
 	type,
 	classname,
 }) => {
-	const title = getAlbumListTitle(type)
-
 	let albums: AlbumsCollection | null = null
 	if (type === 'COMMON') albums = await fetchAlbumsJarefy()
 
 	return (
 		<>
-			<span
-				className="mb-3 mt-5 inline-block
-				select-none rounded-lg 
-				pr-4 text-2xl pointer-events-none"
-			>
-				{title}
-			</span>
+			<AlbumListTitle type={type} />
 			{albums && albums.length == 0 && (
 				<div className="flex items-center w-full justify-center">
 					Playlists does not exist.

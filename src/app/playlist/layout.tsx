@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 import { createMeta } from '@/shared/const/metadata'
 
-export const metadata = createMeta({ title: 'Album' })
+export const metadata = createMeta({ title: 'Playlist' })
 
 export default async function PlaylistPageLayout({
 	children,

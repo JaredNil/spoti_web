@@ -1,33 +1,41 @@
+'use client'
 import { Library } from './library/library'
 import { RouteItem } from './routeItem'
 
+import { useTranslation } from '@/shared/i18n'
 import { IconName } from '@/shared/icons'
-import { SidebarResizer } from '@/shared/ui/sidebarResizer'
 
-const sidebarRoutes: { href: string; label: IconName }[] = [
+const sidebarRoutes: { href: string; icon: IconName; labelKey: string }[] = [
 	{
 		href: '/overview',
-		label: 'CV',
+		icon: 'CV',
+		labelKey: 'overview',
 	},
 	{
 		href: '/home',
-		label: 'Home',
+		icon: 'Home',
+		labelKey: 'home',
 	},
 	{
 		href: '/search',
-		label: 'Search',
+		icon: 'Search',
+		labelKey: 'search',
 	},
 	{
 		href: '/upload',
-		label: 'Upload',
+		icon: 'Upload',
+		labelKey: 'upload',
 	},
 	{
 		href: '/queue',
-		label: 'Queue',
+		icon: 'Queue',
+		labelKey: 'queue',
 	},
 ]
 
 export function Sidebar() {
+	const { t } = useTranslation()
+
 	return (
 		<aside
 			className="sidebar relative hidden h-full min-w-[250px] max-w-[500px]
@@ -37,12 +45,19 @@ export function Sidebar() {
 			<div className="sidebar_container flex flex-col relative w-full">
 				<div className="flex flex-col gap-y-4 px-5 py-4 bg-section rounded-lg w-full">
 					{sidebarRoutes.map((item, key) => (
-						<RouteItem routeInfo={item} key={key} />
+						<RouteItem
+							routeInfo={{
+								href: item.href,
+								label: t(item.labelKey),
+								icon: item.icon,
+							}}
+							key={key}
+						/>
 					))}
 				</div>
 				<div className="h-full overflow-y-auto mt-2 bg-section rounded-lg w-full">
 					<div className="px-5 pt-4 text-common select-none font-semibold">
-						ПЛЕЙЛИСТЫ
+						{t('playlists')}
 					</div>
 					<Library />
 				</div>

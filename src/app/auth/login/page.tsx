@@ -1,15 +1,16 @@
+'use client'
 import { AuthWrapper } from '@/features/auth/ui/authWrapper'
 import { LoginForm } from '@/features/auth/ui/loginForm'
-import { createMeta } from '@/shared/const/metadata'
-
-export const metadata = createMeta({ title: 'Auth' })
+import { useTranslation } from '@/shared/i18n'
 
 export default function LoginPage() {
+	const { t } = useTranslation()
+
 	return (
 		<AuthWrapper
-			heading="Войти"
-			description="Чтобы войти на сайт введите ваш email и пароль"
-			backButtonLabel="Еще нет аккаунта? Регистрация"
+			heading={t('login')}
+			description={t('loginDescription')}
+			backButtonLabel={t('noAccountYet')}
 			backButtonHref="/auth/register"
 		>
 			<LoginForm />

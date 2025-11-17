@@ -1,6 +1,7 @@
 import { toast } from 'sonner'
 
 import { useAppDispatch, useAppSelector } from '@/shared/hooks'
+import { useTranslation } from '@/shared/i18n'
 import { Icons } from '@/shared/icons'
 import { shuffle } from '@/shared/lib/shuffle'
 import {
@@ -13,6 +14,7 @@ import {
 export const QueueTools = () => {
 	const dispatch = useAppDispatch()
 	const player = usePlayer()
+	const { t } = useTranslation()
 
 	const queue = useAppSelector(getPlayerQueue)
 	const target = useAppSelector(getPlayerTarget)
@@ -20,16 +22,16 @@ export const QueueTools = () => {
 	const tools = () => [
 		{
 			icon: <Icons name="Moon" />,
-			label: 'zapas',
+			label: t('reserve'),
 			handle: () => {
-				toast.success('Пока не придумал функциональность.', {})
+				toast.success(t('featureNotImplemented'), {})
 			},
 		},
 		{
 			icon: <Icons name="Reverse" />,
-			label: 'reverse',
+			label: t('reverse'),
 			handle: () => {
-				toast.success('Очередь развёрнута.', {})
+				toast.success(t('queueReversed'), {})
 				const newQueue = [...queue].reverse()
 				dispatch(playerAction.setQueue(newQueue))
 				player.start(newQueue, target)
@@ -37,9 +39,9 @@ export const QueueTools = () => {
 		},
 		{
 			icon: <Icons name="Shuffle" />,
-			label: 'shuffle',
+			label: t('shuffle'),
 			handle: () => {
-				toast.success('Очередь расшуршана.', {})
+				toast.success(t('queueShuffled'), {})
 				const newQueue = shuffle(queue)
 				dispatch(playerAction.setQueue(newQueue))
 				player.start(newQueue, target)

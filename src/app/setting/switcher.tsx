@@ -1,22 +1,25 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslation } from '@/shared/i18n'
+import { useLanguageContext } from '@/features/language/ui/languageProvider'
 
 type Theme = 'spotify' | 'gradient'
-type Lang = 'RU' | 'EN'
 
 const THEMES: Theme[] = ['spotify', 'gradient']
-const LANGUAGE: Lang[] = ['RU', 'EN']
 
 export default function Switcher({ classname }: { classname?: string }) {
 	const [theme, setTheme] = useState<Theme>('spotify')
-	const [lang, setLang] = useState<Lang>('RU')
+	const { t } = useTranslation()
+	const {
+		currentLanguage,
+		changeLanguage: changeAppLanguage,
+		isLoading,
+	} = useLanguageContext()
 
 	useEffect(() => {
 		const t = (localStorage.getItem('theme') as Theme) || 'spotify'
-		const l = (localStorage.getItem('lang') as Lang) || 'RU'
 		setTheme(t)
-		setLang(l)
 		applyTheme(t)
 	}, [])
 
@@ -35,9 +38,8 @@ export default function Switcher({ classname }: { classname?: string }) {
 		applyTheme(t)
 	}
 
-	const handleLang = (l: Lang) => {
-		setLang(l)
-		localStorage.setItem('lang', l)
+	const handleLang = (language: 'ru' | 'en') => {
+		changeAppLanguage(language)
 	}
 
 	return (
@@ -52,7 +54,7 @@ export default function Switcher({ classname }: { classname?: string }) {
 						className="text-xs font-semibold uppercase tracking-wider 
 					text-neutral-400"
 					>
-						Theme
+						{t('theme')}
 					</div>
 					<div className="flex flex-wrap w-full grow justify-center items-center">
 						{THEMES.map((themeItem) => (
@@ -92,19 +94,32 @@ export default function Switcher({ classname }: { classname?: string }) {
 					transition"
 				>
 					<div className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">
-						Language
+						{t('language')}
 					</div>
-					<div className="grow flex gap-2 ">
-						{LANGUAGE.map((l) => (
-							<button
-								key={l}
-								onClick={() => handleLang(l)}
-								className={`px-3 py-1 rounded-md text-sm transition cursor-pointer
-                    			${lang === l ? 'bg-green-500 text-white' : 'bg-neutral-700'}`}
-							>
-								{l}
-							</button>
-						))}
+					<div className="grow flex gap-2">
+						{isLoading ? (
+							<div className="flex gap-2">
+								<div className="w-12 h-8 bg-neutral-700 animate-pulse rounded" />
+								<div className="w-12 h-8 bg-neutral-700 animate-pulse rounded" />
+							</div>
+						) : (
+							<>
+								<button
+									onClick={() => handleLang('ru')}
+									className={`px-3 py-1 rounded-md text-sm transition cursor-pointer
+										${currentLanguage === 'ru' ? 'bg-green-500 text-white' : 'bg-neutral-700'}`}
+								>
+									RU
+								</button>
+								<button
+									onClick={() => handleLang('en')}
+									className={`px-3 py-1 rounded-md text-sm transition cursor-pointer
+										${currentLanguage === 'en' ? 'bg-green-500 text-white' : 'bg-neutral-700'}`}
+								>
+									EN
+								</button>
+							</>
+						)}
 					</div>
 				</div>
 			</div>
