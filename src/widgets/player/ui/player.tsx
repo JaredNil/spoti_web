@@ -41,7 +41,7 @@ export const Player: React.FC = () => {
 
 	return (
 		<div
-			className="relative z-50 min-h-14 w-full px-2
+			className="relative z-50 min-h-20 w-full px-2
 			flex flex-col
 			bg-black sm:px-4"
 		>

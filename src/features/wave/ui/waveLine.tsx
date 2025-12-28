@@ -10,6 +10,7 @@ type Props = {
 	progress?: number
 	mode?: WaveMode
 	className?: string
+	barGap: number
 }
 
 export const WaveLine = ({
@@ -18,9 +19,10 @@ export const WaveLine = ({
 	progress = 0,
 	mode = 'full',
 	className = '',
+	barGap,
 }: Props) => {
 	const current = useAudioClock()
-	const draw = useWaveDrawer(peaks, duration, current, progress, mode)
+	const draw = useWaveDrawer(peaks, duration, current, progress, mode, barGap)
 	const canvasRef = useCanvas(draw)
 
 	return <canvas ref={canvasRef} className={`w-full  ${className}`} />
