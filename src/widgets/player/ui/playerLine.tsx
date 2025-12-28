@@ -16,8 +16,8 @@ import { useAppSelector } from '@/shared/hooks'
 
 const DEBOUNCE_DELAY = 15
 
-const PIXEL_PER_PEAK = 1
-const GAP = 0.5
+const PIXEL_PER_PEAK = 1.8
+const GAP = 1.6
 
 export const PlayerLine = () => {
 	const { shift } = useCurrentTrack()
@@ -85,7 +85,7 @@ export const PlayerLine = () => {
 					`absolute left-0 bottom-[-26px] text-[12px] text-neutral-400/40
 					select-none pointer-events-none`,
 					peaks.length > 0
-						? 'bottom-[-30px] sm:bottom-[-25px]'
+						? 'bottom-[-33px] sm:bottom-[-28px]'
 						: 'bottom-[-20px]'
 				)}
 			>
@@ -96,7 +96,7 @@ export const PlayerLine = () => {
 					`absolute right-0 bottom-[-26px] text-[12px] text-neutral-400/40
 					select-none pointer-events-none`,
 					peaks.length > 0
-						? 'bottom-[-30px] sm:bottom-[-25px]'
+						? 'bottom-[-33px] sm:bottom-[-28px]'
 						: 'bottom-[-20px]'
 				)}
 			>
@@ -125,10 +125,11 @@ export const PlayerLine = () => {
 			{peaks.length > 0 && (
 				<WaveLine
 					peaks={peaks}
+					barGap={GAP}
 					duration={duration}
 					progress={progress}
 					mode="full"
-					className="absolute top-[-3px] sm:top-[-10px] left-0 w-full h-[20px]"
+					className="absolute top-[-3px] sm:top-[-15px] left-0 w-full h-[30px]"
 				/>
 			)}
 		</div>

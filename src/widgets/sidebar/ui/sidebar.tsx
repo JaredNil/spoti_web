@@ -7,7 +7,7 @@ import { SidebarResizer } from '@/shared/ui/sidebarResizer'
 const sidebarRoutes: { href: string; label: IconName }[] = [
 	{
 		href: '/overview',
-		label: 'CV',
+		label: 'Overview',
 	},
 	{
 		href: '/home',
